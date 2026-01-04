@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface ProjectCardProps {
   image?: string;
@@ -50,30 +51,57 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </p>
         </div>
         {linkUrl && (
-          <a
-            href={linkUrl}
-            className="border-b border-[#5e3bee] flex gap-3 md:gap-5 items-center pb-2 md:pb-2.5 text-black hover:text-[#5e3bee] transition-colors"
-          >
-            <span className="font-semibold text-sm md:text-base leading-[1.5]">{linkText}</span>
-            <div className="relative shrink-0 w-3 h-3 md:w-4 md:h-4">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-full h-full"
-              >
-                <path
-                  d="M6 12L10 8L6 4"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-          </a>
+          (linkUrl.startsWith('http') || linkUrl.startsWith('#')) ? (
+            <a
+              href={linkUrl}
+              className="border-b border-[#5e3bee] flex gap-3 md:gap-5 items-center pb-2 md:pb-2.5 text-black hover:text-[#5e3bee] transition-colors"
+            >
+              <span className="font-semibold text-sm md:text-base leading-[1.5]">{linkText}</span>
+              <div className="relative shrink-0 w-3 h-3 md:w-4 md:h-4">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-full h-full"
+                >
+                  <path
+                    d="M6 12L10 8L6 4"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+            </a>
+          ) : (
+            <Link
+              to={linkUrl}
+              className="border-b border-[#5e3bee] flex gap-3 md:gap-5 items-center pb-2 md:pb-2.5 text-black hover:text-[#5e3bee] transition-colors"
+            >
+              <span className="font-semibold text-sm md:text-base leading-[1.5]">{linkText}</span>
+              <div className="relative shrink-0 w-3 h-3 md:w-4 md:h-4">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-full h-full"
+                >
+                  <path
+                    d="M6 12L10 8L6 4"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+            </Link>
+          )
         )}
       </div>
     </div>

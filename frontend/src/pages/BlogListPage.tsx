@@ -5,6 +5,7 @@ import type { Tag, BlogPostListItem } from '../services/api';
 import { BlogCard } from '../components/BlogCard';
 import { BlogFilter } from '../components/BlogFilter';
 import { BlogSearch } from '../components/BlogSearch';
+import { Pagination } from '../components/Pagination';
 import { Container } from '../components/Container';
 
 export const BlogListPage: React.FC = () => {
@@ -137,25 +138,11 @@ export const BlogListPage: React.FC = () => {
             </div>
 
             {pagination.totalPages > 1 && (
-              <div className="flex justify-center gap-2">
-                <button
-                  onClick={() => handlePageChange(page - 1)}
-                  disabled={page === 1}
-                  className="px-4 py-2 border border-gray-300 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
-                >
-                  Previous
-                </button>
-                <span className="px-4 py-2 text-gray-700">
-                  Page {page} of {pagination.totalPages}
-                </span>
-                <button
-                  onClick={() => handlePageChange(page + 1)}
-                  disabled={page === pagination.totalPages}
-                  className="px-4 py-2 border border-gray-300 rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
-                >
-                  Next
-                </button>
-              </div>
+              <Pagination
+                currentPage={pagination.page}
+                totalPages={pagination.totalPages}
+                onPageChange={handlePageChange}
+              />
             )}
           </>
         )}

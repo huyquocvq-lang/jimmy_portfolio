@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Hero } from '../components/Hero';
 import { SectionTitle } from '../components/SectionTitle';
 import { ServiceCard } from '../components/ServiceCard';
@@ -8,7 +9,9 @@ import { TestimonialCard } from '../components/TestimonialCard';
 import { ContactForm } from '../components/ContactForm';
 import { Button } from '../components/Button';
 import { Container } from '../components/Container';
-import { skillApi, Skill } from '../services/api';
+import { Carousel } from '../components/Carousel';
+import { skillApi, projectApi } from '../services/api';
+import type { Skill, Project } from '../services/api';
 
 // Image URLs from Figma (these would be replaced with actual image imports)
 const images = {
@@ -47,9 +50,12 @@ const generateSlug = (title: string): string => {
 export const LandingPage: React.FC = () => {
   const [skills, setSkills] = useState<Skill[]>([]);
   const [skillsLoading, setSkillsLoading] = useState(true);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [projectsLoading, setProjectsLoading] = useState(true);
 
   useEffect(() => {
     loadSkills();
+    loadProjects();
   }, []);
 
   const loadSkills = async () => {
@@ -58,10 +64,22 @@ export const LandingPage: React.FC = () => {
       setSkills(response.data);
     } catch (error) {
       console.error('Failed to load skills:', error);
-      // Fallback to empty array on error
       setSkills([]);
     } finally {
       setSkillsLoading(false);
+    }
+  };
+
+  const loadProjects = async () => {
+    try {
+      const response = await projectApi.getProjects({ page: 1, limit: 6, lang: 'vi' });
+      // Show top 6 projects on landing page (already sorted by display_order from API)
+      setProjects(response.data || []);
+    } catch (error) {
+      console.error('Failed to load projects:', error);
+      setProjects([]);
+    } finally {
+      setProjectsLoading(false);
     }
   };
 
@@ -74,37 +92,11 @@ export const LandingPage: React.FC = () => {
     handleContactClick();
   };
 
-  const handleFormSubmit = (data: any) => {
+  const handleFormSubmit = (data: unknown) => {
     console.log('Form submitted:', data);
     // Handle form submission
   };
 
-  const projects = [
-    {
-      image: images.project1,
-      title: 'Ahuse',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
-      linkUrl: '#',
-      shadowVariant: 'small' as const,
-    },
-    {
-      image: images.project2,
-      title: 'App Dashboard',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
-      linkUrl: '#',
-      shadowVariant: 'medium' as const,
-    },
-    {
-      image: images.project3,
-      title: 'Easy Rent',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
-      linkUrl: '#',
-      shadowVariant: 'large' as const,
-    },
-  ];
 
   const testimonials = [
     {
@@ -202,16 +194,46 @@ export const LandingPage: React.FC = () => {
                 align="left"
               />
             </div>
-            <Button variant="social" className="flex items-center gap-2 md:gap-4 text-sm md:text-base">
-              <img src={images.dribbble} alt="Dribbble" className="w-6 h-6 md:w-8 md:h-8" />
-              Visit My Dribbble
-            </Button>
+            <Link to="/projects">
+              <Button variant="social" className="flex items-center gap-2 md:gap-4 text-sm md:text-base">
+                <img src={images.dribbble} alt="Dribbble" className="w-6 h-6 md:w-8 md:h-8" />
+                Visit My Portfolio
+              </Button>
+            </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 items-start w-full">
-            {projects.map((project, index) => (
-              <ProjectCard key={index} {...project} />
-            ))}
-          </div>
+          {projectsLoading ? (
+            <div className="text-center py-8">
+              <p className="text-gray-600">Loading projects...</p>
+            </div>
+          ) : projects.length > 0 ? (
+            <Carousel
+              slideDuration={3000}
+              autoPlay={true}
+              itemsPerView={3}
+              className="w-full"
+            >
+              {projects.map((project, index) => {
+                const shadowVariants: ('small' | 'medium' | 'large')[] = ['small', 'medium', 'large'];
+                const shadowVariant = shadowVariants[index % 3] || 'medium';
+                
+                return (
+                  <ProjectCard
+                    key={project.id}
+                    image={project.image_url || undefined}
+                    title={project.title}
+                    description={project.description}
+                    linkUrl={`/projects/${project.slug}`}
+                    linkText="View Project"
+                    shadowVariant={shadowVariant}
+                  />
+                );
+              })}
+            </Carousel>
+          ) : (
+            <div className="text-center py-8">
+              <p className="text-gray-600">No projects available</p>
+            </div>
+          )}
         </Container>
       </section>
 

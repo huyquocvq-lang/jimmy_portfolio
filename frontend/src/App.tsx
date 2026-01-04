@@ -1,17 +1,16 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import { LandingPage } from './pages';
 import { BlogListPage } from './pages/BlogListPage';
 import { BlogDetailPage } from './pages/BlogDetailPage';
 import { SkillDetailPage } from './pages/SkillDetailPage';
+import { ProjectListPage } from './pages/ProjectListPage';
+import { ProjectDetailPage } from './pages/ProjectDetailPage';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 
 const images = {
-  logo: 'https://www.figma.com/api/mcp/asset/2d613df7-1149-428e-a2f5-8f1fe969b468',
-  facebook: 'https://www.figma.com/api/mcp/asset/183c0738-adb6-4522-8126-eb4b36149542',
-  instagram: 'https://www.figma.com/api/mcp/asset/509860c3-bd02-4480-a469-cb6233c8e854',
-  twitter: 'https://www.figma.com/api/mcp/asset/0e7a89ee-7e0e-48cf-95ec-6009a74decdc',
-  linkedin: 'https://www.figma.com/api/mcp/asset/23ea53ab-4ac3-4652-bbbf-fac2e035414a',
+  logo: 'https://tixmpgpsfflupbyyuvfg.supabase.co/storage/v1/object/public/portfolio/logo/web.png',
 };
 
 function AppContent() {
@@ -37,10 +36,10 @@ function AppContent() {
   ];
 
   const socialIcons = [
-    { name: 'Facebook', icon: images.facebook, url: '#' },
-    { name: 'Instagram', icon: images.instagram, url: '#' },
-    { name: 'Twitter', icon: images.twitter, url: '#' },
-    { name: 'LinkedIn', icon: images.linkedin, url: '#' },
+    { name: 'Facebook', IconComponent: FaFacebook, url: '#' },
+    { name: 'Instagram', IconComponent: FaInstagram, url: '#' },
+    { name: 'Twitter', IconComponent: FaTwitter, url: '#' },
+    { name: 'LinkedIn', IconComponent: FaLinkedin, url: '#' },
   ];
 
   return (
@@ -56,6 +55,8 @@ function AppContent() {
         <Route path="/blog" element={<BlogListPage />} />
         <Route path="/blog/:slug" element={<BlogDetailPage />} />
         <Route path="/skill/:slug" element={<SkillDetailPage />} />
+        <Route path="/projects" element={<ProjectListPage />} />
+        <Route path="/projects/:slug" element={<ProjectDetailPage />} />
       </Routes>
       </main>
       <Footer

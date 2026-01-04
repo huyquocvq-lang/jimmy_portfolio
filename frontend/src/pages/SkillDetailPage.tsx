@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useSearchParams, Link } from 'react-router-dom';
-import { skillApi, RelatedProject } from '../services/api';
+import { skillApi } from '../services/api';
+import type { RelatedProject } from '../services/api';
 import { Container } from '../components/Container';
 import { ProjectCard } from '../components/ProjectCard';
 import { SectionTitle } from '../components/SectionTitle';

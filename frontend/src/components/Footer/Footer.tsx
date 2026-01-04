@@ -1,4 +1,5 @@
 import React from 'react';
+import type { IconType } from 'react-icons';
 import { SocialIcons } from '../SocialIcons';
 import { Container } from '../Container';
 
@@ -13,7 +14,8 @@ interface FooterProps {
   menuItems?: FooterLink[];
   socialIcons?: Array<{
     name: string;
-    icon: string;
+    icon?: string;
+    IconComponent?: IconType;
     iconAlt?: string;
     url?: string;
   }>;

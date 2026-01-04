@@ -1,4 +1,15 @@
+import { cacheService } from './cache';
+
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+
+// Cache TTLs (Time To Live) in milliseconds
+const CACHE_TTL = {
+  SKILLS: 10 * 60 * 1000, // 10 minutes
+  PROJECTS: 10 * 60 * 1000, // 10 minutes
+  BLOGS: 5 * 60 * 1000, // 5 minutes
+  TAGS: 30 * 60 * 1000, // 30 minutes
+  DETAIL: 15 * 60 * 1000, // 15 minutes
+};
 
 export interface BlogPostListItem {
   id: string;
@@ -52,6 +63,12 @@ export interface BlogQueryParams {
 
 export const blogApi = {
   async getBlogs(params: BlogQueryParams = {}): Promise<BlogListResponse> {
+    const cacheKey = cacheService.generateKey('blog', params);
+    const cached = cacheService.get<BlogListResponse>(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
     const queryParams = new URLSearchParams();
     if (params.page) queryParams.append('page', params.page.toString());
     if (params.limit) queryParams.append('limit', params.limit.toString());
@@ -64,23 +81,41 @@ export const blogApi = {
     if (!response.ok) {
       throw new Error('Failed to fetch blogs');
     }
-    return response.json();
+    const data = await response.json();
+    cacheService.set(cacheKey, data, CACHE_TTL.BLOGS);
+    return data;
   },
 
   async getBlogBySlug(slug: string, lang: 'vi' | 'en' = 'vi'): Promise<BlogPostDetail> {
+    const cacheKey = cacheService.generateKey(`blog/${slug}`, { lang });
+    const cached = cacheService.get<BlogPostDetail>(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
     const response = await fetch(`${API_BASE_URL}/blog/${slug}?lang=${lang}`);
     if (!response.ok) {
       throw new Error('Failed to fetch blog');
     }
-    return response.json();
+    const data = await response.json();
+    cacheService.set(cacheKey, data, CACHE_TTL.DETAIL);
+    return data;
   },
 
   async getTags(): Promise<Tag[]> {
+    const cacheKey = cacheService.generateKey('blog/tags');
+    const cached = cacheService.get<Tag[]>(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
     const response = await fetch(`${API_BASE_URL}/blog/tags`);
     if (!response.ok) {
       throw new Error('Failed to fetch tags');
     }
-    return response.json();
+    const data = await response.json();
+    cacheService.set(cacheKey, data, CACHE_TTL.TAGS);
+    return data;
   },
 };
 
@@ -113,19 +148,115 @@ export interface SkillListResponse {
 
 export const skillApi = {
   async getSkills(lang: 'vi' | 'en' = 'vi'): Promise<SkillListResponse> {
+    const cacheKey = cacheService.generateKey('skills', { lang });
+    const cached = cacheService.get<SkillListResponse>(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
     const response = await fetch(`${API_BASE_URL}/skills?lang=${lang}`);
     if (!response.ok) {
       throw new Error('Failed to fetch skills');
     }
-    return response.json();
+    const data = await response.json();
+    cacheService.set(cacheKey, data, CACHE_TTL.SKILLS);
+    return data;
   },
 
   async getSkillBySlug(slug: string, lang: 'vi' | 'en' = 'vi'): Promise<SkillDetail> {
+    const cacheKey = cacheService.generateKey(`skills/${slug}`, { lang });
+    const cached = cacheService.get<SkillDetail>(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
     const response = await fetch(`${API_BASE_URL}/skills/slug/${slug}?lang=${lang}`);
     if (!response.ok) {
       throw new Error('Failed to fetch skill');
     }
-    return response.json();
+    const data = await response.json();
+    cacheService.set(cacheKey, data, CACHE_TTL.DETAIL);
+    return data;
+  },
+};
+
+export interface Project {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  image_url: string | null;
+  technologies: string[];
+  year: number | null;
+  category: string | null;
+  featured: boolean;
+  display_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ProjectDetail extends Project {
+  full_description_vi: string | null;
+  full_description_en: string | null;
+}
+
+export interface ProjectListResponse {
+  data: Project[];
+  pagination: Pagination;
+}
+
+export interface ProjectQueryParams {
+  page?: number;
+  limit?: number;
+  lang?: 'vi' | 'en';
+}
+
+export const projectApi = {
+  async getProjects(params: ProjectQueryParams = {}): Promise<ProjectListResponse> {
+    const cacheKey = cacheService.generateKey('projects', params);
+    const cached = cacheService.get<ProjectListResponse>(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
+    const queryParams = new URLSearchParams();
+    if (params.page) queryParams.append('page', params.page.toString());
+    if (params.limit) queryParams.append('limit', params.limit.toString());
+    if (params.lang) queryParams.append('lang', params.lang);
+    else queryParams.append('lang', 'vi');
+
+    const response = await fetch(`${API_BASE_URL}/projects?${queryParams.toString()}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch projects');
+    }
+    const data = await response.json();
+    // Ensure pagination exists
+    if (!data.pagination) {
+      data.pagination = {
+        page: params.page || 1,
+        limit: params.limit || 10,
+        total: data.data?.length || 0,
+        totalPages: Math.ceil((data.data?.length || 0) / (params.limit || 10)),
+      };
+    }
+    cacheService.set(cacheKey, data, CACHE_TTL.PROJECTS);
+    return data;
+  },
+
+  async getProjectBySlug(slug: string, lang: 'vi' | 'en' = 'vi'): Promise<ProjectDetail> {
+    const cacheKey = cacheService.generateKey(`projects/${slug}`, { lang });
+    const cached = cacheService.get<ProjectDetail>(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
+    const response = await fetch(`${API_BASE_URL}/projects/slug/${slug}?lang=${lang}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch project');
+    }
+    const data = await response.json();
+    cacheService.set(cacheKey, data, CACHE_TTL.DETAIL);
+    return data;
   },
 };
 
