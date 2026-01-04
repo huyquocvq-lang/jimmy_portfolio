@@ -5,6 +5,9 @@ interface PaginationProps {
   totalPages: number;
   onPageChange: (page: number) => void;
   className?: string;
+  showInfo?: boolean;
+  totalItems?: number;
+  itemsPerPage?: number;
 }
 
 export const Pagination: React.FC<PaginationProps> = ({
@@ -12,6 +15,9 @@ export const Pagination: React.FC<PaginationProps> = ({
   totalPages,
   onPageChange,
   className = '',
+  showInfo = false,
+  totalItems,
+  itemsPerPage,
 }) => {
   if (totalPages <= 1) return null;
 
@@ -57,59 +63,74 @@ export const Pagination: React.FC<PaginationProps> = ({
 
   const pageNumbers = getPageNumbers();
 
+  const getInfoText = () => {
+    if (!showInfo || !totalItems || !itemsPerPage) return null;
+    const start = (currentPage - 1) * itemsPerPage + 1;
+    const end = Math.min(currentPage * itemsPerPage, totalItems);
+    return `Showing ${start}-${end} of ${totalItems}`;
+  };
+
   return (
-    <div className={`flex items-center justify-center gap-2 ${className}`}>
-      <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white transition-colors"
-        aria-label="Previous page"
-      >
-        Previous
-      </button>
+    <div className={`flex flex-col items-center gap-4 ${className}`}>
+      {showInfo && getInfoText() && (
+        <div className="text-sm text-gray-600">
+          {getInfoText()}
+        </div>
+      )}
+      <div className="flex items-center justify-center gap-2 flex-wrap">
+        <button
+          onClick={() => onPageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-3 py-2 text-sm md:text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white transition-colors"
+          aria-label="Previous page"
+        >
+          <span className="hidden sm:inline">Previous</span>
+          <span className="sm:hidden">Prev</span>
+        </button>
 
-      <div className="flex items-center gap-1">
-        {pageNumbers.map((page, index) => {
-          if (page === '...') {
+        <div className="flex items-center gap-1">
+          {pageNumbers.map((page, index) => {
+            if (page === '...') {
+              return (
+                <span
+                  key={`ellipsis-${index}`}
+                  className="px-2 md:px-3 py-2 text-sm md:text-base font-medium text-gray-500"
+                >
+                  ...
+                </span>
+              );
+            }
+
+            const pageNum = page as number;
+            const isActive = pageNum === currentPage;
+
             return (
-              <span
-                key={`ellipsis-${index}`}
-                className="px-3 py-2 text-sm font-medium text-gray-500"
+              <button
+                key={pageNum}
+                onClick={() => onPageChange(pageNum)}
+                className={`min-w-[36px] md:min-w-[40px] px-2 md:px-3 py-2 text-sm md:text-base font-medium rounded-md transition-colors ${
+                  isActive
+                    ? 'bg-[#5e3bee] text-white hover:bg-[#4d2fd6]'
+                    : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50'
+                }`}
+                aria-label={`Go to page ${pageNum}`}
+                aria-current={isActive ? 'page' : undefined}
               >
-                ...
-              </span>
+                {pageNum}
+              </button>
             );
-          }
+          })}
+        </div>
 
-          const pageNum = page as number;
-          const isActive = pageNum === currentPage;
-
-          return (
-            <button
-              key={pageNum}
-              onClick={() => onPageChange(pageNum)}
-              className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                isActive
-                  ? 'bg-[#5e3bee] text-white hover:bg-[#4d2fd6]'
-                  : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50'
-              }`}
-              aria-label={`Go to page ${pageNum}`}
-              aria-current={isActive ? 'page' : undefined}
-            >
-              {pageNum}
-            </button>
-          );
-        })}
+        <button
+          onClick={() => onPageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="px-3 py-2 text-sm md:text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white transition-colors"
+          aria-label="Next page"
+        >
+          Next
+        </button>
       </div>
-
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white transition-colors"
-        aria-label="Next page"
-      >
-        Next
-      </button>
     </div>
   );
 };

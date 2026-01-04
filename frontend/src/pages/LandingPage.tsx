@@ -10,8 +10,10 @@ import { ContactForm } from '../components/ContactForm';
 import { Button } from '../components/Button';
 import { Container } from '../components/Container';
 import { Carousel } from '../components/Carousel';
-import { skillApi, projectApi } from '../services/api';
-import type { Skill, Project } from '../services/api';
+import { Animated, AnimatedList } from '../components/Animated';
+import { LatestStories } from '../components/LatestStories';
+import { skillApi, projectApi, blogApi } from '../services/api';
+import type { Skill, Project, BlogPostListItem } from '../services/api';
 
 // Image URLs from Figma (these would be replaced with actual image imports)
 const images = {
@@ -52,10 +54,13 @@ export const LandingPage: React.FC = () => {
   const [skillsLoading, setSkillsLoading] = useState(true);
   const [projects, setProjects] = useState<Project[]>([]);
   const [projectsLoading, setProjectsLoading] = useState(true);
+  const [blogs, setBlogs] = useState<BlogPostListItem[]>([]);
+  const [blogsLoading, setBlogsLoading] = useState(true);
 
   useEffect(() => {
     loadSkills();
     loadProjects();
+    loadBlogs();
   }, []);
 
   const loadSkills = async () => {
@@ -74,12 +79,25 @@ export const LandingPage: React.FC = () => {
     try {
       const response = await projectApi.getProjects({ page: 1, limit: 6, lang: 'vi' });
       // Show top 6 projects on landing page (already sorted by display_order from API)
+      console.log('Projects loaded:', response.data);
       setProjects(response.data || []);
     } catch (error) {
       console.error('Failed to load projects:', error);
       setProjects([]);
     } finally {
       setProjectsLoading(false);
+    }
+  };
+
+  const loadBlogs = async () => {
+    try {
+      const response = await blogApi.getBlogs({ page: 1, limit: 4, lang: 'vi', sort: 'newest' });
+      setBlogs(response.data || []);
+    } catch (error) {
+      console.error('Failed to load blogs:', error);
+      setBlogs([]);
+    } finally {
+      setBlogsLoading(false);
     }
   };
 
@@ -140,20 +158,26 @@ export const LandingPage: React.FC = () => {
 
       <section id="skills" className="flex flex-col gap-12 md:gap-16 lg:gap-20 items-start justify-center py-16 md:py-24 lg:py-36 w-full">
         <Container maxWidth="xl" className="w-full">
-          <div className="flex flex-col gap-4 md:gap-5 items-start justify-center w-full mb-8 md:mb-12">
-            <SectionTitle
-              subtitle="My Skills"
-              title="My Expertise"
-              align="left"
-            />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10 items-start w-full">
-            {skillsLoading ? (
-              <div className="col-span-full text-center py-8">
-                <p className="text-gray-600">Loading skills...</p>
-              </div>
-            ) : skills.length > 0 ? (
-              skills.map((skill) => (
+          <Animated animation="slideUp" delay={0.1}>
+            <div className="flex flex-col gap-4 md:gap-5 items-start justify-center w-full mb-8 md:mb-12">
+              <SectionTitle
+                subtitle="My Skills"
+                title="My Expertise"
+                align="left"
+              />
+            </div>
+          </Animated>
+          {skillsLoading ? (
+            <div className="col-span-full text-center py-8">
+              <p className="text-gray-600">Loading skills...</p>
+            </div>
+          ) : skills.length > 0 ? (
+            <AnimatedList
+              animation="slideUp"
+              staggerDelay={0.1}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10 items-start w-full"
+            >
+              {skills.map((skill) => (
                 <ServiceCard
                   key={skill.id}
                   icon={skill.icon_url || undefined}
@@ -162,13 +186,13 @@ export const LandingPage: React.FC = () => {
                   highlighted={skill.highlighted}
                   slug={generateSlug(skill.title)}
                 />
-              ))
-            ) : (
-              <div className="col-span-full text-center py-8">
-                <p className="text-gray-600">No skills available</p>
-              </div>
-            )}
-          </div>
+              ))}
+            </AnimatedList>
+          ) : (
+            <div className="col-span-full text-center py-8">
+              <p className="text-gray-600">No skills available</p>
+            </div>
+          )}
         </Container>
       </section>
 
@@ -186,31 +210,32 @@ export const LandingPage: React.FC = () => {
 
       <section id="portfolio" className="flex flex-col gap-12 md:gap-16 lg:gap-20 items-start py-16 md:py-24 lg:py-36 w-full">
         <Container maxWidth="xl" className="w-full">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0 w-full mb-8 md:mb-12">
-            <div className="flex flex-col gap-4 md:gap-5 items-start w-full sm:w-auto">
-              <SectionTitle
-                subtitle="Recent Projects"
-                title="My Portfolio"
-                align="left"
-              />
+          <Animated animation="slideUp" delay={0.1}>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0 w-full mb-8 md:mb-12">
+              <div className="flex flex-col gap-4 md:gap-5 items-start w-full sm:w-auto">
+                <SectionTitle
+                  subtitle="Recent Projects"
+                  title="My Portfolio"
+                  align="left"
+                />
+              </div>
+              <Link to="/projects">
+                <Button variant="social" className="flex items-center gap-2 md:gap-4 text-sm md:text-base">
+                  <img src={images.dribbble} alt="Dribbble" className="w-6 h-6 md:w-8 md:h-8" />
+                  Visit My Portfolio
+                </Button>
+              </Link>
             </div>
-            <Link to="/projects">
-              <Button variant="social" className="flex items-center gap-2 md:gap-4 text-sm md:text-base">
-                <img src={images.dribbble} alt="Dribbble" className="w-6 h-6 md:w-8 md:h-8" />
-                Visit My Portfolio
-              </Button>
-            </Link>
-          </div>
+          </Animated>
           {projectsLoading ? (
             <div className="text-center py-8">
               <p className="text-gray-600">Loading projects...</p>
             </div>
           ) : projects.length > 0 ? (
-            <Carousel
-              slideDuration={3000}
-              autoPlay={true}
-              itemsPerView={3}
-              className="w-full"
+            <AnimatedList
+              animation="scale"
+              staggerDelay={0.1}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 w-full"
             >
               {projects.map((project, index) => {
                 const shadowVariants: ('small' | 'medium' | 'large')[] = ['small', 'medium', 'large'];
@@ -228,7 +253,7 @@ export const LandingPage: React.FC = () => {
                   />
                 );
               })}
-            </Carousel>
+            </AnimatedList>
           ) : (
             <div className="text-center py-8">
               <p className="text-gray-600">No projects available</p>
@@ -237,21 +262,35 @@ export const LandingPage: React.FC = () => {
         </Container>
       </section>
 
+      <section id="blog" className="flex flex-col gap-12 md:gap-16 lg:gap-20 items-start py-16 md:py-24 lg:py-36 w-full">
+        <Container maxWidth="xl" className="w-full">
+          <Animated animation="slideUp" delay={0.1}>
+            <LatestStories blogs={blogs} loading={blogsLoading} />
+          </Animated>
+        </Container>
+      </section>
+
       <section id="testimonials" className="bg-[#f5fcff] flex flex-col gap-12 md:gap-16 lg:gap-20 items-center py-16 md:py-24 lg:py-36 w-full">
         <Container maxWidth="xl" className="w-full">
-          <div className="flex flex-col gap-4 md:gap-5 items-start text-[#282938] w-full mb-8 md:mb-12">
-            <p className="font-semibold leading-[1.5] text-base md:text-lg">
-              Clients Feedback
-            </p>
-            <p className="font-bold leading-[1.2] text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-              Customer testimonials
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 items-start w-full">
+          <Animated animation="slideUp" delay={0.1}>
+            <div className="flex flex-col gap-4 md:gap-5 items-start text-[#282938] w-full mb-8 md:mb-12">
+              <p className="font-semibold leading-[1.5] text-base md:text-lg">
+                Clients Feedback
+              </p>
+              <p className="font-bold leading-[1.2] text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+                Customer testimonials
+              </p>
+            </div>
+          </Animated>
+          <AnimatedList
+            animation="fadeIn"
+            staggerDelay={0.15}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 items-start w-full"
+          >
             {testimonials.map((testimonial, index) => (
               <TestimonialCard key={index} {...testimonial} />
             ))}
-          </div>
+          </AnimatedList>
         </Container>
       </section>
 

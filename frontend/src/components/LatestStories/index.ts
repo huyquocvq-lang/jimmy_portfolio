@@ -1,0 +1,2 @@
+export { LatestStories } from './LatestStories';
+

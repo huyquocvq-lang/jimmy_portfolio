@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 
 interface CarouselProps {
-  children: React.ReactNode[];
+  children: React.ReactNode;
   slideDuration?: number; // milliseconds between slides
   autoPlay?: boolean;
   className?: string;
@@ -15,16 +15,28 @@ export const Carousel: React.FC<CarouselProps> = ({
   className = '',
   itemsPerView = 1,
 }) => {
-  const totalItems = children.length;
+  // Convert children to array
+  const childrenArray = useMemo(() => {
+    return React.Children.toArray(children);
+  }, [children]);
+  
+  const totalItems = childrenArray.length;
   
   // Start at totalItems to show first items of second set (seamless infinite loop)
-  const [currentIndex, setCurrentIndex] = useState(totalItems);
+  const [currentIndex, setCurrentIndex] = useState(() => totalItems > 0 ? totalItems : 0);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Update currentIndex when totalItems changes
+  useEffect(() => {
+    if (totalItems > 0 && currentIndex === 0) {
+      setCurrentIndex(totalItems);
+    }
+  }, [totalItems, currentIndex]);
+
   // Duplicate items for infinite loop: [1,2,3,4,5,6, 1,2,3,4,5,6]
-  const items = [...children, ...children];
+  const items = [...childrenArray, ...childrenArray];
 
   useEffect(() => {
     if (autoPlay && !isPaused && totalItems > itemsPerView) {
@@ -81,6 +93,9 @@ export const Carousel: React.FC<CarouselProps> = ({
       </div>
     );
   }
+
+  // Debug logging
+  console.log('Carousel render:', { totalItems, itemsPerView, currentIndex, translateX, trackWidth });
 
   // Calculation:
   // - Container: 100% width, shows itemsPerView items at once
