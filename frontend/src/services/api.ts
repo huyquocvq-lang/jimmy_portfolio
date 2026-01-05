@@ -8,6 +8,7 @@ const CACHE_TTL = {
   PROJECTS: 10 * 60 * 1000, // 10 minutes
   BLOGS: 5 * 60 * 1000, // 5 minutes
   TAGS: 30 * 60 * 1000, // 30 minutes
+  TESTIMONIALS: 30 * 60 * 1000, // 30 minutes
   DETAIL: 15 * 60 * 1000, // 15 minutes
 };
 
@@ -211,6 +212,26 @@ export interface ProjectQueryParams {
   lang?: 'vi' | 'en';
 }
 
+export interface Testimonial {
+  id: string;
+  quote: string;
+  name: string;
+  company: string;
+  avatar_url: string | null;
+  rating: number;
+  display_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface TestimonialListResponse {
+  data: Testimonial[];
+}
+
+export interface TestimonialQueryParams {
+  lang?: 'vi' | 'en';
+}
+
 export const projectApi = {
   async getProjects(params: ProjectQueryParams = {}): Promise<ProjectListResponse> {
     const cacheKey = cacheService.generateKey('projects', params);
@@ -256,6 +277,28 @@ export const projectApi = {
     }
     const data = await response.json();
     cacheService.set(cacheKey, data, CACHE_TTL.DETAIL);
+    return data;
+  },
+};
+
+export const testimonialApi = {
+  async getTestimonials(params: TestimonialQueryParams = {}): Promise<TestimonialListResponse> {
+    const cacheKey = cacheService.generateKey('testimonials', params);
+    const cached = cacheService.get<TestimonialListResponse>(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
+    const queryParams = new URLSearchParams();
+    if (params.lang) queryParams.append('lang', params.lang);
+    else queryParams.append('lang', 'vi');
+
+    const response = await fetch(`${API_BASE_URL}/testimonials?${queryParams.toString()}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch testimonials');
+    }
+    const data = await response.json();
+    cacheService.set(cacheKey, data, CACHE_TTL.TESTIMONIALS);
     return data;
   },
 };

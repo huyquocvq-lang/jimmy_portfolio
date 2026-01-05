@@ -18,12 +18,12 @@ export class CreateBlogDto {
   @IsOptional()
   slug?: string;
 
-  @ApiProperty({ description: 'Nội dung tiếng Việt', example: '<p>Nội dung bài viết...</p>' })
+  @ApiProperty({ description: 'Nội dung HTML tiếng Việt', example: '<p>Nội dung bài viết...</p>' })
   @IsString()
   @IsNotEmpty()
   content_vi: string;
 
-  @ApiProperty({ description: 'Nội dung tiếng Anh', example: '<p>Article content...</p>' })
+  @ApiProperty({ description: 'Nội dung HTML tiếng Anh', example: '<p>Article content...</p>' })
   @IsString()
   @IsNotEmpty()
   content_en: string;

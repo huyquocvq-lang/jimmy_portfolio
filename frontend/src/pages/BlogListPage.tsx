@@ -7,8 +7,10 @@ import { BlogFilter } from '../components/BlogFilter';
 import { BlogSearch } from '../components/BlogSearch';
 import { Pagination } from '../components/Pagination';
 import { Container } from '../components/Container';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export const BlogListPage: React.FC = () => {
+  const { language } = useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
   const [blogs, setBlogs] = useState<BlogPostListItem[]>([]);
   const [tags, setTags] = useState<Tag[]>([]);
@@ -21,7 +23,6 @@ export const BlogListPage: React.FC = () => {
   });
 
   const selectedTag = searchParams.get('tag');
-  const language = (searchParams.get('lang') || 'vi') as 'vi' | 'en';
   const search = searchParams.get('search') || '';
   const sort = (searchParams.get('sort') || 'newest') as 'newest' | 'oldest' | 'most_viewed';
   const page = parseInt(searchParams.get('page') || '1', 10);

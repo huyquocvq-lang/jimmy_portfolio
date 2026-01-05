@@ -9,11 +9,12 @@ import { TestimonialCard } from '../components/TestimonialCard';
 import { ContactForm } from '../components/ContactForm';
 import { Button } from '../components/Button';
 import { Container } from '../components/Container';
-import { Carousel } from '../components/Carousel';
 import { Animated, AnimatedList } from '../components/Animated';
 import { LatestStories } from '../components/LatestStories';
-import { skillApi, projectApi, blogApi } from '../services/api';
-import type { Skill, Project, BlogPostListItem } from '../services/api';
+import { Carousel } from '../components/Carousel';
+import { skillApi, projectApi, blogApi, testimonialApi } from '../services/api';
+import type { Skill, Project, BlogPostListItem, Testimonial } from '../services/api';
+import { useLanguage } from '../contexts/LanguageContext';
 
 // Image URLs from Figma (these would be replaced with actual image imports)
 const images = {
@@ -50,22 +51,27 @@ const generateSlug = (title: string): string => {
 };
 
 export const LandingPage: React.FC = () => {
+  const { language } = useLanguage();
   const [skills, setSkills] = useState<Skill[]>([]);
   const [skillsLoading, setSkillsLoading] = useState(true);
   const [projects, setProjects] = useState<Project[]>([]);
   const [projectsLoading, setProjectsLoading] = useState(true);
   const [blogs, setBlogs] = useState<BlogPostListItem[]>([]);
   const [blogsLoading, setBlogsLoading] = useState(true);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [testimonialsLoading, setTestimonialsLoading] = useState(true);
 
   useEffect(() => {
     loadSkills();
     loadProjects();
     loadBlogs();
-  }, []);
+    loadTestimonials();
+  }, [language]);
 
   const loadSkills = async () => {
+    setSkillsLoading(true);
     try {
-      const response = await skillApi.getSkills('vi');
+      const response = await skillApi.getSkills(language);
       setSkills(response.data);
     } catch (error) {
       console.error('Failed to load skills:', error);
@@ -76,9 +82,10 @@ export const LandingPage: React.FC = () => {
   };
 
   const loadProjects = async () => {
+    setProjectsLoading(true);
     try {
-      const response = await projectApi.getProjects({ page: 1, limit: 6, lang: 'vi' });
-      // Show top 6 projects on landing page (already sorted by display_order from API)
+      const response = await projectApi.getProjects({ page: 1, limit: 6, lang: language });
+      // Show top 6 projects on desktop, top 3 on mobile (already sorted by display_order from API)
       console.log('Projects loaded:', response.data);
       setProjects(response.data || []);
     } catch (error) {
@@ -90,14 +97,28 @@ export const LandingPage: React.FC = () => {
   };
 
   const loadBlogs = async () => {
+    setBlogsLoading(true);
     try {
-      const response = await blogApi.getBlogs({ page: 1, limit: 4, lang: 'vi', sort: 'newest' });
+      const response = await blogApi.getBlogs({ page: 1, limit: 4, lang: language, sort: 'newest' });
       setBlogs(response.data || []);
     } catch (error) {
       console.error('Failed to load blogs:', error);
       setBlogs([]);
     } finally {
       setBlogsLoading(false);
+    }
+  };
+
+  const loadTestimonials = async () => {
+    setTestimonialsLoading(true);
+    try {
+      const response = await testimonialApi.getTestimonials({ lang: language });
+      setTestimonials(response.data || []);
+    } catch (error) {
+      console.error('Failed to load testimonials:', error);
+      setTestimonials([]);
+    } finally {
+      setTestimonialsLoading(false);
     }
   };
 
@@ -114,34 +135,6 @@ export const LandingPage: React.FC = () => {
     console.log('Form submitted:', data);
     // Handle form submission
   };
-
-
-  const testimonials = [
-    {
-      stars: images.stars,
-      quote:
-        '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra.',
-      avatar: images.testimonial1,
-      name: 'Dianne Russell',
-      company: 'Starbucks',
-    },
-    {
-      stars: images.stars,
-      quote:
-        '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra.',
-      avatar: images.testimonial2,
-      name: 'Kristin Watson',
-      company: 'Louis Vuitton',
-    },
-    {
-      stars: images.stars,
-      quote:
-        '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra.',
-      avatar: images.testimonial3,
-      name: 'Kathryn Murphy',
-      company: "McDonald's",
-    },
-  ];
 
   return (
     <div className="bg-white relative w-full">
@@ -174,8 +167,8 @@ export const LandingPage: React.FC = () => {
           ) : skills.length > 0 ? (
             <AnimatedList
               animation="slideUp"
-              staggerDelay={0.1}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10 items-start w-full"
+              staggerDelay={0.08}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10 items-stretch w-full"
             >
               {skills.map((skill) => (
                 <ServiceCard
@@ -240,17 +233,23 @@ export const LandingPage: React.FC = () => {
               {projects.map((project, index) => {
                 const shadowVariants: ('small' | 'medium' | 'large')[] = ['small', 'medium', 'large'];
                 const shadowVariant = shadowVariants[index % 3] || 'medium';
+                // Hide projects after index 2 (top 3) on mobile, show all on desktop
+                const isHiddenOnMobile = index >= 3;
                 
                 return (
-                  <ProjectCard
+                  <div
                     key={project.id}
-                    image={project.image_url || undefined}
-                    title={project.title}
-                    description={project.description}
-                    linkUrl={`/projects/${project.slug}`}
-                    linkText="View Project"
-                    shadowVariant={shadowVariant}
-                  />
+                    className={isHiddenOnMobile ? 'hidden md:block' : ''}
+                  >
+                    <ProjectCard
+                      image={project.image_url || undefined}
+                      title={project.title}
+                      description={project.description}
+                      linkUrl={`/projects/${project.slug}`}
+                      linkText="View Project"
+                      shadowVariant={shadowVariant}
+                    />
+                  </div>
                 );
               })}
             </AnimatedList>
@@ -282,15 +281,56 @@ export const LandingPage: React.FC = () => {
               </p>
             </div>
           </Animated>
-          <AnimatedList
-            animation="fadeIn"
-            staggerDelay={0.15}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 items-start w-full"
-          >
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard key={index} {...testimonial} />
-            ))}
-          </AnimatedList>
+          {testimonialsLoading ? (
+            <div className="col-span-full text-center py-8">
+              <p className="text-gray-600">Loading testimonials...</p>
+            </div>
+          ) : testimonials.length > 0 ? (
+            <>
+              {/* Carousel for mobile */}
+              <div className="md:hidden w-full">
+                <Carousel
+                  slideDuration={4000}
+                  autoPlay={true}
+                  itemsPerView={1}
+                >
+                  {testimonials.map((testimonial) => (
+                    <TestimonialCard
+                      key={testimonial.id}
+                      quote={testimonial.quote}
+                      name={testimonial.name}
+                      company={testimonial.company}
+                      avatar={testimonial.avatar_url || undefined}
+                      rating={testimonial.rating}
+                    />
+                  ))}
+                </Carousel>
+              </div>
+              {/* Grid for desktop */}
+              <div className="hidden md:block w-full">
+                <AnimatedList
+                  animation="slideUp"
+                  staggerDelay={0.1}
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 items-stretch w-full"
+                >
+                  {testimonials.map((testimonial) => (
+                    <TestimonialCard
+                      key={testimonial.id}
+                      quote={testimonial.quote}
+                      name={testimonial.name}
+                      company={testimonial.company}
+                      avatar={testimonial.avatar_url || undefined}
+                      rating={testimonial.rating}
+                    />
+                  ))}
+                </AnimatedList>
+              </div>
+            </>
+          ) : (
+            <div className="col-span-full text-center py-8">
+              <p className="text-gray-600">No testimonials available</p>
+            </div>
+          )}
         </Container>
       </section>
 

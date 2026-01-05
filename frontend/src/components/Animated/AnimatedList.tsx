@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { ReactNode, Children } from 'react';
+import { Children } from 'react';
+import type { ReactNode } from 'react';
 
 interface AnimatedListProps {
   children: ReactNode;
@@ -8,28 +9,26 @@ interface AnimatedListProps {
   animation?: 'fadeIn' | 'slideUp' | 'scale';
 }
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
 const itemVariants = {
   fadeIn: {
     hidden: { opacity: 0 },
-    visible: { opacity: 1 },
+    visible: { 
+      opacity: 1,
+    },
   },
   slideUp: {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+    },
   },
   scale: {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: { opacity: 1, scale: 1 },
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+    },
   },
 };
 
@@ -60,7 +59,19 @@ export const AnimatedList: React.FC<AnimatedListProps> = ({
       className={className}
     >
       {childrenArray.map((child, index) => (
-        <motion.div key={index} variants={itemAnimation}>
+        <motion.div 
+          key={index} 
+          variants={itemAnimation}
+          transition={{ 
+            duration: animation === 'slideUp' ? 0.5 : 0.4,
+            ease: 'easeOut'
+          }}
+          style={{ 
+            // Ensure all items have the same size
+            width: '100%',
+            height: '100%'
+          }}
+        >
           {child}
         </motion.div>
       ))}

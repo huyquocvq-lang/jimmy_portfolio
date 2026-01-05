@@ -61,10 +61,10 @@ export class ProjectListResponseDto {
 }
 
 export class ProjectDetailDto extends ProjectDto {
-  @ApiPropertyOptional({ description: 'Mô tả chi tiết tiếng Việt (markdown)', example: '# Project Title\n\nFull description...' })
+  @ApiPropertyOptional({ description: 'Mô tả chi tiết HTML tiếng Việt', example: '<h1>Project Title</h1><p>Full description...</p>' })
   full_description_vi: string | null;
 
-  @ApiPropertyOptional({ description: 'Mô tả chi tiết tiếng Anh (markdown)', example: '# Project Title\n\nFull description...' })
+  @ApiPropertyOptional({ description: 'Mô tả chi tiết HTML tiếng Anh', example: '<h1>Project Title</h1><p>Full description...</p>' })
   full_description_en: string | null;
 }
 

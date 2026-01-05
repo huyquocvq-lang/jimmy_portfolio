@@ -10,10 +10,11 @@ import { ProjectSort } from '../components/ProjectSort';
 import { Animated, AnimatedList } from '../components/Animated';
 import { projectApi } from '../services/api';
 import type { Project, Pagination as PaginationType } from '../services/api';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export const ProjectListPage: React.FC = () => {
+  const { language } = useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
-  const language = (searchParams.get('lang') || 'vi') as 'vi' | 'en';
   const page = parseInt(searchParams.get('page') || '1', 10);
   const search = searchParams.get('search') || '';
   const sort = (searchParams.get('sort') || 'newest') as 'newest' | 'oldest' | 'name_asc' | 'name_desc';

@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useSearchParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import { format } from 'date-fns';
 import { blogApi } from '../services/api';
 import { Container } from '../components/Container';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export const BlogDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { language } = useLanguage();
   const [blog, setBlog] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  const language = (searchParams.get('lang') || 'vi') as 'vi' | 'en';
 
   useEffect(() => {
     if (slug) {
@@ -35,11 +34,6 @@ export const BlogDetailPage: React.FC = () => {
     }
   };
 
-  const handleLanguageSwitch = (lang: 'vi' | 'en') => {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.set('lang', lang);
-    setSearchParams(newParams);
-  };
 
   if (loading) {
     return (
@@ -103,28 +97,6 @@ export const BlogDetailPage: React.FC = () => {
                     {tag.name}
                   </Link>
                 ))}
-              </div>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => handleLanguageSwitch('vi')}
-                  className={`px-3 py-1 rounded text-sm ${
-                    language === 'vi'
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
-                >
-                  VI
-                </button>
-                <button
-                  onClick={() => handleLanguageSwitch('en')}
-                  className={`px-3 py-1 rounded text-sm ${
-                    language === 'en'
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
-                >
-                  EN
-                </button>
               </div>
             </div>
 

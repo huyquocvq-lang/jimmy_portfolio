@@ -23,22 +23,27 @@ export const Carousel: React.FC<CarouselProps> = ({
   const totalItems = childrenArray.length;
   
   // Start at totalItems to show first items of second set (seamless infinite loop)
-  const [currentIndex, setCurrentIndex] = useState(() => totalItems > 0 ? totalItems : 0);
+  // If only 1 item, start at 0
+  const [currentIndex, setCurrentIndex] = useState(() => (totalItems > 1 ? totalItems : 0));
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Update currentIndex when totalItems changes
   useEffect(() => {
-    if (totalItems > 0 && currentIndex === 0) {
+    if (totalItems > 1 && currentIndex === 0) {
       setCurrentIndex(totalItems);
+    } else if (totalItems === 1 && currentIndex !== 0) {
+      setCurrentIndex(0);
     }
   }, [totalItems, currentIndex]);
 
   // Duplicate items for infinite loop: [1,2,3,4,5,6, 1,2,3,4,5,6]
-  const items = [...childrenArray, ...childrenArray];
+  // Only duplicate if we have more than 1 item (no need for infinite loop with 1 item)
+  const items = totalItems > 1 ? [...childrenArray, ...childrenArray] : childrenArray;
 
   useEffect(() => {
+    // Auto-play only if we have more items than can be shown at once
     if (autoPlay && !isPaused && totalItems > itemsPerView) {
       intervalRef.current = window.setInterval(() => {
         setCurrentIndex((prev) => {
@@ -61,7 +66,7 @@ export const Carousel: React.FC<CarouselProps> = ({
 
   // Handle seamless loop: when reaching end of second set, reset to start of second set without animation
   useEffect(() => {
-    if (currentIndex >= totalItems * 2 && containerRef.current) {
+    if (totalItems > 1 && currentIndex >= totalItems * 2 && containerRef.current) {
       const timeout = setTimeout(() => {
         if (containerRef.current) {
           containerRef.current.style.transition = 'none';
@@ -94,25 +99,22 @@ export const Carousel: React.FC<CarouselProps> = ({
     );
   }
 
-  // Debug logging
-  console.log('Carousel render:', { totalItems, itemsPerView, currentIndex, translateX, trackWidth });
-
   // Calculation:
   // - Container: 100% width, shows itemsPerView items at once
   // - Each item: 100% / itemsPerView of container (for itemsPerView=3: 33.33%)
-  // - Track: 2 sets of totalItems items
+  // - Track: 2 sets of totalItems items (or 1 set if only 1 item)
   // - Transform: move by one item width (100/itemsPerView %) for each slide
   const itemWidthPercent = 100 / itemsPerView; // 33.33% for itemsPerView=3
+  
+  // If only 1 item, don't duplicate (no need for infinite loop)
+  const shouldDuplicate = totalItems > 1;
+  const trackWidth = shouldDuplicate ? totalItems * 2 * itemWidthPercent : itemWidthPercent;
   const translateX = -(currentIndex * itemWidthPercent);
-
-  // Track width: totalItems * 2 sets * itemWidthPercent
-  // For 6 items with itemsPerView=3: 6 * 2 * 33.33% = 400%
-  const trackWidth = totalItems * 2 * itemWidthPercent;
   
   // Each item in track: itemWidthPercent / trackWidth * 100% of track
   // For 6 items with itemsPerView=3: 33.33% / 400% * 100% = 8.33% of track
   // 8.33% of 400% track = 33.33% of container ✓
-  const itemWidthInTrack = (itemWidthPercent / trackWidth) * 100;
+  const itemWidthInTrack = trackWidth > 0 ? (itemWidthPercent / trackWidth) * 100 : 100;
 
   return (
     <div

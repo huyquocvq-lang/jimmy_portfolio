@@ -35,9 +35,9 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
   const skillSlug = slug || generateSlug(title);
   const cardContent = (
     <div
-      className={`bg-[#f5fcff] flex flex-col gap-6 md:gap-8 items-start p-6 md:p-8 rounded-lg md:rounded-xl transition-all duration-200 ${
-        highlighted ? 'border-b-4 border-[#5e3bee]' : ''
-      } ${onClick || slug ? 'cursor-pointer hover:shadow-lg hover:scale-[1.02]' : ''} ${className}`}
+      className={`bg-[#f5fcff] flex flex-col gap-6 md:gap-8 items-start justify-between p-6 md:p-8 rounded-lg md:rounded-xl transition-all duration-300 h-full border-b-4 border-transparent ${
+        highlighted ? 'border-[#5e3bee]' : ''
+      } ${onClick || slug ? 'cursor-pointer hover:shadow-xl hover:scale-105 hover:border-[#5e3bee]' : ''} ${className}`}
       onClick={onClick}
     >
       <div className="flex flex-col gap-6 md:gap-8 items-start w-full">
@@ -56,7 +56,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
           <h3 className="font-bold text-2xl md:text-3xl lg:text-[32px] leading-[1.4] text-[#282938] w-full">
             {title}
           </h3>
-          <p className="font-normal text-sm md:text-base leading-[1.5] text-[#1c1e53] w-full">
+          <p className="font-normal text-sm md:text-base leading-[1.5] text-[#1c1e53] w-full line-clamp-3 overflow-hidden">
             {description}
           </p>
         </div>

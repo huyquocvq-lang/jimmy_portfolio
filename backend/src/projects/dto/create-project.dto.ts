@@ -27,12 +27,12 @@ export class CreateProjectDto {
   @IsNotEmpty()
   description_en: string;
 
-  @ApiPropertyOptional({ description: 'Mô tả chi tiết tiếng Việt (markdown)', example: '# Project Title\n\nFull description...' })
+  @ApiPropertyOptional({ description: 'Mô tả chi tiết HTML tiếng Việt', example: '<h1>Project Title</h1><p>Full description...</p>' })
   @IsString()
   @IsOptional()
   full_description_vi?: string;
 
-  @ApiPropertyOptional({ description: 'Mô tả chi tiết tiếng Anh (markdown)', example: '# Project Title\n\nFull description...' })
+  @ApiPropertyOptional({ description: 'Mô tả chi tiết HTML tiếng Anh', example: '<h1>Project Title</h1><p>Full description...</p>' })
   @IsString()
   @IsOptional()
   full_description_en?: string;

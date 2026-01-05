@@ -8,6 +8,7 @@ import { ProjectListPage } from './pages/ProjectListPage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { LanguageProvider } from './contexts/LanguageContext';
 
 const images = {
   logo: 'https://tixmpgpsfflupbyyuvfg.supabase.co/storage/v1/object/public/portfolio/logo/web.png',
@@ -77,9 +78,11 @@ function AppContent() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <AppContent />
-    </BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }
 

@@ -65,7 +65,7 @@ export class BlogPostDetailDto {
   @ApiProperty({ description: 'Slug', example: 'gioi-thieu-ve-nestjs' })
   slug: string;
 
-  @ApiProperty({ description: 'Nội dung', example: '<p>Nội dung bài viết...</p>' })
+  @ApiProperty({ description: 'Nội dung HTML', example: '<p>Nội dung bài viết...</p>' })
   content: string;
 
   @ApiPropertyOptional({ description: 'Tóm tắt', example: 'Bài viết giới thiệu về NestJS...' })

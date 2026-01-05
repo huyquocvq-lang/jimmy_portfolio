@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useParams, useSearchParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 import { Container } from '../components/Container';
 import { projectApi } from '../services/api';
 import type { ProjectDetail } from '../services/api';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export const ProjectDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const [searchParams] = useSearchParams();
-  const language = (searchParams.get('lang') || 'vi') as 'vi' | 'en';
+  const { language } = useLanguage();
   const [project, setProject] = useState<ProjectDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -60,36 +61,8 @@ export const ProjectDetailPage: React.FC = () => {
     );
   }
 
-  // Helper function to convert markdown-like text to HTML
-  const formatDescription = (text: string | null): string => {
-    if (!text) return '';
-    return text
-      .split('\n')
-      .map((line: string) => {
-        if (line.startsWith('# ')) {
-          return `<h1 class="text-3xl font-bold mb-4 mt-8">${line.substring(2)}</h1>`;
-        }
-        if (line.startsWith('## ')) {
-          return `<h2 class="text-2xl font-bold mt-8 mb-4">${line.substring(3)}</h2>`;
-        }
-        if (line.startsWith('### ')) {
-          return `<h3 class="text-xl font-bold mt-6 mb-3">${line.substring(4)}</h3>`;
-        }
-        if (line.startsWith('- ')) {
-          return `<li class="ml-4 mb-2">${line.substring(2)}</li>`;
-        }
-        if (line.trim() === '') {
-          return '<br />';
-        }
-        if (line.startsWith('**') && line.endsWith('**')) {
-          return `<p class="mb-4"><strong>${line.replace(/\*\*/g, '')}</strong></p>`;
-        }
-        return `<p class="mb-4">${line}</p>`;
-      })
-      .join('');
-  };
-
   const fullDescription = language === 'vi' ? project.full_description_vi : project.full_description_en;
+  const sanitizedDescription = fullDescription ? DOMPurify.sanitize(fullDescription) : '';
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
@@ -148,11 +121,11 @@ export const ProjectDetailPage: React.FC = () => {
             )}
 
             {fullDescription && (
-              <div className="prose prose-lg max-w-none">
+              <div className="prose prose-lg max-w-none project-content">
                 <div
-                  className="whitespace-pre-line text-gray-700 leading-relaxed"
+                  className="text-gray-700 leading-relaxed"
                   dangerouslySetInnerHTML={{
-                    __html: formatDescription(fullDescription),
+                    __html: sanitizedDescription,
                   }}
                 />
               </div>
