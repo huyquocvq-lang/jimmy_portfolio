@@ -63,7 +63,11 @@ portfolio/
 │   │   ├── experience.js         ← Work timeline (SmartOSC, YooTek, …)
 │   │   ├── personal.js           ← Personal Interest copy + masonry images
 │   │   ├── projects.js           ← Featured + Other projects
-│   │   └── projectEmbeds.js      ← Dashboard registry (empty today)
+│   │   ├── projectEmbeds.js      ← Dashboard registry (empty today)
+│   │   ├── blog.js               ← Blog posts (structured body)
+│   │   └── ui.js                 ← Hardcoded UI strings (nav, breadcrumbs, footer, etc.) – { en, vi } pairs
+│   ├── utils/
+│   │   └── i18n.js               ← tr(value, lang) helper for { en, vi } resolution
 │   ├── components/               ← Homepage UI components
 │   ├── components/project/       ← Shared project shell + embed slot
 │   ├── projects/                 ← One JSX per project (unique layouts)
@@ -133,3 +137,13 @@ Recommended sizes:
 - Other projects: 1200×750 (16:10 aspect)
 
 Avoid uploading internal screenshots, confidential client data, or proprietary code from past employers - use anonymized summaries and architectural visuals that show the engineering thinking without exposing company-specific details.
+
+## Bilingual content (EN / VI)
+
+Site ships in English + Vietnamese; English is the default. Pick the active language from the globe icon in the nav.
+
+Authoring rule for `src/data/*` and per-project `CONTENT` consts:
+- Plain string → proper nouns, framework / tech names, role titles, project names, URLs, dates.
+- `{ en, vi }` object → headings, paragraphs, labels, button text.
+
+Components read the active language with `useLanguage()` from `src/context/LanguageContext.jsx` and resolve copy with `tr(value, lang)` from `src/utils/i18n.js`. UI strings not tied to a section live in `src/data/ui.js`. When updating copy, edit both EN and VI in the same change.

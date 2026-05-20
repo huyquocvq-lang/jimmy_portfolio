@@ -7,6 +7,18 @@
 > - **Runtime source of truth:** `src/data/*` (homepage) and `src/projects/*` (case studies).
 > - **Primary source:** [`Quoc Huy _ Resume.pdf`](./Quoc%20Huy%20_%20Resume.pdf) - the bundled resume PDF that drives the rest of this file.
 
+## Bilingual content rule (EN / VI)
+
+The portfolio ships in **English (default) + Vietnamese**. Every user-facing string in `src/data/*` and in the project JSX `CONTENT` consts is either:
+
+- a plain string (proper nouns, framework / tech names, role titles, project names, URLs, dates) - rendered as-is in both languages, or
+- a `{ en, vi }` pair (headings, prose, paragraphs, labels, button text) - rendered through `tr(value, lang)` from `src/utils/i18n.js`.
+
+When updating copy:
+- Update **both** languages in lockstep unless the change only affects one side.
+- Tech terms (Spring Boot, React, MQTT, …) stay in English in both languages.
+- Vietnamese copy uses dấu (đầy đủ) and em-dashes (—) rather than `--`.
+
 ---
 
 # **Portfolio Homepage**
@@ -157,7 +169,7 @@ Started as a Java intern at Eledevo Academy and later transitioned to a part-tim
 
 **Languages:** Vietnamese, English.
 
-**Images:** Pinterest-style masonry wall built from `public/images/personal/personal_1.jpeg` … `personal_6.jpeg`. CSS `column-count: 3 / 2 / 1` responsive; hover scales image to 1.05.
+**Images:** Pinterest-style masonry wall built from `public/images/personal/personal_1.jpeg` … `personal_8.jpeg` (ordered chronologically by EXIF date taken). CSS `column-count: 3 / 2 / 1` responsive; hover scales image to 1.05.
 
 ---
 
@@ -235,6 +247,31 @@ Card data is the runtime contract in `src/data/projects.js`. Each project has it
 - I build resilient fullstack systems - from CMS platforms and headless storefronts to IoT gateways and microservice backends.
 - Four years of fullstack engineering across CMS, IoT, and mobile - shipped to production.
 - Leading small teams, owning systems end-to-end.
+
+---
+
+# **Blog**
+
+**Anchor:** `id="blog"` · **Homepage section:** `src/components/Blogs.jsx` · **List page:** `/blog` → `src/pages/BlogListPage.jsx` · **Detail page:** `/blog/:slug` → `src/pages/BlogDetailPage.jsx` · **Data:** `src/data/blog.js`
+
+The homepage shows a single-row horizontal slider with newest posts; the `View all →` link routes to a paginated list page (9 posts per page). Each post has its own detail page rendered from a structured `body` array.
+
+## Authoring rules
+
+- One object per post in the `blog` array (`src/data/blog.js`).
+- Required: `slug`, `title`, `excerpt`, `date` (ISO `YYYY-MM-DD`), `tags` (plain strings), `body` (array of blocks). Optional: `cover` (path under `/images/blog/<slug>.jpg`), `readMinutes`.
+- Text fields (`title`, `excerpt`, block text, image alt/caption) are `{ en, vi }` pairs - same bilingual rule as elsewhere.
+- Tags / code snippets / language labels stay as plain strings.
+- Block types: `paragraph`, `heading` (level 2 or 3), `list` (items: translatable strings), `code` (`{ lang, code }`), `quote`, `callout`, `image` (`{ src, alt, caption? }`).
+
+## Seed posts (current)
+
+| Slug | Title | Date |
+|------|-------|------|
+| `building-high-traffic-cms-with-spring-boot` | Building a high-traffic CMS with Java Spring Boot | 2025-09-12 |
+| `going-headless-with-magnolia-and-react` | Going headless with Magnolia + React | 2025-07-04 |
+| `bridging-zigbee-zwave-ble-in-one-gateway` | Bridging Zigbee, Z-Wave and BLE in one home gateway | 2024-11-18 |
+| `leading-a-small-engineering-team` | Notes on leading a 5-10 person engineering team | 2024-03-22 |
 
 ---
 

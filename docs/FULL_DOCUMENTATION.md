@@ -203,9 +203,12 @@ User click     →  react-router Link    →  swap route component, no full relo
 | `Hero` | (none) | Pure presentation - `<picture>` handles art direction, CSS handles layout/hover |
 | `Nav` | `open` | Mobile drawer |
 | `EmbedSlot` | `fullscreen` | Toggle dashboard fullscreen view |
+| `ThemeProvider` | `theme` | Dark/light theme; persisted to `localStorage['portfolio-theme']` |
+| `LanguageProvider` | `lang` | EN/VI; persisted to `localStorage['portfolio-language']`; default `en` |
+| `LanguageToggle` | `open` | Dropdown open/close state |
 | Banner iframe (inline JS) | `--scale` CSS var | Scale 560×510 canvas to iframe width |
 
-No Redux, Zustand, MobX, Context API (for app state), or React Query.
+No Redux, Zustand, MobX, or React Query. The only React Contexts are `ThemeContext` and `LanguageContext`.
 
 ## API communication flow
 
@@ -281,6 +284,7 @@ npm run preview   # Preview production build locally
 ├── #work       Projects
 └── (Footer)
 
+/projects                      # All-projects list page
 /projects/mmp-cms              # Featured - MMP's CMS Website
 /projects/dentsu-cms           # Dentsu's Headless CMS Website
 /projects/yoolife              # Yoolife Application
@@ -288,6 +292,9 @@ npm run preview   # Preview production build locally
 /projects/vnpt-portal          # VNPT Portal Information
 /projects/eledevo-landing      # Eledevo Academy Landing Page
 /projects/fruit-market         # The Fruit Market Application
+
+/blog                          # Blog list (paginated, 9/page, ?page=N)
+/blog/:slug                    # Blog detail (renders structured body)
 ```
 
 ## Stack navigation
@@ -763,6 +770,50 @@ const dashboards = {
   [key]: lazy(() => import('../../embeds/MyDashboard'))
 }
 ```
+
+## Appendix D - i18n bilingual data shape
+
+Every user-facing string in `src/data/*` and the per-page `CONTENT` consts inside `src/projects/*Project.jsx` follows the same rule: plain string for proper nouns / tech terms, `{ en, vi }` object for translated copy.
+
+```ts
+type Translatable = string | { en: string; vi: string }
+
+// Examples in src/data/profile.js
+const profile = {
+  name: 'Quoc Huy (Jimmy)',                 // plain - proper noun
+  role: 'Senior Fullstack Software Engineer · CMS Platforms · IoT · Tech Lead', // plain - tech terms
+  tagline: { en: 'I build…', vi: 'Tôi xây…' },  // translated
+  hud: {
+    sideChips: [
+      { label: { en: 'Experience', vi: 'Kinh nghiệm' },
+        value: { en: '4+ years · Senior', vi: '4+ năm · Senior' } },
+      { label: { en: 'Also Does', vi: 'Kiêm nhiệm' },
+        value: 'Tech Lead · Firmware' }       // plain - tech role
+    ]
+  }
+}
+```
+
+**Consumption:**
+
+```jsx
+import { useLanguage } from '../context/LanguageContext'
+import { tr } from '../utils/i18n'
+
+function Component() {
+  const { lang } = useLanguage()
+  return <h1>{tr(profile.tagline, lang)}</h1>
+}
+```
+
+`tr(value, lang)`:
+- string / number → returned unchanged
+- `{ en, vi }` → returns `value[lang]` (falls back to `value.en` if the requested lang is missing)
+- otherwise → returned unchanged
+
+UI strings not tied to a section's data file live in `src/data/ui.js` (nav labels, breadcrumbs, pager, footer headings, embed slot text).
+
+---
 
 ## Appendix C - Related documentation
 

@@ -4,13 +4,18 @@ import Nav from '../Nav'
 import Footer from '../Footer'
 import BannerEmbed from '../BannerEmbed'
 import { getAllProjects, getProjectCard } from '../../data/projects'
+import { ui } from '../../data/ui'
+import { useLanguage } from '../../context/LanguageContext'
+import { tr } from '../../utils/i18n'
 
 export default function ProjectShell({ slug, children }) {
+  const { lang } = useLanguage()
   const project = getProjectCard(slug)
   const all = getAllProjects()
   const index = all.findIndex((p) => p.slug === slug)
   const prev = index > 0 ? all[index - 1] : null
   const next = index < all.length - 1 ? all[index + 1] : null
+  const title = project ? tr(project.title, lang) : tr(ui.shell.fallbackTitle, lang)
 
   const isEmbeddedBanner =
     typeof project?.banner === 'string' &&
@@ -42,7 +47,7 @@ export default function ProjectShell({ slug, children }) {
           <div className="project-shell-banner project-shell-banner--embed">
             <BannerEmbed
               src={project.banner}
-              title={`${project.title} banner`}
+              title={`${title} banner`}
               className="project-shell-banner-frame"
             />
           </div>
@@ -57,17 +62,13 @@ export default function ProjectShell({ slug, children }) {
 
         <div className="project-shell-breadcrumbs-bar">
           <div className="project-shell-breadcrumbs-wrap">
-            <nav className="project-shell-breadcrumbs" aria-label="Breadcrumb">
-              <Link to="/">Home</Link>
-              <span className="project-shell-breadcrumbs__sep" aria-hidden="true">
-                /
-              </span>
-              <Link to="/#work">Projects</Link>
-              <span className="project-shell-breadcrumbs__sep" aria-hidden="true">
-                /
-              </span>
+            <nav className="project-shell-breadcrumbs" aria-label={tr(ui.shell.breadcrumbAria, lang)}>
+              <Link to="/">{tr(ui.shell.breadcrumbHome, lang)}</Link>
+              <span className="project-shell-breadcrumbs__sep" aria-hidden="true">/</span>
+              <Link to="/#work">{tr(ui.shell.breadcrumbProjects, lang)}</Link>
+              <span className="project-shell-breadcrumbs__sep" aria-hidden="true">/</span>
               <span className="project-shell-breadcrumbs__current" aria-current="page">
-                {project?.title ?? 'Project'}
+                {title}
               </span>
             </nav>
           </div>
@@ -76,11 +77,11 @@ export default function ProjectShell({ slug, children }) {
         {children}
 
         {(prev || next) && (
-          <nav className="project-shell-pager" aria-label="Project navigation">
+          <nav className="project-shell-pager" aria-label={tr(ui.shell.pagerAria, lang)}>
             {prev ? (
               <Link to={prev.link} className="project-shell-pager-link">
-                <span className="dir">Previous</span>
-                <span className="name">{prev.title}</span>
+                <span className="dir">{tr(ui.shell.previous, lang)}</span>
+                <span className="name">{tr(prev.title, lang)}</span>
               </Link>
             ) : (
               <span />
@@ -90,8 +91,8 @@ export default function ProjectShell({ slug, children }) {
                 to={next.link}
                 className="project-shell-pager-link project-shell-pager-link--next"
               >
-                <span className="dir">Next</span>
-                <span className="name">{next.title}</span>
+                <span className="dir">{tr(ui.shell.next, lang)}</span>
+                <span className="name">{tr(next.title, lang)}</span>
               </Link>
             ) : (
               <span />

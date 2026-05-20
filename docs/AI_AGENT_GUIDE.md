@@ -16,7 +16,7 @@ Entry points: [AGENTS.md](../AGENTS.md); Cursor: rule `.cursor/rules/sync-docume
 | Bundler | Vite 5.4 |
 | Router | react-router-dom 7.x |
 | Icons | react-icons (Font Awesome subset) |
-| State | Local `useState` / `useEffect` + one global `ThemeContext` for dark/light toggle |
+| State | Local `useState` / `useEffect` + two global React Contexts: `ThemeContext` (dark/light) and `LanguageContext` (EN/VI) |
 | Backend | None |
 | Styling | Plain CSS files (no Tailwind, no CSS modules) |
 
@@ -51,6 +51,8 @@ Entry points: [AGENTS.md](../AGENTS.md); Cursor: rule `.cursor/rules/sync-docume
 | `BannerEmbed.jsx` + `public/banners/*.html` | Banner HTML must keep `.banner-fit` 560×510 + inline JS that sets `--scale` |
 | `EmbedSlot.jsx` `dashboards` map | Missing entry for an embed key in `projectEmbeds.js` → silently renders nothing |
 | Theme tokens in `:root` (`global.css`) | Renaming a `--*` variable breaks every file that consumes it - refactor with care |
+| `src/utils/i18n.js` `tr()` shape | Returns `value[lang]` only when the value looks like `{ en, vi }`. Renaming the `en` / `vi` keys silently makes everything fall back to passthrough. Always pass `lang` from `useLanguage()`, never hardcode. |
+| `src/data/ui.js` keys | Imported by Nav/Hero/Footer/Impact/Education/Experience/Projects/ProjectShell/EmbedSlot - renaming a key breaks the matching label silently. |
 
 ## Project dashboard embeds
 
@@ -109,11 +111,36 @@ Always-dark surfaces (kept dark in both themes) - hero overlay copy, AI rewriter
 - Component: `src/components/PersonalInterest.jsx` · anchor `#personal`
 - Data: `src/data/personal.js` (eyebrow, heading, paragraphs, images)
 - Layout: Pinterest-style CSS-columns masonry (3 / 2 / 1 cols responsive)
-- Photos: `public/images/personal/personal_1.jpeg` … `personal_6.jpeg`
+- Photos: `public/images/personal/personal_1.jpeg` … `personal_8.jpeg` (ordered chronologically; HEIC originals must be converted to JPEG via `sips -s format jpeg -Z 1600` before web use - HEIC does not render in Chrome / Firefox / Edge)
 
-## Project routes
+## i18n (EN / VI)
 
-The seven project routes after the resume migration:
+Default language is **English**. User selection persists in `localStorage['portfolio-language']`.
+
+| Piece | File |
+|-------|------|
+| Provider + hook | `src/context/LanguageContext.jsx` (`LanguageProvider`, `useLanguage()` → `{ lang, setLang, toggleLang }`) |
+| Helper | `src/utils/i18n.js` - `tr(value, lang)` resolves `{ en, vi }` objects, passes through everything else (proper nouns, tech terms) |
+| Toggle UI | `src/components/LanguageToggle.jsx` - globe icon + EN/VI code + dropdown |
+| UI strings | `src/data/ui.js` - every label not tied to a section's data file (nav, breadcrumbs, pager, footer headings, embed slot) |
+
+**Authoring rule:** any new user-facing string should be `{ en: '...', vi: '...' }`. Proper nouns, framework / tech names, role titles, project names stay as plain strings. Project case studies keep their per-page bilingual copy in a local `CONTENT` const at the top of the JSX file.
+
+To add a new homepage section: import `{ useLanguage } from '../context/LanguageContext'` and `{ tr } from '../utils/i18n'`, then wrap each translatable value with `tr(value, lang)`.
+
+## Routes
+
+Top-level pages:
+
+| Route | Component | Notes |
+|-------|-----------|-------|
+| `/` | `HomePage` | Hero → Impact → Education → Experience → AboutSkills → PersonalInterest → Projects → Blogs → Footer |
+| `/projects` | `ProjectListPage` | All projects in one grid, no pagination |
+| `/projects/:slug` | one of 7 `*Project.jsx` files | Individual case study |
+| `/blog` | `BlogListPage` | Paginated grid (9/page, `?page=N`) |
+| `/blog/:slug` | `BlogDetailPage` | Structured body renderer (BlogBody) |
+
+Project slug → JSX:
 
 | Slug | Route | JSX component |
 |------|-------|---------------|
@@ -124,6 +151,21 @@ The seven project routes after the resume migration:
 | `vnpt-portal` | `/projects/vnpt-portal` | `src/projects/VnptPortalProject.jsx` |
 | `eledevo-landing` | `/projects/eledevo-landing` | `src/projects/EledevoLandingProject.jsx` |
 | `fruit-market` | `/projects/fruit-market` | `src/projects/FruitMarketProject.jsx` |
+
+## Blog system
+
+| Piece | File |
+|-------|------|
+| Data + helpers | `src/data/blog.js` - `getAllPosts()` (sorted desc), `getPostBySlug(slug)`, `getAdjacentPosts(slug)` |
+| Card | `src/components/BlogCard.jsx` - reused by slider + list page |
+| Slider | `src/components/Blogs.jsx` - CSS scroll-snap + arrow buttons; mounted on home between `Projects` and `Footer` |
+| Body renderer | `src/components/BlogBody.jsx` - switch over block `type` (`paragraph`, `heading`, `list`, `code`, `quote`, `callout`, `image`) |
+| Pagination | `src/components/Pagination.jsx` - `?page=N` URL param, ellipses around first/last/current |
+| List page | `src/pages/BlogListPage.jsx` |
+| Detail page | `src/pages/BlogDetailPage.jsx` - redirects to `/blog` if slug unknown |
+| Styles | `src/styles/blog.css` (loaded from `src/main.jsx`) |
+
+Adding a post: append to the `blog` array in `src/data/blog.js`. Required fields: `slug`, `title`, `excerpt`, `date` (ISO `YYYY-MM-DD`), `tags`, `body`. Cover image path is optional. Body block text fields use `{ en, vi }` pairs.
 
 Each page reuses one of the legacy CSS class prefixes (`.wp-`, `.pgm-`, `.trend-`, `.pfm-`, `.glean-`, `.air-`, `.retro-`) for layout - matching the renamed CSS file under `src/styles/projects/`.
 

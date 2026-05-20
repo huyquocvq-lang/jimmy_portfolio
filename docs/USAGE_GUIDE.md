@@ -92,6 +92,10 @@ Do not leave docs describing old behavior.
 | `src/projects/*Project.jsx` | `FEATURE_MAP` (matching Fx), layout notes in FEATURE_MAP | `CONTENT_SOURCE.md` (matching project section) |
 | Theme tokens in `src/styles/global.css :root` / `[data-theme="light"]` | `FEATURE_MAP` theme section, `AI_AGENT_GUIDE` theme notes | `FULL_DOCUMENTATION` |
 | `src/context/ThemeContext.jsx` / `src/components/ThemeToggle.jsx` / anti-FOUC script in `index.html` | `FEATURE_MAP` FX, `ARCHITECTURE_OVERVIEW` (state/styling sections), `AI_AGENT_GUIDE` theme notes | `FULL_DOCUMENTATION` |
+| `src/context/LanguageContext.jsx` / `src/utils/i18n.js` / `src/components/LanguageToggle.jsx` / `src/data/ui.js` | `FEATURE_MAP` FW (i18n), `ARCHITECTURE_OVERVIEW` state section, `AI_AGENT_GUIDE` i18n notes, `CONTENT_SOURCE` bilingual rule | `FULL_DOCUMENTATION` schema |
+| `src/data/blog.js` (new post or schema change) | `FEATURE_MAP` F5b–F5d, `CONTENT_SOURCE` blog section, `AI_AGENT_GUIDE` blog notes | `API_FLOW` (image paths under `/images/blog/`), `FULL_DOCUMENTATION` schema |
+| `src/components/Blogs.jsx` / `BlogCard.jsx` / `BlogBody.jsx` / `Pagination.jsx` | `FEATURE_MAP` F5b–F5d, `AI_AGENT_GUIDE` blog notes | `ARCHITECTURE_OVERVIEW` |
+| `src/pages/BlogListPage.jsx` / `BlogDetailPage.jsx` / `ProjectListPage.jsx` | `FEATURE_MAP` F5a / F5c / F5d, `USAGE_GUIDE` routes, `AI_AGENT_GUIDE` routes table | `ARCHITECTURE_OVERVIEW` |
 | `docs/CONTENT_SOURCE.md` | `USAGE_GUIDE` §3.1 if policy changes | `FEATURE_MAP` content-source section |
 | `src/styles/projects/*.css` | Note in FEATURE_MAP if layout changes significantly | |
 | `src/components/project/ProjectShell.jsx` | `ARCHITECTURE_OVERVIEW`, `AI_AGENT_GUIDE` (dangerous) | `FULL_DOCUMENTATION` |
@@ -155,6 +159,7 @@ npm run build
 | URL | Component |
 |-----|-----------|
 | `/` | HomePage |
+| `/projects` | ProjectListPage (all projects, no pagination) |
 | `/projects/mmp-cms` | MmpCmsProject (Featured) |
 | `/projects/dentsu-cms` | DentsuCmsProject |
 | `/projects/yoolife` | YoolifeProject |
@@ -162,6 +167,8 @@ npm run build
 | `/projects/vnpt-portal` | VnptPortalProject |
 | `/projects/eledevo-landing` | EledevoLandingProject |
 | `/projects/fruit-market` | FruitMarketProject |
+| `/blog` | BlogListPage (paginated, 9/page, `?page=N`) |
+| `/blog/:slug` | BlogDetailPage |
 
 ---
 

@@ -51,9 +51,11 @@ sequenceDiagram
 | `/images/projects/vnpt-portal.jpg` | `otherProjects[3]` |
 | `/images/projects/eledevo-landing.jpg` | `otherProjects[4]` |
 | `/images/projects/fruit-market.jpg` | `otherProjects[5]` |
-| `/images/personal/personal_1.jpeg` … `personal_6.jpeg` | `personal.images[]` (masonry wall) |
+| `/images/personal/personal_1.jpeg` … `personal_8.jpeg` | `personal.images[]` (masonry wall, chronological) |
 
 `public/images/projects/` is empty by default - cards render the dark fallback panel until images are added.
+
+Blog cover images live under `public/images/blog/<slug>.jpg` and are referenced from `blog.js` `cover` fields. When the directory is empty, `BlogCard` + `BlogDetailPage` render the bronze gradient fallback automatically.
 
 ### Banner asset paths (static HTML, served as iframe documents)
 

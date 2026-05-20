@@ -7,12 +7,16 @@ import YooIocProject from './projects/YooIocProject'
 import VnptPortalProject from './projects/VnptPortalProject'
 import EledevoLandingProject from './projects/EledevoLandingProject'
 import FruitMarketProject from './projects/FruitMarketProject'
+import ProjectListPage from './pages/ProjectListPage'
+import BlogListPage from './pages/BlogListPage'
+import BlogDetailPage from './pages/BlogDetailPage'
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/projects" element={<ProjectListPage />} />
         <Route path="/projects/mmp-cms" element={<MmpCmsProject />} />
         <Route path="/projects/dentsu-cms" element={<DentsuCmsProject />} />
         <Route path="/projects/yoolife" element={<YoolifeProject />} />
@@ -20,6 +24,8 @@ export default function App() {
         <Route path="/projects/vnpt-portal" element={<VnptPortalProject />} />
         <Route path="/projects/eledevo-landing" element={<EledevoLandingProject />} />
         <Route path="/projects/fruit-market" element={<FruitMarketProject />} />
+        <Route path="/blog" element={<BlogListPage />} />
+        <Route path="/blog/:slug" element={<BlogDetailPage />} />
       </Routes>
     </BrowserRouter>
   )

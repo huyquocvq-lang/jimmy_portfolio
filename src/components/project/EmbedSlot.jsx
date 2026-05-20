@@ -1,22 +1,19 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
+import { ui } from '../../data/ui'
+import { useLanguage } from '../../context/LanguageContext'
+import { tr } from '../../utils/i18n'
 import '../../styles/embed-slot.css'
 
 /**
- * Project dashboard slot.
- *
- * No dashboards are currently registered (the active project set - CMS,
- * mobile, IoT - does not ship interactive dashboards). Add a new entry here
- * when a future project adds one, mirroring the projectEmbeds.js registry.
- *
- * Example:
- *   const dashboards = {
- *     yourKey: lazy(() => import('../../embeds/YourDashboard'))
- *   }
+ * Project dashboard slot. No dashboards are currently registered - the active
+ * project set (CMS, mobile, IoT) does not ship interactive dashboards. Add a
+ * new entry here mirroring the projectEmbeds.js registry to wire one up.
  */
 const dashboards = {}
 
 export default function EmbedSlot({ embedKey, title }) {
   const [fullscreen, setFullscreen] = useState(false)
+  const { lang } = useLanguage()
   const Dashboard = dashboards[embedKey]
 
   const exitFullscreen = useCallback(() => setFullscreen(false), [])
@@ -44,22 +41,22 @@ export default function EmbedSlot({ embedKey, title }) {
   return (
     <section
       className={`embed-slot${fullscreen ? ' embed-slot--fullscreen' : ''}`}
-      aria-label={title}
+      aria-label={tr(title, lang)}
     >
       <div className="embed-slot__inner">
         <div className="embed-slot__head">
-          <h2 className="embed-slot__title">{title}</h2>
+          <h2 className="embed-slot__title">{tr(title, lang)}</h2>
           <button
             type="button"
             className="embed-slot__fs-btn"
             onClick={() => setFullscreen((v) => !v)}
             aria-pressed={fullscreen}
           >
-            {fullscreen ? 'Exit fullscreen' : 'Fullscreen ↗'}
+            {fullscreen ? tr(ui.embed.exitFullscreen, lang) : tr(ui.embed.fullscreen, lang)}
           </button>
         </div>
 
-        <Suspense fallback={<p className="embed-slot__loading">Loading dashboard…</p>}>
+        <Suspense fallback={<p className="embed-slot__loading">{tr(ui.embed.loading, lang)}</p>}>
           <div className="embed-slot__canvas">
             <Dashboard />
           </div>

@@ -42,21 +42,26 @@ Do not merge if docs are out of sync with the code.
 | Personal Interest (copy + photos) | `src/data/personal.js` (+ `public/images/personal/*.jpeg`) |
 | Project card (homepage) | `src/data/projects.js` |
 | Project page (layout + copy) | `src/projects/<Name>Project.jsx` + `src/styles/projects/<name>.css` |
+| Blog post (data + body) | `src/data/blog.js` (append object; structured `body` array) |
+| Blog slider / list / detail layout | `src/components/Blogs.jsx`, `src/components/BlogCard.jsx`, `src/components/BlogBody.jsx`, `src/pages/BlogListPage.jsx`, `src/pages/BlogDetailPage.jsx`, `src/styles/blog.css` |
+| All-projects list page | `src/pages/ProjectListPage.jsx` |
 | Animated banner (home thumb + detail hero) | `public/banners/<slug>.html` (edit in place) |
 | Dashboard embed | `src/embeds/<Name>Dashboard.tsx` + register in `EmbedSlot.jsx` + `projectEmbeds.js` |
 | Theme tokens (dark + light) | `src/styles/global.css` `:root` (dark defaults) + `:root[data-theme="light"]` (light overrides) |
 | Theme toggle wiring | `src/context/ThemeContext.jsx`, `src/components/ThemeToggle.jsx`, anti-FOUC script in `index.html` |
+| Language toggle (EN/VI) | `src/context/LanguageContext.jsx`, `src/utils/i18n.js` (`tr` helper), `src/components/LanguageToggle.jsx`, UI strings in `src/data/ui.js` |
 | New route | `src/App.jsx` + `projects.js` slug/link |
 
 ## Architecture summary
 
-- **Home:** `src/pages/HomePage.jsx` → Hero, Nav, Impact, Education, Experience, AboutSkills, **PersonalInterest**, Projects, Footer
+- **Home:** `src/pages/HomePage.jsx` → Hero, Nav, Impact, Education, Experience, AboutSkills, **PersonalInterest**, Projects, **Blogs**, Footer
 - **Projects:** 7 separate files in `src/projects/` (`MmpCmsProject`, `DentsuCmsProject`, `YoolifeProject`, `YooIocProject`, `VnptPortalProject`, `EledevoLandingProject`, `FruitMarketProject`) - **no** shared generic template
 - **Shell:** `src/components/project/ProjectShell.jsx` - Nav, hero banner (iframe or image) + dim overlay, breadcrumbs, prev/next, Footer
 - **Banners:** `BannerEmbed.jsx` renders `public/banners/<slug>.html` as a sandboxed iframe (currently no banners ship; cards fall back to images)
 - **Dashboards:** `EmbedSlot.jsx` lazy-loads `src/embeds/*Dashboard.tsx` (registry currently empty; wiring kept for future projects)
 - **Theme:** charcoal + bronze gold dark default; light theme via `:root[data-theme="light"]` override. Tokens on `:root` of `global.css`, referenced via `var(--*)`. Toggle in nav (`ThemeToggle`), state in `ThemeContext`, persisted to `localStorage`.
-- **State:** local only for most components (`Hero`, `Nav`, `EmbedSlot` fullscreen) + one React Context (`ThemeContext`) for the dark/light toggle. No Redux, no API.
+- **State:** local only for most components (`Hero`, `Nav`, `EmbedSlot` fullscreen) + two React Contexts (`ThemeContext` for dark/light, `LanguageContext` for EN/VI). No Redux, no API.
+- **i18n:** strings in `src/data/*` and per-project `CONTENT` consts are `{ en, vi }` pairs (plain string passthrough for proper nouns / tech terms); read via `tr(value, lang)` from `src/utils/i18n.js`. Default language is **English**, persisted in `localStorage['portfolio-language']`.
 
 ## AI tooling
 

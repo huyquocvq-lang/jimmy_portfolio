@@ -11,10 +11,15 @@
 | F3c | Work experience timeline | `src/components/Experience.jsx`, `src/data/experience.js` | `/#experience` |
 | F4 | About + skills grid | `src/components/AboutSkills.jsx`, `Skill.jsx` | `/#about` |
 | F4b | Personal interest + masonry image wall | `src/components/PersonalInterest.jsx`, `src/data/personal.js` | `/#personal` |
-| F5 | Projects listing | `src/components/Projects.jsx`, `FeaturedProject.jsx`, `OtherProject.jsx`, `BannerEmbed.jsx` | `/#work` |
+| F5 | Projects listing (homepage) | `src/components/Projects.jsx`, `FeaturedProject.jsx`, `OtherProject.jsx`, `BannerEmbed.jsx` | `/#work` |
+| F5a | All-projects list page | `src/pages/ProjectListPage.jsx` | `/projects` |
+| F5b | Blog slider (homepage) | `src/components/Blogs.jsx`, `BlogCard.jsx`, `src/data/blog.js` | `/#blog` |
+| F5c | Blog list page (paginated) | `src/pages/BlogListPage.jsx`, `src/components/Pagination.jsx`, `src/data/blog.js` | `/blog` |
+| F5d | Blog detail page | `src/pages/BlogDetailPage.jsx`, `src/components/BlogBody.jsx`, `src/data/blog.js` | `/blog/:slug` |
 | F6 | Footer / CTA | `src/components/Footer.jsx` | footer |
 | F7–F13 | Individual project case studies | `src/projects/*Project.jsx` | `/projects/:slug` |
 | FX | Theme tokens (charcoal + bronze) + dark/light toggle | `src/styles/global.css` `:root` / `[data-theme="light"]`, `src/context/ThemeContext.jsx`, `src/components/ThemeToggle.jsx` | global |
+| FW | Bilingual i18n (EN/VI) + language toggle | `src/context/LanguageContext.jsx`, `src/utils/i18n.js`, `src/components/LanguageToggle.jsx`, `src/data/ui.js` | global |
 | FY | Dashboard embed system (currently no embeds registered) | `src/components/project/EmbedSlot.jsx`, `src/embeds/*.tsx`, `src/data/projectEmbeds.js` | reserved for future detail pages |
 | FZ | Banner system (home thumbs + detail hero) | `public/banners/*.html`, `BannerEmbed.jsx`, `ProjectShell.jsx` | home + detail (currently no banner HTML files; cards fall back to images) |
 
@@ -172,7 +177,7 @@ hud: {
 
 **Data:** `src/data/personal.js` - heading "A little more about me - outside of work." Three paragraphs covering travel, founding a clothing store, MC / spokesperson work, plus the personal motto.
 
-**Images:** `public/images/personal/personal_1.jpeg` … `personal_6.jpeg`.
+**Images:** `public/images/personal/personal_1.jpeg` … `personal_8.jpeg` (ordered chronologically by EXIF date taken, JPEG resized to max 1600px width).
 
 **Anchor:** `id="personal"`
 
@@ -189,6 +194,95 @@ hud: {
 - All cards currently have `banner: null` and reference an image under `public/images/projects/<slug>.jpg`. The image directory is empty by default, so `OtherProject` / `FeaturedProject` simply render the dark fallback inner panel until images are added.
 
 **Anchor:** `id="work"`
+
+---
+
+## F5a - All-projects list page
+
+**Route:** `/projects` · **Component:** `src/pages/ProjectListPage.jsx`
+
+A standalone page that lists every project from `src/data/projects.js`. Reuses `Nav`, `Footer`, `FeaturedProject`, `OtherProject` - no new card design. No pagination (7 projects fits in one grid).
+
+Reached via the **View all →** link in the homepage `Projects` section header (`ui.projects.viewAll`).
+
+---
+
+## F5b - Blog slider (homepage)
+
+**Anchor:** `id="blog"` · **Component:** `src/components/Blogs.jsx`
+
+Single-row horizontal slider rendered between `Projects` and `Footer` on the homepage.
+
+| Piece | Detail |
+|-------|--------|
+| Data | `src/data/blog.js` - `getAllPosts()` returns posts sorted by `date` desc |
+| Card | `src/components/BlogCard.jsx` - cover image, date, read time, title (clamped 2 lines), excerpt (clamped 3 lines), tag chips, CTA |
+| Slider | CSS `scroll-snap-type: x mandatory` track with grid auto-flow column; native scroll on touch / trackpad; arrow buttons (prev/next) for desktop mouse users (hidden ≤768px). Arrows enable/disable based on `scrollLeft` + `scrollWidth - clientWidth` thresholds. |
+| Header | Eyebrow + heading + **View all →** link (`ui.blog.viewAll`) → `/blog` |
+| Empty state | `ui.blog.empty` rendered when `getAllPosts()` returns `[]` |
+
+---
+
+## F5c - Blog list page
+
+**Route:** `/blog` · **Component:** `src/pages/BlogListPage.jsx`
+
+Paginated grid of all posts.
+
+| Piece | Detail |
+|-------|--------|
+| Page size | 9 posts per page |
+| URL param | `?page=N` (1-indexed, clamped to `[1, totalPages]`) |
+| Layout | `.list-page-grid.blog-grid` - 3 cols ≥1024px, 2 cols 769-1023px, 1 col ≤768px |
+| Pagination | `src/components/Pagination.jsx` - prev/next buttons + page numbers with ellipses (always shows 1, last, and ±1 around current) |
+| Scroll | `window.scrollTo(0,0)` on page change |
+| Empty state | `ui.blog.empty` |
+
+---
+
+## F5d - Blog detail page
+
+**Route:** `/blog/:slug` · **Component:** `src/pages/BlogDetailPage.jsx`
+
+Renders a single post. If the slug is unknown, redirects to `/blog`.
+
+| Piece | Detail |
+|-------|--------|
+| Cover | Hero band using `post.cover` as `background-image`; falls back to a bronze gradient when `cover` is null |
+| Breadcrumbs | Home → Blog → current title |
+| Header | Date + read time + title + excerpt + tag chips |
+| Body | `src/components/BlogBody.jsx` renders the structured `body` array via switch. Block types: `paragraph`, `heading` (level 2/3), `list`, `code` (with optional `lang` badge), `quote`, `callout`, `image` (with optional caption). Text fields are `{ en, vi }` pairs. |
+| Pager | Prev/next post from `getAdjacentPosts(slug)` (order matches `getAllPosts()`) |
+| Back link | `← Back to blog` → `/blog` |
+
+### `blog.js` schema
+
+```ts
+type Block =
+  | { type: 'paragraph', text: Translatable }
+  | { type: 'heading', level: 2 | 3, text: Translatable }
+  | { type: 'list', items: Translatable[] }
+  | { type: 'code', lang?: string, code: string }       // code stays plain text
+  | { type: 'quote', text: Translatable }
+  | { type: 'callout', text: Translatable }
+  | { type: 'image', src: string, alt: Translatable, caption?: Translatable }
+
+interface BlogPost {
+  slug: string
+  title: Translatable
+  excerpt: Translatable
+  date: string              // ISO YYYY-MM-DD - sorted desc by getAllPosts()
+  cover: string | null      // path under /public/images/blog/
+  tags: string[]            // plain strings (tech / topic keywords)
+  readMinutes?: number
+  body: Block[]
+}
+```
+
+Helpers exported alongside the `blog` array:
+- `getAllPosts()` - posts sorted by `date` desc
+- `getPostBySlug(slug)` - single post or `null`
+- `getAdjacentPosts(slug)` - `{ prev, next }` for the detail pager
 
 ---
 
@@ -285,6 +379,27 @@ Provides Nav, hero banner (image or `<BannerEmbed>` iframe), breadcrumbs (Home �
 **Component:** `src/components/project/ProjectShell.jsx`
 
 Provides Nav · banner (image or iframe) + dim overlay · breadcrumbs · `children` · prev/next pager (from `getAllProjects()` order) · Footer · `window.scrollTo(0, 0)` on slug change.
+
+---
+
+## FW - Bilingual i18n (EN/VI) + language toggle
+
+**Default language:** English. User selection persists in `localStorage` under `portfolio-language`.
+
+| Piece | File | Notes |
+|-------|------|-------|
+| Provider + hook | `src/context/LanguageContext.jsx` | Exports `LanguageProvider` and `useLanguage()` → `{ lang, setLang, toggleLang }`. Persists to `localStorage['portfolio-language']`. Default is `en`. Writes `<html lang="...">`. |
+| Translation helper | `src/utils/i18n.js` | `tr(value, lang)` returns `value[lang]` when `value` looks like `{ en, vi }`, otherwise returns the value unchanged. Safe to call on plain strings, numbers, or untranslated nodes - keeps proper nouns / tech terms passthrough. Also exports `LANGUAGES = ['en','vi']` and `DEFAULT_LANGUAGE = 'en'`. |
+| Provider mount | `src/main.jsx` | `<LanguageProvider>` wraps `<ThemeProvider>` so theme + language coexist. |
+| UI control | `src/components/LanguageToggle.jsx` | Globe icon + EN/VI code + dropdown menu with the two options (full names: English / Tiếng Việt). Closes on outside click or Escape. Mounted next to `ThemeToggle` in `Nav.jsx` `.nav-actions`. |
+| UI strings registry | `src/data/ui.js` | Every UI string not tied to a section's data file (nav labels, breadcrumbs, pager, footer headings, embed slot, impact/education/experience/projects eyebrows + headings). Each value is a `{ en, vi }` pair. |
+
+**Translation policy (used across data + project pages):**
+- Proper nouns, tech / framework names, role titles, project names → plain string (same EN/VI).
+- Headings, prose, paragraphs, labels, button text → `{ en, vi }` pair, consumed via `tr(...)`.
+- Project case studies own their bilingual copy inside a local `CONTENT` const at the top of the JSX file (alongside any inline lists).
+
+**Components reading the language:** every homepage section component, the seven project pages, `ProjectShell`, `EmbedSlot`, `Footer`, and `Nav` import `useLanguage` + `tr`.
 
 ---
 

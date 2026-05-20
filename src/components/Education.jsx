@@ -1,35 +1,40 @@
 import { education } from '../data/education'
+import { ui } from '../data/ui'
+import { useLanguage } from '../context/LanguageContext'
+import { tr } from '../utils/i18n'
 
 export default function Education() {
+  const { lang } = useLanguage()
+
   return (
     <section className="education" id="education">
       <div className="education-inner">
-        <div className="education-eyebrow">Education</div>
-        <h2>Where I studied engineering.</h2>
+        <div className="education-eyebrow">{tr(ui.education.eyebrow, lang)}</div>
+        <h2>{tr(ui.education.heading, lang)}</h2>
 
         <div className="education-list">
           {education.map((entry, i) => (
             <article className="edu-item" key={i}>
-              <div className="edu-date">{entry.date}</div>
+              <div className="edu-date">{tr(entry.date, lang)}</div>
               <div className="edu-body">
-                <h3>{entry.school}</h3>
+                <h3>{tr(entry.school, lang)}</h3>
                 <div className="edu-degree">
-                  {entry.degree}
-                  {entry.focus && <span className="edu-focus"> · {entry.focus}</span>}
+                  {tr(entry.degree, lang)}
+                  {entry.focus && <span className="edu-focus"> · {tr(entry.focus, lang)}</span>}
                 </div>
                 <div className="edu-meta">
-                  <span>{entry.location}</span>
+                  <span>{tr(entry.location, lang)}</span>
                   {entry.gpa && (
                     <>
                       <span className="edu-meta-sep" aria-hidden="true">·</span>
-                      <span>GPA {entry.gpa}</span>
+                      <span>{tr(ui.education.gpa, lang)} {entry.gpa}</span>
                     </>
                   )}
                 </div>
                 {entry.honors && entry.honors.length > 0 && (
                   <ul className="edu-honors">
                     {entry.honors.map((h, j) => (
-                      <li key={j}>{h}</li>
+                      <li key={j}>{tr(h, lang)}</li>
                     ))}
                   </ul>
                 )}
