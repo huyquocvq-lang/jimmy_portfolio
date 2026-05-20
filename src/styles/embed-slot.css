@@ -1,0 +1,123 @@
+.embed-slot {
+  margin: 48px 0 0;
+}
+
+.embed-slot__inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.embed-slot__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.embed-slot__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+.embed-slot__fs-btn {
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.embed-slot__fs-btn:hover {
+  text-decoration: underline;
+}
+
+.embed-slot__loading {
+  padding: 48px;
+  text-align: center;
+  color: var(--text-body);
+  background: var(--bg-elevated);
+  border-radius: 10px;
+}
+
+.embed-slot__canvas {
+  border-radius: 10px;
+  overflow: auto;
+  border: 1px solid var(--border-subtle);
+  max-height: min(520px, 70vh);
+  -webkit-overflow-scrolling: touch;
+}
+
+.embed-slot__canvas > div {
+  min-height: 480px !important;
+}
+
+.embed-slot--fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  margin: 0;
+  background: var(--bg-primary);
+}
+
+.embed-slot--fullscreen .embed-slot__inner {
+  max-width: none;
+  height: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.embed-slot--fullscreen .embed-slot__head {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 14px 20px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.embed-slot--fullscreen .embed-slot__title {
+  color: var(--text-heading);
+}
+
+.embed-slot--fullscreen .embed-slot__fs-btn {
+  color: var(--accent);
+}
+
+.embed-slot--fullscreen .embed-slot__fs-btn:hover {
+  color: var(--accent-hover);
+}
+
+.embed-slot--fullscreen .embed-slot__canvas {
+  flex: 1;
+  max-height: none;
+  border: none;
+  border-radius: 0;
+  overflow: auto;
+}
+
+.embed-slot--fullscreen .embed-slot__canvas > div {
+  min-height: 100vh !important;
+}
+
+@media (max-width: 768px) {
+  .embed-slot__inner {
+    padding: 0 16px;
+  }
+
+  .embed-slot {
+    margin-top: 32px;
+  }
+
+  .embed-slot__canvas {
+    max-height: min(420px, 65vh);
+  }
+}

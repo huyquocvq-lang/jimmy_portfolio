@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+      Production URL is hard-coded into og:url / og:image / canonical because
+      social crawlers (LinkedIn, Facebook, Slack, iMessage, WhatsApp) DO NOT run
+      JavaScript and DO NOT respect relative paths.
+
+      The placeholder host `https://jennytangmarketingportpolio.com` is left in
+      place from the original portfolio. Before deploying to a new domain,
+      search-and-replace EVERY occurrence with your real production origin, e.g.:
+
+        sed -i '' 's|https://jennytangmarketingportpolio.com|https://YOUR-DOMAIN|g' index.html
+
+      Then re-build and re-scrape via:
+        - LinkedIn Post Inspector: https://www.linkedin.com/post-inspector/
+        - Facebook Sharing Debugger: https://developers.facebook.com/tools/debug/
+        - Twitter/X Card Validator: https://cards-dev.twitter.com/validator
+        - Slack: post in any channel → use the "..." menu → "Remove link preview" → repost
+    -->
+
+    <title>Quoc Huy (Jimmy) - Portfolio</title>
+    <meta
+      name="description"
+      content="Quoc Huy (Jimmy) - Senior Fullstack Software Engineer specializing in CMS platforms, microservices backends, mobile apps, and IoT systems."
+    />
+    <meta name="author" content="Quoc Huy (Jimmy)" />
+    <meta name="theme-color" content="#1a1a1a" />
+
+    <link rel="canonical" href="https://jennytangmarketingportpolio.com/" />
+
+    <!-- Open Graph (LinkedIn, Facebook, iMessage, Slack, WhatsApp) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Quoc Huy (Jimmy) Portfolio" />
+    <meta property="og:url" content="https://jennytangmarketingportpolio.com/" />
+    <meta property="og:title" content="Quoc Huy (Jimmy) - Portfolio" />
+    <meta
+      property="og:description"
+      content="Senior Fullstack Software Engineer specializing in CMS platforms, microservices backends, mobile apps, and IoT systems."
+    />
+    <meta property="og:image" content="https://jennytangmarketingportpolio.com/og-image.png" />
+    <meta property="og:image:secure_url" content="https://jennytangmarketingportpolio.com/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Quoc Huy (Jimmy) - Senior Fullstack Software Engineer portfolio cover"
+    />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Quoc Huy (Jimmy) - Portfolio" />
+    <meta
+      name="twitter:description"
+      content="Senior Fullstack Software Engineer specializing in CMS platforms, microservices backends, mobile apps, and IoT systems."
+    />
+    <meta name="twitter:image" content="https://jennytangmarketingportpolio.com/og-image.png" />
+    <meta
+      name="twitter:image:alt"
+      content="Quoc Huy (Jimmy) - Senior Fullstack Software Engineer portfolio cover"
+    />
+
+    <link rel="icon" type="image/png" href="/og-image.png" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Source+Sans+Pro:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Anti-FOUC: resolve theme before React mounts. Mirrors ThemeContext defaults. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('portfolio-theme');
+          var theme =
+            stored === 'dark' || stored === 'light'
+              ? stored
+              : window.matchMedia &&
+                window.matchMedia('(prefers-color-scheme: light)').matches
+              ? 'light'
+              : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', theme === 'light' ? '#ffffff' : '#1a1a1a');
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

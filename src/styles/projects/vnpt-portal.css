@@ -1,0 +1,121 @@
+.glean-why {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px 32px 40px;
+  text-align: center;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text-body);
+}
+.glean-sources {
+  max-width: 560px;
+  margin: 0 auto 48px;
+  padding: 32px;
+  background: var(--bg-elevated);
+  border-radius: 8px;
+}
+.glean-sources h2 {
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  text-align: center;
+}
+.glean-sources ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 0;
+}
+.glean-sources li {
+  font-size: 14px;
+  padding: 8px 16px;
+  background: var(--bg-elevated-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  color: var(--text-body);
+}
+.glean-flow {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.glean-flow h2 {
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: 28px;
+  text-align: center;
+  color: var(--text-heading);
+}
+.glean-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.glean-step {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 20px;
+  padding: 24px 0;
+  border-left: 2px solid var(--accent);
+  margin-left: 23px;
+  padding-left: 28px;
+  position: relative;
+}
+.glean-step-n {
+  position: absolute;
+  left: -25px;
+  top: 24px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--text-on-accent);
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.glean-step h3 {
+  font-size: 17px;
+  margin-bottom: 6px;
+  color: var(--text-heading);
+}
+.glean-step p {
+  font-size: 15px;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+.glean-example {
+  max-width: 560px;
+  margin: 40px auto 32px;
+  padding: 28px 32px;
+  border: 1px dashed var(--border-accent);
+  text-align: center;
+}
+.glean-example h2 {
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: var(--accent);
+}
+.glean-example p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-body);
+}
+@media (max-width: 768px) {
+  .project-intro,
+  .glean-why,
+  .glean-sources,
+  .glean-flow,
+  .glean-example {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

@@ -1,2 +1,0 @@
-export { FlipButton } from './FlipButton';
-

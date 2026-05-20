@@ -1,95 +1,135 @@
-# Personal Portfolio Website
+# Portfolio — Quoc Huy (Jimmy)
 
-Website portfolio cá nhân được xây dựng với React (frontend) và NestJS (backend).
+React + Vite portfolio for **Quoc Huy (Jimmy)** - Senior Fullstack Software Engineer.
+Data is centralized in `src/data/` for easy editing; each project case study has its own JSX + CSS file.
 
-## 🏗️ Kiến trúc dự án
+## Content source
 
-Dự án được chia thành 2 phần chính:
+The primary content source is the bundled resume at **[docs/Quoc Huy _ Resume.pdf](./docs/Quoc%20Huy%20_%20Resume.pdf)**.
+Long-form copy mapping lives in **[docs/CONTENT_SOURCE.md](./docs/CONTENT_SOURCE.md)** (not bundled in the app).
+Runtime text is in `src/data/*` and `src/projects/*`. User instructions in chat override the content source file.
 
-- **Frontend**: React + TypeScript + Vite + Tailwind CSS
-- **Backend**: NestJS (Node.js framework)
+## AI / Cursor / Claude
 
-## 📁 Cấu trúc thư mục
+| File | Purpose |
+|------|---------|
+| [AGENTS.md](./AGENTS.md) | Entry point for AI agents |
+| [docs/USAGE_GUIDE.md](./docs/USAGE_GUIDE.md) | Usage guide + doc sync table |
+| [docs/AI_AGENT_GUIDE.md](./docs/AI_AGENT_GUIDE.md) | Agent workflows (EN) |
+| `.cursor/rules/sync-documentation.mdc` | Rule: every code change must update docs |
+| `.cursor/skills/portfolio-site/SKILL.md` | Cursor skill → invoke or auto-load |
+| `.claude/skills/portfolio-site/SKILL.md` | Claude Code skill → `/portfolio-site` |
+| `.claude/skills/sync-documentation/SKILL.md` | Claude Code skill → `/sync-documentation` |
+| [CLAUDE.md](./CLAUDE.md) | Claude Code project instructions |
 
-```
-personal_portfolio_website/
-├── frontend/          # React application
-├── backend/           # NestJS API server
-├── _docs/             # Tài liệu dự án
-└── docker-compose.yml # Docker configuration
-```
+**Rule:** any code change → update the matching docs in the same commit.
 
-## 🚀 Cài đặt và chạy
-
-### Frontend
+## Setup
 
 ```bash
-cd frontend
 npm install
 npm run dev
 ```
 
-Frontend sẽ chạy tại `http://localhost:5173` (hoặc port khác nếu 5173 đã được sử dụng).
+Open http://localhost:5173
 
-### Backend
+Node 18+ is required (Vite 5).
 
-```bash
-cd backend
-npm install
-npm run start:dev
-```
-
-Backend sẽ chạy tại `http://localhost:3000` (mặc định).
-
-### Docker
+## Build for production
 
 ```bash
-docker-compose up
+npm run build
+# Output: dist/
 ```
 
-## 🛠️ Công nghệ sử dụng
+## Folder structure
 
-### Frontend
-- **React 19** - UI framework
-- **TypeScript** - Type safety
-- **Vite** - Build tool và dev server
-- **Tailwind CSS** - Styling
+```
+portfolio/
+├── public/
+│   ├── hero-banners/             ← Responsive hero images (PNG variants)
+│   ├── images/
+│   │   ├── personal/             ← Pinterest masonry photos (personal_1..6.jpeg)
+│   │   └── projects/             ← Per-project card images (mmp-cms.jpg, etc.)
+│   └── banners/                  ← Animated banner HTMLs (none ship today)
+├── src/
+│   ├── data/                     ← ALL CONTENT LIVES HERE
+│   │   ├── profile.js            ← Name, role, tagline, contact
+│   │   ├── stats.js              ← Hero stats + Impact highlights
+│   │   ├── about.js              ← About section copy
+│   │   ├── skills.js             ← Skills grid
+│   │   ├── skillIcons.js         ← Icon key → react-icons map
+│   │   ├── education.js          ← Education list (HUST)
+│   │   ├── experience.js         ← Work timeline (SmartOSC, YooTek, …)
+│   │   ├── personal.js           ← Personal Interest copy + masonry images
+│   │   ├── projects.js           ← Featured + Other projects
+│   │   └── projectEmbeds.js      ← Dashboard registry (empty today)
+│   ├── components/               ← Homepage UI components
+│   ├── components/project/       ← Shared project shell + embed slot
+│   ├── projects/                 ← One JSX per project (unique layouts)
+│   ├── styles/
+│   │   ├── global.css            ← Theme tokens + homepage styles
+│   │   ├── project-shell.css     ← Shared project chrome
+│   │   ├── project-intro.css     ← Shared project intro block
+│   │   ├── embed-slot.css        ← Dashboard slot styles
+│   │   └── projects/             ← Per-project CSS (mmp-cms.css, etc.)
+│   ├── App.jsx                   ← Route table
+│   └── main.jsx                  ← Entry + ThemeProvider
+├── index.html
+├── package.json
+└── vite.config.js
+```
 
-### Backend
-- **NestJS** - Node.js framework
-- **TypeScript** - Type safety
-- **Express** - HTTP server
+## How to edit content
 
-## 📝 Tính năng
+All editable content lives in `src/data/`. You don't need to touch components.
 
-- Hero section với giới thiệu cá nhân
-- About section
-- Portfolio/Projects showcase
-- Services section
-- Testimonials
-- Contact form
-- Responsive design
+### Change name, tagline, contact
+Edit `src/data/profile.js`
 
-## 📚 Tài liệu
+### Change hero stats or impact numbers
+Edit `src/data/stats.js`
 
-Tài liệu chi tiết về các tính năng và cập nhật được lưu trong thư mục `_docs/`.
+### Change About text
+Edit `src/data/about.js` — `paragraphs` is an array, add/remove freely.
 
-## 🔧 Scripts
+### Change skills
+Edit `src/data/skills.js` — array of skill objects (each `icon` key must exist in `skillIcons.js`).
 
-### Frontend
-- `npm run dev` - Chạy development server
-- `npm run build` - Build production
-- `npm run preview` - Preview production build
-- `npm run lint` - Chạy ESLint
+### Add / edit / reorder projects
+Edit `src/data/projects.js`:
+- `featuredProject` — the pinned project at the top
+- `otherProjects` — array; add/remove/reorder items
 
-### Backend
-- `npm run start:dev` - Chạy development mode với watch
-- `npm run start:prod` - Chạy production mode
-- `npm run build` - Build project
-- `npm run test` - Chạy unit tests
-- `npm run test:e2e` - Chạy e2e tests
+To swap which project is featured: move the object between `featuredProject` and `otherProjects`. Keep `slug` aligned with the route in `src/App.jsx` and the `slug` prop passed to `ProjectShell` in the project's JSX.
 
-## 📄 License
+## How to add images
 
-ISC
+1. Put your image file in `public/images/` (or `public/images/projects/`)
+2. Reference it in the data file as `/images/your-file.jpg`
+   (path starts with `/`, no `public` prefix — Vite serves `public/` at root)
 
+Example:
+```js
+image: '/images/projects/mmp-cms.jpg'
+```
+
+## Replacing the placeholder images
+
+The current project cards reference image paths that are not yet shipped. Add real images at:
+
+- `public/hero-banners/hero_*.png` (hero responsive variants - existing assets in repo)
+- `public/images/projects/mmp-cms.jpg`
+- `public/images/projects/dentsu-cms.jpg`
+- `public/images/projects/yoolife.jpg`
+- `public/images/projects/yooioc.jpg`
+- `public/images/projects/vnpt-portal.jpg`
+- `public/images/projects/eledevo-landing.jpg`
+- `public/images/projects/fruit-market.jpg`
+
+Recommended sizes:
+- Hero: art-direct variants in `public/hero-banners/` cover most viewports
+- Featured project: 1400×900 (16:10 aspect)
+- Other projects: 1200×750 (16:10 aspect)
+
+Avoid uploading internal screenshots, confidential client data, or proprietary code from past employers - use anonymized summaries and architectural visuals that show the engineering thinking without exposing company-specific details.

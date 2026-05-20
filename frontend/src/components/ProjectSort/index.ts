@@ -1,2 +1,0 @@
-export { ProjectSort } from './ProjectSort';
-

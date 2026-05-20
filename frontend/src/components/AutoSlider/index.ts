@@ -1,2 +1,0 @@
-export { AutoSlider } from './AutoSlider';
-
