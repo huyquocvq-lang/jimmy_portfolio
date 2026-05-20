@@ -45,6 +45,7 @@ Do not merge if docs are out of sync with the code.
 | Blog post (data + body) | `src/data/blog.js` (append object; structured `body` array) |
 | Blog slider / list / detail layout | `src/components/Blogs.jsx`, `src/components/BlogCard.jsx`, `src/components/BlogBody.jsx`, `src/pages/BlogListPage.jsx`, `src/pages/BlogDetailPage.jsx`, `src/styles/blog.css` |
 | All-projects list page | `src/pages/ProjectListPage.jsx` |
+| Mobile content trim (env-configurable) | `src/utils/mobileTrim.js`, `src/components/MobileTrimStyles.jsx`, `.env.example` (`VITE_MOBILE_*`) |
 | Animated banner (home thumb + detail hero) | `public/banners/<slug>.html` (edit in place) |
 | Dashboard embed | `src/embeds/<Name>Dashboard.tsx` + register in `EmbedSlot.jsx` + `projectEmbeds.js` |
 | Theme tokens (dark + light) | `src/styles/global.css` `:root` (dark defaults) + `:root[data-theme="light"]` (light overrides) |

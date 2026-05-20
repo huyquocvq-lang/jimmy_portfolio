@@ -41,7 +41,7 @@ When updating copy:
 | Side chip 1 | `// EXPERIENCE` → `4+ years · Senior` |
 | Side chip 2 | `// BASED IN` → `Hanoi · GMT+7` |
 | Side chip 3 | `// ALSO DOES` → `Tech Lead · Firmware` |
-| Side chip 4 | `// STATUS` → `OPEN TO HIRE ✓` |
+| Side chip 4 | `// STATUS` → `OPEN TO HIRE ✓` (green accent via `accent: 'available'` on the chip) |
 | Contact: Email | `huyquoc.vq@gmail.com` |
 | Contact: Phone | `+84 0345 475 336` |
 | Contact: LinkedIn | `linkedin.com/in/quoc-huy` (handle); link target `https://linkedin.com/in/quoc-huy-16b896277` |

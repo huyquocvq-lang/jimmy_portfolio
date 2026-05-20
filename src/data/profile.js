@@ -51,7 +51,8 @@ export const profile = {
       },
       {
         label: { en: 'Status', vi: 'Trạng thái' },
-        value: { en: 'OPEN TO HIRE ✓', vi: 'SẴN SÀNG HỢP TÁC ✓' }
+        value: { en: 'OPEN TO HIRE ✓', vi: 'SẴN SÀNG HỢP TÁC ✓' },
+        accent: 'available'
       }
     ],
     monogram: 'SE/26',

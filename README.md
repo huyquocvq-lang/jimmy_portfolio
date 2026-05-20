@@ -138,6 +138,20 @@ Recommended sizes:
 
 Avoid uploading internal screenshots, confidential client data, or proprietary code from past employers - use anonymized summaries and architectural visuals that show the engineering thinking without exposing company-specific details.
 
+## Mobile content trim (env-configurable)
+
+How much content is shown on phones is configurable via `.env`. Copy [`.env.example`](./.env.example) to `.env.local` (gitignored) and override any of:
+
+| Var | Default | Effect |
+|-----|---------|--------|
+| `VITE_MOBILE_PERSONAL_LIMIT` | `4` | First N personal photos shown on mobile |
+| `VITE_MOBILE_IMPACT_LIMIT` | `4` | First N Impact highlights shown on mobile |
+| `VITE_MOBILE_PROJECTS_LIMIT` | `3` | First N other-project cards shown on mobile (featured always shown) |
+| `VITE_MOBILE_HIDE_EXPERIENCE_META` | `true` | Hide Technologies / Outstanding projects rows under each experience entry |
+| `VITE_MOBILE_BREAKPOINT_PX` | `768` | Mobile breakpoint width |
+
+Vite inlines `VITE_*` env vars at build time, so after editing `.env` restart `npm run dev`. Setting a limit to `0` hides the section entirely on mobile; setting it to a large number disables the trim.
+
 ## Bilingual content (EN / VI)
 
 Site ships in English + Vietnamese; English is the default. Pick the active language from the globe icon in the nav.

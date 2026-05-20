@@ -183,6 +183,20 @@ a { color: inherit; text-decoration: none; }
 }
 .hero-tag-sep { color: rgba(255,255,255,0.4); margin: 0 2px; }
 .hero-tag-slash { color: var(--accent); margin: 0 6px; }
+.hero-tag-availability {
+  display: inline-block;
+  letter-spacing: 0.22em;
+}
+.hero-tag-availability--on {
+  color: #6fd28d;
+  font-weight: 700;
+  text-shadow: 0 0 12px rgba(111, 210, 141, 0.45);
+  padding: 2px 8px;
+  border: 1px solid rgba(111, 210, 141, 0.45);
+  border-radius: 999px;
+  background: rgba(111, 210, 141, 0.08);
+  margin-left: 2px;
+}
 @keyframes heroTagPulse {
   0%, 100% { box-shadow: 0 0 0 4px rgba(111,210,141,0.18), 0 0 12px rgba(111,210,141,0.45); }
   50%      { box-shadow: 0 0 0 6px rgba(111,210,141,0.08), 0 0 18px rgba(111,210,141,0.7); }
@@ -225,6 +239,16 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.04em;
   color: rgba(255,255,255,0.92);
   font-weight: 500;
+}
+/* Status / availability accent (green) */
+.hero-side-chip--available::after {
+  border-top-color: #6fd28d;
+  border-right-color: #6fd28d;
+}
+.hero-side-chip--available .hero-side-chip__value {
+  color: #6fd28d;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(111, 210, 141, 0.4);
 }
 
 /* Main heading block (center-left) */
@@ -1602,6 +1626,10 @@ footer {
   .footer-inner { grid-template-columns: 1fr; gap: 32px; padding-top: 40px; }
   .footer-col p,
   .footer-col ul li { font-size: 15px; }
+
+  /* -- Mobile content trim is injected at runtime by <MobileTrimStyles />.
+     Tile-hide rules read from .env (VITE_MOBILE_*) - see
+     src/utils/mobileTrim.js and .env.example. -- */
 }
 
 @media (max-width: 860px) {

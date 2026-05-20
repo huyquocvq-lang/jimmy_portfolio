@@ -44,6 +44,7 @@ Entry points: [AGENTS.md](../AGENTS.md); Cursor: rule `.cursor/rules/sync-docume
 | `getAllProjects()` order | Featured is always index 0 for pager |
 | `Hero.jsx` `<picture>` source order | Most-specific media first; WebP before PNG within each art-direction. Reordering can pick the wrong image (or none) |
 | `Hero.jsx` HUD layout | Layout is a 5-area CSS grid (`tag` / `side` / `main` / `contact` / `mark`); `profile.hud` is the source of truth for every piece. Renaming a `hud.*` key breaks the matching block silently. |
+| Mobile content trim (≤ `VITE_MOBILE_BREAKPOINT_PX`) | Personal photos, Impact highlights, Other projects, and Experience meta rows are reduced via `:nth-of-type` / `display: none` injected at runtime by `<MobileTrimStyles />`. Values come from `VITE_MOBILE_*` env vars (see `.env.example`); Vite inlines them at build time, so restart the dev server after editing `.env`. Source data is untouched. |
 | `public/hero-banners/*` filenames | Hard-coded slugs (`hero_mobile_portrait`, `hero_ultrawide`, …) - renaming breaks `Hero.jsx` |
 | `Nav.jsx` body scroll lock | Regressions trap scroll on mobile |
 | `skillIcons.js` keys | Unknown `icon` key in `skills.js` → blank icon |
@@ -176,7 +177,7 @@ Each page reuses one of the legacy CSS class prefixes (`.wp-`, `.pgm-`, `.trend-
 - Redux / Zustand
 - Multiple Context providers (only `ThemeContext` exists - see `src/context/ThemeContext.jsx`)
 - `src/api/`, `src/services/`, `src/hooks/` (no custom hooks folder yet)
-- Environment variables (none configured)
+- Environment variables: only `VITE_MOBILE_*` are wired (mobile content trim). See `.env.example` for the canonical list and defaults.
 - Tests (`*.test.*` absent)
 - CI config in repo
 - React Native / Expo / `app.json`

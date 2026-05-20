@@ -79,13 +79,19 @@ export default function Hero() {
           <span className={`hero-tag-dot${hud.available ? ' hero-tag-dot--on' : ''}`} aria-hidden="true" />
           <span className="hero-tag-text">
             PORTFOLIO <span className="hero-tag-sep">/</span> {hud.portfolioYear}{' '}
-            <span className="hero-tag-slash">//</span> {tr(hud.availability, lang)}
+            <span className="hero-tag-slash">//</span>{' '}
+            <span className={`hero-tag-availability${hud.available ? ' hero-tag-availability--on' : ''}`}>
+              {tr(hud.availability, lang)}
+            </span>
           </span>
         </div>
 
         <ul className="hero-side-chips" aria-label="Profile metadata">
           {hud.sideChips.map((chip, i) => (
-            <li key={i} className="hero-side-chip">
+            <li
+              key={i}
+              className={`hero-side-chip${chip.accent ? ` hero-side-chip--${chip.accent}` : ''}`}
+            >
               <span className="hero-side-chip__label">// {tr(chip.label, lang).toUpperCase()}</span>
               <span className="hero-side-chip__value">{tr(chip.value, lang)}</span>
             </li>

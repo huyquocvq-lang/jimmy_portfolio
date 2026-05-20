@@ -20,6 +20,7 @@
 | F7–F13 | Individual project case studies | `src/projects/*Project.jsx` | `/projects/:slug` |
 | FX | Theme tokens (charcoal + bronze) + dark/light toggle | `src/styles/global.css` `:root` / `[data-theme="light"]`, `src/context/ThemeContext.jsx`, `src/components/ThemeToggle.jsx` | global |
 | FW | Bilingual i18n (EN/VI) + language toggle | `src/context/LanguageContext.jsx`, `src/utils/i18n.js`, `src/components/LanguageToggle.jsx`, `src/data/ui.js` | global |
+| FV | Env-driven mobile content trim | `src/utils/mobileTrim.js`, `src/components/MobileTrimStyles.jsx`, `.env.example` | mobile (≤ `VITE_MOBILE_BREAKPOINT_PX`) |
 | FY | Dashboard embed system (currently no embeds registered) | `src/components/project/EmbedSlot.jsx`, `src/embeds/*.tsx`, `src/data/projectEmbeds.js` | reserved for future detail pages |
 | FZ | Banner system (home thumbs + detail hero) | `public/banners/*.html`, `BannerEmbed.jsx`, `ProjectShell.jsx` | home + detail (currently no banner HTML files; cards fall back to images) |
 
@@ -95,6 +96,8 @@ hud: {
 
 **Entrance animation:** each major block (`tag-top`, `main`, `side-chips`, `contact`, `mark`, `corners`) fades up with a 150ms stagger when `.hero--ready` is applied.
 
+**Availability accent (green):** the top-tag availability text (`AVAILABLE FOR HIRE`) renders inside `.hero-tag-availability--on` when `profile.hud.available === true`, and any side-chip carrying `accent: 'available'` gets `.hero-side-chip--available` — both styled with the `#6fd28d` mint green to make the hire status pop. Toggle by flipping `profile.hud.available` and adding/removing `accent: 'available'` on the matching chip.
+
 **Responsive:**
 - ≥1024px: full grid as drawn
 - 769-1023px: side column narrows to 180px
@@ -125,6 +128,8 @@ hud: {
 
 **Component:** `src/components/Impact.jsx`
 
+**Mobile trim:** controlled by `VITE_MOBILE_IMPACT_LIMIT` (default 4) via `<MobileTrimStyles />`.
+
 **Anchor:** `id="impact"`
 
 ---
@@ -154,6 +159,8 @@ hud: {
 
 **Component:** `src/components/Experience.jsx`
 
+**Mobile trim:** controlled by `VITE_MOBILE_HIDE_EXPERIENCE_META` (default `true`) - hides the optional Technologies / Outstanding projects rows. The role + period + paragraphs stay visible.
+
 **Anchor:** `id="experience"`
 
 ---
@@ -179,6 +186,8 @@ hud: {
 
 **Images:** `public/images/personal/personal_1.jpeg` … `personal_8.jpeg` (ordered chronologically by EXIF date taken, JPEG resized to max 1600px width).
 
+**Mobile trim:** controlled by `VITE_MOBILE_PERSONAL_LIMIT` (default 4). The runtime data array is untouched - the trim is a CSS `display: none` block injected by `<MobileTrimStyles />` from `src/utils/mobileTrim.js`.
+
 **Anchor:** `id="personal"`
 
 ---
@@ -192,6 +201,8 @@ hud: {
 - `otherProjects[]` - Dentsu's Headless CMS, Yoolife, YooIOC, VNPT Portal Information, Eledevo Academy Landing Page, The Fruit Market Application
 - Helpers: `getAllProjects()`, `getProjectCard(slug)`
 - All cards currently have `banner: null` and reference an image under `public/images/projects/<slug>.jpg`. The image directory is empty by default, so `OtherProject` / `FeaturedProject` simply render the dark fallback inner panel until images are added.
+
+**Mobile trim:** controlled by `VITE_MOBILE_PROJECTS_LIMIT` (default 3, applied to the other-projects grid only - the featured card is always shown). The section header keeps the **View all →** link to `/projects` for the full grid.
 
 **Anchor:** `id="work"`
 
@@ -400,6 +411,25 @@ Provides Nav · banner (image or iframe) + dim overlay · breadcrumbs · `childr
 - Project case studies own their bilingual copy inside a local `CONTENT` const at the top of the JSX file (alongside any inline lists).
 
 **Components reading the language:** every homepage section component, the seven project pages, `ProjectShell`, `EmbedSlot`, `Footer`, and `Nav` import `useLanguage` + `tr`.
+
+---
+
+## FV - Env-driven mobile content trim
+
+The amount of content shown on phones is read from Vite env vars at build time and injected as a single `<style>` block via `<MobileTrimStyles />` (mounted in `src/main.jsx` next to the providers).
+
+| Env var | Default | Controls |
+|---------|---------|----------|
+| `VITE_MOBILE_PERSONAL_LIMIT` | `4` | First N personal-photo tiles shown on mobile |
+| `VITE_MOBILE_IMPACT_LIMIT` | `4` | First N Impact highlights shown on mobile |
+| `VITE_MOBILE_PROJECTS_LIMIT` | `3` | First N other-project cards shown on mobile (featured always shown) |
+| `VITE_MOBILE_HIDE_EXPERIENCE_META` | `true` | Hide Technologies / Outstanding projects rows under each experience entry |
+| `VITE_MOBILE_BREAKPOINT_PX` | `768` | Mobile breakpoint - the `@media (max-width: …)` value |
+
+**Notes:**
+- Vite inlines `import.meta.env.VITE_*` at build time. Changing a value requires restarting `npm run dev`.
+- A limit of `0` hides the section entirely on mobile; a value above the rendered count effectively disables the trim.
+- See [`.env.example`](../.env.example) for the canonical template; copy to `.env.local` for personal overrides (gitignored).
 
 ---
 
