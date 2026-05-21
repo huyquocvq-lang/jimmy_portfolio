@@ -90,6 +90,8 @@ Hero strip mirror (3 stats): `4+ yrs · Fullstack experience`, `5-10 · Team mem
 
 **Paragraph 3:** I have led development teams of 5 to 10 engineers, mentored junior developers, and pushed best practices around CI/CD, code review, and clean architecture. My goal is to keep growing into a strong technical leader who learns continuously and shares knowledge to drive innovation.
 
+**Tech marquee** (mounted at the bottom of the section via `<TechMarquee />`, list in `src/data/skills.js → techMarquee`): Java · Spring Boot · NestJS · Node.js · React · React Native · Next.js · TypeScript · gRPC · GraphQL · REST · WebSocket · MQTT · Camunda BPM · Magnolia CMS · Liferay · MySQL · MongoDB · Redis · Docker · Kubernetes · AWS · CMC Cloud · GitLab CI/CD · AI Agents · LLM Integration · Prompt Engineering · YOLO · OpenCV · Zigbee · Z-Wave · BLE
+
 ---
 
 # **Skills**
@@ -120,8 +122,16 @@ Hero strip mirror (3 stats): `4+ yrs · Fullstack experience`, `5-10 · Team mem
 
 **Anchor:** `#experience` · **Component:** `src/components/Experience.jsx` · **Data:** `src/data/experience.js`
 
+### Viettel Digital - Software Development Specialist · current
+Hanoi Capital Region · Jul 2025 – Present · website https://viettel.com.vn
+
+Working at Viettel Digital Services, part of Viettel Group, specializing in developing large-scale digital lending platforms with monthly disbursement reaching up to USD 10M. Developed and maintained backend systems in Java, integrating payment flows and managing cash-flow connections with lending partners. Participated in system design to ensure scalability, security, and high availability across the lending platform, while supporting native mobile applications consuming the same APIs. Implemented business workflows using Camunda BPM to orchestrate the lending lifecycle from application to disbursement.
+
+**Technologies:** Java · Native Mobile App · Camunda BPM · Financial System Integration
+**Scale:** Up to USD 10M monthly disbursement on the digital lending platform
+
 ### SmartOSC - Senior Java Engineer
-19F Handico Tower, Pham Hung St, Nam Tu Liem, Hanoi · Oct 2023 – Present
+19F Handico Tower, Pham Hung St, Nam Tu Liem, Hanoi · Oct 2023 – Jun 2025 · website https://www.smartosc.com
 
 Developed and maintained Magnolia CMS solutions, optimized performance, and built custom modules for enterprise content workflows. Built Java-based backend services, optimized MySQL queries, and developed RESTful and GraphQL APIs powering headless content delivery. Created and integrated a React-based headless frontend for seamless content rendering across web channels. Managed Apache configurations, improved security posture, and optimized system performance under production load. Implemented GitLab CI/CD pipelines for automated testing and deployment, and mentored junior developers on best practices and code quality.
 

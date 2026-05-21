@@ -3,6 +3,7 @@ import { skills } from '../data/skills'
 import { useLanguage } from '../context/LanguageContext'
 import { tr } from '../utils/i18n'
 import Skill from './Skill'
+import TechMarquee from './TechMarquee'
 
 export default function AboutSkills() {
   const { lang } = useLanguage()
@@ -28,6 +29,8 @@ export default function AboutSkills() {
         </div>
 
       </div>
+
+      <TechMarquee />
     </section>
   )
 }

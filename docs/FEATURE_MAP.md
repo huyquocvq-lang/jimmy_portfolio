@@ -98,6 +98,8 @@ hud: {
 
 **Availability accent (green):** the top-tag availability text (`AVAILABLE FOR HIRE`) renders inside `.hero-tag-availability--on` when `profile.hud.available === true`, and any side-chip carrying `accent: 'available'` gets `.hero-side-chip--available` — both styled with the `#6fd28d` mint green to make the hire status pop. Toggle by flipping `profile.hud.available` and adding/removing `accent: 'available'` on the matching chip.
 
+**Staggered side chips:** even-indexed side chips are shifted left by 36px (`.hero-side-chips > .hero-side-chip:nth-child(even) { transform: translateX(-36px) }`) to break the right edge into a zigzag silhouette. Reset to `0` on the ≤768px mobile breakpoint where the chips wrap into a row.
+
 **Responsive:**
 - ≥1024px: full grid as drawn
 - 769-1023px: side column narrows to 180px
@@ -107,14 +109,25 @@ hud: {
 
 ## F2 - Navigation
 
-**Purpose:** Sticky header; section links on home; hamburger drawer on mobile.
+**Purpose:** Sticky header; section links on home; hamburger drawer on mobile; scroll-spy that highlights the link of the section currently in view.
 
 **Data:** `profile.js` - name, `contact.linkedin`, `contact.resume` (currently null), optional `contact.github` (currently null)
 
-**State:** `open` boolean for mobile menu; locks `document.body.overflow`
+**State:**
+- `open` boolean for mobile menu (locks `document.body.overflow`)
+- `activeSection` derived from `useActiveSection(HOMEPAGE_SECTIONS, isHome)` - an `IntersectionObserver` with `rootMargin: '-30% 0px -55% 0px'` that picks whichever section has the highest visibility ratio inside that band. Only runs on the homepage.
+
+**Active state rules:**
+- In-page links (`#impact`, `#experience`, `#about`, `#personal`, `#work`) → active when `activeSection` matches the section id on `/`.
+- `Blog` link → active when on `/blog*` route, or when the `#blog` section is in view on home.
+- `Projects` link → active when on `/projects` route, or when the `#work` section is in view on home.
+- LinkedIn / Resume / GitHub stay inert (external links).
+
+**Visual treatment:** `.nav-links a.is-active` switches the link to `var(--accent)` and adds a 2px bronze underline pseudo-element 6px below the text. Mobile drawer suppresses the underline pseudo (the row divider already separates entries) and uses colour-only highlight.
 
 **Links pattern:**
 - In-page (home): `/#impact`, `/#experience`, `/#about`, `/#personal`, `/#work`
+- Routes: `/blog`
 - External: LinkedIn (Resume + GitHub render only when non-null in `profile.contact`)
 - Logo: `/`
 
@@ -150,12 +163,17 @@ hud: {
 
 **Purpose:** Reverse-chronological work history below Education. Bullets from the resume are rewritten as flowing paragraphs; each company also exposes a `meta` table with **Technologies** and **Outstanding projects** rows.
 
-**Data:** `src/data/experience.js` - 4 entries:
+**Data:** `src/data/experience.js` - 5 entries (most recent first):
 
-1. **SmartOSC** - Senior Java Engineer (Oct 2023 – Present)
-2. **YooTek Holdings** - Full Stack Developer (Aug 2021 – Feb 2024)
-3. **Hanoi Telecom Corporation** - Java Developer (Nov 2020 – Mar 2021)
-4. **Eledevo Academy** - Full Stack Developer & IT Lecturer (Aug 2019 – Sep 2020)
+1. **Viettel Digital** - Software Development Specialist (Jul 2025 – Present) · current
+2. **SmartOSC** - Senior Java Engineer (Oct 2023 – Jun 2025)
+3. **YooTek Holdings** - Full Stack Developer (Aug 2021 – Feb 2024)
+4. **Hanoi Telecom Corporation** - Java Developer (Nov 2020 – Mar 2021)
+5. **Eledevo Academy** - Full Stack Developer & IT Lecturer (Aug 2019 – Sep 2020)
+
+Each entry may carry an optional `website` URL. When non-null, `Experience.jsx` renders the company name as an `<a target="_blank" rel="noreferrer" class="exp-company-link exp-company-name">` with the same slide-in underline hover used on project titles (`background-size: 0 2px → 100% 2px`). Companies without a confirmed URL fall back to a plain `<span class="exp-company-name">`.
+
+**Company name styling:** `.exp-company-name` is 19px, bold (600), bronze (`var(--accent)`) — visibly larger than the location text (`.exp-company-location`, 14px muted). The company line uses `display: flex; flex-wrap: wrap; align-items: baseline` so the location wraps below the name on narrow viewports.
 
 **Component:** `src/components/Experience.jsx`
 
@@ -167,12 +185,14 @@ hud: {
 
 ## F4 - About + skills
 
-**Purpose:** Two-column layout (about text sticky on desktop); 2×3 skills grid with Font Awesome icons via react-icons.
+**Purpose:** Two-column layout (about text sticky on desktop); 2×3 skills grid with Font Awesome icons via react-icons. A tech-stack marquee scrolls beneath both columns.
 
 **Data:**
 - `src/data/about.js` - heading "Working at the intersection of CMS platforms, backend services, and IoT systems."
-- `src/data/skills.js` - 6 skill objects with engineering-focused descriptions
+- `src/data/skills.js` - 6 skill objects with engineering-focused descriptions, plus the `techMarquee` array of badge names rendered by `<TechMarquee />`
 - `src/data/skillIcons.js` - maps `backend / frontend / cms / mobile / data / iot` to `react-icons/fa` components (`FaServer`, `FaReact`, `FaNewspaper`, `FaMobileAlt`, `FaDatabase`, `FaMicrochip`)
+
+**Tech marquee (`src/components/TechMarquee.jsx`):** seamless horizontal scroll mounted at the bottom of the section. The track duplicates `techMarquee` and animates `translateX(-50%)` over 50s for a clean loop. Hovering pauses the scroll; `prefers-reduced-motion: reduce` disables it. Edges are softly masked with a `mask-image` linear gradient. Tech badge text stays English in both locales.
 
 **Anchor:** `id="about"`
 

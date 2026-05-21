@@ -216,7 +216,19 @@ a { color: inherit; text-decoration: none; }
   text-align: right;
   font-family: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
 }
-.hero-side-chip { display: flex; flex-direction: column; gap: 6px; position: relative; padding-right: 14px; }
+.hero-side-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  padding-right: 14px;
+  align-self: flex-end;
+  transition: transform 0.4s ease;
+}
+/* Staggered (zigzag) layout - even chips offset left to break the straight column */
+.hero-side-chips > .hero-side-chip:nth-child(even) {
+  transform: translateX(-36px);
+}
 .hero-side-chip::after {
   /* small corner bracket above each chip */
   content: '';
@@ -646,6 +658,7 @@ a { color: inherit; text-decoration: none; }
 }
 .nav-links { display: flex; gap: 32px; list-style: none; }
 .nav-links a {
+  position: relative;
   font-size: 14px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -653,6 +666,18 @@ a { color: inherit; text-decoration: none; }
   transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--accent); }
+/* Active section / route highlight - bronze color + underline indicator */
+.nav-links a.is-active { color: var(--accent); }
+.nav-links a.is-active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
 
 /* ---------- IMPACT HIGHLIGHTS ---------- */
 .impact {
@@ -859,14 +884,44 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.005em;
 }
 .exp-company {
-  font-size: 15px;
-  color: var(--text-body);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 0;
   margin-bottom: 20px;
   letter-spacing: 0.02em;
+  color: var(--text-body);
+}
+.exp-company-name {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+}
+.exp-company-location {
+  font-size: 14px;
+  color: var(--text-muted);
 }
 .exp-company-sep {
-  margin: 0 8px;
+  margin: 0 10px;
   color: var(--accent);
+  opacity: 0.55;
+}
+/* Company link - same slide-in underline as project titles */
+.exp-company-link {
+  color: var(--accent);
+  text-decoration: none;
+  background: linear-gradient(var(--accent), var(--accent)) no-repeat left bottom;
+  background-size: 0 2px;
+  padding-bottom: 2px;
+  transition: color 0.2s ease, background-size 0.25s ease;
+}
+.exp-company-link:hover,
+.exp-company-link:focus-visible {
+  color: var(--accent-hover);
+  background-size: 100% 2px;
+  outline: none;
 }
 .exp-para {
   font-size: 16px;
@@ -979,6 +1034,53 @@ a { color: inherit; text-decoration: none; }
   grid-template-columns: 1fr 1fr;
   border-top: 1px solid var(--border-subtle);
   border-left: 1px solid var(--border-subtle);
+}
+
+/* Infinite-scroll tech badge row at the bottom of the About section */
+.tech-marquee {
+  margin-top: 64px;
+  overflow: hidden;
+  position: relative;
+  padding: 4px 0;
+  mask-image: linear-gradient(to right, transparent 0, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 6%, black 94%, transparent 100%);
+}
+.tech-marquee__track {
+  display: inline-flex;
+  gap: 20px;
+  white-space: nowrap;
+  animation: techMarqueeScroll 50s linear infinite;
+  will-change: transform;
+}
+.tech-marquee:hover .tech-marquee__track,
+.tech-marquee:focus-within .tech-marquee__track {
+  animation-play-state: paused;
+}
+.tech-marquee__item {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  font-family: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--text-body);
+  padding: 9px 18px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.tech-marquee__item:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--bg-elevated-2);
+}
+@keyframes techMarqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tech-marquee__track { animation: none; }
 }
 .skill {
   padding: 36px 32px;
@@ -1521,6 +1623,9 @@ footer {
     font-size: 13px;
     letter-spacing: 0.18em;
   }
+  /* In the mobile drawer the row already has its own divider - skip the
+     extra underline pseudo so the active link is colour-only. */
+  .nav-links a.is-active::after { display: none; }
 
   /* -- Hero v2: stack vertically, hide side chips & monogram -- */
   .hero { min-height: 100svh; min-height: 100dvh; padding: 0; }
@@ -1548,8 +1653,10 @@ footer {
     justify-content: flex-start;
     text-align: left;
   }
-  .hero-side-chip { padding-right: 0; }
+  .hero-side-chip { padding-right: 0; align-self: auto; }
   .hero-side-chip::after { display: none; }
+  /* Cancel desktop zigzag offset on mobile */
+  .hero-side-chips > .hero-side-chip:nth-child(even) { transform: none; }
   .hero-eyebrow { font-size: 10px; margin-bottom: 18px; }
   .hero-title { font-size: clamp(2.5rem, 11vw, 3.75rem); margin-bottom: 18px; gap: 0.12em; }
   .hero-subtitle { font-size: clamp(1.15rem, 5vw, 1.5rem); margin-bottom: 24px; }

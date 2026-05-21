@@ -11,8 +11,8 @@ export const profile = {
     vi: 'Tôi có bốn năm kinh nghiệm làm Full-Stack Engineer, chuyên về hệ thống CMS và IoT. Tôi đã dẫn dắt các nhóm phát triển, xây dựng và vận hành cả hệ thống frontend lẫn backend, đảm bảo tích hợp mượt mà giữa các tầng. Mục tiêu của tôi là trở thành một tech leader vững vàng, liên tục học hỏi và chia sẻ kiến thức để thúc đẩy đổi mới.'
   },
   currentRole: {
-    title: 'Senior Java Engineer',
-    company: 'SmartOSC · Hanoi'
+    title: 'Software Development Specialist',
+    company: 'Viettel Digital · Hanoi'
   },
   industries: 'CMS · IoT · Smart Home · Telco · Education · E-commerce',
   // HUD-style hero metadata (used by Hero.jsx)

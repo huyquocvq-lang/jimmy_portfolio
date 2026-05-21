@@ -1,13 +1,53 @@
 export const experience = [
   {
+    company: 'Viettel Digital',
+    website: 'https://viettel.com.vn',
+    role: 'Software Development Specialist',
+    location: { en: 'Hanoi Capital Region', vi: 'Vùng thủ đô Hà Nội' },
+    start: 'Jul 2025',
+    end: { en: 'Present', vi: 'Hiện tại' },
+    paragraphs: [
+      {
+        en: 'Working at Viettel Digital Services, part of Viettel Group, specializing in developing large-scale digital lending platforms with monthly disbursement reaching up to USD 10M.',
+        vi: 'Làm việc tại Viettel Digital Services, thuộc Viettel Group, chuyên phát triển các nền tảng cho vay số quy mô lớn với mức giải ngân hàng tháng lên tới 10 triệu USD.'
+      },
+      {
+        en: 'Developed and maintained backend systems in Java, integrating payment flows and managing cash-flow connections with lending partners.',
+        vi: 'Phát triển và bảo trì backend bằng Java, tích hợp luồng thanh toán và quản lý dòng tiền với các đối tác cho vay.'
+      },
+      {
+        en: 'Participated in system design to ensure scalability, security, and high availability across the lending platform, while supporting native mobile applications consuming the same APIs.',
+        vi: 'Tham gia thiết kế hệ thống để đảm bảo khả năng mở rộng, bảo mật và độ sẵn sàng cao cho toàn nền tảng lending, đồng thời hỗ trợ các ứng dụng mobile native sử dụng cùng bộ API.'
+      },
+      {
+        en: 'Implemented business workflows using Camunda BPM to orchestrate the lending lifecycle from application to disbursement.',
+        vi: 'Triển khai business workflow bằng Camunda BPM để điều phối vòng đời khoản vay từ lúc đăng ký đến giải ngân.'
+      }
+    ],
+    meta: [
+      {
+        label: { en: 'Technologies', vi: 'Công nghệ' },
+        value: 'Java · Native Mobile App · Camunda BPM · Financial System Integration'
+      },
+      {
+        label: { en: 'Scale', vi: 'Quy mô' },
+        value: {
+          en: 'Up to USD 10M monthly disbursement on the digital lending platform',
+          vi: 'Giải ngân lên tới 10 triệu USD/tháng trên nền tảng lending số'
+        }
+      }
+    ]
+  },
+  {
     company: 'SmartOSC',
+    website: 'https://www.smartosc.com',
     role: 'Senior Java Engineer',
     location: {
       en: '19F Handico Tower, Pham Hung St, Nam Tu Liem, Hanoi',
       vi: 'Tầng 19 toà Handico, đường Phạm Hùng, Nam Từ Liêm, Hà Nội'
     },
     start: 'Oct 2023',
-    end: { en: 'Present', vi: 'Hiện tại' },
+    end: 'Jun 2025',
     paragraphs: [
       {
         en: 'Developed and maintained Magnolia CMS solutions, optimized performance, and built custom modules for enterprise content workflows.',
@@ -46,6 +86,7 @@ export const experience = [
   },
   {
     company: 'YooTek Holdings',
+    website: null,
     role: 'Full Stack Developer',
     location: { en: 'Nam Tu Liem, Hanoi', vi: 'Nam Từ Liêm, Hà Nội' },
     start: 'Aug 2021',
@@ -88,6 +129,7 @@ export const experience = [
   },
   {
     company: 'Hanoi Telecom Corporation',
+    website: null,
     role: 'Java Developer',
     location: { en: 'My Dinh 1, Hanoi', vi: 'Mỹ Đình 1, Hà Nội' },
     start: 'Nov 2020',
@@ -119,6 +161,7 @@ export const experience = [
   },
   {
     company: 'Eledevo Academy',
+    website: null,
     role: 'Full Stack Developer & IT Lecturer',
     location: { en: 'Hanoi', vi: 'Hà Nội' },
     start: 'Aug 2019',

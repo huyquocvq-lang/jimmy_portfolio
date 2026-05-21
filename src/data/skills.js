@@ -1,3 +1,42 @@
+/**
+ * Tech badges scrolled in a marquee below the About section.
+ * Plain strings - tech names stay in English across both locales.
+ */
+export const techMarquee = [
+  'Java',
+  'Spring Boot',
+  'NestJS',
+  'Node.js',
+  'React',
+  'React Native',
+  'Next.js',
+  'TypeScript',
+  'gRPC',
+  'GraphQL',
+  'REST',
+  'WebSocket',
+  'MQTT',
+  'Camunda BPM',
+  'Magnolia CMS',
+  'Liferay',
+  'MySQL',
+  'MongoDB',
+  'Redis',
+  'Docker',
+  'Kubernetes',
+  'AWS',
+  'CMC Cloud',
+  'GitLab CI/CD',
+  'AI Agents',
+  'LLM Integration',
+  'Prompt Engineering',
+  'YOLO',
+  'OpenCV',
+  'Zigbee',
+  'Z-Wave',
+  'BLE'
+]
+
 export const skills = [
   {
     icon: 'backend',

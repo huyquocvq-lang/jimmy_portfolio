@@ -18,7 +18,7 @@ For mobile-native documentation, a separate React Native codebase would be requi
 
 ## What the application does
 
-A personal portfolio website for **Quoc Huy (Jimmy)**, showcasing four years of fullstack engineering experience across CMS platforms (Magnolia, custom Spring Boot), microservice backends, React Native mobile apps, and IoT/smart-home systems delivered for SmartOSC, YooTek Holdings, Hanoi Telecom Corporation, and Eledevo Academy.
+A personal portfolio website for **Quoc Huy (Jimmy)**, showcasing four-plus years of fullstack engineering experience across digital lending platforms (Viettel Digital), CMS platforms (Magnolia, custom Spring Boot), microservice backends, React Native mobile apps, and IoT/smart-home systems delivered for Viettel Digital, SmartOSC, YooTek Holdings, Hanoi Telecom Corporation, and Eledevo Academy.
 
 **User-facing capabilities:**
 - Animated full-screen hero with scroll-driven transitions
