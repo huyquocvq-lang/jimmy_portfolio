@@ -22,25 +22,38 @@ export default function Experience() {
               </div>
 
               <div className="exp-body">
-                <h3 className="exp-role">{tr(entry.role, lang)}</h3>
-                <div className="exp-company">
-                  {entry.website ? (
-                    <a
-                      href={entry.website}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="exp-company-link exp-company-name"
-                    >
-                      {tr(entry.company, lang)}
-                    </a>
-                  ) : (
-                    <span className="exp-company-name">{tr(entry.company, lang)}</span>
-                  )}
-                  {entry.location && (
-                    <>
-                      <span className="exp-company-sep" aria-hidden="true">·</span>
-                      <span className="exp-company-location">{tr(entry.location, lang)}</span>
-                    </>
+                <div className="exp-header">
+                  <div className="exp-header-text">
+                    <h3 className="exp-role">{tr(entry.role, lang)}</h3>
+                    <div className="exp-company">
+                      {entry.website ? (
+                        <a
+                          href={entry.website}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="exp-company-link exp-company-name"
+                        >
+                          {tr(entry.company, lang)}
+                        </a>
+                      ) : (
+                        <span className="exp-company-name">{tr(entry.company, lang)}</span>
+                      )}
+                      {entry.location && (
+                        <>
+                          <span className="exp-company-sep" aria-hidden="true">·</span>
+                          <span className="exp-company-location">{tr(entry.location, lang)}</span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                  {entry.logo && (
+                    <img
+                      className="exp-logo"
+                      src={entry.logo}
+                      alt={`${tr(entry.company, lang)} logo`}
+                      loading="lazy"
+                      decoding="async"
+                    />
                   )}
                 </div>
 

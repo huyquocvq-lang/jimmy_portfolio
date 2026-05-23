@@ -1,7 +1,13 @@
+// Each entry may carry a `logo` field pointing at a file in
+// `public/images/logos/`. Render is conditional - leave as `null` if no logo
+// asset is available. Recommended: normalized 512x512 PNG, white rounded
+// square with transparent corners and tight centered content. Example:
+// `logo: '/images/logos/viettel.png'`.
 export const experience = [
   {
     company: 'Viettel Digital',
     website: 'https://viettel.com.vn',
+    logo: '/images/logos/viettel.png',
     role: 'Software Development Specialist',
     location: { en: 'Hanoi Capital Region', vi: 'Vùng thủ đô Hà Nội' },
     start: 'Jul 2025',
@@ -41,6 +47,7 @@ export const experience = [
   {
     company: 'SmartOSC',
     website: 'https://www.smartosc.com',
+    logo: '/images/logos/smartosc.png',
     role: 'Senior Java Engineer',
     location: {
       en: '19F Handico Tower, Pham Hung St, Nam Tu Liem, Hanoi',
@@ -87,6 +94,7 @@ export const experience = [
   {
     company: 'YooTek Holdings',
     website: null,
+    logo: '/images/logos/yootek.png',
     role: 'Full Stack Developer',
     location: { en: 'Nam Tu Liem, Hanoi', vi: 'Nam Từ Liêm, Hà Nội' },
     start: 'Aug 2021',
@@ -130,6 +138,7 @@ export const experience = [
   {
     company: 'Hanoi Telecom Corporation',
     website: null,
+    logo: '/images/logos/htc.png',
     role: 'Java Developer',
     location: { en: 'My Dinh 1, Hanoi', vi: 'Mỹ Đình 1, Hà Nội' },
     start: 'Nov 2020',
@@ -162,6 +171,7 @@ export const experience = [
   {
     company: 'Eledevo Academy',
     website: null,
+    logo: '/images/logos/eledevo.png',
     role: 'Full Stack Developer & IT Lecturer',
     location: { en: 'Hanoi', vi: 'Hà Nội' },
     start: 'Aug 2019',

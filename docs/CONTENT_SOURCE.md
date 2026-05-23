@@ -122,6 +122,8 @@ Hero strip mirror (3 stats): `4+ yrs · Fullstack experience`, `5-10 · Team mem
 
 **Anchor:** `#experience` · **Component:** `src/components/Experience.jsx` · **Data:** `src/data/experience.js`
 
+**Company logos:** each entry supports an optional `logo` path. Use a normalized 512×512 PNG at `public/images/logos/<slug>.png` with a white rounded-square background, transparent corners, and tight centered content using roughly 34px outer padding, then set `logo: '/images/logos/<slug>.png'` on the corresponding entry. The current canonical assets are `eledevo.png`, `htc.png`, `smartosc.png`, `viettel.png`, and `yootek.png`. The image renders directly to the right of the role + company block with no extra border/card chrome. Leave as `null` to skip.
+
 ### Viettel Digital - Software Development Specialist · current
 Hanoi Capital Region · Jul 2025 – Present · website https://viettel.com.vn
 

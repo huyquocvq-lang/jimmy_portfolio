@@ -173,6 +173,8 @@ hud: {
 
 Each entry may carry an optional `website` URL. When non-null, `Experience.jsx` renders the company name as an `<a target="_blank" rel="noreferrer" class="exp-company-link exp-company-name">` with the same slide-in underline hover used on project titles (`background-size: 0 2px → 100% 2px`). Companies without a confirmed URL fall back to a plain `<span class="exp-company-name">`.
 
+**Optional `logo`** (string path, e.g. `/images/logos/<slug>.png`): when non-null, `Experience.jsx` renders an `<img class="exp-logo">` to the right of the role + company block on the same row (both desktop and mobile). Asset lives under `public/images/logos/`. Canonical company logos are normalized PNG files at 512×512 with a white rounded-square background, transparent corners, and tight centered content using roughly 34px outer padding (`eledevo.png`, `htc.png`, `smartosc.png`, `viettel.png`, `yootek.png`). Rendered directly with no extra border/card chrome at 84×84 desktop and 60×60 mobile. Leave `logo: null` to skip the image entirely.
+
 **Company name styling:** `.exp-company-name` is 19px, bold (600), bronze (`var(--accent)`) — visibly larger than the location text (`.exp-company-location`, 14px muted). The company line uses `display: flex; flex-wrap: wrap; align-items: baseline` so the location wraps below the name on narrow viewports.
 
 **Component:** `src/components/Experience.jsx`
