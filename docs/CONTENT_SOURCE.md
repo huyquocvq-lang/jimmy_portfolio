@@ -17,7 +17,7 @@ The portfolio ships in **English (default) + Vietnamese**. Every user-facing str
 When updating copy:
 - Update **both** languages in lockstep unless the change only affects one side.
 - Tech terms (Spring Boot, React, MQTT, …) stay in English in both languages.
-- Vietnamese copy uses dấu (đầy đủ) and em-dashes (—) rather than `--`.
+- Vietnamese copy uses dấu (đầy đủ) and em-dashes (-) rather than `--`.
 
 ---
 
@@ -25,7 +25,7 @@ When updating copy:
 
 ## **Hero Section** (v2 - HUD / dossier layout)
 
-**Component:** `src/components/Hero.jsx` · **Background:** `<picture>` from `public/hero-banners/` (B&W filter + dim gradient) · **Theme:** charcoal `#0a0a0a` shell + bronze gold `#c5a47e` accents
+**Component:** `src/components/Hero.jsx` · **Background:** `<picture>` from `public/images/hero-banners/` (B&W filter + dim gradient) · **Theme:** charcoal `#0a0a0a` shell + bronze gold `#c5a47e` accents
 
 **Layout:** CSS grid with 5 named areas - `tag` (top-left), `side` (right column), `main` (center-left), `contact` (bottom-left), `mark` (bottom-right). 4 bronze corner brackets frame the section.
 
@@ -34,14 +34,16 @@ When updating copy:
 | Slot | Copy |
 |------|------|
 | Top tag | `● PORTFOLIO / 2026 // AVAILABLE FOR HIRE` (green pulsing dot) |
-| Eyebrow | `— Senior Software Engineer` |
+| Eyebrow | `- Senior Software Engineer` |
 | Title | `Quoc Huy / Jimmy` (`Jimmy` italic + bronze) |
-| Subtitle | `Senior Fullstack` / `Software Engineer.` (second line italic) |
+| Subtitle | `Senior Fullstack` (single line - the second-line accent was dropped to keep the hero compact) |
+| Title behaviour | `Quoc Huy / Jimmy` always stays on a single line (`flex-wrap: nowrap; white-space: nowrap`) so the Vietnamese + English name never split across two lines |
 | Skill chips | Java · Spring Boot · React · React Native · Node.js · gRPC · Microservices · Magnolia · Liferay CMS · MySQL · MongoDB · C · C++ · Python · Objective-C (first two pills filled bronze, rest outlined) |
 | Side chip 1 | `// EXPERIENCE` → `4+ years · Senior` |
 | Side chip 2 | `// BASED IN` → `Hanoi · GMT+7` |
 | Side chip 3 | `// ALSO DOES` → `Tech Lead · Firmware` |
 | Side chip 4 | `// STATUS` → `OPEN TO HIRE ✓` (green accent via `accent: 'available'` on the chip) |
+| Domains row (in main column) | `// DOMAINS` → `LMS · Fintech · IoT · CMS` (bronze accent value) |
 | Contact: Email | `huyquoc.vq@gmail.com` |
 | Contact: Phone | `+84 0345 475 336` |
 | Contact: LinkedIn | `linkedin.com/in/quoc-huy` (handle); link target `https://linkedin.com/in/quoc-huy-16b896277` |
@@ -65,16 +67,37 @@ When updating copy:
 
 ## **Impact Highlights**
 
-Six-tile grid driven by `src/data/stats.js → impactHighlights`:
+Tabbed grid driven by `src/data/stats.js → impactTabs[]`. Four tabs: **Overall · LMS · IoT · CMS** (LMS = Lending Management System, not Learning).
 
-- **4+ yrs** - Fullstack engineering across CMS platforms, microservices backends, mobile apps, and IoT gateways.
-- **5-10** - Team members led at YooTek Holdings; assigned tasks, tracked progress, and reviewed performance.
-- **100K+** - Concurrent IoT devices coordinated through the home gateway over Zigbee, Z-Wave, BLE, MQTT, and WebSocket.
-- **Headless** - Magnolia CMS + React headless content stack delivered for Dentsu - API-driven content management at enterprise scale.
-- **AI on-device** - YOLO + OpenCV computer-vision modules integrated for fire and stroke detection on the smart-home gateway.
-- **2 gateways** - Payment gateways (MoMo, VN Pay) and IoT device partners (Legrand, Schneider Electric, Tuya) integrated end-to-end.
+**Overall** (4 tiles):
+- **10-15 / team** - Team size led across projects; assigning tasks, tracking progress, running code reviews, and evaluating performance.
+- **20+** - Production systems shipped across telco-fintech, community, smart-home, and enterprise CMS domains.
+- **1-2M users** - Flagship products serving 1-2 million end users in production.
+- **10+ clients** - Worked with enterprises, fintech partners, agencies, and individuals.
 
-Hero strip mirror (3 stats): `4+ yrs · Fullstack experience`, `5-10 · Team members led`, `10+ · Production systems shipped`.
+**LMS - Lending Management System** (5 tiles):
+- **5+ partners** - Consumer-lending partners integrated into the orchestration platform: CAKE, VEGA, TINVAY, and more.
+- **+$10M / mo** - Monthly disbursement processed by the lending orchestration platform, serving customers in the millions.
+- **24/7** - Production system runs 24/7 with high SLA; minimal downtime across the disbursement pipeline.
+- **+20% perf** - Pipeline performance lifted ~20% after optimization passes; throughput up, latency down.
+- **99.9% success** - Transaction success rate sustained at 99.9% across end-to-end disbursement and reconciliation.
+
+**IoT** (6 tiles):
+- **500K+** - Smart-home devices live on the Yoohome AIoT platform.
+- **10K+** - Custom Zigbee gateways shipped nationwide (Node.js + Zigbee2MQTT on Rockchip embedded hardware).
+- **112K msg/s** - Peak MQTT throughput sustained on the Yoohome message backbone.
+- **5 vendors** - IoT ecosystems integrated end-to-end (Tuya, Legrand, Schneider Electric, Panasonic, Rang Dong).
+- **Edge AI** - YOLO + OpenCV vision modules run directly on the gateway for fire and fall/stroke detection.
+- **Offline-first** - Gateway firmware keeps automation, sessions, and data integrity intact through cloud outages.
+
+**CMS** (5 tiles):
+- **10K+** - Users supported on the multi-site CMS in production (editorial approval workflows + personalization rules).
+- **1M+ views/mo** - MMP CMS (custom Java Spring Boot stack) serving 1M+ page views per month.
+- **Headless** - Magnolia + React headless stack; REST and GraphQL APIs powering cross-channel delivery.
+- **~50% faster** - AI agent integrated into the CMS cuts sales-content drafting time roughly in half.
+- **20+ rules** - Personalization rules running in production: location, time of day, age, audience segment.
+
+Hero strip mirror (3 stats, legacy `heroStats` export): `4+ yrs · Fullstack experience`, `10-15 · Team members led`, `20+ · Production systems shipped`.
 
 ---
 
@@ -166,25 +189,6 @@ Started as a Java intern at Eledevo Academy and later transitioned to a part-tim
 
 ---
 
-# **Personal Interest**
-
-**Anchor:** `#personal` · **Component:** `src/components/PersonalInterest.jsx` · **Data:** `src/data/personal.js`
-
-**Eyebrow:** Personal Interest
-**Heading:** A little more about me - outside of work.
-
-**Paragraph 1:** Outside of code, I love to travel and discover new lands, food, and people. I describe myself as strong, assertive, and someone who genuinely enjoys challenges - which is probably why I keep gravitating toward complex systems at work.
-
-**Paragraph 2:** I also founded a small clothing store, where I handle supplier negotiation, online sales content, and the Facebook page. On top of that, I have served as the MC and company spokesperson for several smart-home and automation product launches - presenting new product features at launches and related events.
-
-**Paragraph 3:** "Learn from yesterday, live for today, hope for tomorrow." I try to keep improving new skills, sharing knowledge, and finding small ways to balance the analytical side of engineering with the creative side of building a brand.
-
-**Languages:** Vietnamese, English.
-
-**Images:** Pinterest-style masonry wall built from `public/images/personal/personal_1.jpeg` … `personal_8.jpeg` (ordered chronologically by EXIF date taken). CSS `column-count: 3 / 2 / 1` responsive; hover scales image to 1.05.
-
----
-
 # **Projects (7 total: 1 featured + 6 others)**
 
 Card data is the runtime contract in `src/data/projects.js`. Each project has its own dedicated `*.jsx` and `*.css` (no shared template).
@@ -251,6 +255,25 @@ Card data is the runtime contract in `src/data/projects.js`. Each project has it
 **Subtitle:** E-commerce mobile app for fruit retail
 **Impact:** End-to-end retail mobile app built during the Eledevo Academy period
 **From resume:** "The Fruit Market application" outstanding project under Eledevo Academy.
+
+---
+
+# **Personal Interest**
+
+**Anchor:** `#personal` · **Component:** `src/components/PersonalInterest.jsx` · **Data:** `src/data/personal.js`
+
+**Eyebrow:** Personal Interest
+**Heading:** A little more about me - outside of work.
+
+**Paragraph 1:** Outside of code, I love to travel and discover new lands, food, and people. I describe myself as strong, assertive, and someone who genuinely enjoys challenges - which is probably why I keep gravitating toward complex systems at work.
+
+**Paragraph 2:** I also founded a small clothing store, where I handle supplier negotiation, online sales content, and the Facebook page. On top of that, I have served as the MC and company spokesperson for several smart-home and automation product launches - presenting new product features at launches and related events.
+
+**Paragraph 3:** "Learn from yesterday, live for today, hope for tomorrow." I try to keep improving new skills, sharing knowledge, and finding small ways to balance the analytical side of engineering with the creative side of building a brand.
+
+**Languages:** Vietnamese, English.
+
+**Images:** Pinterest-style masonry wall built from `public/images/personal/personal_1.jpeg` … `personal_8.jpeg` (ordered chronologically by EXIF date taken). CSS `column-count: 3 / 2 / 1` (desktop / ≤960px / ≤560px) inside a centered `max-width: 900px / 640px / 320px` container so tiles render compact; hover scales image to 1.05.
 
 ---
 

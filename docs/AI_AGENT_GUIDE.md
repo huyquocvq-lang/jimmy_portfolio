@@ -30,9 +30,11 @@ Entry points: [AGENTS.md](../AGENTS.md); Cursor: rule `.cursor/rules/sync-docume
 | Homepage section styles | `src/styles/global.css` | Medium - affects whole site (theme vars in `:root` are global) |
 | Footer / Impact text | `src/components/Footer.jsx`, `Impact.jsx` | Low |
 | Personal photos | `public/images/personal/personal_*.jpeg` | Low |
+| Project preview images | `public/images/projects/*.jpg`, `scripts/generate-project-previews.mjs` | Low - previews are anonymized mockups; use `--force` only when intentionally replacing generated JPEGs |
 | Banner HTML | `public/banners/<slug>.html` | Low - keep the `.banner-fit` wrapper + scale JS |
 | Dashboard embed body | `src/embeds/*Dashboard.tsx` (overwrite in place; keep default export) | Low |
 | Images | `public/images/**` | Low |
+| Favicon assets | `public/favicon/**`, `index.html` favicon links | Low |
 | Content mapping reference | `docs/CONTENT_SOURCE.md` | Low (not bundled; user chat overrides) |
 
 ## Dangerous / core ⚠️
@@ -47,10 +49,11 @@ Entry points: [AGENTS.md](../AGENTS.md); Cursor: rule `.cursor/rules/sync-docume
 | Mobile content trim (≤ `VITE_MOBILE_BREAKPOINT_PX`) | Personal photos, Impact highlights, Other projects, and Experience meta rows are reduced via `:nth-of-type` / `display: none` injected at runtime by `<MobileTrimStyles />`. Values come from `VITE_MOBILE_*` env vars (see `.env.example`); Vite inlines them at build time, so restart the dev server after editing `.env`. Source data is untouched. |
 | Nav scroll-spy (`Nav.jsx`) | `useActiveSection` uses `IntersectionObserver` against `HOMEPAGE_SECTIONS` ids. Only runs on the homepage (`isHome`). Adding / renaming a homepage section requires updating the `HOMEPAGE_SECTIONS` array. The Blog and Projects links also factor in `useLocation` for route-based active state. |
 | Tech marquee (`TechMarquee.jsx`) | Reads `techMarquee` from `src/data/skills.js`. The track duplicates the list to fake an infinite loop; if you change the badge count, the `50s` keyframe duration may need a tweak so the scroll speed stays comfortable. Hover and `prefers-reduced-motion` pause / disable the animation. |
-| `public/hero-banners/*` filenames | Hard-coded slugs (`hero_mobile_portrait`, `hero_ultrawide`, …) - renaming breaks `Hero.jsx` |
+| Favicon set (`public/favicon/*`) | Full set + PWA manifest is wired in `index.html` `<head>`. `Nav.jsx` reuses `favicon-96x96.png` (64/128/256 srcSet) as the brand logo in the header. Replacing the favicon means regenerating the set and keeping the same filenames so no link tags need to change. |
+| `public/images/hero-banners/*` filenames | Hard-coded slugs (`hero_mobile_portrait`, `hero_ultrawide`, …) - renaming breaks `Hero.jsx` |
 | `Nav.jsx` body scroll lock | Regressions trap scroll on mobile |
 | `skillIcons.js` keys | Unknown `icon` key in `skills.js` → blank icon |
-| `ProjectShell.jsx` | Shared by all 7 project pages |
+| `ProjectShell.jsx` | Shared by all 5 project pages |
 | `BannerEmbed.jsx` + `public/banners/*.html` | Banner HTML must keep `.banner-fit` 560×510 + inline JS that sets `--scale` |
 | `EmbedSlot.jsx` `dashboards` map | Missing entry for an embed key in `projectEmbeds.js` → silently renders nothing |
 | Theme tokens in `:root` (`global.css`) | Renaming a `--*` variable breaks every file that consumes it - refactor with care |
@@ -91,14 +94,14 @@ CSS variables on `:root` in `src/styles/global.css` define the **dark** defaults
 | `--bg-primary` | `#1a1a1a` | `#ffffff` | Body / most sections |
 | `--bg-elevated` | `#222222` | `#f4f4f4` | Cards, panels |
 | `--bg-elevated-2` | `#2a2a2a` | `#ececec` | Tiles, dashboard surrounds |
-| `--accent` | `#c5a47e` | `#c5a47e` | Eyebrows, links, CTA, accent borders (bronze; same both themes) |
-| `--accent-hover` | `#d4b896` | `#b89468` | Accent hover |
-| `--text-heading` | `#ffffff` | `#1a1a1a` | Headings, big numbers, nav links |
-| `--text-body` | `#a0a0a0` | `#555555` | Paragraph copy |
-| `--text-muted` | `#808080` | `#888888` | Labels, captions |
+| `--accent` | `#c5a47e` | `#b89468` | Eyebrows, links, CTA, accent borders (bronze; darker variant on light for AA contrast) |
+| `--accent-hover` | `#d4b896` | `#a67f54` | Accent hover |
+| `--text-heading` | `#ffffff` | `#0d0d0d` | Headings, big numbers, nav links |
+| `--text-body` | `#d0d0d0` | `#2a2a2a` | Paragraph copy |
+| `--text-muted` | `#a8a8a8` | `#555555` | Labels, captions |
 | `--text-on-accent` | `#ffffff` | `#ffffff` | Text on accent-filled buttons |
-| `--border-subtle` | `#2a2a2a` | `#e5e5e5` | Section dividers |
-| `--border-accent` | `rgba(197,164,126,0.35)` | `rgba(197,164,126,0.5)` | Featured / Impact separators |
+| `--border-subtle` | `#2a2a2a` | `#d8d8d8` | Section dividers |
+| `--border-accent` | `rgba(197,164,126,0.35)` | `rgba(184,148,104,0.55)` | Featured / Impact separators |
 
 Theme switching:
 
@@ -137,9 +140,9 @@ Top-level pages:
 
 | Route | Component | Notes |
 |-------|-----------|-------|
-| `/` | `HomePage` | Hero → Impact → Education → Experience → AboutSkills → PersonalInterest → Projects → Blogs → Footer |
+| `/` | `HomePage` | Hero → Impact → Education → Experience → AboutSkills → Projects → PersonalInterest → Blogs → Footer |
 | `/projects` | `ProjectListPage` | All projects in one grid, no pagination |
-| `/projects/:slug` | one of 7 `*Project.jsx` files | Individual case study |
+| `/projects/:slug` | one of 5 `*Project.jsx` files | Individual case study |
 | `/blog` | `BlogListPage` | Paginated grid (9/page, `?page=N`) |
 | `/blog/:slug` | `BlogDetailPage` | Structured body renderer (BlogBody) |
 
@@ -147,13 +150,11 @@ Project slug → JSX:
 
 | Slug | Route | JSX component |
 |------|-------|---------------|
-| `mmp-cms` (Featured) | `/projects/mmp-cms` | `src/projects/MmpCmsProject.jsx` |
-| `dentsu-cms` | `/projects/dentsu-cms` | `src/projects/DentsuCmsProject.jsx` |
-| `yoolife` | `/projects/yoolife` | `src/projects/YoolifeProject.jsx` |
-| `yooioc` | `/projects/yooioc` | `src/projects/YooIocProject.jsx` |
-| `vnpt-portal` | `/projects/vnpt-portal` | `src/projects/VnptPortalProject.jsx` |
-| `eledevo-landing` | `/projects/eledevo-landing` | `src/projects/EledevoLandingProject.jsx` |
-| `fruit-market` | `/projects/fruit-market` | `src/projects/FruitMarketProject.jsx` |
+| `lending-orchestration-platform` (Featured) | `/projects/lending-orchestration-platform` | `src/projects/LendingPlatformProject.jsx` |
+| `yoohome` | `/projects/yoohome` | `src/projects/YoohomeProject.jsx` |
+| `dotmar-cms` | `/projects/dotmar-cms` | `src/projects/DotmarCmsProject.jsx` |
+| `zigbee-gateway-firmware` | `/projects/zigbee-gateway-firmware` | `src/projects/ZigbeeGatewayProject.jsx` |
+| `hubly` | `/projects/hubly` | `src/projects/HublyProject.jsx` |
 
 ## Blog system
 
@@ -242,7 +243,7 @@ import MyNewProject from './projects/MyNewProject'
 <Route path="/projects/my-new-project" element={<MyNewProject />} />
 ```
 
-5. **Assets** - `public/images/projects/my-new-project.jpg` (fallback) + optionally `public/banners/my-new-project.html` (use any existing banner file as a template - keep the `.banner-fit` 560×510 wrapper and inline `--scale` script).
+5. **Assets** - `public/images/projects/my-new-project.jpg` (fallback). For the current seven shipped projects, previews are generated by `node scripts/generate-project-previews.mjs --force`; for a new project, either add a matching anonymized preview manually or extend that script. Optionally add `public/banners/my-new-project.html` (use any existing banner file as a template - keep the `.banner-fit` 560×510 wrapper and inline `--scale` script).
 
 6. **Dashboard (optional)** - Drop `MyNewDashboard.tsx` in `src/embeds/`; register in `src/components/project/EmbedSlot.jsx` `dashboards` map; add `myNew: { embedKey: 'myNew', title: '…' }` to `src/data/projectEmbeds.js`; mount `<EmbedSlot {...projectEmbeds.myNew} />` on the page.
 
@@ -318,10 +319,13 @@ src/projects/*Project.jsx               Individual case studies
 src/styles/global.css                   Theme vars (:root) + homepage responsive
 src/styles/project-shell.css            Shell chrome
 src/styles/projects/*.css               Per-project page styles
-public/hero-banners/hero_*.{webp,png}   Art-directed hero variants (8 sizes × 2 formats)
+public/images/hero-banners/hero_*.{webp,png}   Art-directed hero variants (8 sizes × 2 formats)
 public/banners/<slug>.html              Canonical animated banner per project
+public/images/projects/*.jpg            Anonymized 1600x1000 project previews
 public/images/personal/*.jpeg           Personal interest masonry photos
 public/images/agents/*.png              AI rewriter demo screenshots
+public/favicon/*                        Transparent portrait favicon variants and web app manifest
+scripts/generate-project-previews.mjs   Regenerates current project preview JPEGs
 docs/CONTENT_SOURCE.md                  Authoring reference for mapping (not runtime)
 ```
 

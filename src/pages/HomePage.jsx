@@ -28,8 +28,8 @@ export default function HomePage() {
       <Education />
       <Experience />
       <AboutSkills />
-      <PersonalInterest />
       <Projects />
+      <PersonalInterest />
       <Blogs />
       <Footer />
     </>

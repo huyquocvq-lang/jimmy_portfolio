@@ -19,7 +19,7 @@ Do not mark work complete if docs describe old behavior.
 ## Read
 
 1. `AGENTS.md`
-2. `docs/USAGE_GUIDE.md` §4.2 — full mapping table
+2. `docs/USAGE_GUIDE.md` §4.2 - full mapping table
 
 ## Quick mapping
 

@@ -5,41 +5,41 @@
 // `logo: '/images/logos/viettel.png'`.
 export const experience = [
   {
-    company: 'Viettel Digital',
-    website: 'https://viettel.com.vn',
+    company: { en: 'Viettel Digital Services', vi: 'Nền tảng Lending Telco-Fintech' },
+    website: null,
     logo: '/images/logos/viettel.png',
     role: 'Software Development Specialist',
-    location: { en: 'Hanoi Capital Region', vi: 'Vùng thủ đô Hà Nội' },
+    location: { en: 'Hanoi, Vietnam', vi: 'Hà Nội, Việt Nam' },
     start: 'Jul 2025',
     end: { en: 'Present', vi: 'Hiện tại' },
     paragraphs: [
       {
-        en: 'Working at Viettel Digital Services, part of Viettel Group, specializing in developing large-scale digital lending platforms with monthly disbursement reaching up to USD 10M.',
-        vi: 'Làm việc tại Viettel Digital Services, thuộc Viettel Group, chuyên phát triển các nền tảng cho vay số quy mô lớn với mức giải ngân hàng tháng lên tới 10 triệu USD.'
+        en: 'On the platform team for a large-scale digital lending product that disburses up to USD 10M per month. The work sits at the intersection of fintech, telco-grade infrastructure, and partner integrations.',
+        vi: 'Trong team platform cho một sản phẩm lending số quy mô lớn, giải ngân tới 10 triệu USD mỗi tháng. Công việc nằm ở giao điểm giữa fintech, hạ tầng telco và các integration đối tác.'
       },
       {
-        en: 'Developed and maintained backend systems in Java, integrating payment flows and managing cash-flow connections with lending partners.',
-        vi: 'Phát triển và bảo trì backend bằng Java, tích hợp luồng thanh toán và quản lý dòng tiền với các đối tác cho vay.'
+        en: 'Build and maintain Java backend services, wire up payment flows, and manage cash-flow connections with lending partners across the loan lifecycle.',
+        vi: 'Xây và bảo trì các backend service Java, ráp luồng thanh toán và quản lý dòng tiền với các đối tác cho vay trong suốt vòng đời khoản vay.'
       },
       {
-        en: 'Participated in system design to ensure scalability, security, and high availability across the lending platform, while supporting native mobile applications consuming the same APIs.',
-        vi: 'Tham gia thiết kế hệ thống để đảm bảo khả năng mở rộng, bảo mật và độ sẵn sàng cao cho toàn nền tảng lending, đồng thời hỗ trợ các ứng dụng mobile native sử dụng cùng bộ API.'
+        en: 'Contribute to system design for scalability, security, and high availability across the lending platform, and support native mobile apps that consume the same APIs.',
+        vi: 'Tham gia thiết kế hệ thống cho khả năng mở rộng, bảo mật và độ sẵn sàng cao trên toàn nền tảng, đồng thời hỗ trợ các app mobile native dùng chung bộ API.'
       },
       {
-        en: 'Implemented business workflows using Camunda BPM to orchestrate the lending lifecycle from application to disbursement.',
-        vi: 'Triển khai business workflow bằng Camunda BPM để điều phối vòng đời khoản vay từ lúc đăng ký đến giải ngân.'
+        en: 'Implement business workflows on Camunda BPM to orchestrate the loan lifecycle from application through disbursement.',
+        vi: 'Triển khai business workflow trên Camunda BPM để điều phối vòng đời khoản vay từ đăng ký đến giải ngân.'
       }
     ],
     meta: [
       {
         label: { en: 'Technologies', vi: 'Công nghệ' },
-        value: 'Java · Native Mobile App · Camunda BPM · Financial System Integration'
+        value: 'Java · Spring Boot · Camunda BPM · Native Mobile · Financial System Integration'
       },
       {
         label: { en: 'Scale', vi: 'Quy mô' },
         value: {
           en: 'Up to USD 10M monthly disbursement on the digital lending platform',
-          vi: 'Giải ngân lên tới 10 triệu USD/tháng trên nền tảng lending số'
+          vi: 'Giải ngân tới 10 triệu USD/tháng trên nền tảng lending số'
         }
       }
     ]
@@ -57,24 +57,24 @@ export const experience = [
     end: 'Jun 2025',
     paragraphs: [
       {
-        en: 'Developed and maintained Magnolia CMS solutions, optimized performance, and built custom modules for enterprise content workflows.',
-        vi: 'Phát triển và bảo trì các giải pháp Magnolia CMS, tối ưu hiệu năng và xây dựng module tuỳ chỉnh cho workflow nội dung doanh nghiệp.'
+        en: 'Built and maintained Magnolia CMS solutions for enterprise clients - performance tuning, custom modules, and editorial workflows for content teams running multi-site setups.',
+        vi: 'Xây và bảo trì các giải pháp Magnolia CMS cho khách hàng doanh nghiệp - tối ưu hiệu năng, làm module tuỳ chỉnh và workflow biên tập cho các team nội dung vận hành nhiều site.'
       },
       {
-        en: 'Built Java-based backend services, optimized MySQL queries, and developed RESTful and GraphQL APIs powering headless content delivery.',
-        vi: 'Xây các backend service Java, tối ưu query MySQL, và phát triển REST cùng GraphQL API phục vụ headless content delivery.'
+        en: 'Wrote Java backend services, tuned MySQL queries, and shipped REST and GraphQL APIs powering headless content delivery to multiple frontends.',
+        vi: 'Viết backend service Java, tune query MySQL và ship REST cùng GraphQL API phục vụ headless content delivery cho nhiều frontend.'
       },
       {
-        en: 'Created and integrated a React-based headless frontend for seamless content rendering across web channels.',
-        vi: 'Tạo và tích hợp frontend headless dựa trên React để render nội dung mượt mà qua các kênh web.'
+        en: 'Built and integrated a React headless frontend so editorial output rendered cleanly across web channels with no template duplication.',
+        vi: 'Xây và tích hợp frontend React headless để output biên tập render gọn gàng qua nhiều kênh web mà không bị trùng template.'
       },
       {
-        en: 'Managed Apache configurations, improved security posture, and optimized system performance under production load.',
-        vi: 'Quản lý cấu hình Apache, nâng cao security posture, và tối ưu hiệu năng hệ thống dưới tải production.'
+        en: 'Managed Apache configs, hardened security posture, and kept response times sane under production load.',
+        vi: 'Quản lý cấu hình Apache, siết security posture và giữ thời gian phản hồi ổn định dưới tải production.'
       },
       {
-        en: 'Implemented GitLab CI/CD pipelines for automated testing and deployment, and mentored junior developers on best practices and code quality.',
-        vi: 'Triển khai pipeline GitLab CI/CD cho testing và deploy tự động, mentor các dev junior về best practice và chất lượng code.'
+        en: 'Set up GitLab CI/CD pipelines for automated testing and deployment, and mentored junior developers on review habits and code quality.',
+        vi: 'Dựng pipeline GitLab CI/CD cho testing và deploy tự động, đồng thời mentor các dev junior về thói quen review và chất lượng code.'
       }
     ],
     meta: [
@@ -83,10 +83,10 @@ export const experience = [
         value: 'Magnolia CMS · Java Core · Spring Boot · MySQL · React · Apache · AWS · GitLab CI/CD'
       },
       {
-        label: { en: 'Outstanding projects', vi: 'Dự án nổi bật' },
+        label: { en: 'Outstanding projects', vi: 'Dự án tiêu biểu' },
         value: {
-          en: "MMP's CMS Website (Java Spring Boot · high-traffic optimization) · Dentsu's Headless CMS (Magnolia + React)",
-          vi: "MMP's CMS Website (Java Spring Boot · tối ưu cho high-traffic) · Dentsu's Headless CMS (Magnolia + React)"
+          en: 'Dotmar Multi-Site CMS (Magnolia + Java + React · personalization + AI authoring)',
+          vi: 'Dotmar Multi-Site CMS (Magnolia + Java + React · personalization + AI soạn nội dung)'
         }
       }
     ]
@@ -101,24 +101,24 @@ export const experience = [
     end: 'Feb 2024',
     paragraphs: [
       {
-        en: 'Built a microservices backend with Java Spring Boot and Nest.js, optimizing MySQL, MongoDB, WebSocket, and MQTT pipelines to handle high-traffic IoT and consumer systems.',
-        vi: 'Xây backend microservice với Java Spring Boot và Nest.js, tối ưu MySQL, MongoDB, WebSocket và MQTT để chịu tải cho hệ thống IoT và người dùng.'
+        en: 'Built a microservices backend in Java Spring Boot and NestJS - tuning MySQL, MongoDB, WebSocket, and MQTT pipelines to absorb the load from high-traffic IoT and consumer workloads.',
+        vi: 'Xây backend microservice với Java Spring Boot và NestJS - tune MySQL, MongoDB, WebSocket và MQTT để chịu được tải từ các workload IoT và người dùng thường xuyên cao điểm.'
       },
       {
-        en: 'Developed mobile applications with React Native, integrated native modules in Java and Swift, and managed application state with Redux.',
-        vi: 'Phát triển ứng dụng mobile bằng React Native, tích hợp native module bằng Java và Swift, và quản lý state ứng dụng với Redux.'
+        en: 'Shipped mobile apps in React Native with native modules in Java and Swift, and managed application state with Redux.',
+        vi: 'Ship các app mobile với React Native, viết native module bằng Java và Swift, quản lý state ứng dụng với Redux.'
       },
       {
-        en: 'Integrated payment gateways (MoMo, VN Pay) and IoT devices (Legrand, Schneider Electric, Tuya), and deployed services on CMC Cloud using Docker and Kubernetes.',
+        en: 'Integrated payment gateways (MoMo, VN Pay) and IoT devices (Legrand, Schneider Electric, Tuya), and deployed services on CMC Cloud with Docker and Kubernetes.',
         vi: 'Tích hợp cổng thanh toán (MoMo, VN Pay) và thiết bị IoT (Legrand, Schneider Electric, Tuya), deploy service trên CMC Cloud bằng Docker và Kubernetes.'
       },
       {
-        en: 'Developed a home gateway for smart devices over Zigbee, Z-Wave, and BLE, and implemented AI modules with YOLO and OpenCV for fire and stroke detection.',
-        vi: 'Phát triển home gateway cho thiết bị thông minh qua Zigbee, Z-Wave và BLE, triển khai module AI với YOLO và OpenCV để phát hiện cháy và đột quỵ.'
+        en: 'Designed a home gateway for smart devices over Zigbee, Z-Wave, and BLE, plus on-device AI modules with YOLO and OpenCV for fire and stroke detection.',
+        vi: 'Thiết kế home gateway cho thiết bị thông minh qua Zigbee, Z-Wave và BLE, kèm module AI on-device với YOLO và OpenCV cho phát hiện cháy và đột quỵ.'
       },
       {
-        en: 'Led a team of 5-10 engineers - assigned tasks, tracked progress, ran code reviews, and evaluated performance.',
-        vi: 'Dẫn dắt nhóm 5-10 kỹ sư — phân công nhiệm vụ, theo dõi tiến độ, chạy code review và đánh giá hiệu suất.'
+        en: 'Led a team of five to ten engineers - task planning, progress tracking, code reviews, and performance evaluations.',
+        vi: 'Dẫn dắt nhóm năm đến mười kỹ sư - phân việc, theo dõi tiến độ, code review và đánh giá hiệu suất.'
       }
     ],
     meta: [
@@ -127,10 +127,10 @@ export const experience = [
         value: 'Spring Boot · React Native · Python · Node.js · NestJS · MQTT · RabbitMQ · Microservices · MongoDB · Docker · Kubernetes'
       },
       {
-        label: { en: 'Outstanding projects', vi: 'Dự án nổi bật' },
+        label: { en: 'Outstanding projects', vi: 'Dự án tiêu biểu' },
         value: {
-          en: 'Yoolife (urban residents app) · YooIOC (urban operations management app)',
-          vi: 'Yoolife (ứng dụng cho cư dân khu đô thị) · YooIOC (ứng dụng quản lý vận hành khu đô thị)'
+          en: 'Yoohome AIoT platform · Custom Zigbee Gateway Firmware',
+          vi: 'Nền tảng AIoT Yoohome · Firmware gateway Zigbee tuỳ chỉnh'
         }
       }
     ]
@@ -145,16 +145,16 @@ export const experience = [
     end: 'Mar 2021',
     paragraphs: [
       {
-        en: "Used the Liferay framework to construct customers' websites and built backend services with Spring Boot following REST API conventions.",
-        vi: 'Sử dụng framework Liferay để dựng website cho khách hàng và xây backend service với Spring Boot theo chuẩn REST API.'
+        en: 'Used the Liferay framework to build customer-facing portal sites, and wrote backend services in Spring Boot following REST conventions.',
+        vi: 'Dùng framework Liferay để dựng các portal cho khách hàng, viết backend service Spring Boot theo chuẩn REST.'
       },
       {
-        en: 'Researched algorithms and query optimization with Spring Data JPA and MySQL to support data-intensive portal features.',
-        vi: 'Nghiên cứu thuật toán và tối ưu truy vấn với Spring Data JPA và MySQL để hỗ trợ các tính năng portal nặng dữ liệu.'
+        en: 'Researched algorithms and query optimization with Spring Data JPA and MySQL to keep data-heavy portal features responsive.',
+        vi: 'Nghiên cứu thuật toán và tối ưu query với Spring Data JPA và MySQL để giữ các tính năng portal nặng dữ liệu vẫn phản hồi nhanh.'
       },
       {
-        en: 'Participated in business analysis and used tools like Trello and GitHub to monitor progress with the team.',
-        vi: 'Tham gia phân tích nghiệp vụ và sử dụng các công cụ như Trello và GitHub để theo dõi tiến độ cùng team.'
+        en: 'Joined business analysis and used Trello and GitHub to track progress with the team.',
+        vi: 'Tham gia phân tích nghiệp vụ và dùng Trello, GitHub để theo dõi tiến độ cùng team.'
       }
     ],
     meta: [
@@ -163,8 +163,11 @@ export const experience = [
         value: 'Spring Framework · MySQL · Liferay · Java · Git · Trello'
       },
       {
-        label: { en: 'Outstanding projects', vi: 'Dự án nổi bật' },
-        value: 'VNPT Portal Information'
+        label: { en: 'Outstanding projects', vi: 'Dự án tiêu biểu' },
+        value: {
+          en: 'Customer portal modernization with Liferay + Spring Boot',
+          vi: 'Hiện đại hoá portal khách hàng với Liferay + Spring Boot'
+        }
       }
     ]
   },
@@ -178,20 +181,20 @@ export const experience = [
     end: 'Sep 2020',
     paragraphs: [
       {
-        en: 'Started as a Java intern at Eledevo Academy and later transitioned to a part-time role focused on production work and teaching.',
-        vi: 'Bắt đầu với vị trí Java intern tại Eledevo Academy, sau đó chuyển sang vai trò part-time tập trung vào công việc production và giảng dạy.'
+        en: 'Started as a Java intern, then moved into a part-time role split between production work and teaching.',
+        vi: 'Bắt đầu là Java intern, sau đó chuyển sang vị trí part-time chia đôi giữa công việc production và giảng dạy.'
       },
       {
-        en: 'Developed APIs with Spring and Express following RESTful principles, and built web and mobile applications using React and React Native with Redux and Saga.',
-        vi: 'Phát triển API với Spring và Express theo nguyên tắc RESTful, đồng thời xây ứng dụng web và mobile bằng React và React Native với Redux và Saga.'
+        en: 'Wrote APIs in Spring and Express following RESTful principles, and shipped web and mobile apps with React and React Native, Redux, and Saga.',
+        vi: 'Viết API bằng Spring và Express theo nguyên tắc RESTful, ship app web và mobile với React và React Native, Redux và Saga.'
       },
       {
-        en: 'Taught basic programming, helping students build CRUD-based applications with Spring, Node.js, and React.',
-        vi: 'Giảng dạy lập trình cơ bản, giúp học viên xây ứng dụng CRUD bằng Spring, Node.js và React.'
+        en: 'Taught programming fundamentals, walking students through building CRUD apps in Spring, Node.js, and React.',
+        vi: 'Dạy lập trình cơ bản, đi cùng học viên qua việc xây các ứng dụng CRUD bằng Spring, Node.js và React.'
       },
       {
-        en: 'Supported employees and led a team of 1 to 3 interns through onboarding and project delivery.',
-        vi: 'Hỗ trợ nhân viên và dẫn dắt nhóm 1-3 intern qua quá trình onboarding và bàn giao dự án.'
+        en: 'Supported staff and led one to three interns per cohort through onboarding and project delivery.',
+        vi: 'Hỗ trợ nhân viên và dẫn dắt một đến ba intern mỗi đợt qua onboarding và bàn giao dự án.'
       }
     ],
     meta: [
@@ -200,10 +203,10 @@ export const experience = [
         value: 'Spring Framework · React · React Native · JavaScript · Java · MySQL · MongoDB'
       },
       {
-        label: { en: 'Outstanding projects', vi: 'Dự án nổi bật' },
+        label: { en: 'Outstanding projects', vi: 'Dự án tiêu biểu' },
         value: {
-          en: 'Eledevo Academy landing page · The Fruit Market application',
-          vi: 'Landing page Eledevo Academy · Ứng dụng The Fruit Market'
+          en: 'Programming curriculum for Spring / Node.js / React · The Fruit Market mobile app',
+          vi: 'Giáo trình lập trình Spring / Node.js / React · Ứng dụng The Fruit Market'
         }
       }
     ]

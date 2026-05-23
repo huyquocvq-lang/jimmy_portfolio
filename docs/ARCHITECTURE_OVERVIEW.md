@@ -42,7 +42,7 @@ flowchart TB
   subgraph assets [Static asset layer]
     BANNERS[public/banners/*.html - none today]
     DASHBOARDS[src/embeds/*.tsx - none today]
-    PHOTOS[public/images/**]
+    PHOTOS[public/images/** - hero, project previews, personal photos]
   end
 
   HTML --> MAIN --> APP --> ROUTER
@@ -75,7 +75,7 @@ flowchart TB
 2. **Runtime:** No fetch to owned backend. Content is JavaScript module exports.
 3. **Home:** Components import from `src/data/*` and render sections vertically.
 4. **Project pages:** Each `src/projects/*Project.jsx` owns layout + copy; metadata card fields come from `getProjectCard(slug)` in `projects.js`.
-5. **Images:** Paths like `/images/hero-bg.jpg` resolve from `public/images/`.
+5. **Images:** Paths like `/images/projects/lending-orchestration-platform.jpg` resolve from `public/images/`. Project previews live under `public/images/projects/`.
 
 ## Routing architecture
 
@@ -84,13 +84,11 @@ Defined explicitly in `src/App.jsx` (not file-based routing):
 | Path | Component |
 |------|-----------|
 | `/` | `HomePage` |
-| `/projects/mmp-cms` | `MmpCmsProject` (Featured) |
-| `/projects/dentsu-cms` | `DentsuCmsProject` |
-| `/projects/yoolife` | `YoolifeProject` |
-| `/projects/yooioc` | `YooIocProject` |
-| `/projects/vnpt-portal` | `VnptPortalProject` |
-| `/projects/eledevo-landing` | `EledevoLandingProject` |
-| `/projects/fruit-market` | `FruitMarketProject` |
+| `/projects/lending-orchestration-platform` | `LendingPlatformProject` (Featured) |
+| `/projects/yoohome` | `YoohomeProject` |
+| `/projects/dotmar-cms` | `DotmarCmsProject` |
+| `/projects/zigbee-gateway-firmware` | `ZigbeeGatewayProject` |
+| `/projects/hubly` | `HublyProject` |
 
 `vite.config.js` sets `appType: 'spa'` so deep links work on static hosts that rewrite to `index.html`.
 
@@ -171,6 +169,7 @@ main.jsx
 - **New project:** new `src/projects/X.jsx` + CSS + route in `App.jsx` + entry in `projects.js` + optional `public/banners/X.html`
 - **New dashboard embed:** drop `XDashboard.tsx` in `src/embeds/`, register in `EmbedSlot.jsx` dashboards map + `projectEmbeds.js`, mount `<EmbedSlot {...projectEmbeds.x} />`
 - **New banner:** add `public/banners/<slug>.html` (clone an existing one; keep `.banner-fit` 560×510 + inline scale script); reference via `banner` field in `projects.js`
+- **Project preview refresh:** run `node scripts/generate-project-previews.mjs --force` to replace the shipped anonymized JPEGs under `public/images/projects/`
 - **New personal photo:** drop file in `public/images/personal/`, add entry to `personal.images[]`
 
 ## Core constraints (do not break)

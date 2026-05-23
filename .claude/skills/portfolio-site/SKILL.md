@@ -13,7 +13,7 @@ description: >-
 
 1. Read `AGENTS.md`
 2. Read `docs/USAGE_GUIDE.md` (doc sync mapping table)
-3. Confirm: **React 18 + Vite 5 web SPA** — not React Native
+3. Confirm: **React 18 + Vite 5 web SPA** - not React Native
 
 ## Mandatory: update docs
 
@@ -23,7 +23,7 @@ List which doc files you updated before finishing.
 
 ## Content source (`docs/CONTENT_SOURCE.md`)
 
-- Mapping reference only — not bundled in the app
+- Mapping reference only - not bundled in the app
 - On content changes: update `CONTENT_SOURCE.md` and runtime files (`src/data/*`, `src/projects/*`)
 - User instructions in chat override `CONTENT_SOURCE.md`
 
@@ -50,9 +50,9 @@ List which doc files you updated before finishing.
 
 ## Add a new project
 
-1. `src/data/projects.js` — `{ slug, link: '/projects/<slug>', ... }`
+1. `src/data/projects.js` - `{ slug, link: '/projects/<slug>', ... }`
 2. `src/projects/NewProject.jsx` + `src/styles/projects/new-project.css`
-3. `src/App.jsx` — `<Route path="/projects/<slug>" element={<NewProject />} />`
+3. `src/App.jsx` - `<Route path="/projects/<slug>" element={<NewProject />} />`
 4. `public/images/projects/<slug>.jpg`
 5. Update: `FEATURE_MAP.md`, `ARCHITECTURE_OVERVIEW.md`, `AI_AGENT_GUIDE.md`, `FULL_DOCUMENTATION.md`, `API_FLOW.md`, `AGENTS.md` if routes change
 6. Verify prev/next pager on `ProjectShell`

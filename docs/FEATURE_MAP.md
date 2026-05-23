@@ -44,8 +44,8 @@
 | Area | Content |
 |------|---------|
 | `tag` (top-left)        | Status dot + `PORTFOLIO / 2026 // AVAILABLE FOR HIRE` |
-| `side` (right column)   | Stacked info chips (`// EXPERIENCE`, `// BASED IN`, `// ALSO DOES`, `// STATUS`) |
-| `main` (center-left)    | `— Senior Software Engineer` eyebrow → serif name with bronze italic accent → italic subtitle → wrapped skill chip row |
+| `side` (right column)   | Stacked info chips zigzagging left ↔ right (`// EXPERIENCE`, `// BASED IN`, `// ALSO DOES`, `// STATUS`) |
+| `main` (center-left)    | `- Senior Software Engineer` eyebrow → serif name with bronze italic accent → subtitle → `// DOMAINS` row → wrapped skill chip row |
 | `contact` (bottom-left) | `// EMAIL`, `// PHONE`, `// LINKEDIN` columns |
 | `mark` (bottom-right)   | `SE/26` serif monogram + `SENIOR · EST. 2019` tag |
 
@@ -62,10 +62,10 @@ hud: {
   available: true,                   // toggles the green pulsing dot
   eyebrow: 'Senior Software Engineer',
   title: { lead: 'Quoc Huy', accent: 'Jimmy' },
-  subtitleLead: 'Senior Fullstack',
-  subtitleAccent: 'Software Engineer.',
+  subtitleLead: 'Senior Fullstack',  // accent line removed
   chips: [{ label, accent?: true }, ...],     // skill pill row
-  sideChips: [{ label, value }, ...],          // 4 right-column chips
+  sideChips: [{ label, value, accent? }, ...], // 4 zigzag chips
+  domains: { label, value },                   // rendered in main column under subtitle
   monogram: 'SE/26',
   establishedTag: 'Senior · Est. 2019'
 }
@@ -83,7 +83,7 @@ hud: {
 | `(max-aspect-ratio: 14/10)` | `hero_tablet` |
 | default `<img>` | `hero_desktop_fhd` |
 
-**Assets:** `public/hero-banners/<variant>.png` (8 art-directed variants). The background photo is rendered with `filter: grayscale(0.9) contrast(1.05) brightness(0.85)` and dimmed by a horizontal gradient on `.hero-shade` so the left side reads as dark for the content blocks.
+**Assets:** `public/images/hero-banners/<variant>.png` (8 art-directed variants). The background photo is rendered with `filter: grayscale(0.9) contrast(1.05) brightness(0.85)` and dimmed by a horizontal gradient on `.hero-shade` so the left side reads as dark for the content blocks.
 
 **Decorative layers (in z-order):**
 1. `.hero-bg` - responsive `<picture>`
@@ -96,9 +96,9 @@ hud: {
 
 **Entrance animation:** each major block (`tag-top`, `main`, `side-chips`, `contact`, `mark`, `corners`) fades up with a 150ms stagger when `.hero--ready` is applied.
 
-**Availability accent (green):** the top-tag availability text (`AVAILABLE FOR HIRE`) renders inside `.hero-tag-availability--on` when `profile.hud.available === true`, and any side-chip carrying `accent: 'available'` gets `.hero-side-chip--available` — both styled with the `#6fd28d` mint green to make the hire status pop. Toggle by flipping `profile.hud.available` and adding/removing `accent: 'available'` on the matching chip.
+**Availability accent (green):** the top-tag availability text (`AVAILABLE FOR HIRE`) renders inside `.hero-tag-availability--on` when `profile.hud.available === true`, and any side-chip carrying `accent: 'available'` gets `.hero-side-chip--available` - both styled with the `#6fd28d` mint green to make the hire status pop. Toggle by flipping `profile.hud.available` and adding/removing `accent: 'available'` on the matching chip.
 
-**Staggered side chips:** even-indexed side chips are shifted left by 36px (`.hero-side-chips > .hero-side-chip:nth-child(even) { transform: translateX(-36px) }`) to break the right edge into a zigzag silhouette. Reset to `0` on the ≤768px mobile breakpoint where the chips wrap into a row.
+**Staggered side chips:** chips alternate sides of a 280px-wide column - odd chips align right (with the bracket pseudo at top-right), even chips align left (bracket mirrored to top-left). Pure `align-self: flex-end/flex-start` + per-side `padding-*` and `text-align`, no `translateX`. Resets to a single left-aligned row on the ≤768px mobile breakpoint.
 
 **Responsive:**
 - ≥1024px: full grid as drawn
@@ -118,15 +118,17 @@ hud: {
 - `activeSection` derived from `useActiveSection(HOMEPAGE_SECTIONS, isHome)` - an `IntersectionObserver` with `rootMargin: '-30% 0px -55% 0px'` that picks whichever section has the highest visibility ratio inside that band. Only runs on the homepage.
 
 **Active state rules:**
-- In-page links (`#impact`, `#experience`, `#about`, `#personal`, `#work`) → active when `activeSection` matches the section id on `/`.
+- In-page links (`#impact`, `#experience`, `#about`, `#work`, `#personal`) → active when `activeSection` matches the section id on `/`.
 - `Blog` link → active when on `/blog*` route, or when the `#blog` section is in view on home.
 - `Projects` link → active when on `/projects` route, or when the `#work` section is in view on home.
 - LinkedIn / Resume / GitHub stay inert (external links).
 
 **Visual treatment:** `.nav-links a.is-active` switches the link to `var(--accent)` and adds a 2px bronze underline pseudo-element 6px below the text. Mobile drawer suppresses the underline pseudo (the row divider already separates entries) and uses colour-only highlight.
 
+**Logo:** `<a class="nav-logo">` wraps the favicon icon (`/favicon/favicon-128x128.png` at 1x, `-256x256.png` at 2x) plus a `.nav-logo__text` "Jimmy" wordmark (italic Cormorant Garamond, sourced from `profile.hud.title.accent`). The icon renders at 44×44 on desktop and 38×38 on mobile; the wordmark is hidden on ≤768px so the bar stays compact on phones. `aria-label` carries `profile.name` so screen readers still announce the full brand.
+
 **Links pattern:**
-- In-page (home): `/#impact`, `/#experience`, `/#about`, `/#personal`, `/#work`
+- In-page (home): `/#impact`, `/#experience`, `/#about`, `/#work`, `/#personal`
 - Routes: `/blog`
 - External: LinkedIn (Resume + GitHub render only when non-null in `profile.contact`)
 - Logo: `/`
@@ -135,13 +137,15 @@ hud: {
 
 ## F3 - Impact highlights
 
-**Purpose:** Six quantitative achievements in a responsive grid (engineering capability headline numbers).
+**Purpose:** Tabbed grid of quantitative achievements, grouped by domain so visitors can drill into the work most relevant to them.
 
-**Data:** `src/data/stats.js` - `impactHighlights[]` with `{ big, desc }`. Current values: `4+ yrs`, `5-10`, `100K+`, `Headless`, `AI on-device`, `2 gateways`.
+**Data:** `src/data/stats.js` - `impactTabs[]` with `{ id, label: {en, vi}, highlights: [{ big, desc }] }`. Tab IDs: `overall`, `lms`, `iot`, `cms` - note **`lms` = Lending Management System** (fintech orchestration platform - CAKE / VEGA / TINVAY partners), not Learning Management System. `impactHighlights` is kept as a backwards-compatible flat export pointing at the first tab.
 
-**Component:** `src/components/Impact.jsx`
+**Component:** `src/components/Impact.jsx` - renders an ARIA tablist (`role="tablist"` + `role="tab"` + `aria-selected`) above the grid, with the currently selected tab's highlights as a `role="tabpanel"`. Active tab tracked by local `useState`. Tab labels resolved bilingually via `tr(tab.label, lang)`.
 
-**Mobile trim:** controlled by `VITE_MOBILE_IMPACT_LIMIT` (default 4) via `<MobileTrimStyles />`.
+**Styles:** `.impact-tabs` + `.impact-tab` rules in `src/styles/global.css` (active state uses `--accent` underline). Mobile override switches the tab strip to a horizontally scrollable bar.
+
+**Mobile trim:** controlled by `VITE_MOBILE_IMPACT_LIMIT` (default 4) via `<MobileTrimStyles />`. The CSS selector still targets `.impact-item:nth-of-type(...)` so it applies independently per tab panel.
 
 **Anchor:** `id="impact"`
 
@@ -175,7 +179,7 @@ Each entry may carry an optional `website` URL. When non-null, `Experience.jsx` 
 
 **Optional `logo`** (string path, e.g. `/images/logos/<slug>.png`): when non-null, `Experience.jsx` renders an `<img class="exp-logo">` to the right of the role + company block on the same row (both desktop and mobile). Asset lives under `public/images/logos/`. Canonical company logos are normalized PNG files at 512×512 with a white rounded-square background, transparent corners, and tight centered content using roughly 34px outer padding (`eledevo.png`, `htc.png`, `smartosc.png`, `viettel.png`, `yootek.png`). Rendered directly with no extra border/card chrome at 84×84 desktop and 60×60 mobile. Leave `logo: null` to skip the image entirely.
 
-**Company name styling:** `.exp-company-name` is 19px, bold (600), bronze (`var(--accent)`) — visibly larger than the location text (`.exp-company-location`, 14px muted). The company line uses `display: flex; flex-wrap: wrap; align-items: baseline` so the location wraps below the name on narrow viewports.
+**Company name styling:** `.exp-company-name` is 19px, bold (600), bronze (`var(--accent)`) - visibly larger than the location text (`.exp-company-location`, 14px muted). The company line uses `display: flex; flex-wrap: wrap; align-items: baseline` so the location wraps below the name on narrow viewports. Role + company are wrapped in `.exp-header` (`display: flex; justify-content: space-between`) so the logo (when present) docks to the right of the text block.
 
 **Component:** `src/components/Experience.jsx`
 
@@ -202,7 +206,7 @@ Each entry may carry an optional `website` URL. When non-null, `Experience.jsx` 
 
 ## F4b - Personal interest + masonry wall
 
-**Purpose:** Personal copy + Pinterest-style masonry of personal photos between About and Projects.
+**Purpose:** Personal copy + Pinterest-style masonry of personal photos between Projects and Blogs.
 
 **Data:** `src/data/personal.js` - heading "A little more about me - outside of work." Three paragraphs covering travel, founding a clothing store, MC / spokesperson work, plus the personal motto.
 
@@ -216,13 +220,14 @@ Each entry may carry an optional `website` URL. When non-null, `Experience.jsx` 
 
 ## F5 - Projects listing
 
-**Purpose:** One featured project + six grid cards (7 total) - reflecting the outstanding projects from the resume.
+**Purpose:** One featured project + four grid cards (5 total) - the curated shortlist of shipped systems.
 
 **Data:** `src/data/projects.js`
-- `featuredProject` - MMP's CMS Website
-- `otherProjects[]` - Dentsu's Headless CMS, Yoolife, YooIOC, VNPT Portal Information, Eledevo Academy Landing Page, The Fruit Market Application
+- `featuredProject` - Lending Orchestration Platform
+- `otherProjects[]` - Yoohome (AIoT), Dotmar Multi-Site CMS, Custom Zigbee Gateway Firmware, Hubly (community + AI moderation)
 - Helpers: `getAllProjects()`, `getProjectCard(slug)`
-- All cards currently have `banner: null` and reference an image under `public/images/projects/<slug>.jpg`. The image directory is empty by default, so `OtherProject` / `FeaturedProject` simply render the dark fallback inner panel until images are added.
+- All cards currently have `banner: null` and reference JPEG previews under `public/images/projects/<slug>.jpg`. `OtherProject` / `FeaturedProject` render those images as CSS background covers; if a file is missing, the browser falls back to the dark card background.
+- Preview source: `scripts/generate-project-previews.mjs` renders the current seven project previews from anonymized SVG mockups, then rasterizes them to JPEG. Run `node scripts/generate-project-previews.mjs --force` to intentionally regenerate the shipped files.
 
 **Mobile trim:** controlled by `VITE_MOBILE_PROJECTS_LIMIT` (default 3, applied to the other-projects grid only - the featured card is always shown). The section header keeps the **View all →** link to `/projects` for the full grid.
 
@@ -335,79 +340,59 @@ Provides Nav, hero banner (image or `<BannerEmbed>` iframe), breadcrumbs (Home �
 
 ---
 
-## F7 - MMP's CMS Website (Featured)
+## F7 - Lending Orchestration Platform (Featured)
 
 | Field | Value |
 |-------|-------|
-| Route | `/projects/mmp-cms` |
-| Component | `src/projects/MmpCmsProject.jsx` |
-| Styles | `src/styles/projects/mmp-cms.css` (legacy `.wp-*` class set) |
-| Layout | Intro → key insight banner → split (problem + approach) → recommendation → impact stats → tools |
-| Source | SmartOSC outstanding project: Java Spring Boot CMS optimized for high traffic and large datasets |
+| Route | `/projects/lending-orchestration-platform` |
+| Component | `src/projects/LendingPlatformProject.jsx` |
+| Styles | `src/styles/projects/lending-orchestration-platform.css` (`.trend-*` class set) |
+| Layout | Intro → stack chips → context / role → use cases → challenges → metrics → impact line |
+| Source | Viettel Digital Services: Java Spring + Camunda orchestration across partner integrations |
 
-## F8 - Dentsu's Headless CMS Website
-
-| Field | Value |
-|-------|-------|
-| Route | `/projects/dentsu-cms` |
-| Component | `src/projects/DentsuCmsProject.jsx` |
-| Styles | `src/styles/projects/dentsu-cms.css` (legacy `.pgm-*` class set) |
-| Layout | Intro + tag chips → why-it-existed → 3-layer architecture → delivery contract → score cards → outputs → footer stats |
-| Source | SmartOSC outstanding project: Magnolia + React headless CMS |
-
-## F9 - Yoolife Application
+## F8 - Yoohome - Smart Home & AIoT Platform
 
 | Field | Value |
 |-------|-------|
-| Route | `/projects/yoolife` |
-| Component | `src/projects/YoolifeProject.jsx` |
-| Styles | `src/styles/projects/yoolife.css` (legacy `.trend-*` class set) |
-| Layout | Intro → stack chips → problem/method → ordered list of features → impact line |
-| Source | YooTek Holdings outstanding project: React Native consumer app for urban residents |
+| Route | `/projects/yoohome` |
+| Component | `src/projects/YoohomeProject.jsx` |
+| Styles | `src/styles/projects/yoohome.css` (`.trend-*` class set + `.metrics-table` + `.link-list`) |
+| Layout | Intro → stack chips → context / role → use cases → challenges → capacity profile table → ecosystem → product links → impact line |
+| Source | Yoohome AIoT platform: NestJS + React Native + MQTT, 500K+ devices, multi-vendor integrations |
 
-## F10 - YooIOC Application
-
-| Field | Value |
-|-------|-------|
-| Route | `/projects/yooioc` |
-| Component | `src/projects/YooIocProject.jsx` |
-| Styles | `src/styles/projects/yooioc.css` (legacy `.pfm-*` class set) |
-| Layout | Intro + headline stats → context paragraph → bento feature grid → daily reference |
-| Source | YooTek Holdings outstanding project: urban operations management platform |
-
-## F11 - VNPT Portal Information
+## F9 - Dotmar Multi-Site CMS
 
 | Field | Value |
 |-------|-------|
-| Route | `/projects/vnpt-portal` |
-| Component | `src/projects/VnptPortalProject.jsx` |
-| Styles | `src/styles/projects/vnpt-portal.css` (legacy `.glean-*` class set) |
-| Layout | Centered intro → why-it-existed → stack list → ordered build steps → team / process aside |
-| Source | Hanoi Telecom Corporation outstanding project: Liferay + Spring Boot portal |
+| Route | `/projects/dotmar-cms` |
+| Component | `src/projects/DotmarCmsProject.jsx` |
+| Styles | `src/styles/projects/dotmar-cms.css` (`.trend-*` class set) |
+| Layout | Intro → stack chips → context / role → use cases → challenges → metrics → impact line |
+| Source | Dotmar Engineering Plastics multi-site CMS: Magnolia + Java + React with personalization + AI authoring |
 
-## F12 - Eledevo Academy Landing Page
-
-| Field | Value |
-|-------|-------|
-| Route | `/projects/eledevo-landing` |
-| Component | `src/projects/EledevoLandingProject.jsx` |
-| Styles | `src/styles/projects/eledevo-landing.css` (legacy `.air-*` class set) |
-| Layout | Intro + visitor-flow mock → problem → audience pills → output sections list → build narrative |
-| Source | Eledevo Academy outstanding project: marketing landing page for the academy |
-
-## F13 - The Fruit Market Application
+## F10 - Custom Zigbee Gateway Firmware
 
 | Field | Value |
 |-------|-------|
-| Route | `/projects/fruit-market` |
-| Component | `src/projects/FruitMarketProject.jsx` |
-| Styles | `src/styles/projects/fruit-market.css` (legacy `.retro-*` class set) |
-| Layout | Centered intro → problem → what-it-does → implementation choices → 5-step end-to-end flow → 3 tab cards → note |
-| Source | Eledevo Academy outstanding project: React Native + Spring/Express e-commerce app |
+| Route | `/projects/zigbee-gateway-firmware` |
+| Component | `src/projects/ZigbeeGatewayProject.jsx` |
+| Styles | `src/styles/projects/zigbee-gateway-firmware.css` (`.trend-*` class set) |
+| Layout | Intro → stack chips → context / role → use cases → challenges → metrics → impact line |
+| Source | Custom Zigbee gateway firmware: Node.js + Zigbee2MQTT on Rockchip embedded hardware with Debian |
+
+## F11 - Hubly - Community Platform with AI Moderation
+
+| Field | Value |
+|-------|-------|
+| Route | `/projects/hubly` |
+| Component | `src/projects/HublyProject.jsx` |
+| Styles | `src/styles/projects/hubly.css` (`.trend-*` class set) |
+| Layout | Intro → stack chips → context / role → highlighted use cases → challenges → impact line |
+| Source | Hubly platform: NestJS/Moleculer backend + Vue/Nuxt web + Flutter mobile with Hubshield AI moderation |
 
 ---
 
-## Shared project chrome (all F7–F13)
+## Shared project chrome (all F7–F11)
 
 **Component:** `src/components/project/ProjectShell.jsx`
 
@@ -518,9 +503,9 @@ To add a banner: create `public/banners/<slug>.html` and set `banner: '/banners/
 | Feature | Depends on |
 |---------|------------|
 | Hero | `profile`, `stats.heroStats` |
-| Nav | `profile.contact` + section anchors `#impact`, `#experience`, `#about`, `#personal`, `#work` |
+| Nav | `profile.contact` + section anchors `#impact`, `#experience`, `#about`, `#work`, `#personal` |
 | Personal Interest | `personal.images[]` files present in `public/images/personal/` |
-| Projects cards | `projects.js` links matching `App.jsx` routes; `banner` path matching a file in `public/banners/` when set |
+| Projects cards | `projects.js` links matching `App.jsx` routes; `image` path matching `public/images/projects/<slug>.jpg`; `banner` path matching a file in `public/banners/` when set |
 | Project pages | `projects.js` for pager + optional `getProjectCard`; matching key in `projectEmbeds.js` + lazy entry in `EmbedSlot.jsx` only if a dashboard is added |
 | Skill icons | `skills.icon` key ∈ `skillIconMap` keys |
 | Theme | All non-hero surfaces reference `var(--*)` tokens from `global.css :root` |

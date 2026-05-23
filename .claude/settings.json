@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/usr/bin/curl --max-time 3 -sS -o /tmp/idx.html -w \"HTTP %{http_code} in %{time_total}s, %{size_download} bytes\\\\n\" \"http://localhost:5173/\")",
+      "Bash(/usr/bin/curl --max-time 3 -sS -o /tmp/main.js -w \"HTTP %{http_code}\\\\n\" \"http://localhost:5173/src/main.jsx\")",
+      "Bash(/usr/bin/curl --max-time 3 -sS -o /dev/null -w \"HTTP %{http_code}\\\\n\" \"http://localhost:5173/src/components/Nav.jsx\")",
+      "Bash(pkill -f \"vite$\")",
+      "Bash(lsof -iTCP:5173)",
+      "Bash(lsof -iTCP:5174)",
+      "Bash(node -e ' *)",
+      "Bash(curl -s -o /dev/null -w \"/ → %{http_code}\\\\n\" http://localhost:5173/)",
+      "Bash(curl -s -o /dev/null -w \"/projects → %{http_code}\\\\n\" http://localhost:5173/projects)",
+      "Bash(curl -s -o /dev/null -w \"/projects/hubly → %{http_code}\\\\n\" http://localhost:5173/projects/hubly)",
+      "Bash(curl -s -o /dev/null -w \"/projects/yoohome → %{http_code}\\\\n\" http://localhost:5173/projects/yoohome)",
+      "Bash(curl -s -o /dev/null -w \"/projects/lending-orchestration-platform → %{http_code}\\\\n\" http://localhost:5173/projects/lending-orchestration-platform)",
+      "Bash(node --check src/data/stats.js)",
+      "Bash(node --check src/pages/HomePage.jsx)",
+      "Bash(node -e \"import\\('./src/components/Nav.jsx'\\).catch\\(e=>console.log\\('ESM:',e.message\\)\\)\")"
+    ]
+  }
+}

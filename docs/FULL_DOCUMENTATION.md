@@ -30,7 +30,7 @@ A personal portfolio website for **Quoc Huy (Jimmy)**, showcasing four-plus year
 
 ## Main business purpose
 
-Present engineering credibility to recruiters, hiring managers, and clients through real shipped systems (MMP CMS, Dentsu headless CMS, Yoolife / YooIOC IoT platforms, VNPT portal, Eledevo academy site, Fruit Market app) and detailed architectural narratives.
+Present engineering credibility to recruiters, hiring managers, and clients through real shipped systems (Lending Orchestration Platform, Yoohome AIoT, Dotmar multi-site CMS, custom Zigbee gateway firmware, Hubly community platform with AI moderation) and detailed architectural narratives.
 
 ## Key technologies
 
@@ -62,6 +62,8 @@ portfolio/
 ├── index.html                 # HTML shell, font CDN links
 ├── package.json
 ├── vite.config.js             # Vite + SPA mode
+├── scripts/
+│   └── generate-project-previews.mjs # Regenerates anonymized project JPEGs
 ├── .gitignore
 ├── README.md                  # Developer setup guide
 ├── docs/
@@ -74,8 +76,9 @@ portfolio/
 │   └── API_FLOW.md
 ├── public/
 │   └── images/                # Static assets (served at /images/...)
-│       ├── hero-bg.jpg        # (expected - may be placeholder)
-│       └── projects/*.jpg
+│   └── favicon/               # Browser/mobile favicon variants (served at /favicon/...)
+│       ├── personal/*.jpeg
+│       └── projects/*.jpg     # 1600x1000 anonymized project previews
 └── src/
     ├── main.jsx               # ReactDOM.createRoot entry
     ├── App.jsx                # Route definitions
@@ -94,13 +97,11 @@ portfolio/
     │   └── project/
     │       └── ProjectShell.jsx
     ├── projects/              # One file per case study (unique UI)
-    │   ├── MmpCmsProject.jsx          # Featured
-    │   ├── DentsuCmsProject.jsx
-    │   ├── YoolifeProject.jsx
-    │   ├── YooIocProject.jsx
-    │   ├── VnptPortalProject.jsx
-    │   ├── EledevoLandingProject.jsx
-    │   └── FruitMarketProject.jsx
+    │   ├── LendingPlatformProject.jsx     # Featured
+    │   ├── YoohomeProject.jsx
+    │   ├── DotmarCmsProject.jsx
+    │   ├── ZigbeeGatewayProject.jsx
+    │   └── HublyProject.jsx
     ├── data/                  # Static content modules
     │   ├── profile.js
     │   ├── stats.js
@@ -174,9 +175,16 @@ Files copied verbatim to build output root. Image URLs start with `/images/`. Ba
 
 | Subfolder | Purpose |
 |-----------|---------|
-| `public/hero-banners/` | 8 responsive hero variants (`hero_*.webp` + `.png`) consumed by `<picture>` in `Hero.jsx` |
-| `public/images/` | Project thumbnails, personal masonry photos, agent screenshots |
+| `public/images/hero-banners/` | 8 responsive hero variants (`hero_*.webp` + `.png`) consumed by `<picture>` in `Hero.jsx` |
+| `public/images/` | Project preview JPEGs, personal masonry photos, agent screenshots |
+| `public/favicon/` | Transparent portrait favicon set: ICO, desktop PNG sizes, Apple touch icon, Android Chrome PNG/WebP variants, and `site.webmanifest` |
 | `public/banners/` | Self-contained animated HTML banner per project (canonical source, edit in place) |
+
+### `/scripts`
+
+| File | Purpose |
+|------|---------|
+| `generate-project-previews.mjs` | Builds anonymized SVG mockups from the seven project case-study themes and rasterizes them to `public/images/projects/<slug>.jpg` at 1600×1000. Use `--force` when intentionally replacing existing generated previews. |
 
 ---
 
@@ -217,7 +225,7 @@ No Redux, Zustand, MobX, or React Query. The only React Contexts are `ThemeConte
 ## Navigation structure
 
 - **Router-level:** 1 home + 7 project routes (`src/App.jsx`)
-- **Within home:** hash anchors `#impact`, `#about`, `#personal`, `#work`, `#top`
+- **Within home:** hash anchors `#impact`, `#about`, `#work`, `#personal`, `#top`
 - **Between projects:** `ProjectShell` prev/next uses `getAllProjects()` order
 
 ## Dependency relationships
@@ -280,18 +288,16 @@ npm run preview   # Preview production build locally
 ├── #education  Education
 ├── #experience Work Experience
 ├── #about      About + Skills
-├── #personal   Personal Interest + masonry
 ├── #work       Projects
+├── #personal   Personal Interest + masonry
 └── (Footer)
 
 /projects                      # All-projects list page
-/projects/mmp-cms              # Featured - MMP's CMS Website
-/projects/dentsu-cms           # Dentsu's Headless CMS Website
-/projects/yoolife              # Yoolife Application
-/projects/yooioc               # YooIOC Application
-/projects/vnpt-portal          # VNPT Portal Information
-/projects/eledevo-landing      # Eledevo Academy Landing Page
-/projects/fruit-market         # The Fruit Market Application
+/projects/lending-orchestration-platform   # Featured - Lending Orchestration Platform
+/projects/yoohome              # Yoohome - Smart Home & AIoT Platform
+/projects/dotmar-cms           # Dotmar Multi-Site CMS
+/projects/zigbee-gateway-firmware          # Custom Zigbee Gateway Firmware
+/projects/hubly                # Hubly - Community Platform with AI Moderation
 
 /blog                          # Blog list (paginated, 9/page, ?page=N)
 /blog/:slug                    # Blog detail (renders structured body)
@@ -309,13 +315,13 @@ npm run preview   # Preview production build locally
 
 | Type | Example | Handler |
 |------|---------|---------|
-| Project route | `/projects/dentsu-cms` | `react-router-dom` |
+| Project route | `/projects/hubly` | `react-router-dom` |
 | Home section | `/#work` | `HomePage` useEffect + `getElementById` |
 | External | LinkedIn URL | `<a target="_blank">` |
 
 ## Route naming convention
 
-- Lowercase kebab-case slugs: `dentsu-cms`, `eledevo-landing`, `fruit-market`
+- Lowercase kebab-case slugs: `hubly`, `lending-orchestration-platform`, `dotmar-cms`
 - Prefix: `/projects/`
 - Slug defined in `projects.js` → must match `App.jsx` route and `ProjectShell` `slug` prop
 
@@ -598,11 +604,11 @@ Content constants live in data files, not a separate `constants.js`.
 
 | Entity | Convention | Example |
 |--------|------------|---------|
-| Components | PascalCase | `MmpCmsProject.jsx` |
+| Components | PascalCase | `LendingPlatformProject.jsx` |
 | Data files | camelCase exports | `featuredProject` |
 | CSS classes | kebab-case, prefixed per page | `.wp-insight` |
-| Routes | kebab-case | `/projects/dentsu-cms` |
-| Slugs | kebab-case | `vnpt-portal` |
+| Routes | kebab-case | `/projects/hubly` |
+| Slugs | kebab-case | `lending-orchestration-platform` |
 
 ## Folder conventions
 
@@ -636,6 +642,7 @@ See dedicated [AI_AGENT_GUIDE.md](./AI_AGENT_GUIDE.md).
 **Summary:**
 - ✅ Edit `src/data/*` for homepage copy
 - ✅ Edit individual `src/projects/*` + CSS for case study design
+- ✅ Regenerate project preview assets with `node scripts/generate-project-previews.mjs --force` when the shipped anonymized JPEGs need to be refreshed
 - ⚠️ Keep `slug`, routes, and links synchronized
 - ❌ Do not add Redux/API without explicit request
 - ❌ Do not treat as React Native
@@ -700,7 +707,7 @@ See dedicated [AI_AGENT_GUIDE.md](./AI_AGENT_GUIDE.md).
     portfolioYear: string,
     availability: string,                      // top-tag text
     available: boolean,                        // toggles green pulsing dot
-    eyebrow: string,                           // `— Senior Software Engineer`
+    eyebrow: string,                           // `- Senior Software Engineer`
     title: { lead: string, accent: string },   // `Quoc Huy` / `Jimmy`
     subtitleLead: string,
     subtitleAccent: string,                    // italic second line
@@ -721,7 +728,7 @@ See dedicated [AI_AGENT_GUIDE.md](./AI_AGENT_GUIDE.md).
 }
 ```
 
-Hero background images live in `public/hero-banners/` and are not referenced from `profile.js`.
+Hero background images live in `public/images/hero-banners/` and are not referenced from `profile.js`.
 
 ## Appendix B - Project card schema (`projects.js`)
 
@@ -735,11 +742,13 @@ Hero background images live in `public/hero-banners/` and are not referenced fro
   description: string,
   tools?: string,         // featured only
   impact: string,
-  image: string,          // fallback for ProjectShell hero when no banner
+  image: string,          // /images/projects/<slug>.jpg preview + ProjectShell fallback
   banner?: string,        // /banners/<slug>.html - enables BannerEmbed on home + detail
   link: string            // must match App.jsx path
 }
 ```
+
+Current project previews are anonymized mockups, not real client screenshots. They are kept in `public/images/projects/` and generated from `scripts/generate-project-previews.mjs` to avoid exposing confidential UIs, logos, internal data, or proprietary code.
 
 ## Appendix B-bis - Personal interest schema (`personal.js`)
 

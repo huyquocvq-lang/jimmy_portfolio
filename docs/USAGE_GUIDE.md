@@ -25,6 +25,7 @@ Open http://localhost:5173
 | Command | Purpose |
 |---------|---------|
 | `npm run dev` | Dev server with hot reload |
+| `npm run dev:fresh` | Clears `node_modules/.vite` then starts dev - use when Vite hangs after a folder rename or large restructure |
 | `npm run build` | Production build → `dist/` |
 | `npm run preview` | Serve production build locally |
 
@@ -36,13 +37,14 @@ Open http://localhost:5173
 
 ```
 src/data/          ← Homepage + project copy (edit here)
-src/components/    ← Homepage UI (Nav, Hero, Impact, AboutSkills, PersonalInterest, Projects, Footer, BannerEmbed, ThemeToggle)
+src/components/    ← Homepage UI (Nav, Hero, Impact, AboutSkills, Projects, PersonalInterest, Footer, BannerEmbed, ThemeToggle)
 src/context/       ← React Context providers (ThemeContext - dark/light theme)
 src/pages/         ← HomePage
 src/projects/      ← One JSX file per project (unique layout)
 src/embeds/        ← TSX dashboard exports (lazy-loaded by EmbedSlot)
 src/styles/        ← CSS (dark theme tokens on :root, light overrides on :root[data-theme="light"])
 public/images/     ← Images (paths like /images/...)
+public/favicon/    ← Transparent favicon PNG/ICO/WebP variants + site.webmanifest
 public/banners/    ← Self-contained HTML banner files for each project (one per slug)
 docs/              ← Technical docs (MUST update when code changes)
 docs/CONTENT_SOURCE.md  ← Authoring reference (mapping only, not bundled)
@@ -140,7 +142,7 @@ Do not leave docs describing old behavior.
 1. `src/data/projects.js` - add object with `slug`, `link`, `image`, optional `banner` (`/banners/<slug>.html`)
 2. `src/projects/MyProject.jsx` + `src/styles/projects/my-project.css`
 3. `src/App.jsx` - add `<Route path="/projects/<slug>" element={<MyProject />} />`
-4. `public/images/projects/my-project.jpg` (still useful as ProjectShell fallback)
+4. `public/images/projects/my-project.jpg` (card preview + ProjectShell fallback). For the current seven shipped projects, regenerate anonymized previews with `node scripts/generate-project-previews.mjs --force`; extend that script if the new project should use the same generated-preview workflow.
 5. `public/banners/<slug>.html` (optional - animated hero banner, see existing files for wrapper CSS / JS scale pattern)
 6. Optional dashboard: drop `MyDashboard.tsx` in `src/embeds/`, register in `EmbedSlot.jsx` + `projectEmbeds.js`, mount `<EmbedSlot {...projectEmbeds.myKey} />` on the page
 7. Update docs: `FEATURE_MAP`, `ARCHITECTURE_OVERVIEW`, `AI_AGENT_GUIDE`, `FULL_DOCUMENTATION`, `API_FLOW`
@@ -161,13 +163,11 @@ npm run build
 |-----|-----------|
 | `/` | HomePage |
 | `/projects` | ProjectListPage (all projects, no pagination) |
-| `/projects/mmp-cms` | MmpCmsProject (Featured) |
-| `/projects/dentsu-cms` | DentsuCmsProject |
-| `/projects/yoolife` | YoolifeProject |
-| `/projects/yooioc` | YooIocProject |
-| `/projects/vnpt-portal` | VnptPortalProject |
-| `/projects/eledevo-landing` | EledevoLandingProject |
-| `/projects/fruit-market` | FruitMarketProject |
+| `/projects/lending-orchestration-platform` | LendingPlatformProject (Featured) |
+| `/projects/yoohome` | YoohomeProject |
+| `/projects/dotmar-cms` | DotmarCmsProject |
+| `/projects/zigbee-gateway-firmware` | ZigbeeGatewayProject |
+| `/projects/hubly` | HublyProject |
 | `/blog` | BlogListPage (paginated, 9/page, `?page=N`) |
 | `/blog/:slug` | BlogDetailPage |
 

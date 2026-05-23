@@ -1,149 +1,113 @@
 export const featuredProject = {
-  slug: 'mmp-cms',
-  type: { en: 'CMS Platform · Java Spring Boot', vi: 'Nền tảng CMS · Java Spring Boot' },
-  title: "MMP's CMS Website",
+  slug: 'lending-orchestration-platform',
+  type: { en: 'Financial Platform · Java Spring + Camunda', vi: 'Nền tảng Tài chính · Java Spring + Camunda' },
+  title: 'Lending Orchestration Platform',
   headline: {
-    en: 'High-traffic CMS platform built on Java Spring Boot',
-    vi: 'Nền tảng CMS high-traffic xây trên Java Spring Boot'
+    en: 'A multi-product lending platform serving millions of customers, with ~$10M in monthly disbursement.',
+    vi: 'Nền tảng vay đa sản phẩm phục vụ hàng triệu khách hàng, giải ngân ~$10M mỗi tháng.'
   },
   subtitle: {
-    en: 'A Java-based content management system designed for large datasets and high-traffic content delivery.',
-    vi: 'Hệ thống quản trị nội dung viết bằng Java, thiết kế cho dataset lớn và truyền tải nội dung lưu lượng cao.'
+    en: 'A single platform for multiple loan products and multiple lending partners.',
+    vi: 'Một platform duy nhất cho nhiều sản phẩm vay và nhiều đối tác cho vay.'
   },
   description: {
-    en: 'Built a custom CMS using Java Spring Boot for MMP, focused on serving high-traffic content workloads with large editorial datasets. Designed the backend services, optimized MySQL queries, and exposed REST APIs powering the editorial workflows and public-facing pages.',
-    vi: 'Xây dựng một CMS tuỳ chỉnh bằng Java Spring Boot cho MMP, tập trung phục vụ workload nội dung high-traffic với dataset biên tập lớn. Thiết kế các backend service, tối ưu query MySQL, và mở REST API phục vụ workflow biên tập cũng như các trang public-facing.'
+    en: 'A centralized lending platform that runs the full loan lifecycle across multiple products and partners. The system covers Camunda-based workflow orchestration, per-product configuration, and the secure money-movement pipes - so launching and governing a new loan product is one platform, not seven.',
+    vi: 'Nền tảng cho vay tập trung, vận hành toàn bộ vòng đời khoản vay qua nhiều sản phẩm và nhiều đối tác. Hệ thống bao gồm orchestration trên Camunda, cấu hình theo từng sản phẩm và đường ống dòng tiền an toàn - để mở và quản trị một sản phẩm vay mới chỉ cần một platform, thay vì bảy.'
   },
-  tools: 'Java · Spring Boot · MySQL · REST APIs · Apache · AWS · GitLab CI/CD',
+  tools: 'Java · Spring Boot · Camunda BPM · Angular · React · REST APIs · Microservices',
   impact: {
-    en: 'Production CMS optimized for high-traffic content delivery and large dataset operations.',
-    vi: 'CMS production được tối ưu cho truyền tải nội dung high-traffic và xử lý dataset lớn.'
+    en: 'Live in production at scale - millions of customers, ~$10M monthly disbursement.',
+    vi: 'Đang chạy production ở quy mô lớn - hàng triệu khách hàng, ~$10M giải ngân mỗi tháng.'
   },
-  image: '/images/projects/mmp-cms.jpg',
+  image: '/images/projects/lending-orchestration-platform.jpg',
   banner: null,
-  link: '/projects/mmp-cms'
+  link: '/projects/lending-orchestration-platform'
 }
 
 export const otherProjects = [
   {
-    slug: 'dentsu-cms',
-    type: { en: 'Headless CMS · Magnolia + React', vi: 'Headless CMS · Magnolia + React' },
-    title: "Dentsu's Headless CMS Website",
+    slug: 'yoohome',
+    type: { en: 'AIoT Platform · NestJS + React Native + MQTT', vi: 'Nền tảng AIoT · NestJS + React Native + MQTT' },
+    title: 'Yoohome - Smart Home & AIoT Platform',
     subtitle: {
-      en: 'API-driven content management with Magnolia + React frontend',
-      vi: 'Quản trị nội dung API-driven với frontend Magnolia + React'
+      en: 'Smart-home control plus an AI assistant trained on the data the household generates.',
+      vi: 'Điều khiển smart-home cùng một trợ lý AI học từ chính dữ liệu hộ gia đình tạo ra.'
     },
     description: {
-      en: 'Developed a headless CMS for Dentsu using Magnolia CMS for content modeling and a React-based frontend for delivery, with REST and GraphQL APIs powering seamless content rendering across channels.',
-      vi: 'Phát triển headless CMS cho Dentsu sử dụng Magnolia CMS cho content modeling và frontend React cho delivery, với REST và GraphQL API giúp render nội dung mượt mà qua các kênh.'
+      en: 'Tech-lead on Yoohome - an AIoT platform that unifies smart-home control and centralized building operations. The work covered the MQTT realtime backbone, multi-vendor hardware integrations, and a data pipeline that feeds an in-app virtual assistant - all under strict latency and safety guarantees.',
+      vi: 'Tech-lead cho Yoohome - nền tảng AIoT hợp nhất điều khiển smart-home và vận hành toà nhà tập trung. Công việc gồm backbone realtime MQTT, tích hợp phần cứng đa hãng và pipeline dữ liệu nuôi một trợ lý ảo trong app - dưới ràng buộc latency và an toàn nghiêm ngặt.'
     },
+    tools: 'NestJS · React Native · Java Spring · MQTT · Microservices · Zigbee2MQTT · Kafka · OpenAI · Redis · MongoDB',
     impact: {
-      en: 'Enterprise headless content stack with API-driven delivery',
-      vi: 'Stack headless content cấp doanh nghiệp với delivery API-driven'
+      en: '500K+ devices and 10K+ users in production across multiple smart-building deployments.',
+      vi: '500K+ thiết bị và 10K+ người dùng production trên nhiều dự án smart-building.'
     },
-    image: '/images/projects/dentsu-cms.jpg',
+    image: '/images/projects/yoohome.jpg',
     banner: null,
-    link: '/projects/dentsu-cms'
+    link: '/projects/yoohome'
   },
   {
-    slug: 'yoolife',
-    type: { en: 'Mobile App · React Native', vi: 'Ứng dụng Mobile · React Native' },
-    title: 'Yoolife Application',
+    slug: 'dotmar-cms',
+    type: { en: 'Enterprise CMS · Magnolia + Java + React', vi: 'CMS Doanh nghiệp · Magnolia + Java + React' },
+    title: 'Dotmar Multi-Site CMS',
     subtitle: {
-      en: 'Smart-living mobile app for urban residents',
-      vi: 'Ứng dụng mobile smart-living cho cư dân khu đô thị'
+      en: 'One author instance, three public sites, multi-language - built around sales.',
+      vi: 'Một author instance, ba public site, đa ngôn ngữ - thiết kế xoay quanh sales.'
     },
     description: {
-      en: 'A React Native mobile application for residents of smart urban areas - integrated with IoT devices, payment gateways (MoMo, VN Pay), and a Spring Boot + Nest.js microservices backend over MQTT and WebSocket.',
-      vi: 'Ứng dụng mobile React Native dành cho cư dân khu đô thị thông minh — tích hợp thiết bị IoT, cổng thanh toán (MoMo, VN Pay), và backend microservice Spring Boot + Nest.js qua MQTT và WebSocket.'
+      en: 'A multi-site CMS for Dotmar on Magnolia + Java + React. One author instance feeds multiple public instances across markets and languages, with editorial approval workflows, rule-driven personalization, and an AI authoring agent to speed up sales-focused content.',
+      vi: 'CMS đa site cho Dotmar trên Magnolia + Java + React. Một author instance phục vụ nhiều public instance theo thị trường và ngôn ngữ, kèm approval workflow biên tập, personalization theo rule và AI agent để soạn nội dung phục vụ sales nhanh hơn.'
     },
+    tools: 'Magnolia CMS · Java · React · Apache Tomcat · REST APIs',
     impact: {
-      en: 'Consumer-facing IoT app handling real-time device control at scale',
-      vi: 'Ứng dụng IoT cho người dùng cuối, xử lý điều khiển thiết bị real-time ở quy mô lớn'
+      en: 'Multi-site CMS in production for ~10K users with live personalization rules.',
+      vi: 'CMS đa site chạy production cho ~10K người dùng với rule personalization hoạt động thực tế.'
     },
-    image: '/images/projects/yoolife.jpg',
+    image: '/images/projects/dotmar-cms.jpg',
     banner: null,
-    link: '/projects/yoolife'
+    link: '/projects/dotmar-cms'
   },
   {
-    slug: 'yooioc',
-    type: { en: 'Operations Platform · Microservices', vi: 'Nền tảng Vận hành · Microservices' },
-    title: 'YooIOC Application',
+    slug: 'zigbee-gateway-firmware',
+    type: { en: 'Embedded Platform · Node.js + Zigbee2MQTT + Debian', vi: 'Nền tảng Nhúng · Node.js + Zigbee2MQTT + Debian' },
+    title: 'Custom Zigbee Gateway Firmware',
     subtitle: {
-      en: 'Urban operations management platform',
-      vi: 'Nền tảng quản lý vận hành khu đô thị'
+      en: 'A Zigbee gateway that keeps working when the cloud goes away.',
+      vi: 'Gateway Zigbee vẫn chạy ngon kể cả khi cloud sập.'
     },
     description: {
-      en: 'An operational management application for urban areas covering fundamental tasks like resident services, incident tracking, and device administration - powered by a Spring Boot + Nest.js microservices backend deployed on CMC Cloud.',
-      vi: 'Ứng dụng quản lý vận hành cho khu đô thị, bao gồm các tác vụ cơ bản như dịch vụ cư dân, theo dõi sự cố và quản trị thiết bị — chạy trên backend microservice Spring Boot + Nest.js deploy trên CMC Cloud.'
+      en: 'Custom Zigbee gateway firmware on Node.js and Zigbee2MQTT, running on Rockchip embedded hardware with Debian. Designed for cross-vendor devices, remote operator control, automatic OTA, and offline-tolerant operation - all under tight CPU, memory, and storage budgets.',
+      vi: 'Firmware gateway Zigbee tuỳ chỉnh trên Node.js và Zigbee2MQTT, chạy trên phần cứng nhúng Rockchip với Debian. Thiết kế cho thiết bị đa hãng, điều khiển từ xa, OTA tự động và hoạt động khi mất mạng - dưới ràng buộc CPU, RAM và storage rất chặt.'
     },
+    tools: 'Node.js · Zigbee2MQTT · Linux kernel processes · MQTT · Debian · Rockchip · OTA tooling',
     impact: {
-      en: 'Central operations hub for smart-urban-area management',
-      vi: 'Trung tâm vận hành cho việc quản lý khu đô thị thông minh'
+      en: '10,000+ gateways deployed nationwide, holding up through cloud outages.',
+      vi: 'Hơn 10,000 gateway triển khai toàn quốc, vẫn ổn định qua những lần mất cloud.'
     },
-    image: '/images/projects/yooioc.jpg',
+    image: '/images/projects/zigbee-gateway-firmware.jpg',
     banner: null,
-    link: '/projects/yooioc'
+    link: '/projects/zigbee-gateway-firmware'
   },
   {
-    slug: 'vnpt-portal',
-    type: { en: 'Portal · Liferay + Spring', vi: 'Portal · Liferay + Spring' },
-    title: 'VNPT Portal Information',
+    slug: 'hubly',
+    type: { en: 'Community Platform · NestJS + Vue/Nuxt + Flutter', vi: 'Nền tảng Community · NestJS + Vue/Nuxt + Flutter' },
+    title: 'Hubly - Community Platform with AI Moderation',
     subtitle: {
-      en: 'Liferay-based information portal with Spring Boot APIs',
-      vi: 'Portal thông tin dựa trên Liferay với API Spring Boot'
+      en: 'A community platform with proprietary multi-modal AI moderation across 30+ languages.',
+      vi: 'Nền tảng community với moderation AI đa định dạng độc quyền cho 30+ ngôn ngữ.'
     },
     description: {
-      en: 'Built customer-facing portal pages on Liferay backed by a Spring Boot REST API, with query optimization through Spring Data JPA and MySQL to support data-intensive portal features.',
-      vi: 'Xây các trang portal cho khách hàng trên Liferay, backend là Spring Boot REST API, tối ưu truy vấn qua Spring Data JPA và MySQL để hỗ trợ các tính năng portal nặng dữ liệu.'
+      en: 'Senior fullstack on Hubly - a global community platform covering chat, KYC, ads, rewards, and livestream. The differentiator is Hubshield AI: proactive multi-modal moderation across text, image, video, audio, OCR, and GIF in 30+ languages. I worked across the NestJS / Moleculer backends, the Vue 2 + Nuxt 2 web frontend, and the Flutter mobile app - and helped drive the Sendbird → proprietary chat migration without breaking production.',
+      vi: 'Senior fullstack tại Hubly - nền tảng community toàn cầu bao gồm chat, KYC, ads, reward và livestream. Điểm khác biệt là Hubshield AI: moderation chủ động đa định dạng cho text, ảnh, video, audio, OCR, GIF trong 30+ ngôn ngữ. Tôi làm xuyên backend NestJS / Moleculer, frontend web Vue 2 + Nuxt 2 và app mobile Flutter - đồng thời dẫn dắt migration Sendbird → chat độc quyền mà không làm gãy production.'
     },
+    tools: 'NestJS · Moleculer · PHP · Prisma · MongoDB · Redis · Bull · Algolia · OpenAI · Vue/Nuxt · Flutter · Pusher',
     impact: {
-      en: "Operational portal serving VNPT customer-facing information needs",
-      vi: 'Portal vận hành phục vụ nhu cầu thông tin khách hàng của VNPT'
+      en: 'Global community platform in production with proprietary AI moderation across 30+ languages.',
+      vi: 'Nền tảng community toàn cầu chạy production với moderation AI độc quyền cho 30+ ngôn ngữ.'
     },
-    image: '/images/projects/vnpt-portal.jpg',
+    image: '/images/projects/hubly.jpg',
     banner: null,
-    link: '/projects/vnpt-portal'
-  },
-  {
-    slug: 'eledevo-landing',
-    type: { en: 'Marketing Site · React', vi: 'Marketing Site · React' },
-    title: 'Eledevo Academy Landing Page',
-    subtitle: {
-      en: 'Marketing landing page introducing Eledevo Academy',
-      vi: 'Landing page marketing giới thiệu Eledevo Academy'
-    },
-    description: {
-      en: 'A responsive marketing landing page introducing Eledevo Academy and its programs - built with React and Spring on the backend, following RESTful conventions for any data integrations.',
-      vi: 'Landing page marketing responsive giới thiệu Eledevo Academy và các chương trình của học viện — viết bằng React, backend Spring, tuân theo chuẩn RESTful cho mọi tích hợp dữ liệu.'
-    },
-    impact: {
-      en: "Public-facing site supporting the academy's student recruitment",
-      vi: 'Trang public hỗ trợ học viện tuyển sinh học viên'
-    },
-    image: '/images/projects/eledevo-landing.jpg',
-    banner: null,
-    link: '/projects/eledevo-landing'
-  },
-  {
-    slug: 'fruit-market',
-    type: { en: 'Mobile App · React Native', vi: 'Ứng dụng Mobile · React Native' },
-    title: 'The Fruit Market Application',
-    subtitle: {
-      en: 'E-commerce mobile app for fruit retail',
-      vi: 'Ứng dụng e-commerce mobile cho bán lẻ trái cây'
-    },
-    description: {
-      en: 'A React Native mobile application for browsing and purchasing fruit, with Redux + Saga state management and a Spring / Express RESTful backend persisting orders to MySQL / MongoDB.',
-      vi: 'Ứng dụng mobile React Native để duyệt và mua trái cây, quản lý state bằng Redux + Saga, backend RESTful Spring / Express lưu đơn hàng vào MySQL / MongoDB.'
-    },
-    impact: {
-      en: 'End-to-end retail mobile app built during the Eledevo Academy period',
-      vi: 'Ứng dụng mobile bán lẻ end-to-end thực hiện trong giai đoạn Eledevo Academy'
-    },
-    image: '/images/projects/fruit-market.jpg',
-    banner: null,
-    link: '/projects/fruit-market'
+    link: '/projects/hubly'
   }
 ]
 

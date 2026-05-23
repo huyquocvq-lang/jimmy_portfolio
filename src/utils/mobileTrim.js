@@ -31,7 +31,7 @@ export const mobileTrim = {
 
 /**
  * Build the @media block that enforces the configured trim. Each `limit`
- * means "show the first N tiles" — items at index `limit + 1` and beyond are
+ * means "show the first N tiles" - items at index `limit + 1` and beyond are
  * hidden with `display: none`. A limit of 0 hides the section entirely; any
  * value greater than the rendered count disables the trim for that section.
  */

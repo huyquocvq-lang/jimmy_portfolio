@@ -17,8 +17,8 @@ export const education = [
     gpa: '3.25 / 4.0',
     honors: [
       {
-        en: 'Graduation topic: a platform to connect, manage, and control smart devices from separate manufacturers, with data collection and recommended actions for the user.',
-        vi: 'Đề tài tốt nghiệp: nền tảng kết nối, quản lý và điều khiển các thiết bị thông minh đến từ nhiều nhà sản xuất khác nhau, kèm thu thập dữ liệu và đề xuất hành động cho người dùng.'
+        en: 'Graduation project - a platform that connects, manages, and controls smart devices from multiple manufacturers, collecting telemetry and recommending actions back to the user.',
+        vi: 'Đề tài tốt nghiệp - nền tảng kết nối, quản lý và điều khiển thiết bị thông minh từ nhiều hãng khác nhau, thu thập telemetry và gợi ý hành động trả lại người dùng.'
       }
     ]
   }

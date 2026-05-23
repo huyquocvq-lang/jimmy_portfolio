@@ -47,8 +47,8 @@ export const skills = [
     icon: 'frontend',
     title: { en: 'Web Frontend', vi: 'Frontend Web' },
     desc: {
-      en: 'ReactJS · Next.js · WordPress · Headless CMS integration · Responsive UI · State management (Redux)',
-      vi: 'ReactJS · Next.js · WordPress · Tích hợp Headless CMS · Responsive UI · Quản lý state (Redux)'
+      en: 'React · Next.js · Vue / Nuxt · WordPress · Headless CMS integration · Responsive UI · Redux / Saga',
+      vi: 'React · Next.js · Vue / Nuxt · WordPress · Tích hợp headless CMS · Responsive UI · Redux / Saga'
     }
   },
   {
@@ -63,8 +63,8 @@ export const skills = [
     icon: 'mobile',
     title: { en: 'Mobile Development', vi: 'Phát triển Mobile' },
     desc: {
-      en: 'React Native · Native modules (Java, Swift, Objective-C) · Redux/Saga · Payment SDKs (MoMo, VN Pay)',
-      vi: 'React Native · Native module (Java, Swift, Objective-C) · Redux/Saga · SDK thanh toán (MoMo, VN Pay)'
+      en: 'React Native · Flutter · Native modules (Java, Swift, Objective-C) · Redux / Saga · Payment SDKs (MoMo, VN Pay)',
+      vi: 'React Native · Flutter · Native module (Java, Swift, Objective-C) · Redux / Saga · SDK thanh toán (MoMo, VN Pay)'
     }
   },
   {

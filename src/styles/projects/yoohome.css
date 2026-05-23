@@ -53,6 +53,9 @@
   padding: 40px 32px;
   background: var(--bg-elevated);
 }
+.trend-recs + .trend-recs {
+  background: var(--bg-primary);
+}
 .trend-recs h2 {
   font-size: 20px;
   font-weight: 300;
@@ -79,6 +82,63 @@
   color: var(--text-heading);
   border-top: 1px solid var(--border-subtle);
 }
+
+/* Yoohome-specific: capacity metrics table */
+.metrics-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-primary);
+}
+.metrics-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.metrics-table th,
+.metrics-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+}
+.metrics-table th {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--bg-elevated);
+  font-weight: 600;
+}
+.metrics-table td {
+  color: var(--text-body);
+}
+.metrics-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Yoohome-specific: link list */
+.link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.link-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.link-list li:last-child {
+  border-bottom: none;
+}
+.link-list a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 16px;
+}
+.link-list a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
   .project-intro--trend,
   .trend-metrics,
@@ -89,4 +149,9 @@
     padding-right: 20px;
   }
   .trend-narrative { grid-template-columns: 1fr; }
+  .metrics-table th,
+  .metrics-table td {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
 }

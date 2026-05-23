@@ -5,7 +5,7 @@ import { ui } from '../data/ui'
 import { useLanguage } from '../context/LanguageContext'
 import { tr } from '../utils/i18n'
 
-const HERO_BASE = '/hero-banners'
+const HERO_BASE = '/images/hero-banners'
 const HERO_FALLBACK = 'hero_desktop_fhd'
 
 const HERO_SOURCES = [
@@ -99,17 +99,20 @@ export default function Hero() {
         </ul>
 
         <div className="hero-main">
-          <span className="hero-eyebrow">— {tr(hud.eyebrow, lang)}</span>
+          <span className="hero-eyebrow">- {tr(hud.eyebrow, lang)}</span>
           <h1 className="hero-title">
             <span className="hero-title__lead">{hud.title.lead}</span>
             <span className="hero-title__divider" aria-hidden="true">/</span>
             <span className="hero-title__accent">{hud.title.accent}</span>
           </h1>
-          <p className="hero-subtitle">
-            {tr(hud.subtitleLead, lang)}
-            <br />
-            <span className="hero-subtitle__accent">{tr(hud.subtitleAccent, lang)}</span>
-          </p>
+          <p className="hero-subtitle">{tr(hud.subtitleLead, lang)}</p>
+
+          {hud.domains && (
+            <p className="hero-domains">
+              <span className="hero-domains__label">// {tr(hud.domains.label, lang).toUpperCase()}</span>
+              <span className="hero-domains__value">{tr(hud.domains.value, lang)}</span>
+            </p>
+          )}
 
           <ul className="hero-chips" aria-label="Tech stack">
             {hud.chips.map((chip) => (

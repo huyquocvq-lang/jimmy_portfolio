@@ -8,12 +8,15 @@ import { tr } from '../utils/i18n'
 import ThemeToggle from './ThemeToggle'
 import LanguageToggle from './LanguageToggle'
 
-const HOMEPAGE_SECTIONS = ['impact', 'experience', 'about', 'personal', 'work', 'blog']
+const HOMEPAGE_SECTIONS = ['impact', 'experience', 'about', 'work', 'personal', 'blog']
 
 /**
- * Scroll-spy hook: returns the id of the section that currently has the
- * largest visible area inside the configured root-margin band, or `null`
- * when none of the watched sections are in view.
+ * Scroll-spy hook: returns the id of the section the user is currently
+ * "inside" — defined as the last section (in document order) whose top has
+ * crossed the trigger line at ~35% of the viewport. Returns `null` only
+ * while the user is still above all watched sections (e.g. on the hero).
+ * Always picks exactly one section once scrolled past the hero, so the
+ * highlight does not flicker out between sections.
  */
 function useActiveSection(ids, enabled) {
   const [active, setActive] = useState(null)
@@ -24,34 +27,42 @@ function useActiveSection(ids, enabled) {
       return undefined
     }
 
-    const ratios = new Map()
-    const elements = ids
-      .map((id) => document.getElementById(id))
-      .filter((el) => el != null)
-
-    if (elements.length === 0) return undefined
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => ratios.set(entry.target.id, entry.intersectionRatio))
-        let bestId = null
-        let bestRatio = 0
-        ratios.forEach((ratio, id) => {
-          if (ratio > bestRatio) {
-            bestId = id
-            bestRatio = ratio
-          }
+    const compute = () => {
+      const trigger = window.innerHeight * 0.35
+      const positions = ids
+        .map((id) => {
+          const el = document.getElementById(id)
+          if (!el) return null
+          return { id, top: el.getBoundingClientRect().top }
         })
-        setActive(bestRatio > 0.1 ? bestId : null)
-      },
-      {
-        rootMargin: '-30% 0px -55% 0px',
-        threshold: [0, 0.25, 0.5, 0.75, 1]
-      }
-    )
+        .filter(Boolean)
+        .sort((a, b) => a.top - b.top)
 
-    elements.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+      let current = null
+      for (const p of positions) {
+        if (p.top <= trigger) current = p.id
+        else break
+      }
+      setActive(current)
+    }
+
+    compute()
+    let ticking = false
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        compute()
+        ticking = false
+      })
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', compute)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', compute)
+    }
   }, [enabled, ids.join('|')])
 
   return active
@@ -91,8 +102,18 @@ export default function Nav() {
   return (
     <nav className={`nav${open ? ' nav--open' : ''}`} id="header">
       <div className="nav-inner">
-        <a href="/" className="nav-logo author-name" onClick={close}>
-          {profile.name}
+        <a href="/" className="nav-logo" onClick={close} aria-label={profile.name}>
+          <img
+            src="/favicon/favicon-128x128.png"
+            srcSet="/favicon/favicon-96x96.png 1x, /favicon/favicon-256x256.png 2x"
+            alt=""
+            className="nav-logo__icon"
+            width="44"
+            height="44"
+            loading="eager"
+            decoding="async"
+          />
+          <span className="nav-logo__text">{profile.hud?.title?.accent || 'Jimmy'}</span>
         </a>
 
         <div className="nav-actions">
@@ -113,13 +134,13 @@ export default function Nav() {
               </a>
             </li>
             <li>
-              <a href="/#personal" onClick={close} className={sectionLinkClass('personal')}>
-                {tr(ui.nav.interests, lang)}
+              <a href="/#work" onClick={close} className={projectsActive ? 'is-active' : ''}>
+                {tr(ui.nav.projects, lang)}
               </a>
             </li>
             <li>
-              <a href="/#work" onClick={close} className={projectsActive ? 'is-active' : ''}>
-                {tr(ui.nav.projects, lang)}
+              <a href="/#personal" onClick={close} className={sectionLinkClass('personal')}>
+                {tr(ui.nav.interests, lang)}
               </a>
             </li>
             <li>

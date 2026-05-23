@@ -1,24 +1,24 @@
 export const profile = {
   name: 'Quoc Huy (Jimmy)',
   // Tech / role descriptors kept in English (industry-standard terminology)
-  role: 'Senior Fullstack Software Engineer · CMS Platforms · IoT · Tech Lead',
+  role: 'Senior Fullstack Engineer · Fintech · AIoT · CMS · Tech Lead',
   tagline: {
-    en: 'I build resilient fullstack systems - from CMS platforms and headless storefronts to IoT gateways and microservice backends.',
-    vi: 'Tôi xây dựng các hệ thống fullstack ổn định — từ nền tảng CMS và headless storefront đến IoT gateway và microservice backend.'
+    en: 'Fullstack engineer building lending platforms, AIoT systems, and enterprise CMS - backend-first, mobile and web at the edges.',
+    vi: 'Kỹ sư fullstack, xây nền tảng cho vay, hệ thống AIoT và CMS doanh nghiệp - backend là chính, mobile và web ở các tầng giao tiếp.'
   },
   intro: {
-    en: 'I have four years of experience as a Full-Stack Engineer, specializing in CMS systems and IoT. I have led development teams, built and managed both frontend and backend systems, and ensured seamless integration. My goal is to become a strong tech leader, continuously learning and sharing knowledge to drive innovation.',
-    vi: 'Tôi có bốn năm kinh nghiệm làm Full-Stack Engineer, chuyên về hệ thống CMS và IoT. Tôi đã dẫn dắt các nhóm phát triển, xây dựng và vận hành cả hệ thống frontend lẫn backend, đảm bảo tích hợp mượt mà giữa các tầng. Mục tiêu của tôi là trở thành một tech leader vững vàng, liên tục học hỏi và chia sẻ kiến thức để thúc đẩy đổi mới.'
+    en: 'Four years building production fullstack systems across fintech, smart-home AIoT, and enterprise content platforms. I own systems end-to-end: backend services, mobile and web frontends, and the integration glue in between. I have led teams of five to ten engineers and aim to keep growing as a technical leader who ships, mentors, and writes.',
+    vi: 'Bốn năm xây các hệ thống fullstack production trên fintech, smart-home AIoT và nền tảng nội dung doanh nghiệp. Tôi làm chủ hệ thống từ đầu đến cuối: backend service, frontend mobile và web, cùng phần tích hợp ở giữa. Tôi từng dẫn dắt nhóm năm đến mười kỹ sư và muốn tiếp tục phát triển thành một technical leader vừa ship, vừa mentor, vừa viết.'
   },
   currentRole: {
     title: 'Software Development Specialist',
-    company: 'Viettel Digital · Hanoi'
+    company: 'Lending Platform · Hanoi'
   },
-  industries: 'CMS · IoT · Smart Home · Telco · Education · E-commerce',
+  industries: 'Fintech · AIoT · Smart Home · CMS · Community · Education',
   // HUD-style hero metadata (used by Hero.jsx)
   hud: {
     portfolioYear: '2026',
-    availability: { en: 'AVAILABLE FOR HIRE', vi: 'SẴN SÀNG HỢP TÁC' },
+    availability: { en: 'AVAILABLE FOR HIRE', vi: 'ĐANG SẴN SÀNG NHẬN VIỆC' },
     available: true,
     eyebrow: { en: 'Senior Software Engineer', vi: 'Kỹ sư phần mềm Senior' },
     title: {
@@ -51,10 +51,16 @@ export const profile = {
       },
       {
         label: { en: 'Status', vi: 'Trạng thái' },
-        value: { en: 'OPEN TO HIRE ✓', vi: 'SẴN SÀNG HỢP TÁC ✓' },
+        value: { en: 'OPEN TO HIRE ✓', vi: 'SẴN SÀNG NHẬN VIỆC ✓' },
         accent: 'available'
       }
     ],
+    // Rendered as a single highlighted line in the main column, between the
+    // subtitle and the tech chip row.
+    domains: {
+      label: { en: 'Domains', vi: 'Lĩnh vực' },
+      value: 'Fintech · AIoT · CMS · Community · LMS'
+    },
     monogram: 'SE/26',
     establishedTag: { en: 'Senior · Est. 2019', vi: 'Senior · Bắt đầu 2019' },
     contactLabels: {

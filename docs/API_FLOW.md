@@ -37,23 +37,29 @@ sequenceDiagram
 | `profile.contact.linkedin` | GET (browser navigation) | `Nav.jsx` | User profile |
 | `profile.contact.resume` | GET (browser navigation) | `Nav.jsx` | Google Docs resume |
 | `/images/*` | GET | Hero, project heroes, personal masonry | Static assets from `public/images/` |
+| `/favicon/*` | GET | Browser tabs, pinned shortcuts, mobile home-screen icons | Transparent portrait favicon variants from `public/favicon/` |
 | `/banners/<slug>.html` | GET (iframe) | `BannerEmbed` on home cards + `ProjectShell` on detail | Self-contained animated banner per project |
 
 ### Image asset paths (static files)
 
 | Path | Referenced in |
 |------|----------------|
-| `/hero-banners/hero_*.png` | `Hero.jsx` - art-directed variants (mobile portrait, mobile landscape, tablet, MacBook 13, FHD, QHD, 4K, ultrawide). WebP wiring is in place but disabled by default. |
-| `/images/projects/mmp-cms.jpg` | `featuredProject.image` |
-| `/images/projects/dentsu-cms.jpg` | `otherProjects[0]` |
-| `/images/projects/yoolife.jpg` | `otherProjects[1]` |
-| `/images/projects/yooioc.jpg` | `otherProjects[2]` |
-| `/images/projects/vnpt-portal.jpg` | `otherProjects[3]` |
-| `/images/projects/eledevo-landing.jpg` | `otherProjects[4]` |
-| `/images/projects/fruit-market.jpg` | `otherProjects[5]` |
+| `/favicon/favicon.ico`, `/favicon/favicon-16x16.png` … `/favicon/favicon-256x256.png` | `index.html` favicon links for desktop browsers |
+| `/favicon/apple-touch-icon.png`, `/favicon/android-chrome-192x192.png`, `/favicon/android-chrome-512x512.png`, `/favicon/site.webmanifest` | `index.html` mobile and PWA icon metadata |
+| `/images/hero-banners/hero_*.png` | `Hero.jsx` - art-directed variants (mobile portrait, mobile landscape, tablet, MacBook 13, FHD, QHD, 4K, ultrawide). WebP wiring is in place but disabled by default. |
+| `/favicon/favicon*.{ico,png}` + `/favicon/apple-touch-icon.png` + `/favicon/android-chrome-*.{png,webp}` + `/favicon/site.webmanifest` | Wired in `index.html` `<head>` (full favicon set + PWA manifest). `Nav.jsx` also uses `/favicon/favicon-96x96.png` (with 64/128/256 srcSet) as the brand mark in the header. |
+| `/images/projects/lending-orchestration-platform.jpg` | `featuredProject.image` |
+| `/images/projects/yoohome.jpg` | `otherProjects[0]` |
+| `/images/projects/dotmar-cms.jpg` | `otherProjects[1]` |
+| `/images/projects/zigbee-gateway-firmware.jpg` | `otherProjects[2]` |
+| `/images/projects/hubly.jpg` | `otherProjects[3]` |
 | `/images/personal/personal_1.jpeg` … `personal_8.jpeg` | `personal.images[]` (masonry wall, chronological) |
 
-`public/images/projects/` is empty by default - cards render the dark fallback panel until images are added.
+`public/images/projects/` ships anonymized 1600×1000 JPEG preview mockups for the projects. They are generated from project metadata and case-study context rather than real client screenshots, which avoids exposing internal UIs, confidential data, logos, or proprietary code. Regenerate them with:
+
+```bash
+node scripts/generate-project-previews.mjs --force
+```
 
 Blog cover images live under `public/images/blog/<slug>.jpg` and are referenced from `blog.js` `cover` fields. When the directory is empty, `BlogCard` + `BlogDetailPage` render the bronze gradient fallback automatically.
 
@@ -98,7 +104,7 @@ To add a catch-all route, extend `App.jsx`:
 
 ```javascript
 // src/App.jsx - explicit route table
-<Route path="/projects/mmp-cms" element={<MmpCmsProject />} />
+<Route path="/projects/lending-orchestration-platform" element={<LendingPlatformProject />} />
 ```
 
 No route loaders, no data fetching on navigation.

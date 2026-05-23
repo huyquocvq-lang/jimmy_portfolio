@@ -1,21 +1,21 @@
 export const about = {
   eyebrow: { en: 'About Me', vi: 'Về tôi' },
   heading: {
-    en: 'Working at the intersection of CMS platforms, backend services, and IoT systems.',
-    vi: 'Làm việc ở giao điểm giữa nền tảng CMS, dịch vụ backend và hệ thống IoT.'
+    en: 'Backend-first fullstack, with a soft spot for systems that touch real hardware.',
+    vi: 'Fullstack thiên về backend, đặc biệt thích các hệ thống chạm trực tiếp tới phần cứng.'
   },
   paragraphs: [
     {
-      en: 'I bring four years of fullstack engineering experience across CMS platforms, microservice backends, mobile applications, and IoT gateways - with a focus on shipping production systems that handle high traffic and complex device integrations.',
-      vi: 'Tôi mang đến bốn năm kinh nghiệm kỹ thuật fullstack trên nền tảng CMS, backend microservice, ứng dụng mobile và IoT gateway — tập trung vào việc release các hệ thống production chịu tải cao và tích hợp thiết bị phức tạp.'
+      en: 'Four years of fullstack engineering across lending platforms, smart-home AIoT, and enterprise CMS. The work I gravitate toward sits where backend, devices, and real users meet - high-throughput services that have to stay correct under load.',
+      vi: 'Bốn năm làm fullstack qua các nền tảng cho vay, smart-home AIoT và CMS doanh nghiệp. Phần việc tôi thích nhất nằm ở chỗ backend, thiết bị và người dùng thực gặp nhau - các service throughput cao buộc phải đúng dưới tải.'
     },
     {
-      en: 'One of my strongest areas is owning a system end-to-end: building Java Spring Boot and Nest.js backends, integrating with MySQL and MongoDB at scale, wiring up MQTT and WebSocket pipelines for real-time telemetry, and exposing the result through React, React Native, and headless CMS frontends.',
-      vi: 'Một trong những thế mạnh của tôi là sở hữu hệ thống end-to-end: xây backend Java Spring Boot và Nest.js, tích hợp MySQL và MongoDB ở quy mô lớn, dựng pipeline MQTT và WebSocket cho telemetry thời gian thực, rồi đưa kết quả ra ngoài qua React, React Native và headless CMS frontend.'
+      en: 'Most of my work is end-to-end: Java Spring Boot or NestJS for the backend, MySQL or MongoDB at the storage layer, MQTT and WebSocket for realtime, and React, React Native, or a headless CMS for whatever the user sees. I read the code before I trust the docs, and I write tests where production has burned me.',
+      vi: 'Phần lớn công việc của tôi là end-to-end: Java Spring Boot hoặc NestJS cho backend, MySQL hoặc MongoDB ở tầng lưu trữ, MQTT và WebSocket cho realtime, React, React Native hoặc headless CMS cho phần người dùng nhìn thấy. Tôi đọc code trước khi tin tài liệu, và viết test ở những chỗ production từng làm tôi đau.'
     },
     {
-      en: 'I have led development teams of 5 to 10 engineers, mentored junior developers, and pushed best practices around CI/CD, code review, and clean architecture. My goal is to keep growing into a strong technical leader who learns continuously and shares knowledge to drive innovation.',
-      vi: 'Tôi đã dẫn dắt các nhóm phát triển từ 5 đến 10 kỹ sư, mentor các bạn junior, và đẩy mạnh các best practice xoay quanh CI/CD, code review, và clean architecture. Mục tiêu của tôi là tiếp tục phát triển thành một technical leader vững vàng — học liên tục và chia sẻ kiến thức để thúc đẩy đổi mới.'
+      en: 'On the lead side, I have run teams of five to ten engineers - task planning, code reviews, mentoring juniors, and pushing CI/CD and clean architecture as a default, not a slogan. I want to keep growing into a technical leader who ships, writes, and shares what works and what does not.',
+      vi: 'Về mảng lead, tôi đã quản nhóm năm đến mười kỹ sư - phân việc, review code, mentor junior và đẩy CI/CD cùng clean architecture thành mặc định chứ không chỉ là khẩu hiệu. Tôi muốn tiếp tục phát triển thành một technical leader vừa ship, vừa viết, vừa chia sẻ thứ gì hiệu quả và thứ gì không.'
     }
   ]
 }

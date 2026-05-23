@@ -23,20 +23,21 @@ export const ui = {
     scrollDown: { en: 'Scroll to content', vi: 'Cuộn xuống' }
   },
   impact: {
-    eyebrow: { en: 'Impact Highlights', vi: 'Thành tựu nổi bật' },
-    heading: { en: 'Numbers that show the work.', vi: 'Những con số biết nói.' }
+    eyebrow: { en: 'Impact Highlights', vi: 'Điểm nhấn thành tựu' },
+    heading: { en: 'Numbers that show the work.', vi: 'Vài con số kể chuyện công việc.' },
+    tabsAria: { en: 'Impact category', vi: 'Nhóm thành tựu' }
   },
   education: {
     eyebrow: { en: 'Education', vi: 'Học vấn' },
     heading: { en: 'Where I studied engineering.', vi: 'Nơi tôi học kỹ thuật.' },
-    gpa: { en: 'GPA', vi: 'CPA' }
+    gpa: { en: 'GPA', vi: 'GPA' }
   },
   experience: {
     eyebrow: { en: 'Work Experience', vi: 'Kinh nghiệm làm việc' },
-    heading: { en: "Where I've worked.", vi: 'Những nơi tôi từng làm.' }
+    heading: { en: 'Where I have worked.', vi: 'Những nơi tôi đã làm.' }
   },
   projects: {
-    eyebrow: { en: 'Selected Work', vi: 'Công việc tiêu biểu' },
+    eyebrow: { en: 'Selected Work', vi: 'Dự án tiêu biểu' },
     heading: { en: 'Projects', vi: 'Dự án' },
     count: { en: 'Projects', vi: 'Dự án' },
     featuredTag: { en: '01 / Featured', vi: '01 / Tiêu biểu' },
@@ -51,7 +52,7 @@ export const ui = {
     backHome: { en: '← Back to home', vi: '← Về trang chủ' }
   },
   blog: {
-    eyebrow: { en: 'Writing', vi: 'Viết lách' },
+    eyebrow: { en: 'Writing', vi: 'Bài viết' },
     heading: { en: 'Notes from the keyboard.', vi: 'Ghi chép từ bàn phím.' },
     viewAll: { en: 'View all →', vi: 'Xem tất cả →' },
     readMin: { en: 'min read', vi: 'phút đọc' },
@@ -88,10 +89,10 @@ export const ui = {
     loading: { en: 'Loading dashboard…', vi: 'Đang tải dashboard…' }
   },
   footer: {
-    eyebrow: { en: "Let's Talk", vi: 'Liên hệ' },
+    eyebrow: { en: "Let's Talk", vi: 'Cùng trò chuyện' },
     heading: {
-      en: 'Have a fullstack problem worth solving?',
-      vi: 'Có bài toán fullstack đáng để giải?'
+      en: 'Got a problem worth solving?',
+      vi: 'Có vấn đề cần giải quyết ?'
     },
     connectCta: { en: 'Connect on LinkedIn', vi: 'Kết nối qua LinkedIn' },
     currently: { en: 'Currently', vi: 'Hiện tại' },

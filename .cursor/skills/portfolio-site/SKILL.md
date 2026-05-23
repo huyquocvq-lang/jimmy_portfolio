@@ -12,7 +12,7 @@ description: >-
 ## Before coding
 
 1. Read [AGENTS.md](../../AGENTS.md)
-2. Read [docs/USAGE_GUIDE.md](../../docs/USAGE_GUIDE.md) — doc sync table
+2. Read [docs/USAGE_GUIDE.md](../../docs/USAGE_GUIDE.md) - doc sync table
 3. Confirm: **web React 18 + Vite**, not React Native
 
 ## Mandatory: update docs
@@ -23,7 +23,7 @@ Tell the user which doc files you updated.
 
 ## Content source (`docs/CONTENT_SOURCE.md`)
 
-- Mapping reference only — **not** imported at runtime
+- Mapping reference only - **not** imported at runtime
 - On content changes: update `CONTENT_SOURCE.md` **and** runtime files (`src/data/*`, `src/projects/*`)
 - **User instructions in chat override** `CONTENT_SOURCE.md`
 
@@ -50,9 +50,9 @@ Tell the user which doc files you updated.
 
 ## Add new project
 
-1. `src/data/projects.js` — `{ slug, link: '/projects/<slug>', ... }`
+1. `src/data/projects.js` - `{ slug, link: '/projects/<slug>', ... }`
 2. `src/projects/NewProject.jsx` + `src/styles/projects/new-project.css`
-3. `src/App.jsx` — `<Route path="/projects/<slug>" element={<NewProject />} />`
+3. `src/App.jsx` - `<Route path="/projects/<slug>" element={<NewProject />} />`
 4. `public/images/projects/<slug>.jpg`
 5. Update docs: `FEATURE_MAP.md`, `ARCHITECTURE_OVERVIEW.md`, `AI_AGENT_GUIDE.md`, `FULL_DOCUMENTATION.md`, `API_FLOW.md`, `AGENTS.md` if routes change
 

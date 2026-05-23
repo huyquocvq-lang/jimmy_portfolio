@@ -1,21 +1,21 @@
 export const personal = {
   eyebrow: { en: 'Personal Interest', vi: 'Sở thích cá nhân' },
   heading: {
-    en: 'A little more about me - outside of work.',
-    vi: 'Một chút về tôi - ngoài giờ làm việc.'
+    en: 'A bit more about me, outside the editor.',
+    vi: 'Một chút về tôi, ngoài giờ làm code.'
   },
   paragraphs: [
     {
-      en: 'Outside of code, I love to travel and discover new lands, food, and people. I describe myself as strong, assertive, and someone who genuinely enjoys challenges - which is probably why I keep gravitating toward complex systems at work.',
-      vi: 'Ngoài giờ code, tôi thích đi du lịch và khám phá vùng đất, ẩm thực, con người mới. Tôi mô tả mình là người mạnh mẽ, quyết đoán và thực sự yêu thử thách — có lẽ đó là lý do tôi luôn bị cuốn về phía các hệ thống phức tạp trong công việc.'
+      en: 'I travel whenever I can - new places, new food, new people. Friends usually describe me as direct and stubborn in a useful way, which is probably why I keep ending up on the hard systems at work.',
+      vi: 'Có dịp là tôi đi - vùng đất mới, món ăn mới, người mới. Bạn bè thường nhận xét tôi thẳng và lì theo nghĩa tốt, có lẽ đó là lý do tôi cứ rơi vào những hệ thống khó ở chỗ làm.'
     },
     {
-      en: 'I also founded a small clothing store, where I handle supplier negotiation, online sales content, and the Facebook page. On top of that, I have served as the MC and company spokesperson for several smart-home and automation product launches - presenting new product features at launches and related events.',
-      vi: 'Tôi cũng sáng lập một cửa hàng quần áo nhỏ, tự đàm phán với nhà cung cấp, viết content bán hàng online và quản lý fanpage Facebook. Bên cạnh đó, tôi từng là MC và đại diện công ty trong nhiều sự kiện ra mắt sản phẩm smart-home và automation — giới thiệu các tính năng mới của sản phẩm tại các buổi ra mắt và sự kiện liên quan.'
+      en: 'On the side, I run a small clothing shop - supplier deals, sales copy, the Facebook page. I have also worked as MC and company spokesperson for several smart-home and home-automation product launches, walking the audience through new features and answering live questions.',
+      vi: 'Bên ngoài công việc, tôi mở một cửa hàng quần áo nhỏ - tự thương lượng nhà cung cấp, viết bài bán hàng và quản lý fanpage Facebook. Tôi cũng từng làm MC và phát ngôn cho một số sự kiện ra mắt sản phẩm smart-home và home-automation - giới thiệu tính năng mới và trả lời câu hỏi trực tiếp từ khán giả.'
     },
     {
-      en: '"Learn from yesterday, live for today, hope for tomorrow." I try to keep improving new skills, sharing knowledge, and finding small ways to balance the analytical side of engineering with the creative side of building a brand.',
-      vi: '"Học từ hôm qua, sống cho hôm nay, hy vọng vào ngày mai." Tôi luôn cố gắng rèn thêm kỹ năng mới, chia sẻ kiến thức và tìm những cách nhỏ để cân bằng giữa khía cạnh phân tích của kỹ thuật và khía cạnh sáng tạo của việc xây dựng thương hiệu.'
+      en: '“Learn from yesterday, live for today, hope for tomorrow.” I try to keep picking up new skills, write down what I learn, and balance the analytical side of engineering with the more human side of running a small brand.',
+      vi: '“Học từ hôm qua, sống cho hôm nay, hy vọng vào ngày mai.” Tôi cố gắng học thêm kỹ năng mới, ghi lại những gì học được, và giữ cân bằng giữa phần phân tích của kỹ thuật với phần con người trong việc xây dựng một thương hiệu nhỏ.'
     }
   ],
   // Order tuned so the CSS column-balance puts personal_8 in the middle column

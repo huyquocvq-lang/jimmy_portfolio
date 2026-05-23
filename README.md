@@ -1,4 +1,4 @@
-# Portfolio — Quoc Huy (Jimmy)
+# Portfolio - Quoc Huy (Jimmy)
 
 React + Vite portfolio for **Quoc Huy (Jimmy)** - Senior Fullstack Software Engineer.
 Data is centralized in `src/data/` for easy editing; each project case study has its own JSX + CSS file.
@@ -35,6 +35,12 @@ Open http://localhost:5173
 
 Node 18+ is required (Vite 5).
 
+If the dev server hangs (often after a folder rename or large structural change), run:
+
+```bash
+npm run dev:fresh   # clears node_modules/.vite then starts vite
+```
+
 ## Build for production
 
 ```bash
@@ -47,9 +53,10 @@ npm run build
 ```
 portfolio/
 ├── public/
-│   ├── hero-banners/             ← Responsive hero images (PNG variants)
 │   ├── images/
-│   │   ├── personal/             ← Pinterest masonry photos (personal_1..6.jpeg)
+│   │   ├── hero-banners/         ← Responsive hero images (PNG variants)
+│   ├── favicon/                  ← Favicon set + PWA manifest (wired in index.html, brand logo in Nav)
+│   │   ├── personal/             ← Pinterest masonry photos (personal_1..8.jpeg)
 │   │   └── projects/             ← Per-project card images (mmp-cms.jpg, etc.)
 │   └── banners/                  ← Animated banner HTMLs (none ship today)
 ├── src/
@@ -95,15 +102,15 @@ Edit `src/data/profile.js`
 Edit `src/data/stats.js`
 
 ### Change About text
-Edit `src/data/about.js` — `paragraphs` is an array, add/remove freely.
+Edit `src/data/about.js` - `paragraphs` is an array, add/remove freely.
 
 ### Change skills
-Edit `src/data/skills.js` — array of skill objects (each `icon` key must exist in `skillIcons.js`).
+Edit `src/data/skills.js` - array of skill objects (each `icon` key must exist in `skillIcons.js`).
 
 ### Add / edit / reorder projects
 Edit `src/data/projects.js`:
-- `featuredProject` — the pinned project at the top
-- `otherProjects` — array; add/remove/reorder items
+- `featuredProject` - the pinned project at the top
+- `otherProjects` - array; add/remove/reorder items
 
 To swap which project is featured: move the object between `featuredProject` and `otherProjects`. Keep `slug` aligned with the route in `src/App.jsx` and the `slug` prop passed to `ProjectShell` in the project's JSX.
 
@@ -111,18 +118,18 @@ To swap which project is featured: move the object between `featuredProject` and
 
 1. Put your image file in `public/images/` (or `public/images/projects/`)
 2. Reference it in the data file as `/images/your-file.jpg`
-   (path starts with `/`, no `public` prefix — Vite serves `public/` at root)
+   (path starts with `/`, no `public` prefix - Vite serves `public/` at root)
 
 Example:
 ```js
 image: '/images/projects/mmp-cms.jpg'
 ```
 
-## Replacing the placeholder images
+## Project preview images
 
-The current project cards reference image paths that are not yet shipped. Add real images at:
+The project cards ship anonymized JPEG previews at:
 
-- `public/hero-banners/hero_*.png` (hero responsive variants - existing assets in repo)
+- `public/images/hero-banners/hero_*.png` (hero responsive variants - existing assets in repo)
 - `public/images/projects/mmp-cms.jpg`
 - `public/images/projects/dentsu-cms.jpg`
 - `public/images/projects/yoolife.jpg`
@@ -131,10 +138,15 @@ The current project cards reference image paths that are not yet shipped. Add re
 - `public/images/projects/eledevo-landing.jpg`
 - `public/images/projects/fruit-market.jpg`
 
+These previews are generated from project metadata and case-study context, not from real client screenshots. Regenerate the current set with:
+
+```bash
+node scripts/generate-project-previews.mjs --force
+```
+
 Recommended sizes:
-- Hero: art-direct variants in `public/hero-banners/` cover most viewports
-- Featured project: 1400×900 (16:10 aspect)
-- Other projects: 1200×750 (16:10 aspect)
+- Hero: art-direct variants in `public/images/hero-banners/` cover most viewports
+- Project previews: 1600×1000 (16:10 aspect)
 
 Avoid uploading internal screenshots, confidential client data, or proprietary code from past employers - use anonymized summaries and architectural visuals that show the engineering thinking without exposing company-specific details.
 
