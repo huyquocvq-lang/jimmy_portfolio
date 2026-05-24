@@ -38,12 +38,15 @@ sequenceDiagram
 | `profile.contact.resume` | GET (browser navigation) | `Nav.jsx` | Google Docs resume |
 | `/images/*` | GET | Hero, project heroes, personal masonry | Static assets from `public/images/` |
 | `/favicon/*` | GET | Browser tabs, pinned shortcuts, mobile home-screen icons | Transparent portrait favicon variants from `public/favicon/` |
+| `/og-image.png` | GET | Open Graph / Twitter link previews | Social preview image referenced by absolute metadata URLs in `index.html` |
 | `/banners/<slug>.html` | GET (iframe) | `BannerEmbed` on home cards + `ProjectShell` on detail | Self-contained animated banner per project |
+| `https://jimmyvu.info/*` | 308/301 redirect | Vercel edge routing | Redirects apex traffic to the canonical `https://www.jimmyvu.info/*` host so www and non-www links expose the same metadata |
 
 ### Image asset paths (static files)
 
 | Path | Referenced in |
 |------|----------------|
+| `/og-image.png` | `index.html` Open Graph and Twitter image metadata as `https://www.jimmyvu.info/og-image.png` |
 | `/favicon/favicon.ico`, `/favicon/favicon-16x16.png` … `/favicon/favicon-256x256.png` | `index.html` favicon links for desktop browsers |
 | `/favicon/apple-touch-icon.png`, `/favicon/android-chrome-192x192.png`, `/favicon/android-chrome-512x512.png`, `/favicon/site.webmanifest` | `index.html` mobile and PWA icon metadata |
 | `/images/hero-banners/hero_*.png` | `Hero.jsx` - art-directed variants (mobile portrait, mobile landscape, tablet, MacBook 13, FHD, QHD, 4K, ultrawide). WebP wiring is in place but disabled by default. |
@@ -108,6 +111,10 @@ To add a catch-all route, extend `App.jsx`:
 ```
 
 No route loaders, no data fetching on navigation.
+
+## Production link previews
+
+`index.html` hard-codes `https://www.jimmyvu.info/` in `canonical`, `og:url`, `og:image`, and Twitter image tags because social crawlers do not run the React bundle and should not depend on relative asset paths. `vercel.json` redirects the apex host `https://jimmyvu.info/*` to `https://www.jimmyvu.info/*`, so sharing either host gives crawlers the same canonical Open Graph metadata.
 
 ## Hash-based deep linking (home)
 

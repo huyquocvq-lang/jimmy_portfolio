@@ -9,11 +9,9 @@
       social crawlers (LinkedIn, Facebook, Slack, iMessage, WhatsApp) DO NOT run
       JavaScript and DO NOT respect relative paths.
 
-      The placeholder host `https://jennytangmarketingportpolio.com` is left in
-      place from the original portfolio. Before deploying to a new domain,
-      search-and-replace EVERY occurrence with your real production origin, e.g.:
-
-        sed -i '' 's|https://jennytangmarketingportpolio.com|https://YOUR-DOMAIN|g' index.html
+      The canonical production origin is `https://www.jimmyvu.info`.
+      The apex domain `https://jimmyvu.info` redirects to the www host in
+      vercel.json so either shared URL exposes the same preview metadata.
 
       Then re-build and re-scrape via:
         - LinkedIn Post Inspector: https://www.linkedin.com/post-inspector/
@@ -30,19 +28,19 @@
     <meta name="author" content="Quoc Huy (Jimmy)" />
     <meta name="theme-color" content="#1a1a1a" />
 
-    <link rel="canonical" href="https://jennytangmarketingportpolio.com/" />
+    <link rel="canonical" href="https://www.jimmyvu.info/" />
 
     <!-- Open Graph (LinkedIn, Facebook, iMessage, Slack, WhatsApp) -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Quoc Huy (Jimmy) Portfolio" />
-    <meta property="og:url" content="https://jennytangmarketingportpolio.com/" />
+    <meta property="og:url" content="https://www.jimmyvu.info/" />
     <meta property="og:title" content="Quoc Huy (Jimmy) - Portfolio" />
     <meta
       property="og:description"
       content="Senior Fullstack Software Engineer specializing in CMS platforms, microservices backends, mobile apps, and IoT systems."
     />
-    <meta property="og:image" content="https://jennytangmarketingportpolio.com/og-image.png" />
-    <meta property="og:image:secure_url" content="https://jennytangmarketingportpolio.com/og-image.png" />
+    <meta property="og:image" content="https://www.jimmyvu.info/og-image.png" />
+    <meta property="og:image:secure_url" content="https://www.jimmyvu.info/og-image.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -59,7 +57,7 @@
       name="twitter:description"
       content="Senior Fullstack Software Engineer specializing in CMS platforms, microservices backends, mobile apps, and IoT systems."
     />
-    <meta name="twitter:image" content="https://jennytangmarketingportpolio.com/og-image.png" />
+    <meta name="twitter:image" content="https://www.jimmyvu.info/og-image.png" />
     <meta
       name="twitter:image:alt"
       content="Quoc Huy (Jimmy) - Senior Fullstack Software Engineer portfolio cover"

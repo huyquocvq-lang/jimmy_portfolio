@@ -178,6 +178,7 @@ Files copied verbatim to build output root. Image URLs start with `/images/`. Ba
 | `public/images/hero-banners/` | 8 responsive hero variants (`hero_*.webp` + `.png`) consumed by `<picture>` in `Hero.jsx` |
 | `public/images/` | Project preview JPEGs, personal masonry photos, agent screenshots |
 | `public/favicon/` | Transparent portrait favicon set: ICO, desktop PNG sizes, Apple touch icon, Android Chrome PNG/WebP variants, and `site.webmanifest` |
+| `public/og-image.png` | Social sharing preview image referenced by absolute Open Graph / Twitter URLs in `index.html` |
 | `public/banners/` | Self-contained animated HTML banner per project (canonical source, edit in place) |
 
 ### `/scripts`
@@ -595,6 +596,8 @@ Content constants live in data files, not a separate `constants.js`.
 | CodePush / OTA | N/A |
 
 **Manual deploy:** `npm run build` → upload `dist/` to static host (e.g. GitHub Pages).
+
+**Production metadata:** `index.html` uses `https://www.jimmyvu.info/` as the canonical site URL and as the origin for `/og-image.png` in Open Graph / Twitter tags. The Vercel config redirects `https://jimmyvu.info/*` to `https://www.jimmyvu.info/*`, so both www and non-www shared links resolve to the same preview metadata.
 
 ---
 
