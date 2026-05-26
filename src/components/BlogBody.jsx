@@ -10,6 +10,8 @@ import { tr } from '../utils/i18n'
  *   { type: 'quote', text }
  *   { type: 'image', src, alt, caption? }
  *   { type: 'callout', text }
+ *   { type: 'html', html }                       // author-only markup
+ *   { type: 'video', src, embed?, poster?, title?, caption? }
  */
 export default function BlogBody({ blocks }) {
   const { lang } = useLanguage()
@@ -54,6 +56,40 @@ export default function BlogBody({ blocks }) {
             return (
               <figure key={i} className="blog-body__figure">
                 <img src={block.src} alt={tr(block.alt, lang)} loading="lazy" />
+                {block.caption && <figcaption>{tr(block.caption, lang)}</figcaption>}
+              </figure>
+            )
+          case 'html':
+            // Author-only markup (never user input) - see blog.ts schema notes.
+            return (
+              <div
+                key={i}
+                className="blog-body__html"
+                dangerouslySetInnerHTML={{ __html: block.html }}
+              />
+            )
+          case 'video':
+            return (
+              <figure key={i} className="blog-body__video">
+                {block.embed ? (
+                  <div className="blog-body__video-frame">
+                    <iframe
+                      src={block.src}
+                      title={block.title || tr(block.caption, lang) || 'Embedded video'}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                ) : (
+                  <video
+                    className="blog-body__video-el"
+                    src={block.src}
+                    poster={block.poster}
+                    controls
+                    preload="metadata"
+                  />
+                )}
                 {block.caption && <figcaption>{tr(block.caption, lang)}</figcaption>}
               </figure>
             )
