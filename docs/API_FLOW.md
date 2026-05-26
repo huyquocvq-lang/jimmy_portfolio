@@ -64,7 +64,7 @@ sequenceDiagram
 node scripts/generate-project-previews.mjs --force
 ```
 
-Blog cover images live under `public/images/blog/<slug>.jpg` and are referenced from `blog.js` `cover` fields. When the directory is empty, `BlogCard` + `BlogDetailPage` render the bronze gradient fallback automatically.
+Blog cover images live under `public/images/blog/<slug>.jpg` and are referenced from `blog.ts` `cover` fields. When the directory is empty, `BlogCard` + `BlogDetailPage` render the bronze gradient fallback automatically.
 
 ### Banner asset paths (static HTML, served as iframe documents)
 

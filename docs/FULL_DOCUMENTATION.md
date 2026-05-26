@@ -61,6 +61,7 @@ Present engineering credibility to recruiters, hiring managers, and clients thro
 portfolio/
 ├── index.html                 # HTML shell, font CDN links
 ├── package.json
+├── tsconfig.json              # TS config (allowJs; powers src/data/blog.ts typing)
 ├── vite.config.js             # Vite + SPA mode
 ├── scripts/
 │   └── generate-project-previews.mjs # Regenerates anonymized project JPEGs

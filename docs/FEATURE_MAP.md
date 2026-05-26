@@ -13,9 +13,9 @@
 | F4b | Personal interest + masonry image wall | `src/components/PersonalInterest.jsx`, `src/data/personal.js` | `/#personal` |
 | F5 | Projects listing (homepage) | `src/components/Projects.jsx`, `FeaturedProject.jsx`, `OtherProject.jsx`, `BannerEmbed.jsx` | `/#work` |
 | F5a | All-projects list page | `src/pages/ProjectListPage.jsx` | `/projects` |
-| F5b | Blog slider (homepage) | `src/components/Blogs.jsx`, `BlogCard.jsx`, `src/data/blog.js` | `/#blog` |
-| F5c | Blog list page (paginated) | `src/pages/BlogListPage.jsx`, `src/components/Pagination.jsx`, `src/data/blog.js` | `/blog` |
-| F5d | Blog detail page | `src/pages/BlogDetailPage.jsx`, `src/components/BlogBody.jsx`, `src/data/blog.js` | `/blog/:slug` |
+| F5b | Blog slider (homepage) | `src/components/Blogs.jsx`, `BlogCard.jsx`, `src/data/blog.ts` | `/#blog` |
+| F5c | Blog list page (paginated) | `src/pages/BlogListPage.jsx`, `src/components/Pagination.jsx`, `src/data/blog.ts` | `/blog` |
+| F5d | Blog detail page | `src/pages/BlogDetailPage.jsx`, `src/components/BlogBody.jsx`, `src/data/blog.ts` | `/blog/:slug` |
 | F6 | Footer / CTA | `src/components/Footer.jsx` | footer |
 | F7–F13 | Individual project case studies | `src/projects/*Project.jsx` | `/projects/:slug` |
 | FX | Theme tokens (charcoal + bronze) + dark/light toggle | `src/styles/global.css` `:root` / `[data-theme="light"]`, `src/context/ThemeContext.jsx`, `src/components/ThemeToggle.jsx` | global |
@@ -253,7 +253,7 @@ Single-row horizontal slider rendered between `Projects` and `Footer` on the hom
 
 | Piece | Detail |
 |-------|--------|
-| Data | `src/data/blog.js` - `getAllPosts()` returns posts sorted by `date` desc |
+| Data | `src/data/blog.ts` - `getAllPosts()` returns posts sorted by `date` desc |
 | Card | `src/components/BlogCard.jsx` - cover image, date, read time, title (clamped 2 lines), excerpt (clamped 3 lines), tag chips, CTA |
 | Slider | CSS `scroll-snap-type: x mandatory` track with grid auto-flow column; native scroll on touch / trackpad; arrow buttons (prev/next) for desktop mouse users (hidden ≤768px). Arrows enable/disable based on `scrollLeft` + `scrollWidth - clientWidth` thresholds. |
 | Header | Eyebrow + heading + **View all →** link (`ui.blog.viewAll`) → `/blog` |
@@ -289,11 +289,11 @@ Renders a single post. If the slug is unknown, redirects to `/blog`.
 | Cover | Hero band using `post.cover` as `background-image`; falls back to a bronze gradient when `cover` is null |
 | Breadcrumbs | Home → Blog → current title |
 | Header | Date + read time + title + excerpt + tag chips |
-| Body | `src/components/BlogBody.jsx` renders the structured `body` array via switch. Block types: `paragraph`, `heading` (level 2/3), `list`, `code` (with optional `lang` badge), `quote`, `callout`, `image` (with optional caption). Text fields are `{ en, vi }` pairs. |
+| Body | `src/components/BlogBody.jsx` renders the structured `body` array via switch. Block types: `paragraph`, `heading` (level 2/3), `list`, `code` (with optional `lang` badge), `quote`, `callout`, `image` (with optional caption), `html` (author-only raw markup), `video` (native `<video>` or `embed` `<iframe>`). Text fields are `{ en, vi }` pairs. |
 | Pager | Prev/next post from `getAdjacentPosts(slug)` (order matches `getAllPosts()`) |
 | Back link | `← Back to blog` → `/blog` |
 
-### `blog.js` schema
+### `blog.ts` schema
 
 ```ts
 type Block =
@@ -304,6 +304,8 @@ type Block =
   | { type: 'quote', text: Translatable }
   | { type: 'callout', text: Translatable }
   | { type: 'image', src: string, alt: Translatable, caption?: Translatable }
+  | { type: 'html', html: string }                      // author-only markup (dangerouslySetInnerHTML)
+  | { type: 'video', src: string, embed?: boolean, poster?: string, title?: string, caption?: Translatable }
 
 interface BlogPost {
   slug: string
