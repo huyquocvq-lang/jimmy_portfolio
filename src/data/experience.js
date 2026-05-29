@@ -6,7 +6,7 @@
 export const experience = [
   {
     company: { en: 'Viettel Digital Services', vi: 'Nền tảng Lending Telco-Fintech' },
-    website: null,
+    website: "https://viettel.vn/",
     logo: '/images/logos/viettel.png',
     role: 'Software Development Specialist',
     location: { en: 'Hanoi, Vietnam', vi: 'Hà Nội, Việt Nam' },
@@ -93,7 +93,7 @@ export const experience = [
   },
   {
     company: 'YooTek Holdings',
-    website: null,
+    website: "https://yootek.vn/",
     logo: '/images/logos/yootek.png',
     role: 'Full Stack Developer',
     location: { en: 'Nam Tu Liem, Hanoi', vi: 'Nam Từ Liêm, Hà Nội' },
@@ -137,7 +137,7 @@ export const experience = [
   },
   {
     company: 'Hanoi Telecom Corporation',
-    website: null,
+    website: "https://hanoitelecom.com/",
     logo: '/images/logos/htc.png',
     role: 'Java Developer',
     location: { en: 'My Dinh 1, Hanoi', vi: 'Mỹ Đình 1, Hà Nội' },
@@ -173,7 +173,7 @@ export const experience = [
   },
   {
     company: 'Eledevo Academy',
-    website: null,
+    website: 'https://www.google.com/search?q=eledevo+Academy+website',
     logo: '/images/logos/eledevo.png',
     role: 'Full Stack Developer & IT Lecturer',
     location: { en: 'Hanoi', vi: 'Hà Nội' },
