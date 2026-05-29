@@ -169,7 +169,7 @@ main.jsx
 - **New project:** new `src/projects/X.jsx` + CSS + route in `App.jsx` + entry in `projects.js` + optional `public/banners/X.html`
 - **New dashboard embed:** drop `XDashboard.tsx` in `src/embeds/`, register in `EmbedSlot.jsx` dashboards map + `projectEmbeds.js`, mount `<EmbedSlot {...projectEmbeds.x} />`
 - **New banner:** add `public/banners/<slug>.html` (clone an existing one; keep `.banner-fit` 560×510 + inline scale script); reference via `banner` field in `projects.js`
-- **Project preview refresh:** run `node scripts/generate-project-previews.mjs --force` to replace the shipped anonymized JPEGs under `public/images/projects/`
+- **Project preview refresh:** replace `public/images/projects/<slug>.jpg` with an approved 1600×1000 real/reference visual; use `node scripts/generate-project-previews.mjs --force` only for anonymized placeholders
 - **New personal photo:** drop file in `public/images/personal/`, add entry to `personal.images[]`
 
 ## Core constraints (do not break)

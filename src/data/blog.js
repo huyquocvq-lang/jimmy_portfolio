@@ -19,7 +19,7 @@ export const blog = [
       vi: 'Bài học sau khi release nền tảng biên tập của MMP - đường đi của request, pattern truy cập MySQL, và những lớp cache thực sự quan trọng.'
     },
     date: '2025-09-12',
-    cover: '/images/blog/mmp-cms.jpg',
+    cover: '/images/blogs/building-high-traffic-cms-with-spring-boot/preview.jpg',
     tags: ['Java', 'Spring Boot', 'MySQL', 'Architecture'],
     readMinutes: 7,
     body: [
@@ -99,7 +99,7 @@ export const blog = [
       vi: 'Biên tập viên giữ workflow quen thuộc, frontend ship theo lịch riêng, API vẫn gọn. Cách chia ba lớp đã làm cho mọi thứ vận hành.'
     },
     date: '2025-07-04',
-    cover: '/images/blog/magnolia-headless.jpg',
+    cover: '/images/blogs/going-headless-with-magnolia-and-react/preview.jpg',
     tags: ['Magnolia', 'React', 'GraphQL', 'Headless CMS'],
     readMinutes: 6,
     body: [
@@ -155,7 +155,7 @@ export const blog = [
       vi: 'Một ngôi nhà thông minh chỉ thông minh bằng cầu nối protocol yếu nhất. Ghi chép từ việc xây gateway của YooTek nói chuyện với ba stack IoT cùng lúc.'
     },
     date: '2024-11-18',
-    cover: '/images/blog/iot-gateway.jpg',
+    cover: '/images/blogs/bridging-zigbee-zwave-ble-in-one-gateway/preview.jpg',
     tags: ['IoT', 'Zigbee', 'Z-Wave', 'BLE', 'MQTT'],
     readMinutes: 8,
     body: [
@@ -206,7 +206,7 @@ export const blog = [
       vi: 'Code review, phân công, đánh giá hiệu suất - những thói quen nhỏ giữ cho team YooTek vẫn ship được mà không kiệt sức.'
     },
     date: '2024-03-22',
-    cover: '/images/blog/team-lead.jpg',
+    cover: '/images/blogs/leading-a-small-engineering-team/preview.jpg',
     tags: ['Leadership', 'Engineering Management'],
     readMinutes: 5,
     body: [

@@ -58,13 +58,9 @@ sequenceDiagram
 | `/images/projects/hubly.jpg` | `otherProjects[3]` |
 | `/images/personal/personal_1.jpeg` … `personal_8.jpeg` | `personal.images[]` (masonry wall, chronological) |
 
-`public/images/projects/` ships anonymized 1600×1000 JPEG preview mockups for the projects. They are generated from project metadata and case-study context rather than real client screenshots, which avoids exposing internal UIs, confidential data, logos, or proprietary code. Regenerate them with:
+`public/images/projects/` ships 1600×1000 JPEG project thumbnails derived from approved reference screenshots, marketing/product images, or other non-confidential visual assets. `scripts/generate-project-previews.mjs` remains available for producing anonymized placeholder mockups when a project has no approved real-world visual source.
 
-```bash
-node scripts/generate-project-previews.mjs --force
-```
-
-Blog cover images live under `public/images/blog/<slug>.jpg` and are referenced from `blog.js` `cover` fields. When the directory is empty, `BlogCard` + `BlogDetailPage` render the bronze gradient fallback automatically.
+Blog cover images live under `public/images/blogs/<slug>/preview.jpg` and are referenced from `blog.js` `cover` fields. When a post has no `cover`, `BlogCard` + `BlogDetailPage` render the bronze gradient fallback automatically.
 
 ### Banner asset paths (static HTML, served as iframe documents)
 

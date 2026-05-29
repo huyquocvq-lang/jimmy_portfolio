@@ -294,7 +294,7 @@ The homepage shows a single-row horizontal slider with newest posts; the `View a
 ## Authoring rules
 
 - One object per post in the `blog` array (`src/data/blog.js`).
-- Required: `slug`, `title`, `excerpt`, `date` (ISO `YYYY-MM-DD`), `tags` (plain strings), `body` (array of blocks). Optional: `cover` (path under `/images/blog/<slug>.jpg`), `readMinutes`.
+- Required: `slug`, `title`, `excerpt`, `date` (ISO `YYYY-MM-DD`), `tags` (plain strings), `body` (array of blocks). Optional: `cover` (path under `/images/blogs/<slug>/preview.jpg`), `readMinutes`.
 - Text fields (`title`, `excerpt`, block text, image alt/caption) are `{ en, vi }` pairs - same bilingual rule as elsewhere.
 - Tags / code snippets / language labels stay as plain strings.
 - Block types: `paragraph`, `heading` (level 2 or 3), `list` (items: translatable strings), `code` (`{ lang, code }`), `quote`, `callout`, `image` (`{ src, alt, caption? }`).

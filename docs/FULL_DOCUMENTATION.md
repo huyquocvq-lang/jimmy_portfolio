@@ -63,7 +63,7 @@ portfolio/
 ├── package.json
 ├── vite.config.js             # Vite + SPA mode
 ├── scripts/
-│   └── generate-project-previews.mjs # Regenerates anonymized project JPEGs
+│   └── generate-project-previews.mjs # Generates anonymized project placeholders
 ├── .gitignore
 ├── README.md                  # Developer setup guide
 ├── docs/
@@ -78,7 +78,7 @@ portfolio/
 │   └── images/                # Static assets (served at /images/...)
 │   └── favicon/               # Browser/mobile favicon variants (served at /favicon/...)
 │       ├── personal/*.jpeg
-│       └── projects/*.jpg     # 1600x1000 anonymized project previews
+│       └── projects/*.jpg     # 1600x1000 project preview thumbnails
 └── src/
     ├── main.jsx               # ReactDOM.createRoot entry
     ├── App.jsx                # Route definitions
@@ -185,7 +185,7 @@ Files copied verbatim to build output root. Image URLs start with `/images/`. Ba
 
 | File | Purpose |
 |------|---------|
-| `generate-project-previews.mjs` | Builds anonymized SVG mockups from the seven project case-study themes and rasterizes them to `public/images/projects/<slug>.jpg` at 1600×1000. Use `--force` when intentionally replacing existing generated previews. |
+| `generate-project-previews.mjs` | Builds anonymized SVG placeholder mockups and rasterizes them to `public/images/projects/<slug>.jpg` at 1600×1000 when no approved real/reference visual is available. |
 
 ---
 
@@ -645,7 +645,7 @@ See dedicated [AI_AGENT_GUIDE.md](./AI_AGENT_GUIDE.md).
 **Summary:**
 - ✅ Edit `src/data/*` for homepage copy
 - ✅ Edit individual `src/projects/*` + CSS for case study design
-- ✅ Regenerate project preview assets with `node scripts/generate-project-previews.mjs --force` when the shipped anonymized JPEGs need to be refreshed
+- ✅ Use approved real/reference visuals for project previews; use `node scripts/generate-project-previews.mjs --force` only for anonymized placeholders
 - ⚠️ Keep `slug`, routes, and links synchronized
 - ❌ Do not add Redux/API without explicit request
 - ❌ Do not treat as React Native
@@ -751,7 +751,7 @@ Hero background images live in `public/images/hero-banners/` and are not referen
 }
 ```
 
-Current project previews are anonymized mockups, not real client screenshots. They are kept in `public/images/projects/` and generated from `scripts/generate-project-previews.mjs` to avoid exposing confidential UIs, logos, internal data, or proprietary code.
+Current project previews are 1600×1000 JPEG thumbnails kept in `public/images/projects/`. Prefer approved real/reference visuals such as public marketing images, product screenshots, or sanitized UI captures; use `scripts/generate-project-previews.mjs` only for anonymized placeholders when no approved visual source exists.
 
 ## Appendix B-bis - Personal interest schema (`personal.js`)
 

@@ -226,8 +226,8 @@ Each entry may carry an optional `website` URL. When non-null, `Experience.jsx` 
 - `featuredProject` - Lending Orchestration Platform
 - `otherProjects[]` - Yoohome (AIoT), Dotmar Multi-Site CMS, Custom Zigbee Gateway Firmware, Hubly (community + AI moderation)
 - Helpers: `getAllProjects()`, `getProjectCard(slug)`
-- All cards currently have `banner: null` and reference JPEG previews under `public/images/projects/<slug>.jpg`. `OtherProject` / `FeaturedProject` render those images as CSS background covers; if a file is missing, the browser falls back to the dark card background.
-- Preview source: `scripts/generate-project-previews.mjs` renders the current seven project previews from anonymized SVG mockups, then rasterizes them to JPEG. Run `node scripts/generate-project-previews.mjs --force` to intentionally regenerate the shipped files.
+- All cards currently have `banner: null` and reference 1600×1000 JPEG previews under `public/images/projects/<slug>.jpg`. `OtherProject` / `FeaturedProject` render those images as CSS background covers; if a file is missing, the browser falls back to the dark card background.
+- Preview source: current shipped thumbnails are derived from approved real/reference screenshots or marketing/product images. `scripts/generate-project-previews.mjs` is a fallback for generating anonymized placeholder previews when no approved real visual source exists.
 
 **Mobile trim:** controlled by `VITE_MOBILE_PROJECTS_LIMIT` (default 3, applied to the other-projects grid only - the featured card is always shown). The section header keeps the **View all →** link to `/projects` for the full grid.
 
@@ -310,7 +310,7 @@ interface BlogPost {
   title: Translatable
   excerpt: Translatable
   date: string              // ISO YYYY-MM-DD - sorted desc by getAllPosts()
-  cover: string | null      // path under /public/images/blog/
+  cover: string | null      // path under /public/images/blogs/<slug>/preview.jpg
   tags: string[]            // plain strings (tech / topic keywords)
   readMinutes?: number
   body: Block[]
@@ -417,7 +417,7 @@ Provides Nav · banner (image or iframe) + dim overlay · breadcrumbs · `childr
 - Headings, prose, paragraphs, labels, button text → `{ en, vi }` pair, consumed via `tr(...)`.
 - Project case studies own their bilingual copy inside a local `CONTENT` const at the top of the JSX file (alongside any inline lists).
 
-**Components reading the language:** every homepage section component, the seven project pages, `ProjectShell`, `EmbedSlot`, `Footer`, and `Nav` import `useLanguage` + `tr`.
+**Components reading the language:** every homepage section component, project pages, `ProjectShell`, `EmbedSlot`, `Footer`, and `Nav` import `useLanguage` + `tr`.
 
 ---
 
