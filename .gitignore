@@ -16,4 +16,4 @@ backend/coverage/
 frontend/.env
 frontend/dist/
 frontend/build/
-.DS_Store
+*.DS_Store

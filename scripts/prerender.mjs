@@ -72,24 +72,34 @@ function buildSitemap() {
 }
 
 /**
- * Launch headless Chrome. Puppeteer's bundled Chrome fails to start on
- * stripped-down CI images (e.g. Vercel's Amazon Linux 2023 lacks libnss3),
- * so fall back to @sparticuz/chromium - a Chromium build that ships its own
- * shared libraries and is made for exactly these environments.
+ * Launch headless Chrome via the self-contained @sparticuz/chromium build -
+ * a Chromium that ships its own shared libraries, made for stripped-down CI
+ * images (e.g. Vercel's Amazon Linux 2023, which lacks libnss3 and has no
+ * bundled Chrome in the puppeteer cache).
+ */
+async function launchSparticuz(baseArgs) {
+  const { default: chromium } = await import('@sparticuz/chromium')
+  const { default: puppeteerCore } = await import('puppeteer-core')
+  return puppeteerCore.launch({
+    args: [...chromium.args, ...baseArgs],
+    executablePath: await chromium.executablePath(),
+    headless: 'shell'
+  })
+}
+
+/**
+ * On Vercel/CI there is no bundled Chrome, so go straight to @sparticuz/chromium
+ * (avoids a guaranteed-to-fail launch attempt and its noisy error). Locally,
+ * use puppeteer's bundled Chrome and only fall back if it cannot start.
  */
 async function launchBrowser() {
   const baseArgs = ['--no-sandbox', '--disable-setuid-sandbox']
+  if (process.env.VERCEL || process.env.CI) return launchSparticuz(baseArgs)
   try {
     return await puppeteer.launch({ args: baseArgs })
   } catch (err) {
-    console.warn(`default Chrome launch failed (${err.message}); falling back to @sparticuz/chromium`)
-    const { default: chromium } = await import('@sparticuz/chromium')
-    const { default: puppeteerCore } = await import('puppeteer-core')
-    return puppeteerCore.launch({
-      args: [...chromium.args, ...baseArgs],
-      executablePath: await chromium.executablePath(),
-      headless: 'shell'
-    })
+    console.warn(`bundled Chrome launch failed (${err.message}); using @sparticuz/chromium`)
+    return launchSparticuz(baseArgs)
   }
 }
 
@@ -97,7 +107,9 @@ async function main() {
   writeFileSync('dist/sitemap.xml', buildSitemap())
   console.log(`sitemap.xml written (${routes.length} URLs)`)
 
-  const server = await preview({ preview: { port: 4173, strictPort: false } })
+  // open:false so the preview server does not inherit server.open:true from
+  // vite.config.js and try to spawn a browser (xdg-open) on the headless build.
+  const server = await preview({ preview: { port: 4173, strictPort: false, open: false } })
   const base = server.resolvedUrls.local[0].replace(/\/$/, '')
 
   const browser = await launchBrowser()
