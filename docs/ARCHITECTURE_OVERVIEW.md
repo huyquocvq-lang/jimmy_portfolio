@@ -119,6 +119,7 @@ src/styles/projects/*.css    → one file per project page (unique layouts)
 CSS variables in `:root` (`global.css`):
 
 - Typography: `--text-base`, `--font-body`, `--font-display` (Cormorant Garamond for author name)
+- Layout: `--content-max` (`1200px`) - shared content-column cap. Every homepage section `-inner` (nav, impact, education, experience, about-skills, projects, personal, footer) plus `.blogs-inner` / `.list-page-inner` in `blog.css` use `max-width: var(--content-max)` so all sections align to the same width. Change here to rewiden/narrow the whole site at once.
 - Theme (charcoal + bronze gold by default; light overrides on `:root[data-theme="light"]`):
   - Surfaces: `--bg-primary`, `--bg-elevated`, `--bg-elevated-2`
   - Accent: `--accent`, `--accent-hover` (accent stays bronze in both themes)

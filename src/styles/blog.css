@@ -4,7 +4,7 @@
   background: var(--bg-primary);
   border-top: 1px solid var(--border-subtle);
 }
-.blogs-inner { max-width: 1300px; margin: 0 auto; }
+.blogs-inner { max-width: var(--content-max); margin: 0 auto; }
 
 .blogs-header {
   display: flex;
@@ -299,7 +299,7 @@
   background: var(--bg-primary);
   min-height: 70vh;
 }
-.list-page-inner { max-width: 1300px; margin: 0 auto; }
+.list-page-inner { max-width: var(--content-max); margin: 0 auto; }
 .list-page-header {
   margin-bottom: 64px;
   padding-bottom: 32px;
