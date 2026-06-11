@@ -17,7 +17,7 @@ const HERO_SOURCES = [
   ['(max-aspect-ratio: 14/10)', 'hero_tablet']
 ]
 
-const WEBP_ENABLED = false
+const WEBP_ENABLED = true
 
 export default function Hero() {
   const [ready, setReady] = useState(false)
@@ -104,8 +104,12 @@ export default function Hero() {
             <span className="hero-title__lead">{hud.title.lead}</span>
             <span className="hero-title__divider" aria-hidden="true">/</span>
             <span className="hero-title__accent">{hud.title.accent}</span>
+            <span className="sr-only"> — Senior Full Stack Software Engineer</span>
           </h1>
-          <p className="hero-subtitle">{tr(hud.subtitleLead, lang)}</p>
+          <p className="hero-subtitle">
+            {tr(hud.subtitleLead, lang)}{' '}
+            <span className="hero-subtitle__accent">{tr(hud.subtitleAccent, lang)}</span>
+          </p>
 
           {hud.domains && (
             <p className="hero-domains">

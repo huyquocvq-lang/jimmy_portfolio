@@ -1,12 +1,41 @@
 import { useEffect } from 'react'
 import { Link, useParams, Navigate } from 'react-router-dom'
+import Seo, { PERSON_ID, breadcrumbJsonLd } from '../components/Seo'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import BlogBody from '../components/BlogBody'
 import { getAdjacentPosts, getPostBySlug } from '../data/blog'
 import { ui } from '../data/ui'
 import { useLanguage } from '../context/LanguageContext'
-import { tr } from '../utils/i18n'
+import { tr, localePath } from '../utils/i18n'
+
+function postJsonLd(post, lang) {
+  const neutralPath = `/blog/${post.slug}`
+  const url = `https://www.jimmyvu.info${localePath(neutralPath, lang)}`
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: tr(post.title, lang),
+      description: tr(post.excerpt, lang),
+      datePublished: post.date,
+      image: post.cover ? `https://www.jimmyvu.info${post.cover}` : undefined,
+      keywords: (post.tags || []).join(', '),
+      author: { '@id': PERSON_ID },
+      publisher: { '@id': PERSON_ID },
+      mainEntityOfPage: url,
+      inLanguage: lang
+    },
+    breadcrumbJsonLd(
+      [
+        { name: tr(ui.shell.breadcrumbHome, lang), path: '/' },
+        { name: tr(ui.blog.breadcrumbBlog, lang), path: '/blog' },
+        { name: tr(post.title, lang), path: neutralPath }
+      ],
+      lang
+    )
+  ]
+}
 
 function formatDate(iso, lang) {
   if (!iso) return ''
@@ -27,7 +56,7 @@ export default function BlogDetailPage() {
   }, [slug])
 
   if (!post) {
-    return <Navigate to="/blog" replace />
+    return <Navigate to={localePath('/blog', lang)} replace />
   }
 
   const title = tr(post.title, lang)
@@ -36,6 +65,14 @@ export default function BlogDetailPage() {
 
   return (
     <>
+      <Seo
+        title={post.title}
+        description={post.excerpt}
+        path={`/blog/${post.slug}`}
+        image={post.cover}
+        type="article"
+        jsonLd={postJsonLd(post, lang)}
+      />
       <Nav />
       <article className="blog-detail">
         <div
@@ -47,9 +84,9 @@ export default function BlogDetailPage() {
         <div className="blog-detail-breadcrumbs-bar">
           <div className="blog-detail-breadcrumbs-wrap">
             <nav className="blog-detail-breadcrumbs" aria-label={tr(ui.shell.breadcrumbAria, lang)}>
-              <Link to="/">{tr(ui.shell.breadcrumbHome, lang)}</Link>
+              <Link to={localePath('/', lang)}>{tr(ui.shell.breadcrumbHome, lang)}</Link>
               <span className="blog-detail-breadcrumbs__sep" aria-hidden="true">/</span>
-              <Link to="/blog">{tr(ui.blog.breadcrumbBlog, lang)}</Link>
+              <Link to={localePath('/blog', lang)}>{tr(ui.blog.breadcrumbBlog, lang)}</Link>
               <span className="blog-detail-breadcrumbs__sep" aria-hidden="true">/</span>
               <span className="blog-detail-breadcrumbs__current" aria-current="page">{title}</span>
             </nav>
@@ -83,7 +120,7 @@ export default function BlogDetailPage() {
           {(prev || next) && (
             <nav className="blog-detail-pager" aria-label={tr(ui.shell.pagerAria, lang)}>
               {prev ? (
-                <Link to={`/blog/${prev.slug}`} className="blog-detail-pager-link">
+                <Link to={localePath(`/blog/${prev.slug}`, lang)} className="blog-detail-pager-link">
                   <span className="dir">{tr(ui.blog.prevPost, lang)}</span>
                   <span className="name">{tr(prev.title, lang)}</span>
                 </Link>
@@ -92,7 +129,7 @@ export default function BlogDetailPage() {
               )}
               {next ? (
                 <Link
-                  to={`/blog/${next.slug}`}
+                  to={localePath(`/blog/${next.slug}`, lang)}
                   className="blog-detail-pager-link blog-detail-pager-link--next"
                 >
                   <span className="dir">{tr(ui.blog.nextPost, lang)}</span>
@@ -105,7 +142,7 @@ export default function BlogDetailPage() {
           )}
 
           <p className="blog-detail-back">
-            <Link to="/blog">{tr(ui.blog.backToList, lang)}</Link>
+            <Link to={localePath('/blog', lang)}>{tr(ui.blog.backToList, lang)}</Link>
           </p>
         </div>
       </article>

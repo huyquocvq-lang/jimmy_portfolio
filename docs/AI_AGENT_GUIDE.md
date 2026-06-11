@@ -145,6 +145,11 @@ Top-level pages:
 | `/projects/:slug` | one of 5 `*Project.jsx` files | Individual case study |
 | `/blog` | `BlogListPage` | Paginated grid (9/page, `?page=N`) |
 | `/blog/:slug` | `BlogDetailPage` | Structured body renderer (BlogBody) |
+| `*` | `NotFoundPage` | Catch-all 404 (incl. unknown `/vi/...`), sets `noindex` via `<Seo>` |
+
+**Bilingual URLs (FW):** every route is mounted twice - `/<path>` (EN) and `/vi/<path>` (VI) - from the `PAGES` table in `App.jsx`. The URL is the source of truth for language (`LanguageSync` → `LanguageContext`); switching language navigates to the twin URL. **Every internal `Link`/`href`/`Navigate` must wrap its language-neutral path in `localePath(path, lang)`** (`src/utils/i18n.js`) or it will silently flip the user to English. Data files keep language-neutral paths.
+
+**SEO layer (FS):** every page renders one `<Seo>` from `src/components/Seo.jsx` (title / description / localized canonical / OG + og:locale / hreflang en-vi-x-default / optional JSON-LD; `title`/`description` accept `{ en, vi }` objects, `path` is language-neutral). Project pages inherit it from `ProjectShell`. `npm run build` prerenders all routes in BOTH languages (24 URLs) + generates `dist/sitemap.xml` with hreflang annotations via `scripts/prerender.mjs` (routes derive from `projects.js` / `blog.js` - new content is picked up automatically). Crawler files: `public/robots.txt`, `public/llms.txt`. Site-global Person/WebSite JSON-LD lives in `index.html`. Do not add a second `<Seo>` to a page, and do not hardcode route lists in the prerenderer.
 
 Project slug → JSX:
 

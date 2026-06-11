@@ -98,6 +98,20 @@ export const ui = {
     currently: { en: 'Currently', vi: 'Hiện tại' },
     contact: { en: 'Contact', vi: 'Liên hệ' },
     industries: { en: 'Industries', vi: 'Lĩnh vực' },
+    explore: { en: 'Explore', vi: 'Khám phá' },
+    exploreHome: { en: 'Home', vi: 'Trang chủ' },
+    exploreProjects: { en: 'Projects', vi: 'Dự án' },
+    exploreBlog: { en: 'Blog', vi: 'Blog' },
     portfolioLabel: { en: 'Portfolio', vi: 'Portfolio' }
+  },
+  notFound: {
+    title: { en: 'Page not found', vi: 'Không tìm thấy trang' },
+    body: {
+      en: 'The page you are looking for does not exist or has moved.',
+      vi: 'Trang bạn tìm không tồn tại hoặc đã được chuyển đi.'
+    },
+    backHome: { en: '← Back to home', vi: '← Về trang chủ' },
+    viewProjects: { en: 'View projects', vi: 'Xem dự án' },
+    viewBlog: { en: 'Read the blog', vi: 'Đọc blog' }
   }
 }

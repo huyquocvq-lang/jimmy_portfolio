@@ -7,7 +7,7 @@
 ```bash
 npm install
 npm run dev      # http://localhost:5173
-npm run build    # dist/
+npm run build    # dist/ (vite build + SEO prerender: scripts/prerender.mjs → static HTML per route + sitemap.xml)
 ```
 
 Node **18+** required.
@@ -52,6 +52,8 @@ Do not merge if docs are out of sync with the code.
 | Theme toggle wiring | `src/context/ThemeContext.jsx`, `src/components/ThemeToggle.jsx`, anti-FOUC script in `index.html` |
 | Language toggle (EN/VI) | `src/context/LanguageContext.jsx`, `src/utils/i18n.js` (`tr` helper), `src/components/LanguageToggle.jsx`, UI strings in `src/data/ui.js` |
 | New route | `src/App.jsx` + `projects.js` slug/link |
+| SEO meta / canonical / JSON-LD per route | `src/components/Seo.jsx` (rendered once per page; project pages via `ProjectShell`) |
+| Sitemap / prerender / crawler files | `scripts/prerender.mjs` (routes derive from `projects.js` + `blog.js`), `public/robots.txt`, `public/llms.txt`, entity JSON-LD in `index.html` |
 
 ## Architecture summary
 
@@ -62,7 +64,7 @@ Do not merge if docs are out of sync with the code.
 - **Dashboards:** `EmbedSlot.jsx` lazy-loads `src/embeds/*Dashboard.tsx` (registry currently empty; wiring kept for future projects)
 - **Theme:** charcoal + bronze gold dark default; light theme via `:root[data-theme="light"]` override. Tokens on `:root` of `global.css`, referenced via `var(--*)`. Toggle in nav (`ThemeToggle`), state in `ThemeContext`, persisted to `localStorage`.
 - **State:** local only for most components (`Hero`, `Nav`, `EmbedSlot` fullscreen) + two React Contexts (`ThemeContext` for dark/light, `LanguageContext` for EN/VI). No Redux, no API.
-- **i18n:** strings in `src/data/*` and per-project `CONTENT` consts are `{ en, vi }` pairs (plain string passthrough for proper nouns / tech terms); read via `tr(value, lang)` from `src/utils/i18n.js`. Default language is **English**, persisted in `localStorage['portfolio-language']`.
+- **i18n:** strings in `src/data/*` and per-project `CONTENT` consts are `{ en, vi }` pairs (plain string passthrough for proper nouns / tech terms); read via `tr(value, lang)` from `src/utils/i18n.js`. Default language is **English**. **The URL is the source of truth:** every route is mounted twice (`/...` EN, `/vi/...` VI from the `PAGES` table in `App.jsx`); `LanguageSync` derives `lang` from the pathname; internal links must wrap paths in `localePath(path, lang)`; the toggle navigates to the twin URL. No localStorage persistence.
 
 ## AI tooling
 

@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { FaGlobe, FaCheck } from 'react-icons/fa'
 import { useLanguage } from '../context/LanguageContext'
+import { localePath, stripLocale } from '../utils/i18n'
 
 const OPTIONS = [
   { value: 'en', label: 'English', short: 'EN' },
@@ -8,9 +10,19 @@ const OPTIONS = [
 ]
 
 export default function LanguageToggle() {
-  const { lang, setLang } = useLanguage()
+  const { lang } = useLanguage()
+  const location = useLocation()
+  const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   const rootRef = useRef(null)
+
+  // Language switching = navigating to the twin URL (/x ↔ /vi/x). The URL is
+  // the source of truth; LanguageSync in App.jsx updates the context from it.
+  const switchTo = (next) => {
+    if (next === lang) return
+    const { path } = stripLocale(location.pathname)
+    navigate(`${localePath(path, next)}${location.search}${location.hash}`)
+  }
 
   useEffect(() => {
     if (!open) return undefined
@@ -56,7 +68,7 @@ export default function LanguageToggle() {
                   aria-selected={active}
                   className={`lang-toggle__item${active ? ' lang-toggle__item--active' : ''}`}
                   onClick={() => {
-                    setLang(opt.value)
+                    switchTo(opt.value)
                     setOpen(false)
                   }}
                 >

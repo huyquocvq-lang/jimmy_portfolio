@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { featuredProject, otherProjects } from '../data/projects'
 import { ui } from '../data/ui'
 import { useLanguage } from '../context/LanguageContext'
-import { tr } from '../utils/i18n'
+import { tr, localePath } from '../utils/i18n'
 import FeaturedProject from './FeaturedProject'
 import OtherProject from './OtherProject'
 
@@ -22,7 +22,7 @@ export default function Projects() {
           </div>
           <div className="projects-header-meta">
             <div className="count">{countLabel}</div>
-            <Link to="/projects" className="projects-viewall">{tr(ui.projects.viewAll, lang)}</Link>
+            <Link to={localePath('/projects', lang)} className="projects-viewall">{tr(ui.projects.viewAll, lang)}</Link>
           </div>
         </div>
 

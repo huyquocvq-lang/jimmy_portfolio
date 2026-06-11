@@ -23,6 +23,8 @@
 | FV | Env-driven mobile content trim | `src/utils/mobileTrim.js`, `src/components/MobileTrimStyles.jsx`, `.env.example` | mobile (≤ `VITE_MOBILE_BREAKPOINT_PX`) |
 | FY | Dashboard embed system (currently no embeds registered) | `src/components/project/EmbedSlot.jsx`, `src/embeds/*.tsx`, `src/data/projectEmbeds.js` | reserved for future detail pages |
 | FZ | Banner system (home thumbs + detail hero) | `public/banners/*.html`, `BannerEmbed.jsx`, `ProjectShell.jsx` | home + detail (currently no banner HTML files; cards fall back to images) |
+| FS | SEO layer: per-route meta + JSON-LD + prerender + crawler files | `src/components/Seo.jsx`, `scripts/prerender.mjs`, `index.html` head, `public/robots.txt`, `public/llms.txt` | global (sitemap generated into `dist/`) |
+| F404 | Not-found page (catch-all route, noindex) | `src/pages/NotFoundPage.jsx`, `src/App.jsx` `*` route | any unmatched URL |
 
 ---
 
@@ -45,7 +47,7 @@
 |------|---------|
 | `tag` (top-left)        | Status dot + `PORTFOLIO / 2026 // AVAILABLE FOR HIRE` |
 | `side` (right column)   | Stacked info chips zigzagging left ↔ right (`// EXPERIENCE`, `// BASED IN`, `// ALSO DOES`, `// STATUS`) |
-| `main` (center-left)    | `- Senior Software Engineer` eyebrow → serif name with bronze italic accent → subtitle → `// DOMAINS` row → wrapped skill chip row |
+| `main` (center-left)    | `- Senior Software Engineer` eyebrow → serif name with bronze italic accent (+ `.sr-only` "Senior Full Stack Software Engineer" suffix inside the `<h1>` for crawlers/screen readers) → subtitle (`subtitleLead` + italic `subtitleAccent`) → `// DOMAINS` row → wrapped skill chip row |
 | `contact` (bottom-left) | `// EMAIL`, `// PHONE`, `// LINKEDIN` columns |
 | `mark` (bottom-right)   | `SE/26` serif monogram + `SENIOR · EST. 2019` tag |
 
@@ -326,17 +328,19 @@ Helpers exported alongside the `blog` array:
 
 ## F6 - Footer
 
-**Purpose:** CTA, contact columns. Currently exposes LinkedIn, email (`huyquoc.vq@gmail.com`), and phone from `profile.contact`. Heading: "Have a fullstack problem worth solving?"
+**Purpose:** CTA, contact columns. Currently exposes LinkedIn, email (`huyquoc.vq@gmail.com`), and phone from `profile.contact`, plus an **Explore** column with internal links to `/`, `/projects`, `/blog` (internal-linking for SEO). Heading: "Have a fullstack problem worth solving?"
 
-**Data:** `profile.js`
+**Data:** `profile.js` + `ui.footer.explore*` strings in `src/data/ui.js`
 
-**File:** `src/components/Footer.jsx`
+**File:** `src/components/Footer.jsx` (4-column grid `.footer-inner`; collapses to 1 column on mobile)
 
 ---
 
 ## Project shell (all detail pages)
 
-Provides Nav, hero banner (image or `<BannerEmbed>` iframe), breadcrumbs (Home → Projects → current title), `children`, prev/next pager, and Footer. Banner falls back to the dark fallback panel when neither `project.banner` nor a readable `project.image` is available.
+Provides Nav, hero banner (image or `<BannerEmbed>` iframe), breadcrumbs (Home → Projects → current title; "Projects" links to `/projects`), `children`, prev/next pager, and Footer. Banner falls back to the dark fallback panel when neither `project.banner` nor a readable `project.image` is available.
+
+Also renders `<Seo>` (FS) from the project card: title `"{title} — {type}" + " | Jimmy Vu"`, description = subtitle + impact (EN), canonical = `project.link`, plus `CreativeWork` + `BreadcrumbList` JSON-LD.
 
 ---
 
@@ -402,15 +406,19 @@ Provides Nav · banner (image or iframe) + dim overlay · breadcrumbs · `childr
 
 ## FW - Bilingual i18n (EN/VI) + language toggle
 
-**Default language:** English. User selection persists in `localStorage` under `portfolio-language`.
+**Default language:** English. **The URL is the source of truth:** `/...` renders English, `/vi/...` renders Vietnamese (each language is a separate, indexable URL with its own canonical + hreflang pair - see FS). No localStorage persistence.
 
 | Piece | File | Notes |
 |-------|------|-------|
-| Provider + hook | `src/context/LanguageContext.jsx` | Exports `LanguageProvider` and `useLanguage()` → `{ lang, setLang, toggleLang }`. Persists to `localStorage['portfolio-language']`. Default is `en`. Writes `<html lang="...">`. |
+| Provider + hook | `src/context/LanguageContext.jsx` | Exports `LanguageProvider` and `useLanguage()` → `{ lang, setLang }`. Initial value derived from `window.location.pathname` (`stripLocale`). Writes `<html lang="...">`. Do NOT call `setLang` to switch language - navigate to the twin URL instead (a bare `setLang` is reverted by the next `LanguageSync`). |
+| URL sync | `LanguageSync` in `src/App.jsx` | On every navigation, sets the context language from the pathname (`stripLocale`). |
+| Locale path helpers | `src/utils/i18n.js` | `localePath(path, lang)` prefixes `/vi` for Vietnamese (`'/'` → `'/vi'`); `stripLocale(pathname)` → `{ lang, path }` with the language-neutral path. Data files keep language-neutral paths (e.g. `projects.js` `link`); links are localized at render time. |
 | Translation helper | `src/utils/i18n.js` | `tr(value, lang)` returns `value[lang]` when `value` looks like `{ en, vi }`, otherwise returns the value unchanged. Safe to call on plain strings, numbers, or untranslated nodes - keeps proper nouns / tech terms passthrough. Also exports `LANGUAGES = ['en','vi']` and `DEFAULT_LANGUAGE = 'en'`. |
 | Provider mount | `src/main.jsx` | `<LanguageProvider>` wraps `<ThemeProvider>` so theme + language coexist. |
-| UI control | `src/components/LanguageToggle.jsx` | Globe icon + EN/VI code + dropdown menu with the two options (full names: English / Tiếng Việt). Closes on outside click or Escape. Mounted next to `ThemeToggle` in `Nav.jsx` `.nav-actions`. |
+| UI control | `src/components/LanguageToggle.jsx` | Globe icon + EN/VI code + dropdown. Selecting a language **navigates to the twin URL** (`/x` ↔ `/vi/x`, preserving search + hash) via `useNavigate`; `LanguageSync` then updates the context. Closes on outside click or Escape. Mounted next to `ThemeToggle` in `Nav.jsx` `.nav-actions`. |
 | UI strings registry | `src/data/ui.js` | Every UI string not tied to a section's data file (nav labels, breadcrumbs, pager, footer headings, embed slot, impact/education/experience/projects eyebrows + headings). Each value is a `{ en, vi }` pair. |
+
+**Internal links must be localized:** every internal `Link`/`href`/`Navigate` wraps its language-neutral path in `localePath(path, lang)` - done in `Nav`, `Footer`, `BlogCard`, `FeaturedProject`, `OtherProject`, `Blogs`, `Projects`, `ProjectShell`, `BlogDetailPage`, `BlogListPage` (incl. `Pagination` basePath), `ProjectListPage`, `NotFoundPage`. A raw `to="/blog"` would silently switch the user back to English.
 
 **Translation policy (used across data + project pages):**
 - Proper nouns, tech / framework names, role titles, project names → plain string (same EN/VI).
@@ -483,6 +491,29 @@ Animated banner support is preserved but no banner HTML files ship with the curr
 | Detail hero mount | `ProjectShell.jsx` |
 
 To add a banner: create `public/banners/<slug>.html` and set `banner: '/banners/<slug>.html'` on the matching card in `src/data/projects.js`.
+
+---
+
+## FS - SEO layer (per-route meta, JSON-LD, prerender, crawler files)
+
+| Piece | File | Role |
+|-------|------|------|
+| Head manager | `src/components/Seo.jsx` | Per-route `<title>`, meta description, canonical, OG/Twitter tags, `og:locale(:alternate)`, hreflang alternates (`en`/`vi`/`x-default`, tagged `link[data-seo-alt]`), optional `noindex`, and one route-level JSON-LD block (`script[data-seo-jsonld]`). og:image companion tags are kept consistent: pages with their own cover drop the homepage's `og:image:type/width/height` and set `og:image:alt`/`twitter:image:alt` to the page title; default-image pages restore the 1200×681 values. `title`/`description` accept strings or `{ en, vi }` objects, resolved against the URL-derived language; `path` is always the **language-neutral** path and the canonical is localized (`/vi/...` on Vietnamese routes). Exports `PERSON_ID` + `breadcrumbJsonLd(items, lang)`. |
+| Site-global entity graph | `index.html` `<head>` | Static JSON-LD `Person` (+`alternateName`, `sameAs`, `knowsAbout`) and `WebSite`. Homepage OG defaults, font preconnect, LCP hero preloads (`og-image.jpg`, 1200×681). |
+| Prerender + sitemap | `scripts/prerender.mjs` | Runs in `npm run build` after `vite build`. Derives the route list from `projects.js` + `blog.js`, expands each route into an EN + VI pair (24 URLs), writes `dist/sitemap.xml` (with `xhtml:link` hreflang annotations), then renders every URL in headless Chrome (puppeteer) into `dist/<route>/index.html` so non-JS crawlers (GPTBot, ClaudeBot, PerplexityBot, social scrapers) get full HTML - Vietnamese pages with Vietnamese copy and `html lang="vi"`. |
+| Crawler files | `public/robots.txt`, `public/llms.txt` | robots.txt allows all + AI crawlers and points at the sitemap; llms.txt is the AI-engine site summary. |
+
+**Where `<Seo>` is rendered:** `HomePage`, `ProjectListPage`, `BlogListPage`, `BlogDetailPage` (BlogPosting + BreadcrumbList JSON-LD, language-resolved), `ProjectShell` (CreativeWork + BreadcrumbList — covers all F7–F11 pages), `NotFoundPage` (noindex, no hreflang).
+
+**Invariant:** new routes must appear in `scripts/prerender.mjs` route derivation (automatic if they come from `projects.js` / `blog.js` - both language variants are generated), and render exactly one `<Seo>` with a language-neutral `path`.
+
+---
+
+## F404 - Not-found page
+
+**Route:** `*` (catch-all in `src/App.jsx`, also catches unknown `/vi/...` paths - the page then renders in Vietnamese via `LanguageSync`) · **Component:** `src/pages/NotFoundPage.jsx`
+
+Nav + 404 heading + locale-aware links to home/projects/blog + Footer. Sets `noindex` via `<Seo>`. Strings in `ui.notFound` (`src/data/ui.js`). Styles: `.not-found-links` in `global.css`.
 
 ---
 

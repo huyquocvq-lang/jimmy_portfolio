@@ -53,6 +53,7 @@ Present engineering credibility to recruiters, hiring managers, and clients thro
 - **Icons:** `react-icons/fa` (`FaChevronDown`, `FaBars`, `FaTimes`, skill icons)
 - **Styling:** Global CSS + per-page CSS (no UI framework)
 - **Analytics:** `@vercel/analytics/react` (`<Analytics />` mounted once in `App.jsx`; auto-tracks page views + react-router route changes on Vercel deploys)
+- **SEO / prerender:** `src/components/Seo.jsx` (per-route head metadata + JSON-LD) + `puppeteer` (devDependency, used only by `scripts/prerender.mjs` at build time to snapshot every route into static HTML and generate `dist/sitemap.xml`). `@sparticuz/chromium` + `puppeteer-core` (devDependencies) are the CI fallback: if puppeteer's bundled Chrome cannot launch (e.g. Vercel's Amazon Linux build image lacks Chrome's shared libraries), the prerenderer retries with the self-contained sparticuz Chromium build.
 
 ---
 
@@ -269,13 +270,15 @@ npm install
 
 ```bash
 npm run dev       # Development: http://localhost:5173 (auto-open per vite.config)
-npm run build     # Production build → dist/
+npm run build     # Production build → dist/ (vite build + node scripts/prerender.mjs)
+npm run build:spa # Vite build only - skips prerender/sitemap (not for production deploys)
+npm run prerender # Re-run prerender + sitemap against an existing dist/
 npm run preview   # Preview production build locally
 ```
 
 ## Build output
 
-`dist/` contains `index.html`, hashed JS/CSS assets, and copied `public/` files. Deploy as static site with SPA fallback.
+`dist/` contains `index.html`, hashed JS/CSS assets, copied `public/` files (`robots.txt`, `llms.txt`, `og-image.jpg`, images incl. `.webp` hero banners), plus prerender artifacts: `sitemap.xml` (24 URLs with hreflang annotations) and one `<route>/index.html` per route **in both languages** (`/...` EN and `/vi/...` VI) with the full rendered DOM, per-route meta, localized canonical, and hreflang pair baked in (crawlers without JS get real content; React mounts over it). Deploy as static site with SPA fallback - static files are matched before the fallback.
 
 ---
 
@@ -303,6 +306,10 @@ npm run preview   # Preview production build locally
 
 /blog                          # Blog list (paginated, 9/page, ?page=N)
 /blog/:slug                    # Blog detail (renders structured body)
+*                              # NotFoundPage - catch-all 404 (noindex)
+
+/vi, /vi/projects, /vi/blog/:slug, ...   # Vietnamese twin of every route above
+                                          # (URL drives the language; toggle navigates between twins)
 ```
 
 ## Stack navigation

@@ -1,22 +1,26 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
-import { DEFAULT_LANGUAGE, LANGUAGES } from '../utils/i18n'
+import { DEFAULT_LANGUAGE, LANGUAGES, stripLocale } from '../utils/i18n'
 
-const STORAGE_KEY = 'portfolio-language'
+/**
+ * Language state. The URL is the source of truth: `/...` renders English,
+ * `/vi/...` renders Vietnamese. `<LanguageSync>` (in App.jsx) pushes the
+ * URL-derived language into this context on every navigation; switching
+ * language is done by NAVIGATING to the twin URL (see LanguageToggle), never
+ * by calling `setLang` alone - a bare `setLang` would be reverted by the next
+ * sync. SEO depends on this split: each language has its own URL, canonical,
+ * and hreflang pair.
+ */
 
 function readInitialLang() {
   if (typeof window !== 'undefined') {
-    try {
-      const stored = window.localStorage.getItem(STORAGE_KEY)
-      if (LANGUAGES.includes(stored)) return stored
-    } catch {}
+    return stripLocale(window.location.pathname).lang
   }
   return DEFAULT_LANGUAGE
 }
 
 const LanguageContext = createContext({
   lang: DEFAULT_LANGUAGE,
-  setLang: () => {},
-  toggleLang: () => {}
+  setLang: () => {}
 })
 
 export function LanguageProvider({ children }) {
@@ -24,21 +28,14 @@ export function LanguageProvider({ children }) {
 
   useEffect(() => {
     document.documentElement.setAttribute('lang', lang)
-    try {
-      window.localStorage.setItem(STORAGE_KEY, lang)
-    } catch {}
   }, [lang])
 
   const setLang = useCallback((next) => {
     if (LANGUAGES.includes(next)) setLangState(next)
   }, [])
 
-  const toggleLang = useCallback(() => {
-    setLangState((prev) => (prev === 'en' ? 'vi' : 'en'))
-  }, [])
-
   return (
-    <LanguageContext.Provider value={{ lang, setLang, toggleLang }}>
+    <LanguageContext.Provider value={{ lang, setLang }}>
       {children}
     </LanguageContext.Provider>
   )

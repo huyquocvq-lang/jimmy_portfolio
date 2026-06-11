@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom'
 import { profile } from '../data/profile'
 import { ui } from '../data/ui'
 import { useLanguage } from '../context/LanguageContext'
-import { tr } from '../utils/i18n'
+import { tr, localePath } from '../utils/i18n'
 
 export default function Footer() {
   const { contact, currentRole, industries, name } = profile
@@ -43,6 +44,14 @@ export default function Footer() {
         <div className="footer-col">
           <h3>{tr(ui.footer.industries, lang)}</h3>
           <p>{tr(industries, lang)}</p>
+        </div>
+        <div className="footer-col">
+          <h3>{tr(ui.footer.explore, lang)}</h3>
+          <ul>
+            <li><Link to={localePath('/', lang)}>{tr(ui.footer.exploreHome, lang)}</Link></li>
+            <li><Link to={localePath('/projects', lang)}>{tr(ui.footer.exploreProjects, lang)}</Link></li>
+            <li><Link to={localePath('/blog', lang)}>{tr(ui.footer.exploreBlog, lang)}</Link></li>
+          </ul>
         </div>
       </div>
 

@@ -84,13 +84,21 @@ Defined explicitly in `src/App.jsx` (not file-based routing):
 | Path | Component |
 |------|-----------|
 | `/` | `HomePage` |
+| `/projects` | `ProjectListPage` |
 | `/projects/lending-orchestration-platform` | `LendingPlatformProject` (Featured) |
 | `/projects/yoohome` | `YoohomeProject` |
 | `/projects/dotmar-cms` | `DotmarCmsProject` |
 | `/projects/zigbee-gateway-firmware` | `ZigbeeGatewayProject` |
 | `/projects/hubly` | `HublyProject` |
+| `/blog` | `BlogListPage` |
+| `/blog/:slug` | `BlogDetailPage` |
+| `*` (catch-all) | `NotFoundPage` (noindex 404) |
+
+**Bilingual URLs:** every route above is mounted twice from the same `PAGES` table in `App.jsx` - at `/<path>` (English) and `/vi/<path>` (Vietnamese). The URL drives the language: `LanguageSync` (in `App.jsx`) derives `lang` from the pathname via `stripLocale()` and pushes it into `LanguageContext`; internal links are localized with `localePath(path, lang)`. Switching language = navigating to the twin URL (see `LanguageToggle`).
 
 `vite.config.js` sets `appType: 'spa'` so deep links work on static hosts that rewrite to `index.html`.
+
+Every page renders exactly one `<Seo>` (`src/components/Seo.jsx`) which sets title, meta description, localized canonical, OG/Twitter tags, hreflang alternates (en/vi/x-default), and optional route-level JSON-LD. Project detail pages get theirs via `ProjectShell`.
 
 ## State management
 
@@ -100,6 +108,7 @@ Defined explicitly in `src/App.jsx` (not file-based routing):
 | Hero scroll crossfade | `Hero.jsx` - `scrollProgress` | Local + window scroll listener |
 | Mobile nav drawer | `Nav.jsx` - `open` | Local + body overflow lock |
 | Theme (dark/light) | `src/context/ThemeContext.jsx` - `theme` | Global via React Context; mirrored to `html[data-theme]` + `localStorage` |
+| Language (EN/VI) | `src/context/LanguageContext.jsx` - `lang` | Global via React Context; **derived from the URL** (`/vi/...` = Vietnamese) by `LanguageSync` in `App.jsx`; mirrored to `html[lang]`; NOT persisted |
 | Dashboard fullscreen toggle | `EmbedSlot.jsx` - `fullscreen` | Local + body overflow lock + Esc handler (no-op while `dashboards` map is empty) |
 | Banner scaling | inline `<script>` inside each `public/banners/*.html` | Per-iframe document (no banners ship today) |
 | Everything else | Props from imported data | Stateless presentation |
@@ -139,7 +148,9 @@ The active theme is selected by `:root[data-theme]` (set by `ThemeContext` at ru
 
 ## Deployment model
 
-Static `dist/` after `npm run build`. Suitable for GitHub Pages, Netlify, Vercel, S3+CloudFront. No server-side rendering.
+Static `dist/` after `npm run build`. Suitable for GitHub Pages, Netlify, Vercel, S3+CloudFront. No server-side rendering at request time.
+
+`npm run build` = `vite build` **+ `node scripts/prerender.mjs`**: the prerender step derives all routes from `src/data/projects.js` / `src/data/blog.js`, expands each into an EN + VI pair (24 URLs), writes `dist/sitemap.xml` (with hreflang annotations), and snapshots every route with headless Chrome (puppeteer, devDependency) into `dist/<route>/index.html`. Static hosts serve these files before the SPA rewrite, so crawlers that do not execute JavaScript receive full HTML; React mounts over it for users. `npm run build:spa` skips prerendering. Crawler files `robots.txt` / `llms.txt` live in `public/`; the site-global JSON-LD entity graph (Person + WebSite) lives in `index.html`.
 
 ## Key dependency graph
 

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ui } from '../data/ui'
 import { useLanguage } from '../context/LanguageContext'
-import { tr } from '../utils/i18n'
+import { tr, localePath } from '../utils/i18n'
 
 function formatDate(iso, lang) {
   if (!iso) return ''
@@ -15,7 +15,7 @@ export default function BlogCard({ post, className = '' }) {
   const { lang } = useLanguage()
   const title = tr(post.title, lang)
   const excerpt = tr(post.excerpt, lang)
-  const link = `/blog/${post.slug}`
+  const link = localePath(`/blog/${post.slug}`, lang)
   const imgStyle = post.cover ? { backgroundImage: `url(${post.cover})` } : undefined
 
   return (

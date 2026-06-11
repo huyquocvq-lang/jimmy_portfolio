@@ -4,7 +4,7 @@ import { FaBars, FaTimes } from 'react-icons/fa'
 import { profile } from '../data/profile'
 import { ui } from '../data/ui'
 import { useLanguage } from '../context/LanguageContext'
-import { tr } from '../utils/i18n'
+import { tr, localePath, stripLocale } from '../utils/i18n'
 import ThemeToggle from './ThemeToggle'
 import LanguageToggle from './LanguageToggle'
 
@@ -74,9 +74,14 @@ export default function Nav() {
   const location = useLocation()
   const [open, setOpen] = useState(false)
 
-  const isHome = location.pathname === '/'
-  const isBlogRoute = location.pathname === '/blog' || location.pathname.startsWith('/blog/')
-  const isProjectsList = location.pathname === '/projects'
+  // Language-neutral path: '/vi/blog' and '/blog' are the same logical page.
+  const { path: neutralPath } = stripLocale(location.pathname)
+  const lp = (p) => localePath(p, lang)
+  const homeHref = lp('/')
+
+  const isHome = neutralPath === '/'
+  const isBlogRoute = neutralPath === '/blog' || neutralPath.startsWith('/blog/')
+  const isProjectsList = neutralPath === '/projects'
   const activeSection = useActiveSection(HOMEPAGE_SECTIONS, isHome)
 
   const close = () => setOpen(false)
@@ -102,7 +107,7 @@ export default function Nav() {
   return (
     <nav className={`nav${open ? ' nav--open' : ''}`} id="header">
       <div className="nav-inner">
-        <a href="/" className="nav-logo" onClick={close} aria-label={profile.name}>
+        <a href={homeHref} className="nav-logo" onClick={close} aria-label={profile.name}>
           <img
             src="/favicon/favicon-128x128.png"
             srcSet="/favicon/favicon-96x96.png 1x, /favicon/favicon-256x256.png 2x"
@@ -119,32 +124,32 @@ export default function Nav() {
         <div className="nav-actions">
           <ul className="nav-links" id="nav-menu">
             <li>
-              <a href="/#impact" onClick={close} className={sectionLinkClass('impact')}>
+              <a href={`${homeHref}#impact`} onClick={close} className={sectionLinkClass('impact')}>
                 {tr(ui.nav.impact, lang)}
               </a>
             </li>
             <li>
-              <a href="/#experience" onClick={close} className={sectionLinkClass('experience')}>
+              <a href={`${homeHref}#experience`} onClick={close} className={sectionLinkClass('experience')}>
                 {tr(ui.nav.experience, lang)}
               </a>
             </li>
             <li>
-              <a href="/#about" onClick={close} className={sectionLinkClass('about')}>
+              <a href={`${homeHref}#about`} onClick={close} className={sectionLinkClass('about')}>
                 {tr(ui.nav.about, lang)}
               </a>
             </li>
             <li>
-              <a href="/#work" onClick={close} className={projectsActive ? 'is-active' : ''}>
+              <a href={`${homeHref}#work`} onClick={close} className={projectsActive ? 'is-active' : ''}>
                 {tr(ui.nav.projects, lang)}
               </a>
             </li>
             <li>
-              <a href="/#personal" onClick={close} className={sectionLinkClass('personal')}>
+              <a href={`${homeHref}#personal`} onClick={close} className={sectionLinkClass('personal')}>
                 {tr(ui.nav.interests, lang)}
               </a>
             </li>
             <li>
-              <Link to="/blog" onClick={close} className={blogActive ? 'is-active' : ''}>
+              <Link to={lp('/blog')} onClick={close} className={blogActive ? 'is-active' : ''}>
                 {tr(ui.nav.blog, lang)}
               </Link>
             </li>

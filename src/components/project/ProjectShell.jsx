@@ -1,12 +1,37 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Seo, { PERSON_ID, breadcrumbJsonLd } from '../Seo'
 import Nav from '../Nav'
 import Footer from '../Footer'
 import BannerEmbed from '../BannerEmbed'
 import { getAllProjects, getProjectCard } from '../../data/projects'
 import { ui } from '../../data/ui'
 import { useLanguage } from '../../context/LanguageContext'
-import { tr } from '../../utils/i18n'
+import { tr, localePath } from '../../utils/i18n'
+
+function projectJsonLd(project, lang) {
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CreativeWork',
+      name: tr(project.title, lang),
+      description: tr(project.description, lang),
+      url: `https://www.jimmyvu.info${localePath(project.link, lang)}`,
+      image: project.image ? `https://www.jimmyvu.info${project.image}` : undefined,
+      keywords: project.tools,
+      inLanguage: lang,
+      author: { '@id': PERSON_ID }
+    },
+    breadcrumbJsonLd(
+      [
+        { name: tr(ui.shell.breadcrumbHome, lang), path: '/' },
+        { name: tr(ui.shell.breadcrumbProjects, lang), path: '/projects' },
+        { name: tr(project.title, lang), path: project.link }
+      ],
+      lang
+    )
+  ]
+}
 
 export default function ProjectShell({ slug, children }) {
   const { lang } = useLanguage()
@@ -41,6 +66,22 @@ export default function ProjectShell({ slug, children }) {
 
   return (
     <>
+      {project && (
+        <Seo
+          title={{
+            en: `${tr(project.title, 'en')} — ${tr(project.type, 'en')}`,
+            vi: `${tr(project.title, 'vi')} — ${tr(project.type, 'vi')}`
+          }}
+          description={{
+            en: `${tr(project.subtitle, 'en')} ${tr(project.impact, 'en')}`,
+            vi: `${tr(project.subtitle, 'vi')} ${tr(project.impact, 'vi')}`
+          }}
+          path={project.link}
+          image={project.image}
+          type="article"
+          jsonLd={projectJsonLd(project, lang)}
+        />
+      )}
       <Nav />
       <div className="project-shell">
         {isEmbeddedBanner ? (
@@ -63,9 +104,9 @@ export default function ProjectShell({ slug, children }) {
         <div className="project-shell-breadcrumbs-bar">
           <div className="project-shell-breadcrumbs-wrap">
             <nav className="project-shell-breadcrumbs" aria-label={tr(ui.shell.breadcrumbAria, lang)}>
-              <Link to="/">{tr(ui.shell.breadcrumbHome, lang)}</Link>
+              <Link to={localePath('/', lang)}>{tr(ui.shell.breadcrumbHome, lang)}</Link>
               <span className="project-shell-breadcrumbs__sep" aria-hidden="true">/</span>
-              <Link to="/#work">{tr(ui.shell.breadcrumbProjects, lang)}</Link>
+              <Link to={localePath('/projects', lang)}>{tr(ui.shell.breadcrumbProjects, lang)}</Link>
               <span className="project-shell-breadcrumbs__sep" aria-hidden="true">/</span>
               <span className="project-shell-breadcrumbs__current" aria-current="page">
                 {title}
@@ -79,7 +120,7 @@ export default function ProjectShell({ slug, children }) {
         {(prev || next) && (
           <nav className="project-shell-pager" aria-label={tr(ui.shell.pagerAria, lang)}>
             {prev ? (
-              <Link to={prev.link} className="project-shell-pager-link">
+              <Link to={localePath(prev.link, lang)} className="project-shell-pager-link">
                 <span className="dir">{tr(ui.shell.previous, lang)}</span>
                 <span className="name">{tr(prev.title, lang)}</span>
               </Link>
@@ -88,7 +129,7 @@ export default function ProjectShell({ slug, children }) {
             )}
             {next ? (
               <Link
-                to={next.link}
+                to={localePath(next.link, lang)}
                 className="project-shell-pager-link project-shell-pager-link--next"
               >
                 <span className="dir">{tr(ui.shell.next, lang)}</span>

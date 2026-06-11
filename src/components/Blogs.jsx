@@ -4,7 +4,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { getAllPosts } from '../data/blog'
 import { ui } from '../data/ui'
 import { useLanguage } from '../context/LanguageContext'
-import { tr } from '../utils/i18n'
+import { tr, localePath } from '../utils/i18n'
 import BlogCard from './BlogCard'
 
 export default function Blogs() {
@@ -65,7 +65,7 @@ export default function Blogs() {
             <div className="eyebrow">{tr(ui.blog.eyebrow, lang)}</div>
             <h2>{tr(ui.blog.heading, lang)}</h2>
           </div>
-          <Link to="/blog" className="blogs-viewall">{tr(ui.blog.viewAll, lang)}</Link>
+          <Link to={localePath('/blog', lang)} className="blogs-viewall">{tr(ui.blog.viewAll, lang)}</Link>
         </div>
 
         <div className="blogs-slider">

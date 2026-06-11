@@ -9,6 +9,11 @@
       social crawlers (LinkedIn, Facebook, Slack, iMessage, WhatsApp) DO NOT run
       JavaScript and DO NOT respect relative paths.
 
+      These tags are the HOMEPAGE defaults. Every route overwrites title /
+      description / canonical / og:* at render time via src/components/Seo.jsx,
+      and `npm run build` prerenders each route (scripts/prerender.mjs) so the
+      per-route values are baked into the static HTML crawlers receive.
+
       The canonical production origin is `https://www.jimmyvu.info`.
       The apex domain `https://jimmyvu.info` redirects to the www host in
       vercel.json so either shared URL exposes the same preview metadata.
@@ -20,48 +25,86 @@
         - Slack: post in any channel → use the "..." menu → "Remove link preview" → repost
     -->
 
-    <title>Quoc Huy (Jimmy) - Portfolio</title>
+    <title>Jimmy Vu (Quoc Huy) — Senior Full Stack Developer | Java, Spring Boot, React Native</title>
     <meta
       name="description"
-      content="Quoc Huy (Jimmy) - Senior Fullstack Software Engineer specializing in CMS platforms, microservices backends, mobile apps, and IoT systems."
+      content="Senior full stack developer with 4+ years building fintech lending platforms ($10M/mo), AIoT systems (500K+ devices), and enterprise CMS. Java · Spring Boot · React · React Native. Based in Hanoi, available for remote roles and freelance projects."
     />
-    <meta name="author" content="Quoc Huy (Jimmy)" />
+    <meta name="author" content="Jimmy Vu (Vu Quoc Huy)" />
     <meta name="theme-color" content="#1a1a1a" />
 
     <link rel="canonical" href="https://www.jimmyvu.info/" />
 
     <!-- Open Graph (LinkedIn, Facebook, iMessage, Slack, WhatsApp) -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Quoc Huy (Jimmy) Portfolio" />
+    <meta property="og:site_name" content="Jimmy Vu — Senior Full Stack Developer" />
     <meta property="og:url" content="https://www.jimmyvu.info/" />
-    <meta property="og:title" content="Quoc Huy (Jimmy) - Portfolio" />
+    <meta property="og:title" content="Jimmy Vu (Quoc Huy) — Senior Full Stack Developer | Java, Spring Boot, React Native" />
     <meta
       property="og:description"
-      content="Senior Fullstack Software Engineer specializing in CMS platforms, microservices backends, mobile apps, and IoT systems."
+      content="Senior full stack developer building fintech lending platforms, AIoT systems, and enterprise CMS. Java · Spring Boot · React · React Native. Available for remote and freelance work."
     />
-    <meta property="og:image" content="https://www.jimmyvu.info/og-image.png" />
-    <meta property="og:image:secure_url" content="https://www.jimmyvu.info/og-image.png" />
-    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image" content="https://www.jimmyvu.info/og-image.jpg" />
+    <meta property="og:image:secure_url" content="https://www.jimmyvu.info/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image:height" content="681" />
     <meta
       property="og:image:alt"
-      content="Quoc Huy (Jimmy) - Senior Fullstack Software Engineer portfolio cover"
+      content="Jimmy Vu — Senior Full Stack Developer portfolio cover"
     />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Quoc Huy (Jimmy) - Portfolio" />
+    <meta name="twitter:title" content="Jimmy Vu (Quoc Huy) — Senior Full Stack Developer" />
     <meta
       name="twitter:description"
-      content="Senior Fullstack Software Engineer specializing in CMS platforms, microservices backends, mobile apps, and IoT systems."
+      content="Senior full stack developer building fintech lending platforms, AIoT systems, and enterprise CMS. Java · Spring Boot · React · React Native."
     />
-    <meta name="twitter:image" content="https://www.jimmyvu.info/og-image.png" />
+    <meta name="twitter:image" content="https://www.jimmyvu.info/og-image.jpg" />
     <meta
       name="twitter:image:alt"
-      content="Quoc Huy (Jimmy) - Senior Fullstack Software Engineer portfolio cover"
+      content="Jimmy Vu — Senior Full Stack Developer portfolio cover"
     />
+
+    <!-- Entity graph: connects the name variants, site, and profiles for
+         Google's Knowledge Graph and AI search engines. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://www.jimmyvu.info/#person",
+          "name": "Jimmy Vu",
+          "alternateName": ["Vu Quoc Huy", "Quoc Huy", "Jimmy"],
+          "url": "https://www.jimmyvu.info/",
+          "image": "https://www.jimmyvu.info/og-image.jpg",
+          "jobTitle": "Senior Full Stack Software Engineer",
+          "worksFor": { "@type": "Organization", "name": "Viettel Digital Services" },
+          "address": { "@type": "PostalAddress", "addressLocality": "Hanoi", "addressCountry": "VN" },
+          "email": "mailto:huyquoc.vq@gmail.com",
+          "sameAs": [
+            "https://linkedin.com/in/quoc-huy-16b896277"
+          ],
+          "knowsAbout": [
+            "Java", "Spring Boot", "Camunda BPM", "React", "React Native",
+            "Node.js", "NestJS", "Microservices", "MQTT", "IoT", "Zigbee",
+            "Fintech systems", "Headless CMS", "Magnolia CMS", "MySQL", "MongoDB"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.jimmyvu.info/#website",
+          "url": "https://www.jimmyvu.info/",
+          "name": "Jimmy Vu — Senior Full Stack Developer",
+          "publisher": { "@id": "https://www.jimmyvu.info/#person" },
+          "inLanguage": "en"
+        }
+      ]
+    }
+    </script>
 
     <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
@@ -74,9 +117,30 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
     <link rel="manifest" href="/favicon/site.webmanifest" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Source+Sans+Pro:wght@300;400;600;700&display=swap"
       rel="stylesheet"
+    />
+
+    <!-- LCP: preload the hero background for the two most common viewports.
+         Media queries mirror HERO_SOURCES in src/components/Hero.jsx. -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/images/hero-banners/hero_mobile_portrait.webp"
+      media="(max-aspect-ratio: 3/4)"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/images/hero-banners/hero_desktop_fhd.webp"
+      media="(min-aspect-ratio: 17/10) and (max-aspect-ratio: 21/10) and (max-width: 2199px)"
+      fetchpriority="high"
     />
 
     <!-- Anti-FOUC: resolve theme before React mounts. Mirrors ThemeContext defaults. -->

@@ -9,7 +9,7 @@
 
 ## Bilingual content rule (EN / VI)
 
-The portfolio ships in **English (default) + Vietnamese**. Every user-facing string in `src/data/*` and in the project JSX `CONTENT` consts is either:
+The portfolio ships in **English (default) + Vietnamese**. Each language has its own URL: English at `/...`, Vietnamese at `/vi/...` (same page, twin routes; the URL drives the language and both versions are prerendered + indexed with hreflang pairs). Every user-facing string in `src/data/*` and in the project JSX `CONTENT` consts is either:
 
 - a plain string (proper nouns, framework / tech names, role titles, project names, URLs, dates) - rendered as-is in both languages, or
 - a `{ en, vi }` pair (headings, prose, paragraphs, labels, button text) - rendered through `tr(value, lang)` from `src/utils/i18n.js`.

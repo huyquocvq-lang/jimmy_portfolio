@@ -22,3 +22,25 @@ export function tr(value, lang = DEFAULT_LANGUAGE) {
 export function trList(list, lang, field = 'label') {
   return (list ?? []).map((item) => ({ ...item, [field]: tr(item[field], lang) }))
 }
+
+/**
+ * Locale-aware URL helpers. The URL is the source of truth for language:
+ * English lives at `/...`, Vietnamese at `/vi/...`. Data files keep
+ * language-neutral (English) paths - e.g. `projects.js` `link` stays
+ * `/projects/<slug>` - and links are localized at render time.
+ */
+
+/** Prefix a language-neutral path with `/vi` when rendering Vietnamese. */
+export function localePath(path, lang) {
+  if (lang !== 'vi') return path
+  if (path === '/') return '/vi'
+  if (path === '/vi' || path.startsWith('/vi/')) return path
+  return `/vi${path}`
+}
+
+/** Split a pathname into `{ lang, path }` where `path` is language-neutral. */
+export function stripLocale(pathname) {
+  if (pathname === '/vi' || pathname === '/vi/') return { lang: 'vi', path: '/' }
+  if (pathname.startsWith('/vi/')) return { lang: 'vi', path: pathname.slice(3) }
+  return { lang: DEFAULT_LANGUAGE, path: pathname }
+}

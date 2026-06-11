@@ -45,7 +45,13 @@ npm run dev:fresh   # clears node_modules/.vite then starts vite
 
 ```bash
 npm run build
-# Output: dist/
+# Output: dist/ - vite build, then scripts/prerender.mjs renders every route to
+# static HTML (headless Chrome) in BOTH languages (/... EN, /vi/... VI) and
+# generates dist/sitemap.xml with hreflang pairs. Routes derive from
+# src/data/projects.js + src/data/blog.js automatically.
+
+npm run build:spa   # vite build only (skips prerender - not for production)
+npm run prerender   # re-run prerender + sitemap against an existing dist/
 ```
 
 ## Folder structure

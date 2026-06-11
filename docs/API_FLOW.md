@@ -38,18 +38,23 @@ sequenceDiagram
 | `profile.contact.resume` | GET (browser navigation) | `Nav.jsx` | Google Docs resume |
 | `/images/*` | GET | Hero, project heroes, personal masonry | Static assets from `public/images/` |
 | `/favicon/*` | GET | Browser tabs, pinned shortcuts, mobile home-screen icons | Transparent portrait favicon variants from `public/favicon/` |
-| `/og-image.png` | GET | Open Graph / Twitter link previews | Social preview image referenced by absolute metadata URLs in `index.html` |
+| `/og-image.jpg` | GET | Open Graph / Twitter link previews | Social preview image (1200×681 JPEG, ~104 KB) referenced by absolute metadata URLs in `index.html` / `Seo.jsx`. The 2 MB `og-image.png` source still ships but is no longer referenced. |
+| `/robots.txt` | GET | Search + AI crawlers | Allows all UAs (incl. GPTBot, ClaudeBot, PerplexityBot) and declares the sitemap |
+| `/sitemap.xml` | GET | Search engines | Generated into `dist/` by `scripts/prerender.mjs` from `projects.js` + `blog.js` (24 URLs: EN + `/vi/` pair per page, with `xhtml:link` hreflang annotations) |
+| `/llms.txt` | GET | AI engines | Markdown site summary for LLM crawlers |
 | `/banners/<slug>.html` | GET (iframe) | `BannerEmbed` on home cards + `ProjectShell` on detail | Self-contained animated banner per project |
 | `https://jimmyvu.info/*` | 308/301 redirect | Vercel edge routing | Redirects apex traffic to the canonical `https://www.jimmyvu.info/*` host so www and non-www links expose the same metadata |
+
+Cache headers (`vercel.json`): `/assets/*` 1y immutable, `/hero-banners/*` 1d immutable, `/banners/*` 1h, `/images/*` 1d.
 
 ### Image asset paths (static files)
 
 | Path | Referenced in |
 |------|----------------|
-| `/og-image.png` | `index.html` Open Graph and Twitter image metadata as `https://www.jimmyvu.info/og-image.png` |
+| `/og-image.jpg` | `index.html` Open Graph and Twitter image metadata as `https://www.jimmyvu.info/og-image.jpg` (default image for `Seo.jsx` too) |
 | `/favicon/favicon.ico`, `/favicon/favicon-16x16.png` … `/favicon/favicon-256x256.png` | `index.html` favicon links for desktop browsers |
 | `/favicon/apple-touch-icon.png`, `/favicon/android-chrome-192x192.png`, `/favicon/android-chrome-512x512.png`, `/favicon/site.webmanifest` | `index.html` mobile and PWA icon metadata |
-| `/images/hero-banners/hero_*.png` | `Hero.jsx` - art-directed variants (mobile portrait, mobile landscape, tablet, MacBook 13, FHD, QHD, 4K, ultrawide). WebP wiring is in place but disabled by default. |
+| `/images/hero-banners/hero_*.{webp,png}` | `Hero.jsx` - art-directed variants (mobile portrait, mobile landscape, tablet, MacBook 13, FHD, QHD, 4K, ultrawide). **WebP enabled** (`WEBP_ENABLED = true`); `.webp` files (37-97 KB, cwebp -q 80) are served first, `.png` (1.6-5.7 MB) is the fallback. `index.html` preloads the mobile-portrait and FHD `.webp` variants as the LCP image. Regenerate after editing a PNG: `cwebp -q 80 hero_X.png -o hero_X.webp`. |
 | `/favicon/favicon*.{ico,png}` + `/favicon/apple-touch-icon.png` + `/favicon/android-chrome-*.{png,webp}` + `/favicon/site.webmanifest` | Wired in `index.html` `<head>` (full favicon set + PWA manifest). `Nav.jsx` also uses `/favicon/favicon-96x96.png` (with 64/128/256 srcSet) as the brand mark in the header. |
 | `/images/projects/lending-orchestration-platform.jpg` | `featuredProject.image` |
 | `/images/projects/yoohome.jpg` | `otherProjects[0]` |

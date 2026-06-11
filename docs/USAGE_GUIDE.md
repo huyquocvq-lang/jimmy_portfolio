@@ -106,6 +106,10 @@ Do not leave docs describing old behavior.
 | `vite.config.js`, deploy | `FULL_DOCUMENTATION` §4, `API_FLOW` | |
 | New project | All: `FEATURE_MAP`, `ARCHITECTURE`, `AI_AGENT_GUIDE`, `FULL_DOCUMENTATION` §5/10, `API_FLOW` paths | `AGENTS.md` route table |
 | `public/images/` only | `API_FLOW` (path table), `FEATURE_MAP` if filenames change | |
+| `src/components/Seo.jsx` (head/meta/JSON-LD logic) | `FEATURE_MAP` FS, `ARCHITECTURE_OVERVIEW` routing section | `FULL_DOCUMENTATION` |
+| `scripts/prerender.mjs` / build pipeline | `FEATURE_MAP` FS, `ARCHITECTURE_OVERVIEW` deployment, `USAGE_GUIDE` deploy section | `AGENTS.md` commands |
+| `public/robots.txt` / `public/llms.txt` / `index.html` head (meta, JSON-LD, preloads) | `FEATURE_MAP` FS | `API_FLOW` |
+| `src/pages/NotFoundPage.jsx` | `FEATURE_MAP` F404, `USAGE_GUIDE` routes, `AI_AGENT_GUIDE` routes table | |
 | Team workflow / process | `AI_AGENT_GUIDE`, `USAGE_GUIDE`, `AGENTS.md` | |
 
 ### 4.3 Checklist before finishing a task
@@ -151,9 +155,15 @@ Do not leave docs describing old behavior.
 ### Deploy
 
 ```bash
-npm run build
-# Upload dist/ - enable SPA fallback (all paths → index.html)
+npm run build       # vite build + prerender (scripts/prerender.mjs: sitemap.xml + static HTML per route, EN + VI = 24 URLs)
+npm run build:spa   # vite build only (no prerender - crawlers get the empty shell; avoid for production)
+# Upload dist/ - enable SPA fallback (all paths → index.html).
+# Static files (prerendered routes, robots.txt, sitemap.xml, llms.txt) are served before the fallback.
 ```
+
+New blog posts / projects are picked up by the sitemap + prerenderer automatically in both languages (routes derive from `src/data/blog.js` / `src/data/projects.js`) - just rebuild.
+
+CI note: if puppeteer's bundled Chrome cannot launch in the build container (e.g. Vercel's Amazon Linux image), `scripts/prerender.mjs` automatically falls back to `@sparticuz/chromium`. Verify the first deploy after touching the prerender pipeline; `npm run build:spa` is the emergency escape hatch (loses prerendered HTML for crawlers).
 
 ---
 
@@ -170,6 +180,9 @@ npm run build
 | `/projects/hubly` | HublyProject |
 | `/blog` | BlogListPage (paginated, 9/page, `?page=N`) |
 | `/blog/:slug` | BlogDetailPage |
+| `*` (anything else) | NotFoundPage (404, noindex) |
+
+Every route also exists under the `/vi/` prefix (Vietnamese version of the same page - e.g. `/vi/blog/:slug`). The URL determines the language; the nav toggle navigates between the twin URLs.
 
 ---
 

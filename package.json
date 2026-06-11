@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "dev:fresh": "rm -rf node_modules/.vite && vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/prerender.mjs",
+    "build:spa": "vite build",
+    "prerender": "node scripts/prerender.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -19,7 +21,10 @@
     "rollup": "^4.60.4"
   },
   "devDependencies": {
+    "@sparticuz/chromium": "^147.0.0",
     "@vitejs/plugin-react": "^4.3.1",
+    "puppeteer": "^24.43.1",
+    "puppeteer-core": "^24.43.1",
     "vite": "^5.4.0"
   }
 }
