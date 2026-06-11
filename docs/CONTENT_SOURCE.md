@@ -287,17 +287,17 @@ Card data is the runtime contract in `src/data/projects.js`. Each project has it
 
 # **Blog**
 
-**Anchor:** `id="blog"` · **Homepage section:** `src/components/Blogs.jsx` · **List page:** `/blog` → `src/pages/BlogListPage.jsx` · **Detail page:** `/blog/:slug` → `src/pages/BlogDetailPage.jsx` · **Data:** `src/data/blog.js`
+**Anchor:** `id="blog"` · **Homepage section:** `src/components/Blogs.jsx` · **List page:** `/blog` → `src/pages/BlogListPage.jsx` · **Detail page:** `/blog/:slug` → `src/pages/BlogDetailPage.jsx` · **Data:** `src/data/blog.ts`
 
 The homepage shows a single-row horizontal slider with newest posts; the `View all →` link routes to a paginated list page (9 posts per page). Each post has its own detail page rendered from a structured `body` array.
 
 ## Authoring rules
 
-- One object per post in the `blog` array (`src/data/blog.js`).
-- Required: `slug`, `title`, `excerpt`, `date` (ISO `YYYY-MM-DD`), `tags` (plain strings), `body` (array of blocks). Optional: `cover` (path under `/images/blogs/<slug>/preview.jpg`), `readMinutes`.
+- One object per post in the `blog` array (`src/data/blog.ts`).
+- Required: `slug`, `title`, `excerpt`, `date` (ISO `YYYY-MM-DD`), `tags` (plain strings), `body` (array of blocks). Optional: `cover` (path under `/images/blog/<slug>.jpg`), `readMinutes`.
 - Text fields (`title`, `excerpt`, block text, image alt/caption) are `{ en, vi }` pairs - same bilingual rule as elsewhere.
 - Tags / code snippets / language labels stay as plain strings.
-- Block types: `paragraph`, `heading` (level 2 or 3), `list` (items: translatable strings), `code` (`{ lang, code }`), `quote`, `callout`, `image` (`{ src, alt, caption? }`).
+- Block types: `paragraph`, `heading` (level 2 or 3), `list` (items: translatable strings), `code` (`{ lang, code }`), `quote`, `callout`, `image` (`{ src, alt, caption? }`), `html` (`{ html }` - author-only raw markup, rendered via dangerouslySetInnerHTML), `video` (`{ src, embed?, poster?, title?, caption? }` - native `<video>` or `<iframe>` embed when `embed: true`).
 
 ## Seed posts (current)
 
@@ -307,6 +307,11 @@ The homepage shows a single-row horizontal slider with newest posts; the `View a
 | `going-headless-with-magnolia-and-react` | Going headless with Magnolia + React | 2025-07-04 |
 | `bridging-zigbee-zwave-ble-in-one-gateway` | Bridging Zigbee, Z-Wave and BLE in one home gateway | 2024-11-18 |
 | `leading-a-small-engineering-team` | Notes on leading a 5-10 person engineering team | 2024-03-22 |
+| `running-zigbee2mqtt-in-production` | Running Zigbee2MQTT in production: what actually breaks | 2026-04-30 |
+| `kafka-vs-redis-choosing-the-backbone` | Kafka vs Redis: choosing the backbone for async work | 2026-03-15 |
+| `javascript-tricks-i-reach-for` | JavaScript tricks I reach for every week | 2026-02-02 |
+
+> The three 2026 posts demo the new block types: `running-zigbee2mqtt-in-production` uses `video` (both embed + native), `kafka-vs-redis-choosing-the-backbone` uses an `html` comparison table. Video media paths (`/videos/blog/*.mp4`, the YouTube `VIDEO_ID`) are placeholders to replace with real assets.
 
 ---
 

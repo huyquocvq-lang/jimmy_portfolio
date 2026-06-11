@@ -15,7 +15,23 @@
       "Bash(curl -s -o /dev/null -w \"/projects/lending-orchestration-platform → %{http_code}\\\\n\" http://localhost:5173/projects/lending-orchestration-platform)",
       "Bash(node --check src/data/stats.js)",
       "Bash(node --check src/pages/HomePage.jsx)",
-      "Bash(node -e \"import\\('./src/components/Nav.jsx'\\).catch\\(e=>console.log\\('ESM:',e.message\\)\\)\")"
+      "Bash(node -e \"import\\('./src/components/Nav.jsx'\\).catch\\(e=>console.log\\('ESM:',e.message\\)\\)\")",
+      "Bash(git commit *)",
+      "Bash(timeout 25 npx vite build)",
+      "Bash(npx vite *)",
+      "Bash(npm ls *)",
+      "Bash(node -e \"const r=require\\('rollup'\\); console.log\\('rollup type:', typeof r.rollup\\)\")",
+      "Bash(curl -s http://localhost:5173/)",
+      "Bash(curl -s http://localhost:5173/src/main.jsx)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:5173/src/main.jsx)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:5173/src/App.jsx)",
+      "Bash(node -e \"const path=require.resolve\\('rollup'\\); console.log\\('resolved:',path\\); const r=require\\('rollup'\\); console.log\\('keys:',Object.keys\\(r\\).slice\\(0,10\\)\\)\")",
+      "Bash(node -e \"console.log\\(typeof require\\('rollup'\\).rollup\\)\")",
+      "Bash(pkill -f \"vite\")",
+      "Bash(npm -v)",
+      "Bash(rm -rf node_modules node_modules/.vite)",
+      "Bash(npm ci *)",
+      "Bash(node --input-type=module -e \"import\\('rollup'\\).then\\(r=>console.log\\('OK rollup:',typeof r.rollup,'VERSION:',r.VERSION\\)\\).catch\\(e=>console.log\\('FAIL',e.message\\)\\)\")"
     ]
   }
 }

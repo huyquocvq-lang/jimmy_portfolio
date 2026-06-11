@@ -42,7 +42,7 @@ Do not merge if docs are out of sync with the code.
 | Personal Interest (copy + photos) | `src/data/personal.js` (+ `public/images/personal/*.jpeg`) |
 | Project card (homepage) | `src/data/projects.js` |
 | Project page (layout + copy) | `src/projects/<Name>Project.jsx` + `src/styles/projects/<name>.css` |
-| Blog post (data + body) | `src/data/blog.js` (append object; structured `body` array) |
+| Blog post (data + body) | `src/data/blog.ts` (append object; structured `body` array) |
 | Blog slider / list / detail layout | `src/components/Blogs.jsx`, `src/components/BlogCard.jsx`, `src/components/BlogBody.jsx`, `src/pages/BlogListPage.jsx`, `src/pages/BlogDetailPage.jsx`, `src/styles/blog.css` |
 | All-projects list page | `src/pages/ProjectListPage.jsx` |
 | Mobile content trim (env-configurable) | `src/utils/mobileTrim.js`, `src/components/MobileTrimStyles.jsx`, `.env.example` (`VITE_MOBILE_*`) |

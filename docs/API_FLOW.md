@@ -65,7 +65,11 @@ Cache headers (`vercel.json`): `/assets/*` 1y immutable, `/hero-banners/*` 1d im
 
 `public/images/projects/` ships 1600×1000 JPEG project thumbnails derived from approved reference screenshots, marketing/product images, or other non-confidential visual assets. `scripts/generate-project-previews.mjs` remains available for producing anonymized placeholder mockups when a project has no approved real-world visual source.
 
-Blog cover images live under `public/images/blogs/<slug>/preview.jpg` and are referenced from `blog.js` `cover` fields. When a post has no `cover`, `BlogCard` + `BlogDetailPage` render the bronze gradient fallback automatically.
+```bash
+node scripts/generate-project-previews.mjs --force
+```
+
+Blog cover images live under `public/images/blog/<slug>.jpg` and are referenced from `blog.ts` `cover` fields. When the directory is empty, `BlogCard` + `BlogDetailPage` render the bronze gradient fallback automatically.
 
 ### Banner asset paths (static HTML, served as iframe documents)
 

@@ -165,16 +165,16 @@ Project slug → JSX:
 
 | Piece | File |
 |-------|------|
-| Data + helpers | `src/data/blog.js` - `getAllPosts()` (sorted desc), `getPostBySlug(slug)`, `getAdjacentPosts(slug)` |
+| Data + helpers | `src/data/blog.ts` - `getAllPosts()` (sorted desc), `getPostBySlug(slug)`, `getAdjacentPosts(slug)` |
 | Card | `src/components/BlogCard.jsx` - reused by slider + list page |
 | Slider | `src/components/Blogs.jsx` - CSS scroll-snap + arrow buttons; mounted on home between `Projects` and `Footer` |
-| Body renderer | `src/components/BlogBody.jsx` - switch over block `type` (`paragraph`, `heading`, `list`, `code`, `quote`, `callout`, `image`) |
+| Body renderer | `src/components/BlogBody.jsx` - switch over block `type` (`paragraph`, `heading`, `list`, `code`, `quote`, `callout`, `image`, `html`, `video`) |
 | Pagination | `src/components/Pagination.jsx` - `?page=N` URL param, ellipses around first/last/current |
 | List page | `src/pages/BlogListPage.jsx` |
 | Detail page | `src/pages/BlogDetailPage.jsx` - redirects to `/blog` if slug unknown |
 | Styles | `src/styles/blog.css` (loaded from `src/main.jsx`) |
 
-Adding a post: append to the `blog` array in `src/data/blog.js`. Required fields: `slug`, `title`, `excerpt`, `date` (ISO `YYYY-MM-DD`), `tags`, `body`. Cover image path is optional; generated covers live at `/images/blogs/<slug>/preview.jpg`. Body block text fields use `{ en, vi }` pairs.
+Adding a post: append to the `blog` array in `src/data/blog.ts`. Required fields: `slug`, `title`, `excerpt`, `date` (ISO `YYYY-MM-DD`), `tags`, `body`. Cover image path is optional. Body block text fields use `{ en, vi }` pairs.
 
 Each page reuses one of the legacy CSS class prefixes (`.wp-`, `.pgm-`, `.trend-`, `.pfm-`, `.glean-`, `.air-`, `.retro-`) for layout - matching the renamed CSS file under `src/styles/projects/`.
 
