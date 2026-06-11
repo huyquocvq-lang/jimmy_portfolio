@@ -118,11 +118,14 @@ async function main() {
   try {
     for (const route of routes) {
       await page.goto(`${base}${route.url}`, { waitUntil: 'networkidle0', timeout: 60000 })
-      // Vercel Analytics re-injects its own tag on hydration - drop the
-      // captured copy so prerendered pages do not load it twice.
+      // Vercel Analytics + Speed Insights re-inject their own tags on
+      // hydration - drop the captured copies so prerendered pages do not load
+      // them twice.
       await page.evaluate(() => {
         document
-          .querySelectorAll('script[src*="/_vercel/insights"], script[data-sdkn]')
+          .querySelectorAll(
+            'script[src*="/_vercel/insights"], script[src*="/_vercel/speed-insights"], script[data-sdkn]'
+          )
           .forEach((el) => el.remove())
       })
       const html = await page.content()

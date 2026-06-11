@@ -53,6 +53,7 @@ Present engineering credibility to recruiters, hiring managers, and clients thro
 - **Icons:** `react-icons/fa` (`FaChevronDown`, `FaBars`, `FaTimes`, skill icons)
 - **Styling:** Global CSS + per-page CSS (no UI framework)
 - **Analytics:** `@vercel/analytics/react` (`<Analytics />` mounted once in `App.jsx`; auto-tracks page views + react-router route changes on Vercel deploys)
+- **Speed Insights:** `@vercel/speed-insights/react` (`<SpeedInsights />` mounted once in `App.jsx` beside `<Analytics />`; reports Core Web Vitals / real-user performance on Vercel deploys)
 - **SEO / prerender:** `src/components/Seo.jsx` (per-route head metadata + JSON-LD) + `puppeteer` (devDependency, used only by `scripts/prerender.mjs` at build time to snapshot every route into static HTML and generate `dist/sitemap.xml`). `@sparticuz/chromium` + `puppeteer-core` (devDependencies) drive the CI path: on Vercel/CI (`process.env.VERCEL`/`CI`) the prerenderer launches the self-contained sparticuz Chromium build directly (the build image has no bundled Chrome and lacks Chrome's shared libraries); locally it uses puppeteer's bundled Chrome and only falls back to sparticuz if that cannot start. The preview server is started with `open:false` so it does not inherit `server.open:true` from `vite.config.js` and try to spawn a browser on the headless build.
 
 ---

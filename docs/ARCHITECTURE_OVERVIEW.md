@@ -157,7 +157,7 @@ Static `dist/` after `npm run build`. Suitable for GitHub Pages, Netlify, Vercel
 ```
 main.jsx
   └── ThemeProvider (src/context/ThemeContext.jsx)
-        └── App.jsx (react-router-dom + <Analytics /> from @vercel/analytics/react)
+        └── App.jsx (react-router-dom + <Analytics /> + <SpeedInsights /> from @vercel/analytics + @vercel/speed-insights)
         ├── HomePage
         │     ├── Hero → profile, stats
         │     ├── Nav → profile

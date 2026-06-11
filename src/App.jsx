@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import HomePage from './pages/HomePage'
 import LendingPlatformProject from './projects/LendingPlatformProject'
 import YoohomeProject from './projects/YoohomeProject'
@@ -53,6 +54,7 @@ export default function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Analytics />
+      <SpeedInsights />
     </BrowserRouter>
   )
 }
