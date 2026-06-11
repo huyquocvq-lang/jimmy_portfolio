@@ -1,0 +1,25 @@
+# Jimmy Vu (Vu Quoc Huy) — Senior Full Stack Software Engineer
+
+> Senior full stack developer based in Hanoi, Vietnam (GMT+7). 4+ years across
+> fintech lending platforms (Java, Spring Boot, Camunda BPM — ~$10M monthly
+> disbursement), smart-home AIoT (500K+ devices, MQTT, React Native), and
+> enterprise CMS (Magnolia, headless React). Tech lead for teams of 5-10
+> engineers. Open to remote roles and freelance projects.
+
+## Projects
+
+- [Lending Orchestration Platform](https://www.jimmyvu.info/projects/lending-orchestration-platform): Java, Spring Boot, Camunda BPM — multi-product lending platform, millions of customers
+- [Yoohome AIoT Platform](https://www.jimmyvu.info/projects/yoohome): NestJS, React Native, MQTT — 500K+ smart-home devices in production
+- [Dotmar Multi-Site CMS](https://www.jimmyvu.info/projects/dotmar-cms): Magnolia CMS, Java, React — multi-site, multi-language, AI authoring
+- [Custom Zigbee Gateway Firmware](https://www.jimmyvu.info/projects/zigbee-gateway-firmware): Node.js, Zigbee2MQTT, embedded Linux — 10,000+ gateways nationwide
+- [Hubly Community Platform](https://www.jimmyvu.info/projects/hubly): NestJS, Vue/Nuxt, Flutter — AI moderation across 30+ languages
+
+## Writing
+
+- [Engineering Blog](https://www.jimmyvu.info/blog): Spring Boot, IoT/MQTT, headless CMS architecture, engineering leadership
+
+## Contact
+
+- Email: huyquoc.vq@gmail.com
+- LinkedIn: https://linkedin.com/in/quoc-huy-16b896277
+- Website: https://www.jimmyvu.info
