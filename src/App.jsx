@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import HomePage from './pages/HomePage'
 import LendingPlatformProject from './projects/LendingPlatformProject'
 import YoohomeProject from './projects/YoohomeProject'
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/blog" element={<BlogListPage />} />
         <Route path="/blog/:slug" element={<BlogDetailPage />} />
       </Routes>
+      <Analytics />
     </BrowserRouter>
   )
 }

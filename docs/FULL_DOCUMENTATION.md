@@ -52,6 +52,7 @@ Present engineering credibility to recruiters, hiring managers, and clients thro
 - **Routing:** `react-router-dom` (`BrowserRouter`, `Routes`, `Route`, `Link`, `Navigate`)
 - **Icons:** `react-icons/fa` (`FaChevronDown`, `FaBars`, `FaTimes`, skill icons)
 - **Styling:** Global CSS + per-page CSS (no UI framework)
+- **Analytics:** `@vercel/analytics/react` (`<Analytics />` mounted once in `App.jsx`; auto-tracks page views + react-router route changes on Vercel deploys)
 
 ---
 
