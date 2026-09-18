@@ -39,7 +39,7 @@ When updating copy:
 | Subtitle | `Senior Backend & Platform Software Engineer.` |
 | Title behaviour | `Quoc Huy / Jimmy` always stays on a single line (`flex-wrap: nowrap; white-space: nowrap`) so the Vietnamese + English name never split across two lines |
 | Skill chips | Java · Spring Boot · Microservices · Camunda · Node.js · NestJS · gRPC · MySQL · MongoDB · Redis · Kafka · MQTT · WebSocket · React · React Native · IoT · Edge Systems (first two pills filled bronze, rest outlined) |
-| Side chip 1 | `// EXPERIENCE` → `4+ years · Senior` |
+| Side chip 1 | `// EXPERIENCE` → `5+ years · Professional` |
 | Side chip 2 | `// BASED IN` → `Hanoi · GMT+7` |
 | Side chip 3 | `// ALSO DOES` → `Full-stack · Mobile · IoT` |
 | Side chip 4 | `// STATUS` → `OPEN TO HIRE ✓` (green accent via `accent: 'available'` on the chip) |
@@ -97,7 +97,7 @@ Tabbed grid driven by `src/data/stats.js → impactTabs[]`. Four tabs: **Overall
 - **~50% faster** - AI agent integrated into the CMS cuts sales-content drafting time roughly in half.
 - **20+ rules** - Personalization rules running in production: location, time of day, age, audience segment.
 
-Hero strip mirror (3 stats, legacy `heroStats` export): `4+ yrs · Fullstack experience`, `10-15 · Team members led`, `20+ · Production systems shipped`.
+Hero strip mirror (3 stats, legacy `heroStats` export): `5+ yrs · Professional engineering`, `10-15 · Team members led`, `20+ · Production systems shipped`.
 
 ---
 
@@ -107,7 +107,7 @@ Hero strip mirror (3 stats, legacy `heroStats` export): `4+ yrs · Fullstack exp
 
 **Heading:** Working at the intersection of CMS platforms, backend services, and IoT systems.
 
-**Paragraph 1:** I bring four years of fullstack engineering experience across CMS platforms, microservice backends, mobile applications, and IoT gateways - with a focus on shipping production systems that handle high traffic and complex device integrations.
+**Paragraph 1:** More than five years of professional software engineering across lending platforms, smart-home AIoT, and enterprise CMS, with a focus on backend-heavy production systems that handle high traffic and complex integrations.
 
 **Paragraph 2:** One of my strongest areas is owning a system end-to-end: building Java Spring Boot and Nest.js backends, integrating with MySQL and MongoDB at scale, wiring up MQTT and WebSocket pipelines for real-time telemetry, and exposing the result through React, React Native, and headless CMS frontends.
 
