@@ -151,7 +151,11 @@ Hero strip mirror (3 stats, legacy `heroStats` export): `5+ yrs · Professional 
 ### Viettel Digital - Software Development Specialist · current
 Hanoi Capital Region · Jul 2025 – Present · website https://viettel.com.vn
 
-Working at Viettel Digital Services, part of Viettel Group, specializing in developing large-scale digital lending platforms with monthly disbursement reaching up to USD 10M. Developed and maintained backend systems in Java, integrating payment flows and managing cash-flow connections with lending partners. Participated in system design to ensure scalability, security, and high availability across the lending platform, while supporting native mobile applications consuming the same APIs. Implemented business workflows using Camunda BPM to orchestrate the lending lifecycle from application to disbursement.
+Achievement bullets:
+- Build Java / Spring Boot services for a digital lending platform processing up to USD 10M in monthly disbursement.
+- Integrate payment and lending-partner flows across the loan lifecycle, including cash-flow and disbursement paths.
+- Contribute to platform design for scalability, security, high availability, and transaction integrity across shared lending services.
+- Implement Camunda BPM workflows covering application, decisioning, partner hand-offs, and disbursement.
 
 **Technologies:** Java · Native Mobile App · Camunda BPM · Financial System Integration
 **Scale:** Up to USD 10M monthly disbursement on the digital lending platform
@@ -159,7 +163,12 @@ Working at Viettel Digital Services, part of Viettel Group, specializing in deve
 ### SmartOSC - Senior Java Engineer
 19F Handico Tower, Pham Hung St, Nam Tu Liem, Hanoi · Oct 2023 – Jun 2025 · website https://www.smartosc.com
 
-Developed and maintained Magnolia CMS solutions, optimized performance, and built custom modules for enterprise content workflows. Built Java-based backend services, optimized MySQL queries, and developed RESTful and GraphQL APIs powering headless content delivery. Created and integrated a React-based headless frontend for seamless content rendering across web channels. Managed Apache configurations, improved security posture, and optimized system performance under production load. Implemented GitLab CI/CD pipelines for automated testing and deployment, and mentored junior developers on best practices and code quality.
+Achievement bullets:
+- Built Magnolia CMS solutions for enterprise multi-site clients, including custom modules, editorial workflows, and performance tuning.
+- Shipped Java backend services, optimized MySQL queries, and delivered REST / GraphQL APIs for headless content distribution.
+- Integrated React headless frontends with shared CMS content models to avoid duplicated templates across channels.
+- Hardened Apache / Tomcat production configuration and improved runtime stability under load.
+- Set up GitLab CI/CD for automated test / deploy flows and mentored junior engineers through code review.
 
 **Technologies:** Magnolia CMS · Java Core · Spring Boot · MySQL · React · Apache · AWS · GitLab CI/CD
 **Outstanding projects:** MMP's CMS Website (Java Spring Boot · high-traffic optimization) · Dentsu's Headless CMS (Magnolia + React)
@@ -167,7 +176,12 @@ Developed and maintained Magnolia CMS solutions, optimized performance, and buil
 ### YooTek Holdings - Full Stack Developer
 Nam Tu Liem, Hanoi · Aug 2021 – Feb 2024
 
-Built a microservices backend with Java Spring Boot and Nest.js, optimizing MySQL, MongoDB, WebSocket, and MQTT pipelines to handle high-traffic IoT and consumer systems. Developed mobile applications with React Native, integrated native modules in Java and Swift, and managed application state with Redux. Integrated payment gateways (MoMo, VN Pay) and IoT devices (Legrand, Schneider Electric, Tuya), and deployed services on CMC Cloud using Docker and Kubernetes. Developed a home gateway for smart devices over Zigbee, Z-Wave, and BLE, and implemented AI modules with YOLO and OpenCV for fire and stroke detection. Led a team of 5-10 engineers - assigned tasks, tracked progress, ran code reviews, and evaluated performance.
+Achievement bullets:
+- Built Java Spring Boot / NestJS microservices and tuned MySQL, MongoDB, WebSocket, and MQTT paths for high-traffic IoT workloads.
+- Shipped React Native applications with Java / Swift native modules and Redux-based state management.
+- Integrated MoMo / VNPay and multi-vendor IoT ecosystems including Legrand, Schneider Electric, and Tuya; deployed with Docker / Kubernetes.
+- Designed smart-home gateway capabilities across Zigbee, Z-Wave, and BLE, including edge AI modules with YOLO / OpenCV.
+- Led a 5-10 engineer team across planning, implementation coordination, code review, mentoring, and delivery tracking.
 
 **Technologies:** Spring Boot · React Native · Python · Node.js · NestJS · MQTT · RabbitMQ · Microservices · MongoDB · Docker · Kubernetes
 **Outstanding projects:** Yoolife (urban residents app) · YooIOC (urban operations management app)
@@ -175,7 +189,10 @@ Built a microservices backend with Java Spring Boot and Nest.js, optimizing MySQ
 ### Hanoi Telecom Corporation - Java Developer
 My Dinh 1, Hanoi · Nov 2020 – Mar 2021
 
-Used the Liferay framework to construct customers' websites and built backend services with Spring Boot following REST API conventions. Researched algorithms and query optimization with Spring Data JPA and MySQL to support data-intensive portal features. Participated in business analysis and used tools like Trello and GitHub to monitor progress with the team.
+Achievement bullets:
+- Built customer-facing Liferay portals and Spring Boot REST services.
+- Optimized Spring Data JPA / MySQL access patterns for data-heavy portal features.
+- Contributed to requirements analysis and delivery tracking with the product team.
 
 **Technologies:** Spring Framework · MySQL · Liferay · Java · Git · Trello
 **Outstanding projects:** VNPT Portal Information
@@ -183,7 +200,11 @@ Used the Liferay framework to construct customers' websites and built backend se
 ### Eledevo Academy - Full Stack Developer & IT Lecturer
 Hanoi · Aug 2019 – Sep 2020
 
-Started as a Java intern at Eledevo Academy and later transitioned to a part-time role focused on production work and teaching. Developed APIs with Spring and Express following RESTful principles, and built web and mobile applications using React and React Native with Redux and Saga. Taught basic programming, helping students build CRUD-based applications with Spring, Node.js, and React. Supported employees and led a team of 1 to 3 interns through onboarding and project delivery.
+Achievement bullets:
+- Progressed from Java intern to a part-time full-stack and teaching role.
+- Built Spring / Express APIs and shipped React / React Native applications with Redux / Saga.
+- Taught programming fundamentals through hands-on Spring, Node.js, and React CRUD projects.
+- Mentored 1-3 interns per cohort through onboarding and project delivery.
 
 **Technologies:** Spring Framework · React · React Native · JavaScript · Java · MySQL · MongoDB
 **Outstanding projects:** Eledevo Academy landing page · The Fruit Market application
