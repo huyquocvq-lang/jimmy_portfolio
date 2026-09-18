@@ -17,6 +17,13 @@ const USE_CASES = [
   { en: 'Centralized monitoring across partner integrations', vi: 'Giám sát tập trung trên các integration đối tác' }
 ]
 
+const CONTRIBUTIONS = [
+  { en: 'Build and maintain Java / Spring Boot backend services across the lending lifecycle.', vi: 'Xây dựng và bảo trì các backend service Java / Spring Boot xuyên suốt vòng đời khoản vay.' },
+  { en: 'Implement Camunda BPM workflows that orchestrate application, decisioning, partner hand-offs, and disbursement steps.', vi: 'Triển khai workflow Camunda BPM để điều phối các bước đăng ký, decisioning, hand-off với đối tác và giải ngân.' },
+  { en: 'Integrate payment and lending-partner flows while keeping product-specific rules isolated on a shared platform.', vi: 'Tích hợp luồng thanh toán và đối tác cho vay, đồng thời cô lập rule riêng của từng sản phẩm trên một platform dùng chung.' },
+  { en: 'Contribute to platform design for scalability, availability, security, and transaction integrity in production.', vi: 'Tham gia thiết kế platform cho khả năng mở rộng, độ sẵn sàng, bảo mật và toàn vẹn giao dịch trên production.' }
+]
+
 const CHALLENGES = [
   { en: 'Each loan product has its own flow and credit policy - the platform has to host all of them without forcing a shared shape', vi: 'Mỗi sản phẩm vay có flow và chính sách tín dụng riêng - platform phải chứa được tất cả mà không ép vào một khuôn chung' },
   { en: 'Changes must stay isolated so a tweak to one product cannot regress another live flow', vi: 'Thay đổi phải được cô lập để chỉnh một sản phẩm không kéo theo regression cho sản phẩm khác đang chạy' },
@@ -39,6 +46,7 @@ const CONTENT = {
   },
   roleH: { en: 'Role', vi: 'Vai trò' },
   role: { en: 'Software Engineer - Backend / Platform', vi: 'Software Engineer - Backend / Platform' },
+  ownershipH: { en: 'My Contribution / Ownership', vi: 'Phần tôi trực tiếp phụ trách' },
   useCasesH: { en: 'Highlighted Use Cases', vi: 'Use case nổi bật' },
   challengesH: { en: 'Challenges', vi: 'Thử thách' },
   metricsH: { en: 'Metrics', vi: 'Số liệu' }
@@ -74,6 +82,15 @@ export default function LendingPlatformProject() {
             <h2>{tr(CONTENT.roleH, lang)}</h2>
             <p>{tr(CONTENT.role, lang)}</p>
           </div>
+        </section>
+
+        <section className="trend-recs">
+          <h2>{tr(CONTENT.ownershipH, lang)}</h2>
+          <ol>
+            {CONTRIBUTIONS.map((r, i) => (
+              <li key={i}>{tr(r, lang)}</li>
+            ))}
+          </ol>
         </section>
 
         <section className="trend-recs">
