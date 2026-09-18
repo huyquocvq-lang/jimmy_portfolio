@@ -39,7 +39,7 @@ export const profile = {
     sideChips: [
       {
         label: { en: 'Experience', vi: 'Kinh nghiệm' },
-        value: { en: '4+ years · Senior', vi: '4+ năm · Senior' }
+        value: { en: '5+ years · Professional', vi: '5+ năm · Chuyên nghiệp' }
       },
       {
         label: { en: 'Based In', vi: 'Cơ sở' },
