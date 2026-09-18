@@ -16,6 +16,13 @@ const USE_CASES = [
   { en: 'Automatic firmware OTA updates - staged, signed, and reversible', vi: 'Cập nhật firmware OTA tự động - staged, có ký số và có thể rollback' }
 ]
 
+const CONTRIBUTIONS = [
+  { en: 'Built and maintained the Node.js / Zigbee2MQTT gateway runtime on Debian-based Rockchip hardware.', vi: 'Xây dựng và bảo trì runtime gateway Node.js / Zigbee2MQTT trên phần cứng Rockchip chạy Debian.' },
+  { en: 'Integrated cross-vendor Zigbee devices behind one gateway abstraction for local control and cloud management.', vi: 'Tích hợp thiết bị Zigbee đa hãng sau một lớp abstraction gateway thống nhất cho điều khiển local và quản lý cloud.' },
+  { en: 'Implemented remote diagnostics and OTA update flows designed for constrained embedded hardware.', vi: 'Triển khai chẩn đoán từ xa và luồng OTA phù hợp với phần cứng nhúng tài nguyên hạn chế.' },
+  { en: 'Designed for offline-tolerant operation so local automation and device control continue through cloud outages.', vi: 'Thiết kế theo hướng chịu được mất cloud để automation local và điều khiển thiết bị vẫn tiếp tục hoạt động.' }
+]
+
 const CHALLENGES = [
   { en: 'Constrained embedded hardware - tight CPU, memory, and storage budgets', vi: 'Phần cứng nhúng tài nguyên hạn chế - ngân sách CPU, RAM và storage đều chặt' },
   { en: 'Stack runs on a Rockchip embedded computer with Debian, not a clean cloud VM', vi: 'Stack chạy trên máy nhúng Rockchip với Debian, không phải VM cloud sạch sẽ' },
@@ -37,6 +44,7 @@ const CONTENT = {
   },
   roleH: { en: 'Role', vi: 'Vai trò' },
   role: { en: 'Backend / Embedded Developer · DevOps', vi: 'Backend / Embedded Developer · DevOps' },
+  ownershipH: { en: 'My Contribution / Ownership', vi: 'Phần tôi trực tiếp phụ trách' },
   useCasesH: { en: 'Highlighted Use Cases', vi: 'Use case nổi bật' },
   challengesH: { en: 'Challenges', vi: 'Thử thách' },
   metricsH: { en: 'Metrics', vi: 'Số liệu' }
@@ -72,6 +80,15 @@ export default function ZigbeeGatewayProject() {
             <h2>{tr(CONTENT.roleH, lang)}</h2>
             <p>{tr(CONTENT.role, lang)}</p>
           </div>
+        </section>
+
+        <section className="trend-recs">
+          <h2>{tr(CONTENT.ownershipH, lang)}</h2>
+          <ol>
+            {CONTRIBUTIONS.map((r, i) => (
+              <li key={i}>{tr(r, lang)}</li>
+            ))}
+          </ol>
         </section>
 
         <section className="trend-recs">
