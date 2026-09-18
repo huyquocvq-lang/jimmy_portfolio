@@ -46,7 +46,7 @@
 | Area | Content |
 |------|---------|
 | `tag` (top-left)        | Status dot + `PORTFOLIO / 2026 // AVAILABLE FOR HIRE` |
-| `side` (right column)   | Stacked info chips zigzagging left ↔ right (`// EXPERIENCE`, `// BASED IN`, `// ALSO DOES`, `// STATUS`) |
+| `side` (right column)   | Stacked info chips zigzagging left ↔ right (`// EXPERIENCE` = `5+ years · Professional`, `// BASED IN`, `// ALSO DOES`, `// STATUS`) |
 | `main` (center-left)    | `- Backend · Platform · Distributed Systems` eyebrow → serif name with bronze italic accent (+ `.sr-only` "Senior Backend and Platform Software Engineer" suffix inside the `<h1>` for crawlers/screen readers) → `Senior Backend & Platform Software Engineer.` subtitle → `// DOMAINS` row → wrapped core-stack chip row |
 | `contact` (bottom-left) | `// EMAIL`, `// PHONE`, `// LINKEDIN` columns |
 | `mark` (bottom-right)   | `SE/26` serif monogram + `SENIOR · EST. 2019` tag |
