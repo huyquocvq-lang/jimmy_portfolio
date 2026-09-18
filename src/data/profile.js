@@ -1,14 +1,14 @@
 export const profile = {
   name: 'Quoc Huy (Jimmy)',
   // Tech / role descriptors kept in English (industry-standard terminology)
-  role: 'Senior Fullstack Engineer · Fintech · AIoT · CMS · Tech Lead',
+  role: 'Senior Backend & Platform Engineer · Fintech · AIoT · Full-stack',
   tagline: {
-    en: 'Fullstack engineer building lending platforms, AIoT systems, and enterprise CMS - backend-first, mobile and web at the edges.',
-    vi: 'Kỹ sư fullstack, xây nền tảng cho vay, hệ thống AIoT và CMS doanh nghiệp - backend là chính, mobile và web ở các tầng giao tiếp.'
+    en: 'Backend and platform engineer building production systems where software meets money, devices, and scale - with full-stack and mobile experience when the product needs it.',
+    vi: 'Kỹ sư backend và platform, xây các hệ thống production nơi phần mềm gắn với dòng tiền, thiết bị và bài toán scale - đồng thời có kinh nghiệm full-stack và mobile khi sản phẩm cần.'
   },
   intro: {
-    en: 'Four years building production fullstack systems across fintech, smart-home AIoT, and enterprise content platforms. I own systems end-to-end: backend services, mobile and web frontends, and the integration glue in between. I have led teams of five to ten engineers and aim to keep growing as a technical leader who ships, mentors, and writes.',
-    vi: 'Bốn năm xây các hệ thống fullstack production trên fintech, smart-home AIoT và nền tảng nội dung doanh nghiệp. Tôi làm chủ hệ thống từ đầu đến cuối: backend service, frontend mobile và web, cùng phần tích hợp ở giữa. Tôi từng dẫn dắt nhóm năm đến mười kỹ sư và muốn tiếp tục phát triển thành một technical leader vừa ship, vừa mentor, vừa viết.'
+    en: 'I build and operate backend-heavy production systems across fintech and AIoT, from Java/Spring Boot services and workflow orchestration to realtime messaging and partner integrations. I can own the product end-to-end when needed across React, React Native, and platform infrastructure, and I have led teams of five to ten engineers.',
+    vi: 'Tôi xây dựng và vận hành các hệ thống production thiên về backend trong fintech và AIoT, từ service Java/Spring Boot, workflow orchestration đến realtime messaging và tích hợp đối tác. Khi cần, tôi có thể làm chủ sản phẩm end-to-end qua React, React Native và hạ tầng platform, đồng thời đã dẫn dắt các nhóm từ năm đến mười kỹ sư.'
   },
   currentRole: {
     title: 'Software Development Specialist',
@@ -20,21 +20,21 @@ export const profile = {
     portfolioYear: '2026',
     availability: { en: 'AVAILABLE FOR HIRE', vi: 'ĐANG SẴN SÀNG NHẬN VIỆC' },
     available: true,
-    eyebrow: { en: 'Senior Software Engineer', vi: 'Kỹ sư phần mềm Senior' },
+    eyebrow: { en: 'Backend · Platform · Distributed Systems', vi: 'Backend · Platform · Distributed Systems' },
     title: {
       lead: 'Quoc Huy',
       accent: 'Jimmy'
     },
-    subtitleLead: { en: 'Senior Fullstack', vi: 'Senior Fullstack' },
+    subtitleLead: { en: 'Senior Backend & Platform', vi: 'Senior Backend & Platform' },
     subtitleAccent: { en: 'Software Engineer.', vi: 'Software Engineer.' },
     chips: [
       { label: 'Java · Spring Boot', accent: true },
-      { label: 'React · React Native', accent: true },
-      { label: 'Node.js · gRPC' },
-      { label: 'Microservices' },
-      { label: 'Magnolia · Liferay CMS' },
-      { label: 'MySQL · MongoDB' },
-      { label: 'C · C++ · Python · Objective-C' }
+      { label: 'Microservices · Camunda', accent: true },
+      { label: 'Node.js · NestJS · gRPC' },
+      { label: 'MySQL · MongoDB · Redis' },
+      { label: 'Kafka · MQTT · WebSocket' },
+      { label: 'React · React Native' },
+      { label: 'IoT · Edge Systems' }
     ],
     sideChips: [
       {
@@ -47,7 +47,7 @@ export const profile = {
       },
       {
         label: { en: 'Also Does', vi: 'Kiêm nhiệm' },
-        value: 'Tech Lead · Firmware'
+        value: 'Full-stack · Mobile · IoT'
       },
       {
         label: { en: 'Status', vi: 'Trạng thái' },
@@ -59,7 +59,7 @@ export const profile = {
     // subtitle and the tech chip row.
     domains: {
       label: { en: 'Domains', vi: 'Lĩnh vực' },
-      value: 'Fintech · AIoT · CMS · Community · LMS'
+      value: 'Fintech · AIoT · Distributed Systems · CMS'
     },
     monogram: 'SE/26',
     establishedTag: { en: 'Senior · Est. 2019', vi: 'Senior · Bắt đầu 2019' },
