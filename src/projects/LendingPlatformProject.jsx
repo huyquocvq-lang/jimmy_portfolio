@@ -12,9 +12,9 @@ const STACK = [
 
 const USE_CASES = [
   { en: 'Product catalog and lifecycle management for a diverse set of loan products', vi: 'Quản lý catalog và vòng đời cho một danh mục sản phẩm vay đa dạng' },
-  { en: 'BPMN-driven loan workflow orchestration on Camunda', vi: 'Điều phối luồng vay theo BPMN trên Camunda' },
-  { en: 'Per-product policy and decisioning configuration', vi: 'Cấu hình chính sách và decisioning theo từng sản phẩm' },
-  { en: 'Centralized monitoring across partner integrations', vi: 'Giám sát tập trung trên các integration đối tác' }
+  { en: 'BPMN-driven loan workflow orchestration on Camunda', vi: 'Điều phối toàn bộ luồng xử lý khoản vay bằng BPMN trên Camunda' },
+  { en: 'Per-product policy and decisioning configuration', vi: 'Cấu hình chính sách và logic ra quyết định riêng cho từng sản phẩm' },
+  { en: 'Centralized monitoring across partner integrations', vi: 'Theo dõi tập trung trạng thái tích hợp với các đối tác' }
 ]
 
 const CONTRIBUTIONS = [
@@ -32,8 +32,8 @@ const CHALLENGES = [
 ]
 
 const SYSTEM_SCALE = [
-  { en: 'Customer base in the millions', vi: 'Tập khách hàng quy mô hàng triệu' },
-  { en: 'Monthly disbursement up to ~$10M USD', vi: 'Giải ngân hàng tháng lên tới ~$10M USD' },
+  { en: 'Customer base in the millions', vi: 'Hệ thống phục vụ lượng khách hàng ở quy mô hàng triệu' },
+  { en: 'Monthly disbursement up to ~$10M USD', vi: 'Khối lượng giải ngân hàng tháng lên tới khoảng 10 triệu USD' },
   { en: 'Multiple loan products live on the same platform', vi: 'Nhiều sản phẩm vay cùng chạy trên một platform' }
 ]
 
@@ -52,11 +52,11 @@ const CONTENT = {
   },
   roleH: { en: 'Role', vi: 'Vai trò' },
   role: { en: 'Software Engineer - Backend / Platform', vi: 'Software Engineer - Backend / Platform' },
-  ownershipH: { en: 'My Contribution / Ownership', vi: 'Phần tôi trực tiếp phụ trách' },
-  useCasesH: { en: 'Highlighted Use Cases', vi: 'Use case nổi bật' },
+  ownershipH: { en: 'Phần tôi trực tiếp phụ trách', vi: 'Phần tôi trực tiếp phụ trách' },
+  useCasesH: { en: 'Một số use case chính', vi: 'Use case nổi bật' },
   challengesH: { en: 'Challenges', vi: 'Thử thách' },
   systemScaleH: { en: 'System Scale', vi: 'Quy mô hệ thống' },
-  myImpactH: { en: 'My Impact', vi: 'Tác động từ phần tôi phụ trách' }
+  myImpactH: { en: 'Kết quả từ phần tôi phụ trách', vi: 'Tác động từ phần tôi phụ trách' }
 }
 
 export default function LendingPlatformProject() {

@@ -13,9 +13,9 @@ const STACK = [
 
 const USE_CASES = [
   { en: 'Role and permission management for building operators', vi: 'Phân quyền cho ban quản lý toà nhà' },
-  { en: 'Integration with third-party hardware ecosystems - Zigbee directly, vendor cloud APIs where the hardware insists', vi: 'Tích hợp các hệ phần cứng bên thứ ba - Zigbee trực tiếp, API cloud của vendor ở những chỗ phần cứng bắt buộc' },
-  { en: 'Centralized device management for both operations staff and end-user smart-home devices', vi: 'Quản lý thiết bị tập trung cho cả ban vận hành và thiết bị smart-home của người dùng cuối' },
-  { en: 'Telemetry and control-data ingestion that feeds an in-app virtual assistant', vi: 'Thu thập telemetry và dữ liệu điều khiển để nuôi trợ lý ảo trong app' }
+  { en: 'Integration with third-party hardware ecosystems - Zigbee directly, vendor cloud APIs where the hardware insists', vi: 'Tích hợp nhiều hệ phần cứng bên thứ ba: ưu tiên Zigbee trực tiếp, và dùng cloud API của hãng khi thiết bị bắt buộc' },
+  { en: 'Centralized device management for both operations staff and end-user smart-home devices', vi: 'Quản lý tập trung cả thiết bị phục vụ vận hành toà nhà lẫn thiết bị smart-home của người dùng' },
+  { en: 'Telemetry and control-data ingestion that feeds an in-app virtual assistant', vi: 'Thu thập telemetry và dữ liệu điều khiển làm đầu vào cho trợ lý ảo trong ứng dụng' }
 ]
 
 const CONTRIBUTIONS = [
@@ -33,8 +33,8 @@ const CHALLENGES = [
 ]
 
 const SYSTEM_SCALE = [
-  { en: 'Live deployments include 90 Lang Street and Royal Da Nang', vi: 'Triển khai thực tế tại 90 Láng và Royal Đà Nẵng' },
-  { en: '500,000+ devices operating 24/7', vi: '500,000+ thiết bị hoạt động 24/7' },
+  { en: 'Live deployments include 90 Lang Street and Royal Da Nang', vi: 'Đã triển khai thực tế tại 90 Láng và Royal Đà Nẵng' },
+  { en: '500,000+ devices operating 24/7', vi: 'Hơn 500K thiết bị hoạt động liên tục' },
   { en: '10,000+ end users', vi: '10,000+ người dùng cuối' },
   { en: 'Vendor integrations - Tuya, Legrand, Schneider Electric, Panasonic, Rang Dong', vi: 'Tích hợp vendor - Tuya, Legrand, Schneider Electric, Panasonic, Rạng Đông' }
 ]
@@ -54,11 +54,11 @@ const CONTENT = {
   },
   roleH: { en: 'Role', vi: 'Vai trò' },
   role: { en: 'Fullstack Developer · Tech Lead', vi: 'Fullstack Developer · Tech Lead' },
-  ownershipH: { en: 'My Contribution / Ownership', vi: 'Phần tôi trực tiếp phụ trách' },
-  useCasesH: { en: 'Highlighted Use Cases', vi: 'Use case nổi bật' },
+  ownershipH: { en: 'Phần tôi trực tiếp phụ trách', vi: 'Phần tôi trực tiếp phụ trách' },
+  useCasesH: { en: 'Một số use case chính', vi: 'Use case nổi bật' },
   challengesH: { en: 'Challenges', vi: 'Thử thách' },
   systemScaleH: { en: 'System Scale', vi: 'Quy mô hệ thống' },
-  myImpactH: { en: 'My Impact', vi: 'Tác động từ phần tôi phụ trách' },
+  myImpactH: { en: 'Kết quả từ phần tôi phụ trách', vi: 'Tác động từ phần tôi phụ trách' },
   linksH: { en: 'Product Links', vi: 'Link sản phẩm' }
 }
 

@@ -543,3 +543,6 @@ Nav + 404 heading + locale-aware links to home/projects/blog + Footer. Sets `noi
 | Project pages | `projects.js` for pager + optional `getProjectCard`; matching key in `projectEmbeds.js` + lazy entry in `EmbedSlot.jsx` only if a dashboard is added |
 | Skill icons | `skills.icon` key ∈ `skillIconMap` keys |
 | Theme | All non-hero surfaces reference `var(--*)` tokens from `global.css :root` |
+
+### Vietnamese localization tone
+The VI locale uses natural Vietnamese technical prose. Standard engineering terms may remain in English when commonly used by Vietnamese engineers; surrounding sentences should not mirror English grammar word-for-word.

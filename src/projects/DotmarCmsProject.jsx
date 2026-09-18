@@ -12,9 +12,9 @@ const STACK = [
 
 const USE_CASES = [
   { en: 'One author instance feeding multiple public instances - multi-site, multi-language', vi: 'Một author instance phục vụ nhiều public instance - đa site, đa ngôn ngữ' },
-  { en: 'Editorial approval workflow with explicit hand-offs between roles', vi: 'Workflow phê duyệt biên tập, hand-off giữa các vai trò được định nghĩa rõ' },
-  { en: 'Personalization by location, time of day, age group, and audience segment', vi: 'Personalization theo vị trí, khung giờ, độ tuổi và segment khách hàng' },
-  { en: 'AI agent that drafts content for editors to review - author-in-the-loop, not auto-publish', vi: 'AI agent soạn nội dung để biên tập viên review - author-in-the-loop, không auto-publish' }
+  { en: 'Editorial approval workflow with explicit hand-offs between roles', vi: 'Quy trình duyệt nội dung có các bước chuyển việc rõ ràng giữa từng vai trò' },
+  { en: 'Personalization by location, time of day, age group, and audience segment', vi: 'Cá nhân hoá nội dung theo vị trí, thời gian, độ tuổi và từng nhóm khách hàng' },
+  { en: 'AI agent that drafts content for editors to review - author-in-the-loop, not auto-publish', vi: 'AI hỗ trợ soạn nội dung để biên tập viên kiểm tra trước khi xuất bản, không tự động publish' }
 ]
 
 const CONTRIBUTIONS = [
@@ -31,9 +31,9 @@ const CHALLENGES = [
 ]
 
 const SYSTEM_SCALE = [
-  { en: '3 sites · 1 author instance · 3 public instances', vi: '3 site · 1 author instance · 3 public instance' },
-  { en: 'CMS scaled for ~10,000 users', vi: 'CMS scale cho ~10,000 người dùng' },
-  { en: 'Personalization policies and rules engine running in production', vi: 'Personalization và rules engine đang chạy production' }
+  { en: '3 sites · 1 author instance · 3 public instances', vi: '3 site · 1 môi trường biên tập · 3 public instance' },
+  { en: 'CMS scaled for ~10,000 users', vi: 'CMS phục vụ khoảng 10K người dùng' },
+  { en: 'Personalization policies and rules engine running in production', vi: 'Cá nhân hoá và rules engine đang chạy trên production' }
 ]
 
 const MY_IMPACT = [
@@ -51,11 +51,11 @@ const CONTENT = {
   },
   roleH: { en: 'Role', vi: 'Vai trò' },
   role: { en: 'Fullstack Developer · Tech Lead', vi: 'Fullstack Developer · Tech Lead' },
-  ownershipH: { en: 'My Contribution / Ownership', vi: 'Phần tôi trực tiếp phụ trách' },
-  useCasesH: { en: 'Highlighted Use Cases', vi: 'Use case nổi bật' },
+  ownershipH: { en: 'Phần tôi trực tiếp phụ trách', vi: 'Phần tôi trực tiếp phụ trách' },
+  useCasesH: { en: 'Một số use case chính', vi: 'Use case nổi bật' },
   challengesH: { en: 'Challenges', vi: 'Thử thách' },
   systemScaleH: { en: 'System Scale', vi: 'Quy mô hệ thống' },
-  myImpactH: { en: 'My Impact', vi: 'Tác động từ phần tôi phụ trách' }
+  myImpactH: { en: 'Kết quả từ phần tôi phụ trách', vi: 'Tác động từ phần tôi phụ trách' }
 }
 
 export default function DotmarCmsProject() {

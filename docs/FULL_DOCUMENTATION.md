@@ -851,3 +851,6 @@ UI strings not tied to a section's data file live in `src/data/ui.js` (nav label
 ---
 
 *End of full documentation.*
+
+### Vietnamese copy convention
+For `{ en, vi }` content, the Vietnamese value is a localized rewrite rather than a literal translation. Prefer concise Vietnamese sentence structure and retain common engineering terms only where they sound natural in professional Vietnamese.

@@ -352,3 +352,6 @@ Each case study also separates **System Scale** from **My Impact**:
 ### Metric defensibility rule
 
 Public metrics must be attributable to a project or role and easy to explain in an interview. Avoid publishing optimization percentages, success rates, throughput estimates, capacity plans, or business-impact percentages unless the source and measurement method are known. Prefer system-scale facts or qualitative engineering outcomes when attribution is unclear.
+
+### Vietnamese copy style
+Vietnamese copy should read like native technical writing, not a sentence-by-sentence translation of the English version. Keep familiar engineering terms such as backend, production, workflow, realtime, CMS, MQTT, and CI/CD when they are clearer than forced translations; write the surrounding prose naturally and avoid hybrid phrases such as “ownership hands-on”, “ship service”, or “failure mode riêng”.
