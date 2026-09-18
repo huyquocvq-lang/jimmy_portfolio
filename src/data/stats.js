@@ -1,8 +1,8 @@
 // Stats shown directly under the tagline in Hero
 export const heroStats = [
   { num: { en: '5+ yrs', vi: '5+ năm' }, label: { en: 'Professional engineering', vi: 'Kinh nghiệm kỹ sư chuyên nghiệp' } },
-  { num: '10-15', label: { en: 'Team members led', vi: 'Đã từng dẫn dắt' } },
-  { num: '20+', label: { en: 'Production systems shipped', vi: 'Hệ thống đã release' } }
+  { num: '5-10', label: { en: 'Team members led', vi: 'Đã từng dẫn dắt' } },
+  { num: 'Production', label: { en: 'Systems across fintech, IoT & CMS', vi: 'Hệ thống fintech, IoT & CMS' } }
 ]
 
 // Impact Highlights - grouped into tabs: Overall / LMS / IoT / CMS.
@@ -17,17 +17,17 @@ export const impactTabs = [
     label: { en: 'Overall', vi: 'Tổng quan' },
     highlights: [
       {
-        big: '10-15 / team',
+        big: '5-10 / team',
         desc: {
-          en: 'Team size led across projects - assigning tasks, tracking progress, running code reviews, and evaluating performance.',
-          vi: 'Quy mô đội ngũ đã dẫn dắt qua các dự án - phân công, theo dõi tiến độ, code review và đánh giá hiệu suất.'
+          en: 'Team size led across projects - planning, implementation coordination, code reviews, mentoring, and delivery tracking.',
+          vi: 'Quy mô đội ngũ đã dẫn dắt qua các dự án - planning, điều phối triển khai, code review, mentoring và theo dõi delivery.'
         }
       },
       {
-        big: '20+',
+        big: { en: '5+ years', vi: '5+ năm' },
         desc: {
-          en: 'Production systems shipped across telco-fintech, community, smart-home, and enterprise CMS domains.',
-          vi: 'Hệ thống production đã release qua các domain telco-fintech, community, smart-home và CMS doanh nghiệp.'
+          en: 'Professional software engineering across fintech, AIoT, enterprise CMS, web, and mobile delivery.',
+          vi: 'Kinh nghiệm kỹ sư phần mềm chuyên nghiệp qua fintech, AIoT, CMS doanh nghiệp, web và mobile.'
         }
       },
       {
@@ -38,10 +38,10 @@ export const impactTabs = [
         }
       },
       {
-        big: { en: '10+ clients', vi: '10+ khách hàng' },
+        big: 'End-to-end',
         desc: {
-          en: 'Worked with a wide mix of clients - enterprises, fintech partners, agencies, and individuals.',
-          vi: 'Hợp tác với nhiều loại khách hàng - doanh nghiệp, đối tác fintech, agency và cá nhân.'
+          en: 'Hands-on ownership spanning backend services, workflow orchestration, realtime systems, mobile clients, and production infrastructure.',
+          vi: 'Ownership hands-on xuyên backend service, workflow orchestration, realtime system, mobile client và hạ tầng production.'
         }
       }
     ]
@@ -72,17 +72,17 @@ export const impactTabs = [
         }
       },
       {
-        big: { en: '+20% perf', vi: '+20% hiệu năng' },
+        big: 'Multi-product',
         desc: {
-          en: 'Pipeline performance lifted ~20% after optimization passes - throughput up, latency down.',
-          vi: 'Hiệu năng pipeline tăng ~20% sau các vòng tối ưu - throughput cao hơn, độ trễ thấp hơn.'
+          en: 'Multiple lending products share one orchestration platform while keeping product-specific policies and partner flows isolated.',
+          vi: 'Nhiều sản phẩm lending dùng chung một orchestration platform nhưng vẫn cô lập policy và luồng đối tác riêng.'
         }
       },
       {
-        big: { en: '99.9% success', vi: '99.9% thành công' },
+        big: 'Camunda BPM',
         desc: {
-          en: 'Transaction success rate sustained at 99.9% across the end-to-end disbursement and reconciliation flow.',
-          vi: 'Tỷ lệ giao dịch thành công duy trì 99.9% xuyên suốt luồng giải ngân và đối soát end-to-end.'
+          en: 'Workflow orchestration spans application, decisioning, partner hand-offs, and disbursement.',
+          vi: 'Workflow orchestration bao phủ đăng ký, decisioning, hand-off đối tác và giải ngân.'
         }
       }
     ]
@@ -105,13 +105,7 @@ export const impactTabs = [
           vi: 'Gateway Zigbee tuỳ chỉnh triển khai toàn quốc - Node.js + Zigbee2MQTT trên phần cứng nhúng Rockchip.'
         }
       },
-      {
-        big: '112K msg/s',
-        desc: {
-          en: 'Peak MQTT throughput sustained on the Yoohome message backbone during household activity bursts.',
-          vi: 'MQTT throughput peak duy trì trên backbone message Yoohome trong các đợt sinh hoạt cao điểm.'
-        }
-      },
+
       {
         big: '5 vendors',
         desc: {
@@ -147,10 +141,10 @@ export const impactTabs = [
         }
       },
       {
-        big: { en: '1M+ views/mo', vi: '1M+ lượt/tháng' },
+        big: '3 sites',
         desc: {
-          en: 'MMP CMS - custom Java Spring Boot stack serving 1M+ page views per month from large editorial datasets.',
-          vi: 'MMP CMS - stack Java Spring Boot tuỳ chỉnh phục vụ 1M+ lượt xem/tháng trên dataset biên tập lớn.'
+          en: 'Multi-site Magnolia setup with one authoring environment feeding three public delivery instances.',
+          vi: 'Mô hình Magnolia multi-site với một môi trường authoring phục vụ ba public delivery instance.'
         }
       },
       {
@@ -161,17 +155,17 @@ export const impactTabs = [
         }
       },
       {
-        big: { en: '~50% faster', vi: '~50% nhanh hơn' },
+        big: 'Workflow',
         desc: {
-          en: 'AI agent integrated into the CMS cuts sales-content drafting time roughly in half across production sites.',
-          vi: 'AI agent tích hợp vào CMS giảm khoảng một nửa thời gian soạn nội dung sales trên các site production.'
+          en: 'Editorial approval and role hand-offs built into the CMS authoring flow.',
+          vi: 'Approval biên tập và hand-off theo vai trò được tích hợp trực tiếp vào authoring flow.'
         }
       },
       {
-        big: { en: '20+ rules', vi: '20+ rule' },
+        big: 'Personalized',
         desc: {
-          en: '20+ personalization rules running in production - location, time of day, age, and audience segment.',
-          vi: '20+ rule personalization chạy production - vị trí, khung giờ, độ tuổi và segment khách hàng.'
+          en: 'Rule-driven experiences by location, time, age group, and audience segment.',
+          vi: 'Trải nghiệm theo rule dựa trên vị trí, thời gian, nhóm tuổi và audience segment.'
         }
       }
     ]
