@@ -5,7 +5,7 @@
 // `logo: '/images/logos/viettel.png'`.
 export const experience = [
   {
-    company: { en: 'Viettel Digital Services', vi: 'Nền tảng Lending Telco-Fintech' },
+    company: { en: 'Viettel Digital Services', vi: 'Viettel Digital Services' },
     website: "https://viettel.vn/",
     logo: '/images/logos/viettel.png',
     role: 'Software Development Specialist',
@@ -15,7 +15,7 @@ export const experience = [
     bullets: [
       {
         en: 'Build Java / Spring Boot services for a digital lending platform processing up to USD 10M in monthly disbursement.',
-        vi: 'Xây các service Java / Spring Boot cho nền tảng lending số xử lý tới 10 triệu USD giải ngân mỗi tháng.'
+        vi: 'Phát triển các service Java / Spring Boot cho nền tảng cho vay số, xử lý khối lượng giải ngân lên tới 10 triệu USD mỗi tháng.'
       },
       {
         en: 'Integrate payment and lending-partner flows across the loan lifecycle, including cash-flow and disbursement paths.',
@@ -23,11 +23,11 @@ export const experience = [
       },
       {
         en: 'Contribute to platform design for scalability, security, high availability, and transaction integrity across shared lending services.',
-        vi: 'Tham gia thiết kế platform cho khả năng mở rộng, bảo mật, độ sẵn sàng cao và toàn vẹn giao dịch trên các service lending dùng chung.'
+        vi: 'Tham gia thiết kế nền tảng theo hướng dễ mở rộng, bảo mật, có độ sẵn sàng cao và đảm bảo tính toàn vẹn giao dịch giữa các service dùng chung.'
       },
       {
         en: 'Implement Camunda BPM workflows covering application, decisioning, partner hand-offs, and disbursement.',
-        vi: 'Triển khai workflow Camunda BPM cho các bước đăng ký, decisioning, hand-off đối tác và giải ngân.'
+        vi: 'Xây workflow Camunda BPM cho các bước đăng ký, ra quyết định, chuyển xử lý sang đối tác và giải ngân.'
       }
     ],
     meta: [
@@ -58,23 +58,23 @@ export const experience = [
     bullets: [
       {
         en: 'Built Magnolia CMS solutions for enterprise multi-site clients, including custom modules, editorial workflows, and performance tuning.',
-        vi: 'Xây giải pháp Magnolia CMS cho khách hàng doanh nghiệp đa site, gồm module tuỳ chỉnh, editorial workflow và tối ưu hiệu năng.'
+        vi: 'Phát triển giải pháp Magnolia CMS cho khách hàng doanh nghiệp có nhiều site, bao gồm module tuỳ chỉnh, quy trình biên tập và tối ưu hiệu năng.'
       },
       {
         en: 'Shipped Java backend services, optimized MySQL queries, and delivered REST / GraphQL APIs for headless content distribution.',
-        vi: 'Ship backend service Java, tối ưu query MySQL và triển khai REST / GraphQL API cho headless content delivery.'
+        vi: 'Phát triển và đưa các service Java lên production, tối ưu truy vấn MySQL và xây REST / GraphQL API cho mô hình headless.'
       },
       {
         en: 'Integrated React headless frontends with shared CMS content models to avoid duplicated templates across channels.',
-        vi: 'Tích hợp frontend React headless với content model dùng chung để tránh duplicate template giữa các kênh.'
+        vi: 'Tích hợp frontend React headless với content model dùng chung, giúp tránh phải lặp lại template cho từng kênh.'
       },
       {
         en: 'Hardened Apache / Tomcat production configuration and improved runtime stability under load.',
-        vi: 'Siết cấu hình Apache / Tomcat production và cải thiện độ ổn định runtime dưới tải.'
+        vi: 'Tối ưu cấu hình Apache / Tomcat trên production để hệ thống ổn định hơn khi tải tăng.'
       },
       {
         en: 'Set up GitLab CI/CD for automated test / deploy flows and mentored junior engineers through code review.',
-        vi: 'Dựng GitLab CI/CD cho test / deploy tự động và mentor junior qua code review.'
+        vi: 'Thiết lập GitLab CI/CD để tự động test và deploy, đồng thời hướng dẫn các kỹ sư junior qua code review.'
       }
     ],
     meta: [
@@ -102,11 +102,11 @@ export const experience = [
     bullets: [
       {
         en: 'Built Java Spring Boot / NestJS microservices and tuned MySQL, MongoDB, WebSocket, and MQTT paths for high-traffic IoT workloads.',
-        vi: 'Xây microservice Java Spring Boot / NestJS và tối ưu MySQL, MongoDB, WebSocket, MQTT cho workload IoT lưu lượng cao.'
+        vi: 'Xây microservice bằng Java Spring Boot / NestJS và tối ưu MySQL, MongoDB, WebSocket, MQTT cho hệ thống IoT có lưu lượng lớn.'
       },
       {
         en: 'Shipped React Native applications with Java / Swift native modules and Redux-based state management.',
-        vi: 'Ship ứng dụng React Native với native module Java / Swift và state management bằng Redux.'
+        vi: 'Phát triển ứng dụng React Native, viết native module bằng Java / Swift và quản lý state bằng Redux.'
       },
       {
         en: 'Integrated MoMo / VNPay and multi-vendor IoT ecosystems including Legrand, Schneider Electric, and Tuya; deployed with Docker / Kubernetes.',
@@ -118,7 +118,7 @@ export const experience = [
       },
       {
         en: 'Led a 5-10 engineer team across planning, implementation coordination, code review, mentoring, and delivery tracking.',
-        vi: 'Dẫn dắt team 5-10 kỹ sư qua planning, điều phối triển khai, code review, mentoring và theo dõi delivery.'
+        vi: 'Dẫn dắt team 5-10 kỹ sư: lên kế hoạch, chia và điều phối công việc, review code, hỗ trợ thành viên và theo dõi tiến độ.'
       }
     ],
     meta: [
@@ -194,7 +194,7 @@ export const experience = [
       },
       {
         en: 'Mentored 1-3 interns per cohort through onboarding and project delivery.',
-        vi: 'Mentor 1-3 intern mỗi cohort qua onboarding và delivery dự án.'
+        vi: 'Hướng dẫn 1-3 thực tập sinh mỗi khoá, từ lúc làm quen dự án đến khi hoàn thành phần việc được giao.'
       }
     ],
     meta: [

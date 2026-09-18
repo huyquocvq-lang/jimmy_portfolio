@@ -4,11 +4,11 @@ export const profile = {
   role: 'Senior Backend Engineer · Fintech · AIoT · Full-stack',
   tagline: {
     en: 'Backend and platform engineer building production systems where software meets money, devices, and scale - with full-stack and mobile experience when the product needs it.',
-    vi: 'Kỹ sư backend và platform, xây các hệ thống production nơi phần mềm gắn với dòng tiền, thiết bị và bài toán scale - đồng thời có kinh nghiệm full-stack và mobile khi sản phẩm cần.'
+    vi: 'Kỹ sư backend, tập trung xây các hệ thống production cho fintech và AIoT - từ xử lý giao dịch, tích hợp thiết bị đến các bài toán cần mở rộng lớn. Khi cần, tôi vẫn có thể làm full-stack hoặc mobile để đưa sản phẩm đi từ đầu đến cuối.'
   },
   intro: {
     en: 'I build and operate backend-heavy production systems across fintech and AIoT, from Java/Spring Boot services and workflow orchestration to realtime messaging and partner integrations. I can own the product end-to-end when needed across React, React Native, and platform infrastructure, and I have led teams of five to ten engineers.',
-    vi: 'Tôi xây dựng và vận hành các hệ thống production thiên về backend trong fintech và AIoT, từ service Java/Spring Boot, workflow orchestration đến realtime messaging và tích hợp đối tác. Khi cần, tôi có thể làm chủ sản phẩm end-to-end qua React, React Native và hạ tầng platform, đồng thời đã dẫn dắt các nhóm từ năm đến mười kỹ sư.'
+    vi: 'Tôi đã xây và vận hành nhiều hệ thống production nặng backend trong fintech và AIoT: Java/Spring Boot, workflow, realtime messaging và tích hợp đối tác. Khi dự án cần, tôi có thể làm xuyên từ backend sang React, React Native và hạ tầng triển khai. Tôi cũng từng dẫn dắt team 5-10 kỹ sư.'
   },
   currentRole: {
     title: 'Software Development Specialist',
@@ -18,7 +18,7 @@ export const profile = {
   // HUD-style hero metadata (used by Hero.jsx)
   hud: {
     portfolioYear: '2026',
-    availability: { en: 'AVAILABLE FOR HIRE', vi: 'ĐANG SẴN SÀNG NHẬN VIỆC' },
+    availability: { en: 'AVAILABLE FOR HIRE', vi: 'SẴN SÀNG CHO CƠ HỘI MỚI' },
     available: true,
     eyebrow: { en: 'Backend · Platform · Distributed Systems', vi: 'Backend · Platform · Distributed Systems' },
     title: {
@@ -29,7 +29,7 @@ export const profile = {
     subtitleAccent: { en: '— Fintech & AIoT', vi: '— Fintech & AIoT' },
     proofPoints: [
       { value: '1-2M', label: { en: 'users served', vi: 'người dùng' } },
-      { value: '~$10M/mo', label: { en: 'lending disbursement', vi: 'giải ngân lending' } },
+      { value: '~$10M/mo', label: { en: 'lending disbursement', vi: 'giải ngân khoản vay' } },
       { value: '500K+', label: { en: 'IoT devices', vi: 'thiết bị IoT' } }
     ],
     chips: [
@@ -41,14 +41,14 @@ export const profile = {
     sideChips: [
       {
         label: { en: 'Experience', vi: 'Kinh nghiệm' },
-        value: { en: '5+ years · Professional', vi: '5+ năm · Chuyên nghiệp' }
+        value: { en: '5+ years · Professional', vi: '5+ năm · Kinh nghiệm thực tế' }
       },
       {
-        label: { en: 'Based In', vi: 'Cơ sở' },
+        label: { en: 'Based In', vi: 'Địa điểm' },
         value: { en: 'Hanoi · GMT+7', vi: 'Hà Nội · GMT+7' }
       },
       {
-        label: { en: 'Also Does', vi: 'Kiêm nhiệm' },
+        label: { en: 'Also Does', vi: 'Kỹ năng khác' },
         value: 'Full-stack · Mobile · IoT'
       },
       {
@@ -64,7 +64,7 @@ export const profile = {
       value: 'Fintech · Distributed Systems · AIoT'
     },
     monogram: 'SE/26',
-    establishedTag: { en: 'Engineering since 2019', vi: 'Làm kỹ sư từ 2019' },
+    establishedTag: { en: 'Engineering since 2019', vi: 'Làm phần mềm từ 2019' },
     contactLabels: {
       email: { en: 'Email', vi: 'Email' },
       phone: { en: 'Phone', vi: 'Điện thoại' },

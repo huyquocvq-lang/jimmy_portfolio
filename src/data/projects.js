@@ -8,11 +8,11 @@ export const featuredProject = {
   },
   subtitle: {
     en: 'A single platform for multiple loan products and multiple lending partners.',
-    vi: 'Một platform duy nhất cho nhiều sản phẩm vay và nhiều đối tác cho vay.'
+    vi: 'Một nền tảng chung để vận hành nhiều sản phẩm vay và tích hợp nhiều đối tác cho vay.'
   },
   description: {
     en: 'A centralized lending platform that runs the full loan lifecycle across multiple products and partners. The system covers Camunda-based workflow orchestration, per-product configuration, and the secure money-movement pipes - so launching and governing a new loan product is one platform, not seven.',
-    vi: 'Nền tảng cho vay tập trung, vận hành toàn bộ vòng đời khoản vay qua nhiều sản phẩm và nhiều đối tác. Hệ thống bao gồm orchestration trên Camunda, cấu hình theo từng sản phẩm và đường ống dòng tiền an toàn - để mở và quản trị một sản phẩm vay mới chỉ cần một platform, thay vì bảy.'
+    vi: 'Nền tảng cho vay tập trung, xử lý toàn bộ vòng đời khoản vay cho nhiều sản phẩm và nhiều đối tác. Camunda được dùng để điều phối workflow, mỗi sản phẩm có cấu hình riêng, còn các luồng liên quan đến dòng tiền được kiểm soát tập trung. Nhờ đó có thể triển khai và quản lý sản phẩm mới trên cùng một nền tảng thay vì tách thành nhiều hệ thống.'
   },
   tools: 'Java · Spring Boot · Camunda BPM · Angular · React · REST APIs · Microservices',
   impact: {
@@ -35,7 +35,7 @@ export const otherProjects = [
     },
     description: {
       en: 'Tech-lead on Yoohome - an AIoT platform that unifies smart-home control and centralized building operations. The work covered the MQTT realtime backbone, multi-vendor hardware integrations, and a data pipeline that feeds an in-app virtual assistant - all under strict latency and safety guarantees.',
-      vi: 'Tech-lead cho Yoohome - nền tảng AIoT hợp nhất điều khiển smart-home và vận hành toà nhà tập trung. Công việc gồm backbone realtime MQTT, tích hợp phần cứng đa hãng và pipeline dữ liệu nuôi một trợ lý ảo trong app - dưới ràng buộc latency và an toàn nghiêm ngặt.'
+      vi: 'Ở Yoohome, tôi phụ trách kỹ thuật cho nền tảng AIoT kết hợp điều khiển nhà thông minh và vận hành toà nhà tập trung. Công việc chính gồm hệ thống realtime qua MQTT, tích hợp thiết bị từ nhiều hãng và pipeline dữ liệu cho trợ lý ảo trong ứng dụng, với yêu cầu cao về độ trễ và an toàn.'
     },
     tools: 'NestJS · React Native · Java Spring · MQTT · Microservices · Zigbee2MQTT · Kafka · OpenAI · Redis · MongoDB',
     impact: {
@@ -52,7 +52,7 @@ export const otherProjects = [
     title: 'Dotmar Multi-Site CMS',
     subtitle: {
       en: 'One author instance, three public sites, multi-language - built around sales.',
-      vi: 'Một author instance, ba public site, đa ngôn ngữ - thiết kế xoay quanh sales.'
+      vi: 'Một hệ thống biên tập quản lý ba site public, hỗ trợ nhiều ngôn ngữ và nội dung phục vụ bán hàng.'
     },
     description: {
       en: 'A multi-site CMS for Dotmar on Magnolia + Java + React. One author instance feeds multiple public instances across markets and languages, with editorial approval workflows, rule-driven personalization, and an AI authoring agent to speed up sales-focused content.',
@@ -73,7 +73,7 @@ export const otherProjects = [
     title: 'Custom Zigbee Gateway Firmware',
     subtitle: {
       en: 'A Zigbee gateway that keeps working when the cloud goes away.',
-      vi: 'Gateway Zigbee vẫn chạy ngon kể cả khi cloud sập.'
+      vi: 'Gateway Zigbee vẫn tiếp tục hoạt động ngay cả khi mất kết nối cloud.'
     },
     description: {
       en: 'Custom Zigbee gateway firmware on Node.js and Zigbee2MQTT, running on Rockchip embedded hardware with Debian. Designed for cross-vendor devices, remote operator control, automatic OTA, and offline-tolerant operation - all under tight CPU, memory, and storage budgets.',
@@ -94,11 +94,11 @@ export const otherProjects = [
     title: 'Hubly - Community Platform with AI Moderation',
     subtitle: {
       en: 'A community platform with proprietary multi-modal AI moderation across 30+ languages.',
-      vi: 'Nền tảng community với moderation AI đa định dạng độc quyền cho 30+ ngôn ngữ.'
+      vi: 'Nền tảng cộng đồng với hệ thống AI kiểm duyệt nhiều loại nội dung và hỗ trợ hơn 30 ngôn ngữ.'
     },
     description: {
       en: 'Senior fullstack on Hubly - a global community platform covering chat, KYC, ads, rewards, and livestream. The differentiator is Hubshield AI: proactive multi-modal moderation across text, image, video, audio, OCR, and GIF in 30+ languages. I worked across the NestJS / Moleculer backends, the Vue 2 + Nuxt 2 web frontend, and the Flutter mobile app - and helped drive the Sendbird → proprietary chat migration without breaking production.',
-      vi: 'Senior fullstack tại Hubly - nền tảng community toàn cầu bao gồm chat, KYC, ads, reward và livestream. Điểm khác biệt là Hubshield AI: moderation chủ động đa định dạng cho text, ảnh, video, audio, OCR, GIF trong 30+ ngôn ngữ. Tôi làm xuyên backend NestJS / Moleculer, frontend web Vue 2 + Nuxt 2 và app mobile Flutter - đồng thời dẫn dắt migration Sendbird → chat độc quyền mà không làm gãy production.'
+      vi: 'Tại Hubly, tôi làm full-stack trên nền tảng cộng đồng toàn cầu gồm chat, KYC, quảng cáo, điểm thưởng và livestream. Hubshield AI kiểm duyệt chủ động text, ảnh, video, audio, OCR và GIF bằng hơn 30 ngôn ngữ. Tôi làm cả backend NestJS / Moleculer, web Vue 2 + Nuxt 2 và ứng dụng Flutter, đồng thời tham gia chuyển hệ thống chat từ Sendbird sang giải pháp riêng mà không làm gián đoạn dữ liệu đang chạy.'
     },
     tools: 'NestJS · Moleculer · PHP · Prisma · MongoDB · Redis · Bull · Algolia · OpenAI · Vue/Nuxt · Flutter · Pusher',
     impact: {
