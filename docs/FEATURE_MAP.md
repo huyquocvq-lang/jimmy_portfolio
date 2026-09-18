@@ -47,7 +47,7 @@
 |------|---------|
 | `tag` (top-left)        | Status dot + `PORTFOLIO / 2026 // AVAILABLE FOR HIRE` |
 | `side` (right column)   | Stacked info chips zigzagging left ↔ right (`// EXPERIENCE` = `5+ years · Professional`, `// BASED IN`, `// ALSO DOES`, `// STATUS`) |
-| `main` (center-left)    | `- Backend · Platform · Distributed Systems` eyebrow → serif name with bronze italic accent (+ `.sr-only` "Senior Backend and Platform Software Engineer" suffix inside the `<h1>` for crawlers/screen readers) → `Senior Backend & Platform Software Engineer.` subtitle → production-scale proof (`1-2M users`, `~$10M/mo`, `500K+ IoT devices`) → `// DOMAINS` row → wrapped core-stack chip row |
+| `main` (center-left)    | `- Backend · Platform · Distributed Systems` eyebrow → serif name with bronze italic accent (+ `.sr-only` "Senior Backend and Platform Software Engineer" suffix inside the `<h1>` for crawlers/screen readers) → `Senior Backend & Platform Software Engineer.` subtitle → production-scale proof (`1-2M users`, `~$10M/mo`, `500K+ IoT devices`) → `// FOCUS` row → compact core-capability chip row |
 | `contact` (bottom-left) | `// EMAIL`, `// PHONE`, `// LINKEDIN`, `// GITHUB` columns; `// RESUME` appears automatically when `profile.contact.resume` is non-null |
 | `mark` (bottom-right)   | `SE/26` serif monogram + `SENIOR · EST. 2019` tag |
 
@@ -70,7 +70,7 @@ hud: {
   sideChips: [{ label, value, accent? }, ...], // 4 zigzag chips
   domains: { label, value },                   // rendered in main column under subtitle
   monogram: 'SE/26',
-  establishedTag: 'Senior · Est. 2019'
+  establishedTag: 'Engineering since 2019'
 }
 ```
 
@@ -194,7 +194,7 @@ Each entry may carry an optional `website` URL. When non-null, `Experience.jsx` 
 
 ## F4 - About + skills
 
-**Purpose:** Two-column layout (about text sticky on desktop); 2×3 skills grid with Font Awesome icons via react-icons. A tech-stack marquee scrolls beneath both columns.
+**Purpose:** Two-column recruiter-facing summary: concise backend/platform narrative on the left and a 2×3 capability grid on the right. Detailed tool breadth stays in the scrolling tech marquee instead of being repeated in the hero.
 
 **Data:**
 - `src/data/about.js` - heading "Working at the intersection of CMS platforms, backend services, and IoT systems."
