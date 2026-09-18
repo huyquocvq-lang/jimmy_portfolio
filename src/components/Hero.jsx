@@ -174,6 +174,32 @@ export default function Hero() {
               </a>
             </div>
           )}
+          {contact.github && (
+            <div className="hero-contact-col">
+              <span className="hero-contact-label">// {tr(hud.contactLabels.github, lang)}</span>
+              <a
+                href={contact.github}
+                target="_blank"
+                rel="noreferrer"
+                className="hero-contact-value"
+              >
+                github.com/huyquocvq-lang
+              </a>
+            </div>
+          )}
+          {contact.resume && (
+            <div className="hero-contact-col">
+              <span className="hero-contact-label">// {tr(hud.contactLabels.resume, lang)}</span>
+              <a
+                href={contact.resume}
+                target="_blank"
+                rel="noreferrer"
+                className="hero-contact-value"
+              >
+                {tr(hud.contactLabels.resume, lang)} ↗
+              </a>
+            </div>
+          )}
         </div>
 
         <div className="hero-mark" aria-hidden="true">
