@@ -320,4 +320,8 @@ For the website, avoid uploading internal screenshots, confidential client data,
 
 ### Case-study ownership rule
 
-Every shipped project case study now includes a **My Contribution / Ownership** section immediately after Context / Role. This section must describe only work Jimmy personally owned or directly contributed to; system-wide metrics remain separate and must not be phrased as individual impact unless there is evidence tying the result to his work.
+Every shipped project case study now includes a **My Contribution / Ownership** section immediately after Context / Role. This section must describe only work Jimmy personally owned or directly contributed to.
+
+Each case study also separates **System Scale** from **My Impact**:
+- **System Scale** = production reach, throughput, deployment size, or product scope belonging to the overall system/team.
+- **My Impact** = outcomes attributable to Jimmy's own work. Use qualitative outcomes when a defensible personal metric is unavailable; never convert a project-wide number into personal impact without evidence.
