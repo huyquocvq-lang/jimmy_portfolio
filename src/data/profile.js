@@ -1,7 +1,7 @@
 export const profile = {
   name: 'Quoc Huy (Jimmy)',
   // Tech / role descriptors kept in English (industry-standard terminology)
-  role: 'Senior Backend & Platform Engineer · Fintech · AIoT · Full-stack',
+  role: 'Senior Backend Engineer · Fintech · AIoT · Full-stack',
   tagline: {
     en: 'Backend and platform engineer building production systems where software meets money, devices, and scale - with full-stack and mobile experience when the product needs it.',
     vi: 'Kỹ sư backend và platform, xây các hệ thống production nơi phần mềm gắn với dòng tiền, thiết bị và bài toán scale - đồng thời có kinh nghiệm full-stack và mobile khi sản phẩm cần.'
@@ -25,8 +25,8 @@ export const profile = {
       lead: 'Quoc Huy',
       accent: 'Jimmy'
     },
-    subtitleLead: { en: 'Senior Backend & Platform', vi: 'Senior Backend & Platform' },
-    subtitleAccent: { en: 'Software Engineer.', vi: 'Software Engineer.' },
+    subtitleLead: { en: 'Senior Backend Engineer', vi: 'Senior Backend Engineer' },
+    subtitleAccent: { en: '— Fintech & AIoT', vi: '— Fintech & AIoT' },
     proofPoints: [
       { value: '1-2M', label: { en: 'users served', vi: 'người dùng' } },
       { value: '~$10M/mo', label: { en: 'lending disbursement', vi: 'giải ngân lending' } },
