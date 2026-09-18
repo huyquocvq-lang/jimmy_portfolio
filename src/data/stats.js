@@ -1,7 +1,7 @@
 // Stats shown directly under the tagline in Hero
 export const heroStats = [
-  { num: { en: '5+ yrs', vi: '5+ năm' }, label: { en: 'Professional engineering', vi: 'Kinh nghiệm kỹ sư chuyên nghiệp' } },
-  { num: '5-10', label: { en: 'Team members led', vi: 'Đã từng dẫn dắt' } },
+  { num: { en: '5+ yrs', vi: '5+ năm' }, label: { en: 'Professional engineering', vi: 'Kinh nghiệm làm phần mềm' } },
+  { num: '5-10', label: { en: 'Team members led', vi: 'Kỹ sư trong team đã dẫn dắt' } },
   { num: 'Production', label: { en: 'Systems across fintech, IoT & CMS', vi: 'Hệ thống fintech, IoT & CMS' } }
 ]
 
@@ -20,28 +20,28 @@ export const impactTabs = [
         big: '5-10 / team',
         desc: {
           en: 'Team size led across projects - planning, implementation coordination, code reviews, mentoring, and delivery tracking.',
-          vi: 'Quy mô đội ngũ đã dẫn dắt qua các dự án - planning, điều phối triển khai, code review, mentoring và theo dõi delivery.'
+          vi: 'Quy mô team tôi từng dẫn dắt, bao gồm lên kế hoạch, điều phối công việc, review code, hỗ trợ thành viên và theo dõi tiến độ.'
         }
       },
       {
         big: { en: '5+ years', vi: '5+ năm' },
         desc: {
           en: 'Professional software engineering across fintech, AIoT, enterprise CMS, web, and mobile delivery.',
-          vi: 'Kinh nghiệm kỹ sư phần mềm chuyên nghiệp qua fintech, AIoT, CMS doanh nghiệp, web và mobile.'
+          vi: 'Hơn 5 năm làm phần mềm qua các mảng fintech, AIoT, CMS doanh nghiệp, web và mobile.'
         }
       },
       {
         big: { en: '1-2M users', vi: '1-2 triệu users' },
         desc: {
           en: 'Real-user scale on flagship products - systems serving 1-2 million end users in production.',
-          vi: 'Quy mô user thực tế trên các sản phẩm chủ lực - phục vụ 1-2 triệu người dùng cuối trong production.'
+          vi: 'Các hệ thống lớn tôi tham gia phát triển đang phục vụ khoảng 1-2 triệu người dùng thực tế.'
         }
       },
       {
         big: 'End-to-end',
         desc: {
           en: 'Hands-on ownership spanning backend services, workflow orchestration, realtime systems, mobile clients, and production infrastructure.',
-          vi: 'Ownership hands-on xuyên backend service, workflow orchestration, realtime system, mobile client và hạ tầng production.'
+          vi: 'Trực tiếp làm từ backend service, workflow và realtime system đến mobile client và hạ tầng production.'
         }
       }
     ]
@@ -68,21 +68,21 @@ export const impactTabs = [
         big: '24/7',
         desc: {
           en: 'Production system runs 24/7 with high SLA - minimal downtime across the disbursement pipeline.',
-          vi: 'Hệ thống production chạy ổn định 24/7 với SLA cao - downtime tối thiểu trên toàn pipeline giải ngân.'
+          vi: 'Hệ thống vận hành 24/7 với yêu cầu cao về tính sẵn sàng, đặc biệt ở các bước liên quan đến giải ngân.'
         }
       },
       {
         big: 'Multi-product',
         desc: {
           en: 'Multiple lending products share one orchestration platform while keeping product-specific policies and partner flows isolated.',
-          vi: 'Nhiều sản phẩm lending dùng chung một orchestration platform nhưng vẫn cô lập policy và luồng đối tác riêng.'
+          vi: 'Nhiều sản phẩm vay dùng chung một nền tảng điều phối, nhưng mỗi sản phẩm vẫn có chính sách và luồng tích hợp riêng.'
         }
       },
       {
         big: 'Camunda BPM',
         desc: {
           en: 'Workflow orchestration spans application, decisioning, partner hand-offs, and disbursement.',
-          vi: 'Workflow orchestration bao phủ đăng ký, decisioning, hand-off đối tác và giải ngân.'
+          vi: 'Camunda điều phối toàn bộ luồng từ đăng ký, ra quyết định, chuyển sang đối tác đến giải ngân.'
         }
       }
     ]
@@ -117,14 +117,14 @@ export const impactTabs = [
         big: { en: 'Edge AI', vi: 'AI tại edge' },
         desc: {
           en: 'YOLO + OpenCV vision modules run directly on the gateway - fire and fall/stroke detection without a cloud roundtrip.',
-          vi: 'Module thị giác YOLO + OpenCV chạy ngay trên gateway - phát hiện cháy và té ngã/đột quỵ không cần roundtrip cloud.'
+          vi: 'YOLO + OpenCV chạy trực tiếp trên gateway để phát hiện cháy và té ngã/đột quỵ mà không phải gửi dữ liệu lên cloud rồi chờ phản hồi.'
         }
       },
       {
         big: 'Offline-first',
         desc: {
           en: 'Gateway firmware keeps automation, sessions, and data integrity intact through cloud outages - Zigbee mesh continues offline.',
-          vi: 'Firmware gateway giữ nguyên automation, session và toàn vẹn dữ liệu khi mất kết nối cloud - Zigbee mesh vẫn chạy offline.'
+          vi: 'Khi mất kết nối cloud, gateway vẫn duy trì automation cục bộ, phiên làm việc và dữ liệu; mạng Zigbee vẫn tiếp tục hoạt động.'
         }
       }
     ]
@@ -158,14 +158,14 @@ export const impactTabs = [
         big: 'Workflow',
         desc: {
           en: 'Editorial approval and role hand-offs built into the CMS authoring flow.',
-          vi: 'Approval biên tập và hand-off theo vai trò được tích hợp trực tiếp vào authoring flow.'
+          vi: 'Quy trình duyệt nội dung và chuyển việc giữa các vai trò được tích hợp ngay trong luồng biên tập.'
         }
       },
       {
         big: 'Personalized',
         desc: {
           en: 'Rule-driven experiences by location, time, age group, and audience segment.',
-          vi: 'Trải nghiệm theo rule dựa trên vị trí, thời gian, nhóm tuổi và audience segment.'
+          vi: 'Nội dung được cá nhân hoá theo vị trí, thời gian, nhóm tuổi và từng nhóm người dùng.'
         }
       }
     ]

@@ -11,34 +11,34 @@ const STACK = [
 ]
 
 const USE_CASES = [
-  { en: 'Cloud-managed gateway - remote control, remote diagnostics, and feature add-ons pushed to building operators', vi: 'Gateway quản lý từ cloud - điều khiển từ xa, chẩn đoán từ xa và bổ sung tính năng đẩy xuống cho ban quản lý' },
+  { en: 'Cloud-managed gateway - remote control, remote diagnostics, and feature add-ons pushed to building operators', vi: 'Gateway được quản lý từ cloud, hỗ trợ điều khiển và chẩn đoán từ xa, đồng thời có thể cập nhật thêm tính năng cho phía vận hành' },
   { en: 'Cross-vendor Zigbee device integration on a single firmware', vi: 'Tích hợp thiết bị Zigbee đa hãng trên cùng một firmware' },
-  { en: 'Automatic firmware OTA updates - staged, signed, and reversible', vi: 'Cập nhật firmware OTA tự động - staged, có ký số và có thể rollback' }
+  { en: 'Automatic firmware OTA updates - staged, signed, and reversible', vi: 'Cập nhật firmware OTA theo từng đợt, có ký số và có thể quay lại phiên bản trước khi cần' }
 ]
 
 const CONTRIBUTIONS = [
   { en: 'Built and maintained the Node.js / Zigbee2MQTT gateway runtime on Debian-based Rockchip hardware.', vi: 'Xây dựng và bảo trì runtime gateway Node.js / Zigbee2MQTT trên phần cứng Rockchip chạy Debian.' },
-  { en: 'Integrated cross-vendor Zigbee devices behind one gateway abstraction for local control and cloud management.', vi: 'Tích hợp thiết bị Zigbee đa hãng sau một lớp abstraction gateway thống nhất cho điều khiển local và quản lý cloud.' },
+  { en: 'Integrated cross-vendor Zigbee devices behind one gateway abstraction for local control and cloud management.', vi: 'Tích hợp thiết bị Zigbee từ nhiều hãng qua một lớp gateway chung, phục vụ cả điều khiển cục bộ và quản lý từ cloud.' },
   { en: 'Implemented remote diagnostics and OTA update flows designed for constrained embedded hardware.', vi: 'Triển khai chẩn đoán từ xa và luồng OTA phù hợp với phần cứng nhúng tài nguyên hạn chế.' },
-  { en: 'Designed for offline-tolerant operation so local automation and device control continue through cloud outages.', vi: 'Thiết kế theo hướng chịu được mất cloud để automation local và điều khiển thiết bị vẫn tiếp tục hoạt động.' }
+  { en: 'Designed for offline-tolerant operation so local automation and device control continue through cloud outages.', vi: 'Thiết kế để các automation và chức năng điều khiển tại chỗ vẫn hoạt động khi mất kết nối cloud.' }
 ]
 
 const CHALLENGES = [
-  { en: 'Constrained embedded hardware - tight CPU, memory, and storage budgets', vi: 'Phần cứng nhúng tài nguyên hạn chế - ngân sách CPU, RAM và storage đều chặt' },
-  { en: 'Stack runs on a Rockchip embedded computer with Debian, not a clean cloud VM', vi: 'Stack chạy trên máy nhúng Rockchip với Debian, không phải VM cloud sạch sẽ' },
+  { en: 'Constrained embedded hardware - tight CPU, memory, and storage budgets', vi: 'Phần cứng nhúng có tài nguyên hạn chế về CPU, RAM và dung lượng lưu trữ' },
+  { en: 'Stack runs on a Rockchip embedded computer with Debian, not a clean cloud VM', vi: 'Toàn bộ stack chạy trên thiết bị nhúng Rockchip với Debian, nên việc vận hành và tối ưu khác nhiều so với một VM trên cloud' },
   { en: 'Low-latency response requirements between local commands and physical devices', vi: 'Yêu cầu độ trễ thấp giữa lệnh ở nhà và thiết bị vật lý' },
   { en: 'Must keep working when the cloud uplink is offline - the building cannot stop functioning', vi: 'Phải hoạt động ngay cả khi mất kết nối cloud - toà nhà không thể ngừng hoạt động' }
 ]
 
 const SYSTEM_SCALE = [
   { en: '10,000+ gateways deployed nationwide', vi: '10,000+ gateway triển khai toàn quốc' },
-  { en: 'Data integrity and session continuity held through cloud outages', vi: 'Toàn vẹn dữ liệu và phiên người dùng được giữ qua các đợt mất cloud' }
+  { en: 'Data integrity and session continuity held through cloud outages', vi: 'Dữ liệu và các phiên đang chạy vẫn được giữ ổn định khi mất kết nối cloud' }
 ]
 
 const MY_IMPACT = [
-  { en: 'Helped make one gateway runtime support heterogeneous Zigbee devices instead of maintaining vendor-specific gateway builds.', vi: 'Góp phần giúp một runtime gateway hỗ trợ thiết bị Zigbee đa hãng thay vì phải duy trì build gateway riêng theo vendor.' },
-  { en: 'Improved operational resilience through remote diagnostics, OTA flows, and local-first behavior on constrained hardware.', vi: 'Tăng khả năng vận hành bền vững thông qua remote diagnostics, OTA và local-first trên phần cứng hạn chế tài nguyên.' },
-  { en: 'Kept core local automation usable during cloud outages by separating device control from cloud availability.', vi: 'Giữ automation local cốt lõi hoạt động khi cloud mất kết nối bằng cách tách điều khiển thiết bị khỏi độ sẵn sàng của cloud.' }
+  { en: 'Helped make one gateway runtime support heterogeneous Zigbee devices instead of maintaining vendor-specific gateway builds.', vi: 'Giúp một runtime gateway có thể hỗ trợ thiết bị Zigbee từ nhiều hãng, thay vì phải duy trì bản build riêng cho từng vendor.' },
+  { en: 'Improved operational resilience through remote diagnostics, OTA flows, and local-first behavior on constrained hardware.', vi: 'Cải thiện khả năng vận hành nhờ chẩn đoán từ xa, cập nhật OTA và ưu tiên xử lý cục bộ trên phần cứng hạn chế tài nguyên.' },
+  { en: 'Kept core local automation usable during cloud outages by separating device control from cloud availability.', vi: 'Tách điều khiển thiết bị khỏi kết nối cloud để các automation cốt lõi vẫn hoạt động khi đường truyền bị gián đoạn.' }
 ]
 
 const CONTENT = {
@@ -46,7 +46,7 @@ const CONTENT = {
   contextH: { en: 'Context', vi: 'Bối cảnh' },
   context: {
     en: 'The platform integrates Zigbee devices from many different vendors. The team built custom gateway firmware on top of Zigbee2MQTT, running on a Rockchip-based embedded board with Debian - bridging local devices to a private cloud for remote control and OTA upgrades, while staying functional if that uplink ever goes dark.',
-    vi: 'Hệ thống tích hợp thiết bị Zigbee từ nhiều hãng. Team xây firmware gateway tuỳ chỉnh trên nền Zigbee2MQTT, chạy trên board nhúng Rockchip với Debian - kết nối thiết bị local lên cloud riêng để điều khiển từ xa và OTA, đồng thời vẫn hoạt động khi đường lên cloud rớt.'
+    vi: 'Hệ thống cần hỗ trợ thiết bị Zigbee từ nhiều hãng trên cùng một gateway. Team xây firmware dựa trên Zigbee2MQTT, chạy trên board Rockchip với Debian, kết nối thiết bị tại chỗ với cloud riêng để quản lý từ xa và cập nhật OTA. Các chức năng cục bộ vẫn phải chạy ngay cả khi mất kết nối cloud.'
   },
   roleH: { en: 'Role', vi: 'Vai trò' },
   role: { en: 'Backend / Embedded Developer · DevOps', vi: 'Backend / Embedded Developer · DevOps' },

@@ -30,7 +30,7 @@ export default function HomePage() {
         }}
         description={{
           en: 'Senior backend and platform engineer with 5+ years building fintech lending platforms (~$10M/mo), AIoT systems (500K+ devices), and distributed production services. Java · Spring Boot · Camunda · NestJS · MQTT. Based in Hanoi, open to remote opportunities.',
-          vi: 'Senior backend và platform engineer với 5+ năm kinh nghiệm xây nền tảng lending fintech (~$10M/tháng), hệ thống AIoT (500K+ thiết bị) và các service production phân tán. Java · Spring Boot · Camunda · NestJS · MQTT. Tại Hà Nội, sẵn sàng cho cơ hội remote.'
+          vi: 'Senior Backend Engineer với hơn 5 năm kinh nghiệm trong fintech và AIoT. Đã tham gia xây nền tảng cho vay xử lý khoảng $10M giải ngân mỗi tháng, hệ thống AIoT hơn 500K thiết bị và nhiều dịch vụ backend chạy production. Java · Spring Boot · Camunda · NestJS · MQTT. Làm việc tại Hà Nội và sẵn sàng cho các cơ hội remote.'
         }}
         path="/"
       />

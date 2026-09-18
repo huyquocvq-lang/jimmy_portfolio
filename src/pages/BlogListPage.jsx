@@ -35,11 +35,11 @@ export default function BlogListPage() {
       <Seo
         title={{
           en: 'Engineering Blog — Java, Spring Boot, IoT & Leadership',
-          vi: 'Blog kỹ thuật — Java, Spring Boot, IoT & Quản lý đội nhóm'
+          vi: 'Blog kỹ thuật — Java, Spring Boot, IoT & kinh nghiệm dẫn dắt team'
         }}
         description={{
           en: 'Field notes from production: Spring Boot caching for high-traffic CMS, headless Magnolia + React, bridging Zigbee/Z-Wave/BLE in one gateway, and leading small engineering teams. By Jimmy Vu.',
-          vi: 'Ghi chép từ production: cache Spring Boot cho CMS tải cao, headless Magnolia + React, kết nối Zigbee/Z-Wave/BLE trong một gateway, và dẫn dắt team kỹ sư nhỏ. Bởi Jimmy Vu.'
+          vi: 'Ghi chép từ những bài toán đã gặp trên production: cache với Spring Boot, Magnolia + React theo mô hình headless, kết nối Zigbee/Z-Wave/BLE trên cùng một gateway và kinh nghiệm dẫn dắt team kỹ thuật.'
         }}
         path="/blog"
       />

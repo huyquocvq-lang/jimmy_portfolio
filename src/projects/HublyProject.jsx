@@ -14,25 +14,25 @@ const STACK = [
 
 const USE_CASES = [
   { en: 'Seven community types - Business, Education, Sports, Charity, Public Sector, Personal, Family', vi: 'Bảy loại community - Doanh nghiệp, Giáo dục, Thể thao, Từ thiện, Khu vực công, Cá nhân, Gia đình' },
-  { en: 'Hubchat - encrypted messaging with video and conference calls', vi: 'Hubchat - nhắn tin mã hoá kèm video và conference call' },
+  { en: 'Hubchat - encrypted messaging with video and conference calls', vi: 'Hubchat - nhắn tin mã hoá, gọi video và họp nhóm' },
   { en: 'ID Hub - KYC via passport, national ID, or driver\'s license', vi: 'ID Hub - KYC qua passport, CCCD hoặc GPLX' },
-  { en: 'DotAds - internal ads platform with revenue share for creators', vi: 'DotAds - nền tảng ads nội bộ, chia sẻ doanh thu cho creator' },
+  { en: 'DotAds - internal ads platform with revenue share for creators', vi: 'DotAds - nền tảng quảng cáo nội bộ, chia sẻ doanh thu cho người sáng tạo nội dung' },
   { en: 'Hubpoints rewards, Hubstream livestream, Multihub, and ACA (auto content aggregator)', vi: 'Hubpoints (reward), Hubstream (livestream), Multihub và ACA (auto content aggregator)' },
   { en: 'Hub Packs by market segment, plus CRM hooks into Google / Microsoft / Apple Calendar, HubSpot, Salesforce, and Slack', vi: 'Hub Packs theo phân khúc thị trường, kèm hook CRM cho Google / Microsoft / Apple Calendar, HubSpot, Salesforce và Slack' }
 ]
 
 const CONTRIBUTIONS = [
-  { en: 'Worked across the NestJS / Moleculer backend, Vue / Nuxt web app, and Flutter mobile surface as a senior full-stack engineer.', vi: 'Làm xuyên backend NestJS / Moleculer, web Vue / Nuxt và mobile Flutter ở vai trò senior full-stack engineer.' },
-  { en: 'Delivered search, taxonomy, invite, and permissions work across platform modules and production data flows.', vi: 'Triển khai search, taxonomy, invite và permissions qua nhiều module platform và luồng dữ liệu production.' },
-  { en: 'Contributed to the Sendbird-to-proprietary-chat migration path while protecting existing production conversations.', vi: 'Tham gia lộ trình migrate từ Sendbird sang chat riêng trong khi bảo vệ các cuộc hội thoại production hiện có.' },
-  { en: 'Integrated and maintained external platform services including Algolia, messaging, moderation, and realtime dependencies.', vi: 'Tích hợp và duy trì các service ngoài của platform gồm Algolia, messaging, moderation và các dependency realtime.' }
+  { en: 'Worked across the NestJS / Moleculer backend, Vue / Nuxt web app, and Flutter mobile surface as a senior full-stack engineer.', vi: 'Làm cả backend NestJS / Moleculer, web Vue / Nuxt và ứng dụng Flutter ở vai trò Senior Full-stack Engineer.' },
+  { en: 'Delivered search, taxonomy, invite, and permissions work across platform modules and production data flows.', vi: 'Phát triển các phần search, taxonomy, lời mời và phân quyền trên nhiều module của hệ thống.' },
+  { en: 'Contributed to the Sendbird-to-proprietary-chat migration path while protecting existing production conversations.', vi: 'Tham gia chuyển từ Sendbird sang hệ thống chat riêng mà vẫn giữ an toàn cho các cuộc hội thoại đang hoạt động.' },
+  { en: 'Integrated and maintained external platform services including Algolia, messaging, moderation, and realtime dependencies.', vi: 'Tích hợp và duy trì các dịch vụ bên ngoài như Algolia, messaging, moderation và các thành phần realtime.' }
 ]
 
 const CHALLENGES = [
   { en: 'Broad surface area - community, moderation, commerce, ads, rewards, and livestream on one platform', vi: 'Phạm vi rộng - community, moderation, commerce, ads, reward và livestream trên cùng một platform' },
-  { en: 'Heavy reliance on external services (AWS, OpenAI, Algolia, Hive, Bodyguard, Tisane, YOTI, Sendbird, Pusher) - each one is its own failure mode', vi: 'Phụ thuộc nhiều service ngoài (AWS, OpenAI, Algolia, Hive, Bodyguard, Tisane, YOTI, Sendbird, Pusher) - mỗi cái là một kiểu failure mode riêng' },
-  { en: 'Migrating from Sendbird to a proprietary chat without breaking live conversations', vi: 'Migrate từ Sendbird sang chat độc quyền mà không làm gãy các cuộc hội thoại đang sống' },
-  { en: 'Legacy Vue 2 + Nuxt 2 frontend that needs a credible Vue 3 migration plan, not just intent', vi: 'Frontend legacy Vue 2 + Nuxt 2 cần một kế hoạch migrate Vue 3 đáng tin cậy, không phải chỉ nói mồm' }
+  { en: 'Heavy reliance on external services (AWS, OpenAI, Algolia, Hive, Bodyguard, Tisane, YOTI, Sendbird, Pusher) - each one is its own failure mode', vi: 'Hệ thống phụ thuộc vào nhiều dịch vụ bên ngoài như AWS, OpenAI, Algolia, Hive, Bodyguard, Tisane, YOTI, Sendbird và Pusher; mỗi dịch vụ đều có cách lỗi và rủi ro vận hành khác nhau' },
+  { en: 'Migrating from Sendbird to a proprietary chat without breaking live conversations', vi: 'Chuyển từ Sendbird sang hệ thống chat riêng mà không làm gián đoạn các cuộc hội thoại đang hoạt động' },
+  { en: 'Legacy Vue 2 + Nuxt 2 frontend that needs a credible Vue 3 migration plan, not just intent', vi: 'Frontend Vue 2 + Nuxt 2 đã cũ, cần một kế hoạch chuyển lên Vue 3 có thể triển khai thực tế chứ không chỉ dừng ở định hướng' }
 ]
 
 const SYSTEM_SCALE = [
@@ -42,9 +42,9 @@ const SYSTEM_SCALE = [
 ]
 
 const MY_IMPACT = [
-  { en: 'Delivered search, taxonomy, invite, and permissions work that improved discoverability and access-control behavior across the product.', vi: 'Triển khai search, taxonomy, invite và permissions, cải thiện khả năng tìm kiếm và access control trên sản phẩm.' },
-  { en: 'Helped de-risk the Sendbird migration by working on the path toward proprietary chat without treating live conversations as disposable state.', vi: 'Góp phần giảm rủi ro migration khỏi Sendbird bằng cách xây lộ trình sang chat riêng mà không coi conversation đang hoạt động là state có thể bỏ.' },
-  { en: 'Worked across backend, web, and mobile boundaries so platform changes remained compatible across product surfaces.', vi: 'Làm việc xuyên backend, web và mobile để thay đổi platform vẫn tương thích giữa các bề mặt sản phẩm.' }
+  { en: 'Delivered search, taxonomy, invite, and permissions work that improved discoverability and access-control behavior across the product.', vi: 'Phát triển search, taxonomy, lời mời và phân quyền, giúp việc tìm nội dung và kiểm soát quyền truy cập rõ ràng hơn.' },
+  { en: 'Helped de-risk the Sendbird migration by working on the path toward proprietary chat without treating live conversations as disposable state.', vi: 'Góp phần giảm rủi ro khi rời Sendbird bằng cách thiết kế lộ trình chuyển sang chat riêng mà vẫn bảo toàn các cuộc hội thoại đang hoạt động.' },
+  { en: 'Worked across backend, web, and mobile boundaries so platform changes remained compatible across product surfaces.', vi: 'Phối hợp thay đổi giữa backend, web và mobile để các phần của sản phẩm vẫn tương thích với nhau.' }
 ]
 
 const CONTENT = {
@@ -52,7 +52,7 @@ const CONTENT = {
   contextH: { en: 'Context', vi: 'Bối cảnh' },
   context: {
     en: 'A global online community platform for brands, community builders, admins, and creators. The product\'s stated mission is to be the first global community platform that proactively detects and prevents harmful content. Its differentiator is Hubshield AI - proprietary moderation across text, image, video, audio, OCR, and GIF, in 30+ languages.',
-    vi: 'Nền tảng community trực tuyến toàn cầu cho brand, community builder, admin và creator. Sản phẩm đặt mục tiêu trở thành nền tảng community toàn cầu đầu tiên chủ động phát hiện và ngăn chặn nội dung độc hại. Điểm khác biệt là Hubshield AI - moderation độc quyền cho text, ảnh, video, audio, OCR và GIF, trong 30+ ngôn ngữ.'
+    vi: 'Hubly là nền tảng cộng đồng trực tuyến cho thương hiệu, người xây cộng đồng, quản trị viên và creator. Điểm nổi bật là Hubshield AI, hệ thống chủ động phát hiện và ngăn chặn nội dung độc hại trên text, ảnh, video, audio, OCR và GIF, hỗ trợ hơn 30 ngôn ngữ.'
   },
   roleH: { en: 'Role', vi: 'Vai trò' },
   role: { en: 'Senior Fullstack Engineer', vi: 'Senior Fullstack Engineer' },

@@ -22,11 +22,11 @@ export default function ProjectListPage() {
       <Seo
         title={{
           en: 'Projects — Fintech, AIoT & Enterprise CMS Case Studies',
-          vi: 'Dự án — Case study Fintech, AIoT & CMS doanh nghiệp'
+          vi: 'Dự án — Fintech, AIoT & CMS doanh nghiệp'
         }}
         description={{
           en: 'Production systems by Jimmy Vu: a lending orchestration platform disbursing ~$10M/month, an AIoT platform with 500K+ devices, custom Zigbee gateway firmware, and multi-site enterprise CMS. Java, Spring Boot, React Native, Node.js.',
-          vi: 'Các hệ thống production của Jimmy Vu: nền tảng lending giải ngân ~$10M/tháng, nền tảng AIoT 500K+ thiết bị, firmware gateway Zigbee tuỳ chỉnh và CMS đa site doanh nghiệp. Java, Spring Boot, React Native, Node.js.'
+          vi: 'Một số hệ thống tôi đã tham gia phát triển: nền tảng cho vay xử lý khoảng $10M giải ngân mỗi tháng, hệ thống AIoT hơn 500K thiết bị, firmware gateway Zigbee và CMS doanh nghiệp đa site. Java, Spring Boot, React Native, Node.js.'
         }}
         path="/projects"
       />
