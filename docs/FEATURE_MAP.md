@@ -47,7 +47,7 @@
 |------|---------|
 | `tag` (top-left)        | Status dot + `PORTFOLIO / 2026 // AVAILABLE FOR HIRE` |
 | `side` (right column)   | Stacked info chips zigzagging left ↔ right (`// EXPERIENCE` = `5+ years · Professional`, `// BASED IN`, `// ALSO DOES`, `// STATUS`) |
-| `main` (center-left)    | `- Backend · Platform · Distributed Systems` eyebrow → serif name with bronze italic accent (+ `.sr-only` "Senior Backend and Platform Software Engineer" suffix inside the `<h1>` for crawlers/screen readers) → `Senior Backend & Platform Software Engineer.` subtitle → production-scale proof (`1-2M users`, `~$10M/mo`, `500K+ IoT devices`) → `// FOCUS` row → compact core-capability chip row |
+| `main` (center-left)    | `- Backend · Platform · Distributed Systems` eyebrow → serif name with bronze italic accent (+ `.sr-only` "Senior Backend and Platform Software Engineer" suffix inside the `<h1>` for crawlers/screen readers) → `Senior Backend Engineer — Fintech & AIoT` subtitle → production-scale proof (`1-2M users`, `~$10M/mo`, `500K+ IoT devices`) → `// FOCUS` row → compact core-capability chip row |
 | `contact` (bottom-left) | `// EMAIL`, `// PHONE`, `// LINKEDIN`, `// GITHUB` columns; `// RESUME` appears automatically when `profile.contact.resume` is non-null |
 | `mark` (bottom-right)   | `SE/26` serif monogram + `SENIOR · EST. 2019` tag |
 
@@ -64,7 +64,7 @@ hud: {
   available: true,                   // toggles the green pulsing dot
   eyebrow: 'Backend · Platform · Distributed Systems',
   title: { lead: 'Quoc Huy', accent: 'Jimmy' },
-  subtitleLead: 'Senior Backend & Platform',
+  subtitleLead: 'Senior Backend Engineer',
   proofPoints: [{ value, label }, ...],       // recruiter-facing production scale
   chips: [{ label, accent?: true }, ...],     // backend/platform-first skill pill row
   sideChips: [{ label, value, accent? }, ...], // 4 zigzag chips
