@@ -12,22 +12,22 @@ export const experience = [
     location: { en: 'Hanoi, Vietnam', vi: 'Hà Nội, Việt Nam' },
     start: 'Jul 2025',
     end: { en: 'Present', vi: 'Hiện tại' },
-    paragraphs: [
+    bullets: [
       {
-        en: 'On the platform team for a large-scale digital lending product that disburses up to USD 10M per month. The work sits at the intersection of fintech, telco-grade infrastructure, and partner integrations.',
-        vi: 'Trong team platform cho một sản phẩm lending số quy mô lớn, giải ngân tới 10 triệu USD mỗi tháng. Công việc nằm ở giao điểm giữa fintech, hạ tầng telco và các integration đối tác.'
+        en: 'Build Java / Spring Boot services for a digital lending platform processing up to USD 10M in monthly disbursement.',
+        vi: 'Xây các service Java / Spring Boot cho nền tảng lending số xử lý tới 10 triệu USD giải ngân mỗi tháng.'
       },
       {
-        en: 'Build and maintain Java backend services, wire up payment flows, and manage cash-flow connections with lending partners across the loan lifecycle.',
-        vi: 'Xây và bảo trì các backend service Java, ráp luồng thanh toán và quản lý dòng tiền với các đối tác cho vay trong suốt vòng đời khoản vay.'
+        en: 'Integrate payment and lending-partner flows across the loan lifecycle, including cash-flow and disbursement paths.',
+        vi: 'Tích hợp luồng thanh toán và đối tác cho vay xuyên suốt vòng đời khoản vay, gồm cả dòng tiền và giải ngân.'
       },
       {
-        en: 'Contribute to system design for scalability, security, and high availability across the lending platform, and support native mobile apps that consume the same APIs.',
-        vi: 'Tham gia thiết kế hệ thống cho khả năng mở rộng, bảo mật và độ sẵn sàng cao trên toàn nền tảng, đồng thời hỗ trợ các app mobile native dùng chung bộ API.'
+        en: 'Contribute to platform design for scalability, security, high availability, and transaction integrity across shared lending services.',
+        vi: 'Tham gia thiết kế platform cho khả năng mở rộng, bảo mật, độ sẵn sàng cao và toàn vẹn giao dịch trên các service lending dùng chung.'
       },
       {
-        en: 'Implement business workflows on Camunda BPM to orchestrate the loan lifecycle from application through disbursement.',
-        vi: 'Triển khai business workflow trên Camunda BPM để điều phối vòng đời khoản vay từ đăng ký đến giải ngân.'
+        en: 'Implement Camunda BPM workflows covering application, decisioning, partner hand-offs, and disbursement.',
+        vi: 'Triển khai workflow Camunda BPM cho các bước đăng ký, decisioning, hand-off đối tác và giải ngân.'
       }
     ],
     meta: [
@@ -55,26 +55,26 @@ export const experience = [
     },
     start: 'Oct 2023',
     end: 'Jun 2025',
-    paragraphs: [
+    bullets: [
       {
-        en: 'Built and maintained Magnolia CMS solutions for enterprise clients - performance tuning, custom modules, and editorial workflows for content teams running multi-site setups.',
-        vi: 'Xây và bảo trì các giải pháp Magnolia CMS cho khách hàng doanh nghiệp - tối ưu hiệu năng, làm module tuỳ chỉnh và workflow biên tập cho các team nội dung vận hành nhiều site.'
+        en: 'Built Magnolia CMS solutions for enterprise multi-site clients, including custom modules, editorial workflows, and performance tuning.',
+        vi: 'Xây giải pháp Magnolia CMS cho khách hàng doanh nghiệp đa site, gồm module tuỳ chỉnh, editorial workflow và tối ưu hiệu năng.'
       },
       {
-        en: 'Wrote Java backend services, tuned MySQL queries, and shipped REST and GraphQL APIs powering headless content delivery to multiple frontends.',
-        vi: 'Viết backend service Java, tune query MySQL và ship REST cùng GraphQL API phục vụ headless content delivery cho nhiều frontend.'
+        en: 'Shipped Java backend services, optimized MySQL queries, and delivered REST / GraphQL APIs for headless content distribution.',
+        vi: 'Ship backend service Java, tối ưu query MySQL và triển khai REST / GraphQL API cho headless content delivery.'
       },
       {
-        en: 'Built and integrated a React headless frontend so editorial output rendered cleanly across web channels with no template duplication.',
-        vi: 'Xây và tích hợp frontend React headless để output biên tập render gọn gàng qua nhiều kênh web mà không bị trùng template.'
+        en: 'Integrated React headless frontends with shared CMS content models to avoid duplicated templates across channels.',
+        vi: 'Tích hợp frontend React headless với content model dùng chung để tránh duplicate template giữa các kênh.'
       },
       {
-        en: 'Managed Apache configs, hardened security posture, and kept response times sane under production load.',
-        vi: 'Quản lý cấu hình Apache, siết security posture và giữ thời gian phản hồi ổn định dưới tải production.'
+        en: 'Hardened Apache / Tomcat production configuration and improved runtime stability under load.',
+        vi: 'Siết cấu hình Apache / Tomcat production và cải thiện độ ổn định runtime dưới tải.'
       },
       {
-        en: 'Set up GitLab CI/CD pipelines for automated testing and deployment, and mentored junior developers on review habits and code quality.',
-        vi: 'Dựng pipeline GitLab CI/CD cho testing và deploy tự động, đồng thời mentor các dev junior về thói quen review và chất lượng code.'
+        en: 'Set up GitLab CI/CD for automated test / deploy flows and mentored junior engineers through code review.',
+        vi: 'Dựng GitLab CI/CD cho test / deploy tự động và mentor junior qua code review.'
       }
     ],
     meta: [
@@ -99,26 +99,26 @@ export const experience = [
     location: { en: 'Nam Tu Liem, Hanoi', vi: 'Nam Từ Liêm, Hà Nội' },
     start: 'Aug 2021',
     end: 'Feb 2024',
-    paragraphs: [
+    bullets: [
       {
-        en: 'Built a microservices backend in Java Spring Boot and NestJS - tuning MySQL, MongoDB, WebSocket, and MQTT pipelines to absorb the load from high-traffic IoT and consumer workloads.',
-        vi: 'Xây backend microservice với Java Spring Boot và NestJS - tune MySQL, MongoDB, WebSocket và MQTT để chịu được tải từ các workload IoT và người dùng thường xuyên cao điểm.'
+        en: 'Built Java Spring Boot / NestJS microservices and tuned MySQL, MongoDB, WebSocket, and MQTT paths for high-traffic IoT workloads.',
+        vi: 'Xây microservice Java Spring Boot / NestJS và tối ưu MySQL, MongoDB, WebSocket, MQTT cho workload IoT lưu lượng cao.'
       },
       {
-        en: 'Shipped mobile apps in React Native with native modules in Java and Swift, and managed application state with Redux.',
-        vi: 'Ship các app mobile với React Native, viết native module bằng Java và Swift, quản lý state ứng dụng với Redux.'
+        en: 'Shipped React Native applications with Java / Swift native modules and Redux-based state management.',
+        vi: 'Ship ứng dụng React Native với native module Java / Swift và state management bằng Redux.'
       },
       {
-        en: 'Integrated payment gateways (MoMo, VN Pay) and IoT devices (Legrand, Schneider Electric, Tuya), and deployed services on CMC Cloud with Docker and Kubernetes.',
-        vi: 'Tích hợp cổng thanh toán (MoMo, VN Pay) và thiết bị IoT (Legrand, Schneider Electric, Tuya), deploy service trên CMC Cloud bằng Docker và Kubernetes.'
+        en: 'Integrated MoMo / VNPay and multi-vendor IoT ecosystems including Legrand, Schneider Electric, and Tuya; deployed with Docker / Kubernetes.',
+        vi: 'Tích hợp MoMo / VNPay cùng hệ IoT đa hãng gồm Legrand, Schneider Electric và Tuya; deploy bằng Docker / Kubernetes.'
       },
       {
-        en: 'Designed a home gateway for smart devices over Zigbee, Z-Wave, and BLE, plus on-device AI modules with YOLO and OpenCV for fire and stroke detection.',
-        vi: 'Thiết kế home gateway cho thiết bị thông minh qua Zigbee, Z-Wave và BLE, kèm module AI on-device với YOLO và OpenCV cho phát hiện cháy và đột quỵ.'
+        en: 'Designed smart-home gateway capabilities across Zigbee, Z-Wave, and BLE, including edge AI modules with YOLO / OpenCV.',
+        vi: 'Thiết kế capability gateway smart-home qua Zigbee, Z-Wave và BLE, gồm module edge AI với YOLO / OpenCV.'
       },
       {
-        en: 'Led a team of five to ten engineers - task planning, progress tracking, code reviews, and performance evaluations.',
-        vi: 'Dẫn dắt nhóm năm đến mười kỹ sư - phân việc, theo dõi tiến độ, code review và đánh giá hiệu suất.'
+        en: 'Led a 5-10 engineer team across planning, implementation coordination, code review, mentoring, and delivery tracking.',
+        vi: 'Dẫn dắt team 5-10 kỹ sư qua planning, điều phối triển khai, code review, mentoring và theo dõi delivery.'
       }
     ],
     meta: [
@@ -143,18 +143,18 @@ export const experience = [
     location: { en: 'My Dinh 1, Hanoi', vi: 'Mỹ Đình 1, Hà Nội' },
     start: 'Nov 2020',
     end: 'Mar 2021',
-    paragraphs: [
+    bullets: [
       {
-        en: 'Used the Liferay framework to build customer-facing portal sites, and wrote backend services in Spring Boot following REST conventions.',
-        vi: 'Dùng framework Liferay để dựng các portal cho khách hàng, viết backend service Spring Boot theo chuẩn REST.'
+        en: 'Built customer-facing Liferay portals and Spring Boot REST services.',
+        vi: 'Xây portal khách hàng bằng Liferay và các REST service Spring Boot.'
       },
       {
-        en: 'Researched algorithms and query optimization with Spring Data JPA and MySQL to keep data-heavy portal features responsive.',
-        vi: 'Nghiên cứu thuật toán và tối ưu query với Spring Data JPA và MySQL để giữ các tính năng portal nặng dữ liệu vẫn phản hồi nhanh.'
+        en: 'Optimized Spring Data JPA / MySQL access patterns for data-heavy portal features.',
+        vi: 'Tối ưu access pattern Spring Data JPA / MySQL cho các tính năng portal nặng dữ liệu.'
       },
       {
-        en: 'Joined business analysis and used Trello and GitHub to track progress with the team.',
-        vi: 'Tham gia phân tích nghiệp vụ và dùng Trello, GitHub để theo dõi tiến độ cùng team.'
+        en: 'Contributed to requirements analysis and delivery tracking with the product team.',
+        vi: 'Tham gia phân tích yêu cầu và theo dõi delivery cùng product team.'
       }
     ],
     meta: [
@@ -179,22 +179,22 @@ export const experience = [
     location: { en: 'Hanoi', vi: 'Hà Nội' },
     start: 'Aug 2019',
     end: 'Sep 2020',
-    paragraphs: [
+    bullets: [
       {
-        en: 'Started as a Java intern, then moved into a part-time role split between production work and teaching.',
-        vi: 'Bắt đầu là Java intern, sau đó chuyển sang vị trí part-time chia đôi giữa công việc production và giảng dạy.'
+        en: 'Progressed from Java intern to a part-time full-stack and teaching role.',
+        vi: 'Từ Java intern chuyển sang vai trò part-time kết hợp full-stack và giảng dạy.'
       },
       {
-        en: 'Wrote APIs in Spring and Express following RESTful principles, and shipped web and mobile apps with React and React Native, Redux, and Saga.',
-        vi: 'Viết API bằng Spring và Express theo nguyên tắc RESTful, ship app web và mobile với React và React Native, Redux và Saga.'
+        en: 'Built Spring / Express APIs and shipped React / React Native applications with Redux / Saga.',
+        vi: 'Xây API bằng Spring / Express và ship ứng dụng React / React Native với Redux / Saga.'
       },
       {
-        en: 'Taught programming fundamentals, walking students through building CRUD apps in Spring, Node.js, and React.',
-        vi: 'Dạy lập trình cơ bản, đi cùng học viên qua việc xây các ứng dụng CRUD bằng Spring, Node.js và React.'
+        en: 'Taught programming fundamentals through hands-on Spring, Node.js, and React CRUD projects.',
+        vi: 'Dạy lập trình nền tảng qua các project CRUD thực hành với Spring, Node.js và React.'
       },
       {
-        en: 'Supported staff and led one to three interns per cohort through onboarding and project delivery.',
-        vi: 'Hỗ trợ nhân viên và dẫn dắt một đến ba intern mỗi đợt qua onboarding và bàn giao dự án.'
+        en: 'Mentored 1-3 interns per cohort through onboarding and project delivery.',
+        vi: 'Mentor 1-3 intern mỗi cohort qua onboarding và delivery dự án.'
       }
     ],
     meta: [
