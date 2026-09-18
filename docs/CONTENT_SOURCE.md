@@ -317,3 +317,7 @@ The homepage shows a single-row horizontal slider with newest posts; the `View a
 ---
 
 For the website, avoid uploading internal screenshots, confidential client data, or proprietary code from past employers. Use anonymized summaries and architectural descriptions that show the engineering thinking without exposing company-specific details.
+
+### Case-study ownership rule
+
+Every shipped project case study now includes a **My Contribution / Ownership** section immediately after Context / Role. This section must describe only work Jimmy personally owned or directly contributed to; system-wide metrics remain separate and must not be phrased as individual impact unless there is evidence tying the result to his work.
