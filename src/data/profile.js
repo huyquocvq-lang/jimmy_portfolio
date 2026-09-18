@@ -27,6 +27,11 @@ export const profile = {
     },
     subtitleLead: { en: 'Senior Backend & Platform', vi: 'Senior Backend & Platform' },
     subtitleAccent: { en: 'Software Engineer.', vi: 'Software Engineer.' },
+    proofPoints: [
+      { value: '1-2M', label: { en: 'users served', vi: 'người dùng' } },
+      { value: '~$10M/mo', label: { en: 'lending disbursement', vi: 'giải ngân lending' } },
+      { value: '500K+', label: { en: 'IoT devices', vi: 'thiết bị IoT' } }
+    ],
     chips: [
       { label: 'Java · Spring Boot', accent: true },
       { label: 'Microservices · Camunda', accent: true },
