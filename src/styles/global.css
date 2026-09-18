@@ -1312,7 +1312,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- PERSONAL INTEREST ---------- */
 .personal {
-  padding: 120px 32px;
+  padding: 88px 32px;
   background: var(--bg-elevated);
   border-bottom: 1px solid var(--border-subtle);
 }
@@ -1321,8 +1321,8 @@ a { color: inherit; text-decoration: none; }
   margin: 0 auto;
 }
 .personal-head {
-  max-width: 880px;
-  margin: 0 auto 64px;
+  max-width: 760px;
+  margin: 0 auto 44px;
   text-align: center;
 }
 .personal-eyebrow {
@@ -1334,7 +1334,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
 }
 .personal-head h2 {
-  font-size: clamp(32px, 4vw, 50px);
+  font-size: clamp(30px, 3.5vw, 44px);
   font-weight: 300;
   line-height: 1.2;
   letter-spacing: 0.005em;
@@ -1342,8 +1342,8 @@ a { color: inherit; text-decoration: none; }
   color: var(--text-heading);
 }
 .personal-copy p {
-  font-size: 19px;
-  line-height: 1.85;
+  font-size: 18px;
+  line-height: 1.75;
   color: var(--text-body);
   margin-bottom: 18px;
 }
@@ -1351,14 +1351,14 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 0;
 }
 .personal-masonry {
-  column-count: 3;
-  column-gap: 20px;
-  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 760px;
   margin: 0 auto;
 }
 .personal-tile {
-  break-inside: avoid;
-  margin: 0 0 20px;
+  margin: 0;
   border-radius: 12px;
   overflow: hidden;
   background: var(--bg-elevated-2);
@@ -1368,7 +1368,8 @@ a { color: inherit; text-decoration: none; }
 .personal-tile img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 220px;
+  object-fit: cover;
   transition: transform 0.6s ease;
 }
 .personal-tile:hover img {
@@ -1376,11 +1377,15 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (max-width: 960px) {
-  .personal { padding: 80px 24px; }
-  .personal-masonry { column-count: 2; max-width: 640px; }
+  .personal { padding: 72px 24px; }
+  .personal-masonry { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 640px; }
+  .personal-tile img { height: 180px; }
 }
 @media (max-width: 560px) {
-  .personal-masonry { column-count: 1; max-width: 320px; }
+  .personal { padding: 56px 20px; }
+  .personal-head { margin-bottom: 32px; }
+  .personal-masonry { grid-template-columns: 1fr; max-width: 320px; }
+  .personal-tile img { height: 220px; }
 }
 
 /* ---------- PROJECTS ---------- */
