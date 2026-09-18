@@ -57,9 +57,13 @@ export default function Experience() {
                   )}
                 </div>
 
-                {entry.paragraphs.map((p, j) => (
-                  <p key={j} className="exp-para">{tr(p, lang)}</p>
-                ))}
+                {entry.bullets && entry.bullets.length > 0 && (
+                  <ul className="exp-bullets">
+                    {entry.bullets.map((bullet, j) => (
+                      <li key={j}>{tr(bullet, lang)}</li>
+                    ))}
+                  </ul>
+                )}
 
                 {entry.meta && entry.meta.length > 0 && (
                   <dl className="exp-meta">
