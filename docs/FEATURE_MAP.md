@@ -156,7 +156,7 @@ hud: {
 
 ## F3b - Education
 
-**Purpose:** Single graduate engineering program below Impact.
+**Purpose:** Single graduate engineering program shown after Work Experience, so professional track record is prioritized for senior-role recruiting.
 
 **Data:** `src/data/education.js` - `{ school, degree, focus, location, date, gpa, honors[] }`. Currently one entry: **Hanoi University of Science and Technology** (Computer Engineering, Aug 2018 – Aug 2023, CPA 3.25).
 
@@ -168,7 +168,7 @@ hud: {
 
 ## F3c - Work Experience
 
-**Purpose:** Reverse-chronological work history below Education. Bullets from the resume are rewritten as flowing paragraphs; each company also exposes a `meta` table with **Technologies** and **Outstanding projects** rows.
+**Purpose:** Reverse-chronological work history shown immediately after Impact and before Education. Each role uses concise achievement bullets for fast recruiter scanning, plus a `meta` table with **Technologies** and **Outstanding projects** rows.
 
 **Data:** `src/data/experience.js` - 5 entries (most recent first):
 
