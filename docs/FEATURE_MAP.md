@@ -10,7 +10,7 @@
 | F3b | Education list | `src/components/Education.jsx`, `src/data/education.js` | `/#education` |
 | F3c | Work experience timeline (achievement bullets + metadata) | `src/components/Experience.jsx`, `src/data/experience.js` | `/#experience` |
 | F4 | About + skills grid | `src/components/AboutSkills.jsx`, `Skill.jsx` | `/#about` |
-| F4b | Personal interest + masonry image wall | `src/components/PersonalInterest.jsx`, `src/data/personal.js` | `/#personal` |
+| F4b | Compact personal interest + 3-image strip | `src/components/PersonalInterest.jsx`, `src/data/personal.js` | `/#personal` |
 | F5 | Projects listing (homepage) | `src/components/Projects.jsx`, `FeaturedProject.jsx`, `OtherProject.jsx`, `BannerEmbed.jsx` | `/#work` |
 | F5a | All-projects list page | `src/pages/ProjectListPage.jsx` | `/projects` |
 | F5b | Blog slider (homepage) | `src/components/Blogs.jsx`, `BlogCard.jsx`, `src/data/blog.ts` | `/#blog` |
@@ -209,11 +209,11 @@ Each entry may carry an optional `website` URL. When non-null, `Experience.jsx` 
 
 ## F4b - Personal interest + masonry wall
 
-**Purpose:** Personal copy + Pinterest-style masonry of personal photos between Projects and Blogs.
+**Purpose:** Compact recruiter-friendly personal section between Projects and Blogs. Keeps only evidence of communication / entrepreneurship outside engineering, plus three curated photos.
 
-**Data:** `src/data/personal.js` - heading "A little more about me - outside of work." Three paragraphs covering travel, founding a clothing store, MC / spokesperson work, plus the personal motto.
+**Data:** `src/data/personal.js` - heading "A little more about me - outside of work." One concise paragraph covering the clothing shop and MC / spokesperson experience, framed around negotiation, communication, and product empathy.
 
-**Images:** `public/images/personal/personal_1.jpeg` … `personal_8.jpeg` (ordered chronologically by EXIF date taken, JPEG resized to max 1600px width).
+**Images:** Three curated assets: `personal_2.jpeg`, `personal_5.jpeg`, `personal_8.jpeg`; rendered as a compact grid instead of a large masonry wall.
 
 **Mobile trim:** controlled by `VITE_MOBILE_PERSONAL_LIMIT` (default 4). The runtime data array is untouched - the trim is a CSS `display: none` block injected by `<MobileTrimStyles />` from `src/utils/mobileTrim.js`.
 
