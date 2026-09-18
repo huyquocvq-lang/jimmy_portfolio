@@ -25,7 +25,7 @@ A personal portfolio website for **Quoc Huy (Jimmy)**, showcasing 5+ years of pr
 - Impact metrics, about narrative, and skills grid
 - Featured + grid project previews linking to dedicated case study pages
 - Seven uniquely designed project detail pages
-- Contact links (LinkedIn, email, phone)
+- Contact links (LinkedIn, GitHub, email, phone; Resume appears when a valid public PDF is configured)
 - Responsive layout with mobile navigation drawer
 
 ## Main business purpose
