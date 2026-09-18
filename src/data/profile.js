@@ -35,11 +35,8 @@ export const profile = {
     chips: [
       { label: 'Java · Spring Boot', accent: true },
       { label: 'Microservices · Camunda', accent: true },
-      { label: 'Node.js · NestJS · gRPC' },
-      { label: 'MySQL · MongoDB · Redis' },
-      { label: 'Kafka · MQTT · WebSocket' },
-      { label: 'React · React Native' },
-      { label: 'IoT · Edge Systems' }
+      { label: 'NestJS · Realtime Systems' },
+      { label: 'MQTT · IoT · Edge' }
     ],
     sideChips: [
       {
@@ -63,11 +60,11 @@ export const profile = {
     // Rendered as a single highlighted line in the main column, between the
     // subtitle and the tech chip row.
     domains: {
-      label: { en: 'Domains', vi: 'Lĩnh vực' },
-      value: 'Fintech · AIoT · Distributed Systems · CMS'
+      label: { en: 'Focus', vi: 'Trọng tâm' },
+      value: 'Fintech · Distributed Systems · AIoT'
     },
     monogram: 'SE/26',
-    establishedTag: { en: 'Senior · Est. 2019', vi: 'Senior · Bắt đầu 2019' },
+    establishedTag: { en: 'Engineering since 2019', vi: 'Làm kỹ sư từ 2019' }
     contactLabels: {
       email: { en: 'Email', vi: 'Email' },
       phone: { en: 'Phone', vi: 'Điện thoại' },
