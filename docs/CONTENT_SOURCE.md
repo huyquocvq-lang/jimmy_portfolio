@@ -38,6 +38,7 @@ When updating copy:
 | Title | `Quoc Huy / Jimmy` (`Jimmy` italic + bronze) |
 | Subtitle | `Senior Backend & Platform Software Engineer.` |
 | Title behaviour | `Quoc Huy / Jimmy` always stays on a single line (`flex-wrap: nowrap; white-space: nowrap`) so the Vietnamese + English name never split across two lines |
+| Scale proof | `1-2M users served` · `~$10M/mo lending disbursement` · `500K+ IoT devices` — shown directly under the subtitle so recruiter-facing evidence appears before stack details |
 | Skill chips | Java · Spring Boot · Microservices · Camunda · Node.js · NestJS · gRPC · MySQL · MongoDB · Redis · Kafka · MQTT · WebSocket · React · React Native · IoT · Edge Systems (first two pills filled bronze, rest outlined) |
 | Side chip 1 | `// EXPERIENCE` → `5+ years · Professional` |
 | Side chip 2 | `// BASED IN` → `Hanoi · GMT+7` |
