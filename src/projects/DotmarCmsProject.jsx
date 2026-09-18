@@ -17,6 +17,13 @@ const USE_CASES = [
   { en: 'AI agent that drafts content for editors to review - author-in-the-loop, not auto-publish', vi: 'AI agent soạn nội dung để biên tập viên review - author-in-the-loop, không auto-publish' }
 ]
 
+const CONTRIBUTIONS = [
+  { en: 'Built Magnolia / Java backend capabilities and custom CMS modules for the multi-site setup.', vi: 'Xây các capability backend Magnolia / Java và module CMS tuỳ chỉnh cho mô hình multi-site.' },
+  { en: 'Implemented editorial workflow and API-driven content delivery used by the React headless frontend.', vi: 'Triển khai editorial workflow và content delivery qua API cho frontend React headless.' },
+  { en: 'Worked on personalization and rule-driven experiences while keeping authoring practical for content teams.', vi: 'Làm phần personalization và trải nghiệm theo rule nhưng vẫn giữ quy trình authoring thực tế cho content team.' },
+  { en: 'Contributed to performance, deployment, and production-readiness work around Apache / Tomcat and the CMS runtime.', vi: 'Tham gia tối ưu hiệu năng, deployment và production-readiness quanh Apache / Tomcat và runtime CMS.' }
+]
+
 const CHALLENGES = [
   { en: 'A CMS stack the team had not shipped on before - steep learning curve from day one', vi: 'Stack CMS team chưa từng ship - learning curve dốc ngay từ ngày đầu' },
   { en: 'Approval workflow is easy to over-engineer into a bottleneck if you do not push back on requirements', vi: 'Approval workflow rất dễ over-engineer thành bottleneck nếu không phản biện lại yêu cầu' },
@@ -38,6 +45,7 @@ const CONTENT = {
   },
   roleH: { en: 'Role', vi: 'Vai trò' },
   role: { en: 'Fullstack Developer · Tech Lead', vi: 'Fullstack Developer · Tech Lead' },
+  ownershipH: { en: 'My Contribution / Ownership', vi: 'Phần tôi trực tiếp phụ trách' },
   useCasesH: { en: 'Highlighted Use Cases', vi: 'Use case nổi bật' },
   challengesH: { en: 'Challenges', vi: 'Thử thách' },
   metricsH: { en: 'Metrics', vi: 'Số liệu' }
@@ -73,6 +81,15 @@ export default function DotmarCmsProject() {
             <h2>{tr(CONTENT.roleH, lang)}</h2>
             <p>{tr(CONTENT.role, lang)}</p>
           </div>
+        </section>
+
+        <section className="trend-recs">
+          <h2>{tr(CONTENT.ownershipH, lang)}</h2>
+          <ol>
+            {CONTRIBUTIONS.map((r, i) => (
+              <li key={i}>{tr(r, lang)}</li>
+            ))}
+          </ol>
         </section>
 
         <section className="trend-recs">
