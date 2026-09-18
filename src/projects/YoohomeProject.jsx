@@ -18,6 +18,13 @@ const USE_CASES = [
   { en: 'Telemetry and control-data ingestion that feeds an in-app virtual assistant', vi: 'Thu thập telemetry và dữ liệu điều khiển để nuôi trợ lý ảo trong app' }
 ]
 
+const CONTRIBUTIONS = [
+  { en: 'Led full-stack delivery across NestJS services, React Native clients, and the realtime MQTT backbone.', vi: 'Dẫn dắt delivery full-stack qua các service NestJS, client React Native và backbone realtime MQTT.' },
+  { en: 'Designed and integrated multi-vendor device flows across Zigbee and vendor cloud APIs such as Tuya, Legrand, and Schneider Electric.', vi: 'Thiết kế và tích hợp luồng thiết bị đa hãng qua Zigbee và các API cloud của vendor như Tuya, Legrand và Schneider Electric.' },
+  { en: 'Worked on telemetry, control-data, queueing, and storage paths that support realtime device control at production scale.', vi: 'Làm trực tiếp trên các luồng telemetry, control-data, queue và storage phục vụ điều khiển thiết bị realtime ở quy mô production.' },
+  { en: 'Led a 5-10 engineer team through task planning, code review, mentoring, and delivery coordination.', vi: 'Dẫn dắt team 5-10 kỹ sư qua phân việc, code review, mentoring và điều phối delivery.' }
+]
+
 const CHALLENGES = [
   { en: 'Realtime, low-latency requirements - the user expects a light switch to feel like a light switch', vi: 'Yêu cầu realtime, độ trễ thấp - người dùng mong công tắc đèn cảm giác đúng là công tắc đèn' },
   { en: 'Bursty message load in peak household-activity windows (think 7am and 6pm)', vi: 'Tải message tăng đột biến vào khung giờ sinh hoạt cao điểm (kiểu 7h sáng và 6h chiều)' },
@@ -52,6 +59,7 @@ const CONTENT = {
   },
   roleH: { en: 'Role', vi: 'Vai trò' },
   role: { en: 'Fullstack Developer · Tech Lead', vi: 'Fullstack Developer · Tech Lead' },
+  ownershipH: { en: 'My Contribution / Ownership', vi: 'Phần tôi trực tiếp phụ trách' },
   useCasesH: { en: 'Highlighted Use Cases', vi: 'Use case nổi bật' },
   challengesH: { en: 'Challenges', vi: 'Thử thách' },
   metricsH: { en: 'Capacity Profile', vi: 'Hồ sơ tải' },
@@ -93,6 +101,15 @@ export default function YoohomeProject() {
             <h2>{tr(CONTENT.roleH, lang)}</h2>
             <p>{tr(CONTENT.role, lang)}</p>
           </div>
+        </section>
+
+        <section className="trend-recs">
+          <h2>{tr(CONTENT.ownershipH, lang)}</h2>
+          <ol>
+            {CONTRIBUTIONS.map((r, i) => (
+              <li key={i}>{tr(r, lang)}</li>
+            ))}
+          </ol>
         </section>
 
         <section className="trend-recs">
