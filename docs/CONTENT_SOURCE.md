@@ -39,16 +39,16 @@ When updating copy:
 | Subtitle | `Senior Backend & Platform Software Engineer.` |
 | Title behaviour | `Quoc Huy / Jimmy` always stays on a single line (`flex-wrap: nowrap; white-space: nowrap`) so the Vietnamese + English name never split across two lines |
 | Scale proof | `1-2M users served` · `~$10M/mo lending disbursement` · `500K+ IoT devices` — shown directly under the subtitle so recruiter-facing evidence appears before stack details |
-| Skill chips | Java · Spring Boot · Microservices · Camunda · Node.js · NestJS · gRPC · MySQL · MongoDB · Redis · Kafka · MQTT · WebSocket · React · React Native · IoT · Edge Systems (first two pills filled bronze, rest outlined) |
+| Skill chips | `Java · Spring Boot` · `Microservices · Camunda` · `NestJS · Realtime Systems` · `MQTT · IoT · Edge` (compact core signals only; broader stack stays in Skills / marquee) |
 | Side chip 1 | `// EXPERIENCE` → `5+ years · Professional` |
 | Side chip 2 | `// BASED IN` → `Hanoi · GMT+7` |
 | Side chip 3 | `// ALSO DOES` → `Full-stack · Mobile · IoT` |
 | Side chip 4 | `// STATUS` → `OPEN TO HIRE ✓` (green accent via `accent: 'available'` on the chip) |
-| Domains row (in main column) | `// DOMAINS` → `Fintech · AIoT · Distributed Systems · CMS` (bronze accent value) |
+| Focus row (in main column) | `// FOCUS` → `Fintech · Distributed Systems · AIoT` (bronze accent value) |
 | Contact: Email | `huyquoc.vq@gmail.com` |
 | Contact: Phone | `+84 0345 475 336` |
 | Contact: LinkedIn | `linkedin.com/in/quoc-huy` (handle); link target `https://linkedin.com/in/quoc-huy-16b896277` |
-| Monogram | `SE/26` + `SENIOR · EST. 2019` |
+| Monogram | `SE/26` + `ENGINEERING SINCE 2019` |
 
 ### Tagline & intro (for nav/footer/meta reuse, not rendered in hero v2)
 
@@ -106,13 +106,13 @@ Hero strip mirror (3 stats, legacy `heroStats` export): `5+ yrs · Professional 
 
 **Component:** `src/components/AboutSkills.jsx` (left column) · **Data:** `src/data/about.js`
 
-**Heading:** Working at the intersection of CMS platforms, backend services, and IoT systems.
+**Heading:** I build backend-heavy systems where correctness matters: money movement, realtime devices, and production workflows.
 
 **Paragraph 1:** More than five years of professional software engineering across lending platforms, smart-home AIoT, and enterprise CMS, with a focus on backend-heavy production systems that handle high traffic and complex integrations.
 
-**Paragraph 2:** One of my strongest areas is owning a system end-to-end: building Java Spring Boot and Nest.js backends, integrating with MySQL and MongoDB at scale, wiring up MQTT and WebSocket pipelines for real-time telemetry, and exposing the result through React, React Native, and headless CMS frontends.
+**Paragraph 2:** My strongest work is usually backend and platform ownership: service boundaries, workflows, partner integrations, realtime messaging, failure handling, and the operational details that keep systems dependable in production. I can still move across web and mobile when the product needs end-to-end delivery.
 
-**Paragraph 3:** I have led development teams of 5 to 10 engineers, mentored junior developers, and pushed best practices around CI/CD, code review, and clean architecture. My goal is to keep growing into a strong technical leader who learns continuously and shares knowledge to drive innovation.
+**Paragraph 3:** I have also led teams of five to ten engineers through planning, code review, mentoring, and delivery. The direction I am growing toward is technical leadership that stays close to architecture and production systems, not management detached from the code.
 
 **Tech marquee** (mounted at the bottom of the section via `<TechMarquee />`, list in `src/data/skills.js → techMarquee`): Java · Spring Boot · NestJS · Node.js · React · React Native · Next.js · TypeScript · gRPC · GraphQL · REST · WebSocket · MQTT · Camunda BPM · Magnolia CMS · Liferay · MySQL · MongoDB · Redis · Docker · Kubernetes · AWS · CMC Cloud · GitLab CI/CD · AI Agents · LLM Integration · Prompt Engineering · YOLO · OpenCV · Zigbee · Z-Wave · BLE
 
@@ -124,12 +124,12 @@ Hero strip mirror (3 stats, legacy `heroStats` export): `5+ yrs · Professional 
 
 | Icon key | Title | Description |
 |----------|-------|-------------|
-| `backend`  | Backend Engineering | Java Spring Boot · Node.js · NestJS · gRPC · Microservices · REST · GraphQL · WebSocket · MQTT |
-| `frontend` | Web Frontend | ReactJS · Next.js · WordPress · Headless CMS integration · Responsive UI · State management (Redux) |
-| `cms`      | CMS Frameworks | Magnolia CMS · Liferay · Custom modules · API-driven content · Headless content delivery |
-| `mobile`   | Mobile Development | React Native · Native modules (Java, Swift, Objective-C) · Redux/Saga · Payment SDKs (MoMo, VN Pay) |
-| `data`     | Databases & Infra | MySQL · MongoDB · SQL Server · Docker · Kubernetes · AWS · CMC Cloud · Apache · GitLab CI/CD |
-| `iot`      | IoT & AI Modules | Zigbee · Z-Wave · BLE · Home gateway firmware · YOLO · OpenCV · Fire & stroke detection |
+| `backend`  | Backend & Platform | Java · Spring Boot · NestJS · Microservices · Camunda BPM · gRPC · REST · Realtime systems |
+| `frontend` | Product Frontend | ReactJS · Next.js · WordPress · Headless CMS integration · Responsive UI · State management (Redux) |
+| `cms`      | Enterprise CMS | Magnolia CMS · Liferay · Custom modules · API-driven content · Headless content delivery |
+| `mobile`   | Mobile & Native | React Native · Native modules (Java, Swift, Objective-C) · Redux/Saga · Payment SDKs (MoMo, VN Pay) |
+| `data`     | Data & Infrastructure | MySQL · MongoDB · SQL Server · Docker · Kubernetes · AWS · CMC Cloud · Apache · GitLab CI/CD |
+| `iot`      | IoT & Edge Systems | Zigbee · Z-Wave · BLE · Home gateway firmware · YOLO · OpenCV · Fire & stroke detection |
 
 ---
 
