@@ -1,6 +1,6 @@
 // Stats shown directly under the tagline in Hero
 export const heroStats = [
-  { num: { en: '4+ yrs', vi: '4+ năm' }, label: { en: 'Fullstack experience', vi: 'Kinh nghiệm fullstack' } },
+  { num: { en: '5+ yrs', vi: '5+ năm' }, label: { en: 'Professional engineering', vi: 'Kinh nghiệm kỹ sư chuyên nghiệp' } },
   { num: '10-15', label: { en: 'Team members led', vi: 'Đã từng dẫn dắt' } },
   { num: '20+', label: { en: 'Production systems shipped', vi: 'Hệ thống đã release' } }
 ]
