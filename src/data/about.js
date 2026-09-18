@@ -6,8 +6,8 @@ export const about = {
   },
   paragraphs: [
     {
-      en: 'Four years of fullstack engineering across lending platforms, smart-home AIoT, and enterprise CMS. The work I gravitate toward sits where backend, devices, and real users meet - high-throughput services that have to stay correct under load.',
-      vi: 'Bốn năm làm fullstack qua các nền tảng cho vay, smart-home AIoT và CMS doanh nghiệp. Phần việc tôi thích nhất nằm ở chỗ backend, thiết bị và người dùng thực gặp nhau - các service throughput cao buộc phải đúng dưới tải.'
+      en: 'More than five years of professional software engineering across lending platforms, smart-home AIoT, and enterprise CMS. The work I gravitate toward sits where backend, devices, and real users meet - high-throughput services that have to stay correct under load.',
+      vi: 'Hơn năm năm làm kỹ sư phần mềm chuyên nghiệp qua các nền tảng cho vay, smart-home AIoT và CMS doanh nghiệp. Phần việc tôi thích nhất nằm ở chỗ backend, thiết bị và người dùng thực gặp nhau - các service throughput cao buộc phải đúng dưới tải.'
     },
     {
       en: 'Most of my work is end-to-end: Java Spring Boot or NestJS for the backend, MySQL or MongoDB at the storage layer, MQTT and WebSocket for realtime, and React, React Native, or a headless CMS for whatever the user sees. I read the code before I trust the docs, and I write tests where production has burned me.',
