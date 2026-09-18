@@ -36,7 +36,7 @@ When updating copy:
 | Top tag | `● PORTFOLIO / 2026 // AVAILABLE FOR HIRE` (green pulsing dot) |
 | Eyebrow | `- Backend · Platform · Distributed Systems` |
 | Title | `Quoc Huy / Jimmy` (`Jimmy` italic + bronze) |
-| Subtitle | `Senior Backend & Platform Software Engineer.` |
+| Subtitle | `Senior Backend Engineer — Fintech & AIoT` |
 | Title behaviour | `Quoc Huy / Jimmy` always stays on a single line (`flex-wrap: nowrap; white-space: nowrap`) so the Vietnamese + English name never split across two lines |
 | Scale proof | `1-2M users served` · `~$10M/mo lending disbursement` · `500K+ IoT devices` — shown directly under the subtitle so recruiter-facing evidence appears before stack details |
 | Skill chips | `Java · Spring Boot` · `Microservices · Camunda` · `NestJS · Realtime Systems` · `MQTT · IoT · Edge` (compact core signals only; broader stack stays in Skills / marquee) |
@@ -52,7 +52,7 @@ When updating copy:
 
 ### Tagline & intro (for nav/footer/meta reuse, not rendered in hero v2)
 
-**Tagline:** Backend and platform engineer building production systems where software meets money, devices, and scale - with full-stack and mobile experience when the product needs it.
+**Tagline:** Backend engineer building production systems where software meets money, devices, and scale - with full-stack and mobile experience when the product needs it.
 
 **Intro:** I build and operate backend-heavy production systems across fintech and AIoT, from Java/Spring Boot services and workflow orchestration to realtime messaging and partner integrations. I can own the product end-to-end when needed across React, React Native, and platform infrastructure, and I have led teams of five to ten engineers.
 
