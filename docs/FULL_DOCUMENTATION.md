@@ -135,7 +135,7 @@ portfolio/
 
 | File | Purpose |
 |------|---------|
-| `Hero.jsx` | Full-viewport responsive `<picture>` background + left-anchored text panel + CTA |
+| `Hero.jsx` | Full-viewport responsive `<picture>` background + backend/platform positioning + production-scale proof + contact CTA |
 | `Nav.jsx` | Sticky nav, mobile hamburger |
 | `Impact.jsx` | Impact metrics grid |
 | `Education.jsx` | Education list (graduate programs) |
