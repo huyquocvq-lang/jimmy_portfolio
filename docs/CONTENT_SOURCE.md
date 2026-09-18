@@ -34,16 +34,16 @@ When updating copy:
 | Slot | Copy |
 |------|------|
 | Top tag | `● PORTFOLIO / 2026 // AVAILABLE FOR HIRE` (green pulsing dot) |
-| Eyebrow | `- Senior Software Engineer` |
+| Eyebrow | `- Backend · Platform · Distributed Systems` |
 | Title | `Quoc Huy / Jimmy` (`Jimmy` italic + bronze) |
-| Subtitle | `Senior Fullstack` (single line - the second-line accent was dropped to keep the hero compact) |
+| Subtitle | `Senior Backend & Platform Software Engineer.` |
 | Title behaviour | `Quoc Huy / Jimmy` always stays on a single line (`flex-wrap: nowrap; white-space: nowrap`) so the Vietnamese + English name never split across two lines |
-| Skill chips | Java · Spring Boot · React · React Native · Node.js · gRPC · Microservices · Magnolia · Liferay CMS · MySQL · MongoDB · C · C++ · Python · Objective-C (first two pills filled bronze, rest outlined) |
+| Skill chips | Java · Spring Boot · Microservices · Camunda · Node.js · NestJS · gRPC · MySQL · MongoDB · Redis · Kafka · MQTT · WebSocket · React · React Native · IoT · Edge Systems (first two pills filled bronze, rest outlined) |
 | Side chip 1 | `// EXPERIENCE` → `4+ years · Senior` |
 | Side chip 2 | `// BASED IN` → `Hanoi · GMT+7` |
-| Side chip 3 | `// ALSO DOES` → `Tech Lead · Firmware` |
+| Side chip 3 | `// ALSO DOES` → `Full-stack · Mobile · IoT` |
 | Side chip 4 | `// STATUS` → `OPEN TO HIRE ✓` (green accent via `accent: 'available'` on the chip) |
-| Domains row (in main column) | `// DOMAINS` → `LMS · Fintech · IoT · CMS` (bronze accent value) |
+| Domains row (in main column) | `// DOMAINS` → `Fintech · AIoT · Distributed Systems · CMS` (bronze accent value) |
 | Contact: Email | `huyquoc.vq@gmail.com` |
 | Contact: Phone | `+84 0345 475 336` |
 | Contact: LinkedIn | `linkedin.com/in/quoc-huy` (handle); link target `https://linkedin.com/in/quoc-huy-16b896277` |
@@ -51,9 +51,9 @@ When updating copy:
 
 ### Tagline & intro (for nav/footer/meta reuse, not rendered in hero v2)
 
-**Tagline:** I build resilient fullstack systems - from CMS platforms and headless storefronts to IoT gateways and microservice backends.
+**Tagline:** Backend and platform engineer building production systems where software meets money, devices, and scale - with full-stack and mobile experience when the product needs it.
 
-**Intro:** I have four years of experience as a Full-Stack Engineer, specializing in CMS systems and IoT. I have led development teams, built and managed both frontend and backend systems, and ensured seamless integration. My goal is to become a strong tech leader, continuously learning and sharing knowledge to drive innovation.
+**Intro:** I build and operate backend-heavy production systems across fintech and AIoT, from Java/Spring Boot services and workflow orchestration to realtime messaging and partner integrations. I can own the product end-to-end when needed across React, React Native, and platform infrastructure, and I have led teams of five to ten engineers.
 
 **Contact (full):**
 
