@@ -111,6 +111,17 @@ export default function Hero() {
             <span className="hero-subtitle__accent">{tr(hud.subtitleAccent, lang)}</span>
           </p>
 
+          {hud.proofPoints?.length > 0 && (
+            <ul className="hero-proof" aria-label="Production scale highlights">
+              {hud.proofPoints.map((item) => (
+                <li key={item.value} className="hero-proof__item">
+                  <strong className="hero-proof__value">{item.value}</strong>
+                  <span className="hero-proof__label">{tr(item.label, lang)}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
           {hud.domains && (
             <p className="hero-domains">
               <span className="hero-domains__label">// {tr(hud.domains.label, lang).toUpperCase()}</span>
