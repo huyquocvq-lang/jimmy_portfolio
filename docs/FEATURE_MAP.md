@@ -47,7 +47,7 @@
 |------|---------|
 | `tag` (top-left)        | Status dot + `PORTFOLIO / 2026 // AVAILABLE FOR HIRE` |
 | `side` (right column)   | Stacked info chips zigzagging left ↔ right (`// EXPERIENCE` = `5+ years · Professional`, `// BASED IN`, `// ALSO DOES`, `// STATUS`) |
-| `main` (center-left)    | `- Backend · Platform · Distributed Systems` eyebrow → serif name with bronze italic accent (+ `.sr-only` "Senior Backend and Platform Software Engineer" suffix inside the `<h1>` for crawlers/screen readers) → `Senior Backend & Platform Software Engineer.` subtitle → `// DOMAINS` row → wrapped core-stack chip row |
+| `main` (center-left)    | `- Backend · Platform · Distributed Systems` eyebrow → serif name with bronze italic accent (+ `.sr-only` "Senior Backend and Platform Software Engineer" suffix inside the `<h1>` for crawlers/screen readers) → `Senior Backend & Platform Software Engineer.` subtitle → production-scale proof (`1-2M users`, `~$10M/mo`, `500K+ IoT devices`) → `// DOMAINS` row → wrapped core-stack chip row |
 | `contact` (bottom-left) | `// EMAIL`, `// PHONE`, `// LINKEDIN` columns |
 | `mark` (bottom-right)   | `SE/26` serif monogram + `SENIOR · EST. 2019` tag |
 
@@ -65,6 +65,7 @@ hud: {
   eyebrow: 'Backend · Platform · Distributed Systems',
   title: { lead: 'Quoc Huy', accent: 'Jimmy' },
   subtitleLead: 'Senior Backend & Platform',
+  proofPoints: [{ value, label }, ...],       // recruiter-facing production scale
   chips: [{ label, accent?: true }, ...],     // backend/platform-first skill pill row
   sideChips: [{ label, value, accent? }, ...], // 4 zigzag chips
   domains: { label, value },                   // rendered in main column under subtitle
