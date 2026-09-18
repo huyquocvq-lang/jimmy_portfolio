@@ -71,32 +71,31 @@ When updating copy:
 Tabbed grid driven by `src/data/stats.js → impactTabs[]`. Four tabs: **Overall · LMS · IoT · CMS** (LMS = Lending Management System, not Learning).
 
 **Overall** (4 tiles):
-- **10-15 / team** - Team size led across projects; assigning tasks, tracking progress, running code reviews, and evaluating performance.
-- **20+** - Production systems shipped across telco-fintech, community, smart-home, and enterprise CMS domains.
+- **5-10 / team** - Team size led across projects; planning, implementation coordination, code reviews, mentoring, and delivery tracking.
+- **5+ years** - Professional software engineering across fintech, AIoT, enterprise CMS, web, and mobile delivery.
 - **1-2M users** - Flagship products serving 1-2 million end users in production.
-- **10+ clients** - Worked with enterprises, fintech partners, agencies, and individuals.
+- **End-to-end** - Hands-on ownership spanning backend services, workflow orchestration, realtime systems, mobile clients, and production infrastructure.
 
 **LMS - Lending Management System** (5 tiles):
 - **5+ partners** - Consumer-lending partners integrated into the orchestration platform: CAKE, VEGA, TINVAY, and more.
 - **+$10M / mo** - Monthly disbursement processed by the lending orchestration platform, serving customers in the millions.
 - **24/7** - Production system runs 24/7 with high SLA; minimal downtime across the disbursement pipeline.
-- **+20% perf** - Pipeline performance lifted ~20% after optimization passes; throughput up, latency down.
-- **99.9% success** - Transaction success rate sustained at 99.9% across end-to-end disbursement and reconciliation.
+- **Multi-product** - Multiple lending products share one orchestration platform while keeping product-specific policies and partner flows isolated.
+- **Camunda BPM** - Workflow orchestration spans application, decisioning, partner hand-offs, and disbursement.
 
 **IoT** (6 tiles):
 - **500K+** - Smart-home devices live on the Yoohome AIoT platform.
 - **10K+** - Custom Zigbee gateways shipped nationwide (Node.js + Zigbee2MQTT on Rockchip embedded hardware).
-- **112K msg/s** - Peak MQTT throughput sustained on the Yoohome message backbone.
 - **5 vendors** - IoT ecosystems integrated end-to-end (Tuya, Legrand, Schneider Electric, Panasonic, Rang Dong).
 - **Edge AI** - YOLO + OpenCV vision modules run directly on the gateway for fire and fall/stroke detection.
 - **Offline-first** - Gateway firmware keeps automation, sessions, and data integrity intact through cloud outages.
 
 **CMS** (5 tiles):
 - **10K+** - Users supported on the multi-site CMS in production (editorial approval workflows + personalization rules).
-- **1M+ views/mo** - MMP CMS (custom Java Spring Boot stack) serving 1M+ page views per month.
+- **3 sites** - Multi-site Magnolia setup with one authoring environment feeding three public delivery instances.
 - **Headless** - Magnolia + React headless stack; REST and GraphQL APIs powering cross-channel delivery.
-- **~50% faster** - AI agent integrated into the CMS cuts sales-content drafting time roughly in half.
-- **20+ rules** - Personalization rules running in production: location, time of day, age, audience segment.
+- **Workflow** - Editorial approval and role hand-offs built into the CMS authoring flow.
+- **Personalized** - Rule-driven experiences by location, time, age group, and audience segment.
 
 Hero strip mirror (3 stats, legacy `heroStats` export): `5+ yrs · Professional engineering`, `10-15 · Team members led`, `20+ · Production systems shipped`.
 
@@ -348,3 +347,8 @@ Every shipped project case study now includes a **My Contribution / Ownership** 
 Each case study also separates **System Scale** from **My Impact**:
 - **System Scale** = production reach, throughput, deployment size, or product scope belonging to the overall system/team.
 - **My Impact** = outcomes attributable to Jimmy's own work. Use qualitative outcomes when a defensible personal metric is unavailable; never convert a project-wide number into personal impact without evidence.
+
+
+### Metric defensibility rule
+
+Public metrics must be attributable to a project or role and easy to explain in an interview. Avoid publishing optimization percentages, success rates, throughput estimates, capacity plans, or business-impact percentages unless the source and measurement method are known. Prefer system-scale facts or qualitative engineering outcomes when attribution is unclear.
