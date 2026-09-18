@@ -8,7 +8,7 @@
 | F2 | Sticky navigation | `src/components/Nav.jsx` | global |
 | F3 | Impact highlights | `src/components/Impact.jsx` | `/#impact` |
 | F3b | Education list | `src/components/Education.jsx`, `src/data/education.js` | `/#education` |
-| F3c | Work experience timeline | `src/components/Experience.jsx`, `src/data/experience.js` | `/#experience` |
+| F3c | Work experience timeline (achievement bullets + metadata) | `src/components/Experience.jsx`, `src/data/experience.js` | `/#experience` |
 | F4 | About + skills grid | `src/components/AboutSkills.jsx`, `Skill.jsx` | `/#about` |
 | F4b | Personal interest + masonry image wall | `src/components/PersonalInterest.jsx`, `src/data/personal.js` | `/#personal` |
 | F5 | Projects listing (homepage) | `src/components/Projects.jsx`, `FeaturedProject.jsx`, `OtherProject.jsx`, `BannerEmbed.jsx` | `/#work` |
