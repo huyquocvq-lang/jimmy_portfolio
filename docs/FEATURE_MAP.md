@@ -354,7 +354,7 @@ Also renders `<Seo>` (FS) from the project card: title `"{title} — {type}" + "
 | Route | `/projects/lending-orchestration-platform` |
 | Component | `src/projects/LendingPlatformProject.jsx` |
 | Styles | `src/styles/projects/lending-orchestration-platform.css` (`.trend-*` class set) |
-| Layout | Intro → stack chips → context / role → **My Contribution / Ownership** → use cases → challenges → metrics → impact line |
+| Layout | Intro → stack chips → context / role → **My Contribution / Ownership** → use cases → challenges → **System Scale** → **My Impact** → impact line |
 | Source | Viettel Digital Services: Java Spring + Camunda orchestration across partner integrations |
 
 ## F8 - Yoohome - Smart Home & AIoT Platform
@@ -364,7 +364,7 @@ Also renders `<Seo>` (FS) from the project card: title `"{title} — {type}" + "
 | Route | `/projects/yoohome` |
 | Component | `src/projects/YoohomeProject.jsx` |
 | Styles | `src/styles/projects/yoohome.css` (`.trend-*` class set + `.metrics-table` + `.link-list`) |
-| Layout | Intro → stack chips → context / role → **My Contribution / Ownership** → use cases → challenges → capacity profile table → ecosystem → product links → impact line |
+| Layout | Intro → stack chips → context / role → **My Contribution / Ownership** → use cases → challenges → capacity profile → **System Scale** → **My Impact** → product links → impact line |
 | Source | Yoohome AIoT platform: NestJS + React Native + MQTT, 500K+ devices, multi-vendor integrations |
 
 ## F9 - Dotmar Multi-Site CMS
@@ -394,7 +394,7 @@ Also renders `<Seo>` (FS) from the project card: title `"{title} — {type}" + "
 | Route | `/projects/hubly` |
 | Component | `src/projects/HublyProject.jsx` |
 | Styles | `src/styles/projects/hubly.css` (`.trend-*` class set) |
-| Layout | Intro → stack chips → context / role → **My Contribution / Ownership** → highlighted use cases → challenges → impact line |
+| Layout | Intro → stack chips → context / role → **My Contribution / Ownership** → highlighted use cases → challenges → **System Scale** → **My Impact** → impact line |
 | Source | Hubly platform: NestJS/Moleculer backend + Vue/Nuxt web + Flutter mobile with Hubshield AI moderation |
 
 ---
