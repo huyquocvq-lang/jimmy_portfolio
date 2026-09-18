@@ -293,15 +293,11 @@ Card data is the runtime contract in `src/data/projects.js`. Each project has it
 **Eyebrow:** Personal Interest
 **Heading:** A little more about me - outside of work.
 
-**Paragraph 1:** Outside of code, I love to travel and discover new lands, food, and people. I describe myself as strong, assertive, and someone who genuinely enjoys challenges - which is probably why I keep gravitating toward complex systems at work.
-
-**Paragraph 2:** I also founded a small clothing store, where I handle supplier negotiation, online sales content, and the Facebook page. On top of that, I have served as the MC and company spokesperson for several smart-home and automation product launches - presenting new product features at launches and related events.
-
-**Paragraph 3:** "Learn from yesterday, live for today, hope for tomorrow." I try to keep improving new skills, sharing knowledge, and finding small ways to balance the analytical side of engineering with the creative side of building a brand.
+**Copy:** Outside engineering, I run a small clothing shop and have worked as MC / company spokesperson for smart-home product launches. Those experiences sharpened negotiation, technical communication, live Q&A, and product empathy.
 
 **Languages:** Vietnamese, English.
 
-**Images:** Pinterest-style masonry wall built from `public/images/personal/personal_1.jpeg` … `personal_8.jpeg` (ordered chronologically by EXIF date taken). CSS `column-count: 3 / 2 / 1` (desktop / ≤960px / ≤560px) inside a centered `max-width: 900px / 640px / 320px` container so tiles render compact; hover scales image to 1.05.
+**Images:** Curated 3-image strip using `personal_2.jpeg`, `personal_5.jpeg`, and `personal_8.jpeg`. Desktop/tablet show a compact 3-column grid; mobile stacks to one column. The section is intentionally smaller than the engineering sections.
 
 ---
 
