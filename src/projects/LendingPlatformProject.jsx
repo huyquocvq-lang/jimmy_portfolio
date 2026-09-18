@@ -31,10 +31,16 @@ const CHALLENGES = [
   { en: 'Security and integrity guarantees for customer funds, end-to-end', vi: 'Đảm bảo bảo mật và toàn vẹn cho dòng tiền của khách hàng, từ đầu đến cuối' }
 ]
 
-const METRICS = [
+const SYSTEM_SCALE = [
   { en: 'Customer base in the millions', vi: 'Tập khách hàng quy mô hàng triệu' },
   { en: 'Monthly disbursement up to ~$10M USD', vi: 'Giải ngân hàng tháng lên tới ~$10M USD' },
   { en: 'Multiple loan products live on the same platform', vi: 'Nhiều sản phẩm vay cùng chạy trên một platform' }
+]
+
+const MY_IMPACT = [
+  { en: 'Helped move product-specific lending flows onto a shared orchestration platform instead of maintaining isolated stacks.', vi: 'Góp phần đưa các luồng vay riêng theo sản phẩm lên một platform orchestration dùng chung thay vì duy trì các stack tách rời.' },
+  { en: 'Made partner and payment integrations easier to evolve without coupling changes across unrelated loan products.', vi: 'Giúp các tích hợp đối tác và thanh toán dễ thay đổi hơn mà không làm coupling giữa các sản phẩm vay không liên quan.' },
+  { en: 'Strengthened production reliability by treating workflow isolation, transaction integrity, and failure handling as platform concerns.', vi: 'Tăng độ tin cậy production bằng cách xử lý isolation của workflow, toàn vẹn giao dịch và failure handling ở cấp platform.' }
 ]
 
 const CONTENT = {
@@ -49,7 +55,8 @@ const CONTENT = {
   ownershipH: { en: 'My Contribution / Ownership', vi: 'Phần tôi trực tiếp phụ trách' },
   useCasesH: { en: 'Highlighted Use Cases', vi: 'Use case nổi bật' },
   challengesH: { en: 'Challenges', vi: 'Thử thách' },
-  metricsH: { en: 'Metrics', vi: 'Số liệu' }
+  systemScaleH: { en: 'System Scale', vi: 'Quy mô hệ thống' },
+  myImpactH: { en: 'My Impact', vi: 'Tác động từ phần tôi phụ trách' }
 }
 
 export default function LendingPlatformProject() {
@@ -112,9 +119,18 @@ export default function LendingPlatformProject() {
         </section>
 
         <section className="trend-recs">
-          <h2>{tr(CONTENT.metricsH, lang)}</h2>
+          <h2>{tr(CONTENT.systemScaleH, lang)}</h2>
           <ol>
-            {METRICS.map((r, i) => (
+            {SYSTEM_SCALE.map((r, i) => (
+              <li key={i}>{tr(r, lang)}</li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="trend-recs">
+          <h2>{tr(CONTENT.myImpactH, lang)}</h2>
+          <ol>
+            {MY_IMPACT.map((r, i) => (
               <li key={i}>{tr(r, lang)}</li>
             ))}
           </ol>
