@@ -71,7 +71,9 @@ export const profile = {
     contactLabels: {
       email: { en: 'Email', vi: 'Email' },
       phone: { en: 'Phone', vi: 'Điện thoại' },
-      linkedin: { en: 'LinkedIn', vi: 'LinkedIn' }
+      linkedin: { en: 'LinkedIn', vi: 'LinkedIn' },
+      github: { en: 'GitHub', vi: 'GitHub' },
+      resume: { en: 'Resume', vi: 'CV' }
     }
   },
   contact: {
@@ -81,6 +83,6 @@ export const profile = {
     phone: '+84-345-475-336',
     phoneDisplay: '+84 0345 475 336',
     email: 'huyquoc.vq@gmail.com',
-    github: null
+    github: 'https://github.com/huyquocvq-lang'
   }
 }
