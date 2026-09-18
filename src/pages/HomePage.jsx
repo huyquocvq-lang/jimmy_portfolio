@@ -25,20 +25,20 @@ export default function HomePage() {
     <>
       <Seo
         title={{
-          en: 'Jimmy Vu (Quoc Huy) — Senior Full Stack Developer | Java, Spring Boot, React Native',
-          vi: 'Jimmy Vu (Quốc Huy) — Lập trình viên Full Stack Senior | Java, Spring Boot, React Native'
+          en: 'Jimmy Vu (Quoc Huy) — Senior Backend & Platform Engineer | Java, Spring Boot, Distributed Systems',
+          vi: 'Jimmy Vu (Quốc Huy) — Senior Backend & Platform Engineer | Java, Spring Boot, Distributed Systems'
         }}
         description={{
-          en: 'Senior full stack developer with 4+ years building fintech lending platforms ($10M/mo), AIoT systems (500K+ devices), and enterprise CMS. Java · Spring Boot · React · React Native. Based in Hanoi, available for remote roles and freelance projects.',
-          vi: 'Lập trình viên full stack senior với 4+ năm kinh nghiệm xây nền tảng cho vay fintech (giải ngân ~$10M/tháng), hệ thống AIoT (500K+ thiết bị) và CMS doanh nghiệp. Java · Spring Boot · React · React Native. Tại Hà Nội, nhận việc remote và dự án freelance.'
+          en: 'Senior backend and platform engineer with 5+ years building fintech lending platforms (~$10M/mo), AIoT systems (500K+ devices), and distributed production services. Java · Spring Boot · Camunda · NestJS · MQTT. Based in Hanoi, open to remote opportunities.',
+          vi: 'Senior backend và platform engineer với 5+ năm kinh nghiệm xây nền tảng lending fintech (~$10M/tháng), hệ thống AIoT (500K+ thiết bị) và các service production phân tán. Java · Spring Boot · Camunda · NestJS · MQTT. Tại Hà Nội, sẵn sàng cho cơ hội remote.'
         }}
         path="/"
       />
       <Hero />
       <Nav />
       <Impact />
-      <Education />
       <Experience />
+      <Education />
       <AboutSkills />
       <Projects />
       <PersonalInterest />
