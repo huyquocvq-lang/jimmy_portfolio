@@ -137,18 +137,7 @@ Hero strip mirror (3 stats, legacy `heroStats` export): `5+ yrs · Professional 
 
 > Homepage order: this section is rendered immediately after Impact, before Education, to prioritize professional experience for senior-role recruiting.
 
-**Anchor:** `#experience` · **Component:** `src/components/Education.jsx` · **Data:** `src/data/education.js`
-
-1. **Hanoi University of Science and Technology** - Engineering Degree, Computer Engineering · Hanoi, Vietnam · Aug 2018 – Aug 2023 · CPA 3.25 / 4.0 · Engineering degree: Very Good
-   - Graduation topic: a platform to connect, manage, and control smart devices from separate manufacturers, with data collection and recommended actions for the user.
-
----
-
-# **Education**
-
-> Homepage order: Education is rendered after Work Experience.
-
-**Anchor:** `#education` · **Component:** `src/components/Experience.jsx` · **Data:** `src/data/experience.js`
+**Anchor:** `#experience` · **Component:** `src/components/Experience.jsx` · **Data:** `src/data/experience.js`
 
 **Company logos:** each entry supports an optional `logo` path. Use a normalized 512×512 PNG at `public/images/logos/<slug>.png` with a white rounded-square background, transparent corners, and tight centered content using roughly 34px outer padding, then set `logo: '/images/logos/<slug>.png'` on the corresponding entry. The current canonical assets are `eledevo.png`, `htc.png`, `smartosc.png`, `viettel.png`, and `yootek.png`. The image renders directly to the right of the role + company block with no extra border/card chrome. Leave as `null` to skip.
 
@@ -212,6 +201,19 @@ Achievement bullets:
 
 **Technologies:** Spring Framework · React · React Native · JavaScript · Java · MySQL · MongoDB
 **Outstanding projects:** Eledevo Academy landing page · The Fruit Market application
+
+---
+
+---
+
+# **Education**
+
+> Homepage order: Education is rendered after Work Experience.
+
+**Anchor:** `#education` · **Component:** `src/components/Education.jsx` · **Data:** `src/data/education.js`
+
+1. **Hanoi University of Science and Technology** - Engineering Degree, Computer Engineering · Hanoi, Vietnam · Aug 2018 – Aug 2023 · CPA 3.25 / 4.0 · Engineering degree: Very Good
+   - Graduation topic: a platform to connect, manage, and control smart devices from separate manufacturers, with data collection and recommended actions for the user.
 
 ---
 
