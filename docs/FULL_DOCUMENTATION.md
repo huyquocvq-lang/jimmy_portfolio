@@ -803,14 +803,14 @@ type Translatable = string | { en: string; vi: string }
 // Examples in src/data/profile.js
 const profile = {
   name: 'Quoc Huy (Jimmy)',                 // plain - proper noun
-  role: 'Senior Fullstack Software Engineer · CMS Platforms · IoT · Tech Lead', // plain - tech terms
+  role: 'Senior Backend & Platform Engineer · Fintech · AIoT · Full-stack', // plain - tech terms
   tagline: { en: 'I build…', vi: 'Tôi xây…' },  // translated
   hud: {
     sideChips: [
       { label: { en: 'Experience', vi: 'Kinh nghiệm' },
         value: { en: '4+ years · Senior', vi: '4+ năm · Senior' } },
       { label: { en: 'Also Does', vi: 'Kiêm nhiệm' },
-        value: 'Tech Lead · Firmware' }       // plain - tech role
+        value: 'Full-stack · Mobile · IoT' }  // plain - secondary capabilities
     ]
   }
 }
