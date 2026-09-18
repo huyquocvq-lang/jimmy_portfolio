@@ -64,7 +64,7 @@ export const profile = {
       value: 'Fintech · Distributed Systems · AIoT'
     },
     monogram: 'SE/26',
-    establishedTag: { en: 'Engineering since 2019', vi: 'Làm kỹ sư từ 2019' }
+    establishedTag: { en: 'Engineering since 2019', vi: 'Làm kỹ sư từ 2019' },
     contactLabels: {
       email: { en: 'Email', vi: 'Email' },
       phone: { en: 'Phone', vi: 'Điện thoại' },
