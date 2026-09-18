@@ -30,10 +30,16 @@ const CHALLENGES = [
   { en: 'Sales integration is where the value lives - and the hardest part to actually ship', vi: 'Sales integration là nơi giá trị thực sự nằm - cũng là phần khó ship nhất' }
 ]
 
-const METRICS = [
+const SYSTEM_SCALE = [
   { en: '3 sites · 1 author instance · 3 public instances', vi: '3 site · 1 author instance · 3 public instance' },
   { en: 'CMS scaled for ~10,000 users', vi: 'CMS scale cho ~10,000 người dùng' },
   { en: 'Personalization policies and rules engine running in production', vi: 'Personalization và rules engine đang chạy production' }
+]
+
+const MY_IMPACT = [
+  { en: 'Helped turn a complex multi-site CMS into a repeatable authoring and delivery model across markets.', vi: 'Góp phần biến một CMS multi-site phức tạp thành mô hình authoring và delivery có thể lặp lại giữa các thị trường.' },
+  { en: 'Improved editorial usability by implementing explicit workflow hand-offs instead of relying on ad-hoc publishing steps.', vi: 'Cải thiện trải nghiệm biên tập bằng workflow hand-off rõ ràng thay vì phụ thuộc vào các bước publish thủ công rời rạc.' },
+  { en: 'Connected backend CMS capabilities to a headless React delivery layer while keeping deployment and runtime concerns production-ready.', vi: 'Kết nối capability backend CMS với lớp delivery React headless, đồng thời giữ deployment và runtime ở trạng thái sẵn sàng production.' }
 ]
 
 const CONTENT = {
@@ -48,7 +54,8 @@ const CONTENT = {
   ownershipH: { en: 'My Contribution / Ownership', vi: 'Phần tôi trực tiếp phụ trách' },
   useCasesH: { en: 'Highlighted Use Cases', vi: 'Use case nổi bật' },
   challengesH: { en: 'Challenges', vi: 'Thử thách' },
-  metricsH: { en: 'Metrics', vi: 'Số liệu' }
+  systemScaleH: { en: 'System Scale', vi: 'Quy mô hệ thống' },
+  myImpactH: { en: 'My Impact', vi: 'Tác động từ phần tôi phụ trách' }
 }
 
 export default function DotmarCmsProject() {
@@ -111,9 +118,18 @@ export default function DotmarCmsProject() {
         </section>
 
         <section className="trend-recs">
-          <h2>{tr(CONTENT.metricsH, lang)}</h2>
+          <h2>{tr(CONTENT.systemScaleH, lang)}</h2>
           <ol>
-            {METRICS.map((r, i) => (
+            {SYSTEM_SCALE.map((r, i) => (
+              <li key={i}>{tr(r, lang)}</li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="trend-recs">
+          <h2>{tr(CONTENT.myImpactH, lang)}</h2>
+          <ol>
+            {MY_IMPACT.map((r, i) => (
               <li key={i}>{tr(r, lang)}</li>
             ))}
           </ol>
