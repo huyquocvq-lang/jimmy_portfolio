@@ -30,9 +30,15 @@ const CHALLENGES = [
   { en: 'Must keep working when the cloud uplink is offline - the building cannot stop functioning', vi: 'Phải hoạt động ngay cả khi mất kết nối cloud - toà nhà không thể ngừng hoạt động' }
 ]
 
-const METRICS = [
+const SYSTEM_SCALE = [
   { en: '10,000+ gateways deployed nationwide', vi: '10,000+ gateway triển khai toàn quốc' },
   { en: 'Data integrity and session continuity held through cloud outages', vi: 'Toàn vẹn dữ liệu và phiên người dùng được giữ qua các đợt mất cloud' }
+]
+
+const MY_IMPACT = [
+  { en: 'Helped make one gateway runtime support heterogeneous Zigbee devices instead of maintaining vendor-specific gateway builds.', vi: 'Góp phần giúp một runtime gateway hỗ trợ thiết bị Zigbee đa hãng thay vì phải duy trì build gateway riêng theo vendor.' },
+  { en: 'Improved operational resilience through remote diagnostics, OTA flows, and local-first behavior on constrained hardware.', vi: 'Tăng khả năng vận hành bền vững thông qua remote diagnostics, OTA và local-first trên phần cứng hạn chế tài nguyên.' },
+  { en: 'Kept core local automation usable during cloud outages by separating device control from cloud availability.', vi: 'Giữ automation local cốt lõi hoạt động khi cloud mất kết nối bằng cách tách điều khiển thiết bị khỏi độ sẵn sàng của cloud.' }
 ]
 
 const CONTENT = {
@@ -47,7 +53,8 @@ const CONTENT = {
   ownershipH: { en: 'My Contribution / Ownership', vi: 'Phần tôi trực tiếp phụ trách' },
   useCasesH: { en: 'Highlighted Use Cases', vi: 'Use case nổi bật' },
   challengesH: { en: 'Challenges', vi: 'Thử thách' },
-  metricsH: { en: 'Metrics', vi: 'Số liệu' }
+  systemScaleH: { en: 'System Scale', vi: 'Quy mô hệ thống' },
+  myImpactH: { en: 'My Impact', vi: 'Tác động từ phần tôi phụ trách' }
 }
 
 export default function ZigbeeGatewayProject() {
@@ -110,9 +117,18 @@ export default function ZigbeeGatewayProject() {
         </section>
 
         <section className="trend-recs">
-          <h2>{tr(CONTENT.metricsH, lang)}</h2>
+          <h2>{tr(CONTENT.systemScaleH, lang)}</h2>
           <ol>
-            {METRICS.map((r, i) => (
+            {SYSTEM_SCALE.map((r, i) => (
+              <li key={i}>{tr(r, lang)}</li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="trend-recs">
+          <h2>{tr(CONTENT.myImpactH, lang)}</h2>
+          <ol>
+            {MY_IMPACT.map((r, i) => (
               <li key={i}>{tr(r, lang)}</li>
             ))}
           </ol>
