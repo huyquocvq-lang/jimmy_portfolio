@@ -47,7 +47,7 @@
 |------|---------|
 | `tag` (top-left)        | Status dot + `PORTFOLIO / 2026 // AVAILABLE FOR HIRE` |
 | `side` (right column)   | Stacked info chips zigzagging left ↔ right (`// EXPERIENCE`, `// BASED IN`, `// ALSO DOES`, `// STATUS`) |
-| `main` (center-left)    | `- Senior Software Engineer` eyebrow → serif name with bronze italic accent (+ `.sr-only` "Senior Full Stack Software Engineer" suffix inside the `<h1>` for crawlers/screen readers) → subtitle (`subtitleLead` + italic `subtitleAccent`) → `// DOMAINS` row → wrapped skill chip row |
+| `main` (center-left)    | `- Backend · Platform · Distributed Systems` eyebrow → serif name with bronze italic accent (+ `.sr-only` "Senior Backend and Platform Software Engineer" suffix inside the `<h1>` for crawlers/screen readers) → `Senior Backend & Platform Software Engineer.` subtitle → `// DOMAINS` row → wrapped core-stack chip row |
 | `contact` (bottom-left) | `// EMAIL`, `// PHONE`, `// LINKEDIN` columns |
 | `mark` (bottom-right)   | `SE/26` serif monogram + `SENIOR · EST. 2019` tag |
 
@@ -62,10 +62,10 @@ hud: {
   portfolioYear: '2026',
   availability: 'AVAILABLE FOR HIRE',
   available: true,                   // toggles the green pulsing dot
-  eyebrow: 'Senior Software Engineer',
+  eyebrow: 'Backend · Platform · Distributed Systems',
   title: { lead: 'Quoc Huy', accent: 'Jimmy' },
-  subtitleLead: 'Senior Fullstack',  // accent line removed
-  chips: [{ label, accent?: true }, ...],     // skill pill row
+  subtitleLead: 'Senior Backend & Platform',
+  chips: [{ label, accent?: true }, ...],     // backend/platform-first skill pill row
   sideChips: [{ label, value, accent? }, ...], // 4 zigzag chips
   domains: { label, value },                   // rendered in main column under subtitle
   monogram: 'SE/26',
