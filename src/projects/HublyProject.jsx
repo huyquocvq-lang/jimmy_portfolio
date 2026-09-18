@@ -35,6 +35,18 @@ const CHALLENGES = [
   { en: 'Legacy Vue 2 + Nuxt 2 frontend that needs a credible Vue 3 migration plan, not just intent', vi: 'Frontend legacy Vue 2 + Nuxt 2 cần một kế hoạch migrate Vue 3 đáng tin cậy, không phải chỉ nói mồm' }
 ]
 
+const SYSTEM_SCALE = [
+  { en: 'Global community platform spanning community, chat, KYC, ads, rewards, livestream, and moderation.', vi: 'Platform community toàn cầu gồm community, chat, KYC, ads, reward, livestream và moderation.' },
+  { en: 'Hubshield moderation covers text, image, video, audio, OCR, and GIF across 30+ languages.', vi: 'Hubshield moderation bao phủ text, ảnh, video, audio, OCR và GIF trên 30+ ngôn ngữ.' },
+  { en: 'Multiple external dependencies across search, messaging, identity, AI moderation, and realtime delivery.', vi: 'Nhiều dependency ngoài cho search, messaging, identity, AI moderation và realtime delivery.' }
+]
+
+const MY_IMPACT = [
+  { en: 'Delivered search, taxonomy, invite, and permissions work that improved discoverability and access-control behavior across the product.', vi: 'Triển khai search, taxonomy, invite và permissions, cải thiện khả năng tìm kiếm và access control trên sản phẩm.' },
+  { en: 'Helped de-risk the Sendbird migration by working on the path toward proprietary chat without treating live conversations as disposable state.', vi: 'Góp phần giảm rủi ro migration khỏi Sendbird bằng cách xây lộ trình sang chat riêng mà không coi conversation đang hoạt động là state có thể bỏ.' },
+  { en: 'Worked across backend, web, and mobile boundaries so platform changes remained compatible across product surfaces.', vi: 'Làm việc xuyên backend, web và mobile để thay đổi platform vẫn tương thích giữa các bề mặt sản phẩm.' }
+]
+
 const CONTENT = {
   stackLabel: { en: 'Stack', vi: 'Stack' },
   contextH: { en: 'Context', vi: 'Bối cảnh' },
@@ -46,7 +58,9 @@ const CONTENT = {
   role: { en: 'Senior Fullstack Engineer', vi: 'Senior Fullstack Engineer' },
   ownershipH: { en: 'My Contribution / Ownership', vi: 'Phần tôi trực tiếp phụ trách' },
   useCasesH: { en: 'Highlighted Use Cases', vi: 'Use case nổi bật' },
-  challengesH: { en: 'Challenges', vi: 'Thử thách' }
+  challengesH: { en: 'Challenges', vi: 'Thử thách' },
+  systemScaleH: { en: 'System Scale', vi: 'Quy mô hệ thống' },
+  myImpactH: { en: 'My Impact', vi: 'Tác động từ phần tôi phụ trách' }
 }
 
 export default function HublyProject() {
@@ -103,6 +117,24 @@ export default function HublyProject() {
           <h2>{tr(CONTENT.challengesH, lang)}</h2>
           <ol>
             {CHALLENGES.map((r, i) => (
+              <li key={i}>{tr(r, lang)}</li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="trend-recs">
+          <h2>{tr(CONTENT.systemScaleH, lang)}</h2>
+          <ol>
+            {SYSTEM_SCALE.map((r, i) => (
+              <li key={i}>{tr(r, lang)}</li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="trend-recs">
+          <h2>{tr(CONTENT.myImpactH, lang)}</h2>
+          <ol>
+            {MY_IMPACT.map((r, i) => (
               <li key={i}>{tr(r, lang)}</li>
             ))}
           </ol>
