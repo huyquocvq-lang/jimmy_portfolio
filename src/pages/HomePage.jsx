@@ -25,8 +25,8 @@ export default function HomePage() {
     <>
       <Seo
         title={{
-          en: 'Jimmy Vu (Quoc Huy) — Senior Backend & Platform Engineer | Java, Spring Boot, Distributed Systems',
-          vi: 'Jimmy Vu (Quốc Huy) — Senior Backend & Platform Engineer | Java, Spring Boot, Distributed Systems'
+          en: 'Jimmy Vu (Quoc Huy) — Senior Backend Engineer | Fintech, AIoT, Java, Spring Boot',
+          vi: 'Jimmy Vu (Quốc Huy) — Senior Backend Engineer | Fintech, AIoT, Java, Spring Boot'
         }}
         description={{
           en: 'Senior backend and platform engineer with 5+ years building fintech lending platforms (~$10M/mo), AIoT systems (500K+ devices), and distributed production services. Java · Spring Boot · Camunda · NestJS · MQTT. Based in Hanoi, open to remote opportunities.',
