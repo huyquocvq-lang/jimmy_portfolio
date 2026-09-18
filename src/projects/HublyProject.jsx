@@ -21,6 +21,13 @@ const USE_CASES = [
   { en: 'Hub Packs by market segment, plus CRM hooks into Google / Microsoft / Apple Calendar, HubSpot, Salesforce, and Slack', vi: 'Hub Packs theo phân khúc thị trường, kèm hook CRM cho Google / Microsoft / Apple Calendar, HubSpot, Salesforce và Slack' }
 ]
 
+const CONTRIBUTIONS = [
+  { en: 'Worked across the NestJS / Moleculer backend, Vue / Nuxt web app, and Flutter mobile surface as a senior full-stack engineer.', vi: 'Làm xuyên backend NestJS / Moleculer, web Vue / Nuxt và mobile Flutter ở vai trò senior full-stack engineer.' },
+  { en: 'Delivered search, taxonomy, invite, and permissions work across platform modules and production data flows.', vi: 'Triển khai search, taxonomy, invite và permissions qua nhiều module platform và luồng dữ liệu production.' },
+  { en: 'Contributed to the Sendbird-to-proprietary-chat migration path while protecting existing production conversations.', vi: 'Tham gia lộ trình migrate từ Sendbird sang chat riêng trong khi bảo vệ các cuộc hội thoại production hiện có.' },
+  { en: 'Integrated and maintained external platform services including Algolia, messaging, moderation, and realtime dependencies.', vi: 'Tích hợp và duy trì các service ngoài của platform gồm Algolia, messaging, moderation và các dependency realtime.' }
+]
+
 const CHALLENGES = [
   { en: 'Broad surface area - community, moderation, commerce, ads, rewards, and livestream on one platform', vi: 'Phạm vi rộng - community, moderation, commerce, ads, reward và livestream trên cùng một platform' },
   { en: 'Heavy reliance on external services (AWS, OpenAI, Algolia, Hive, Bodyguard, Tisane, YOTI, Sendbird, Pusher) - each one is its own failure mode', vi: 'Phụ thuộc nhiều service ngoài (AWS, OpenAI, Algolia, Hive, Bodyguard, Tisane, YOTI, Sendbird, Pusher) - mỗi cái là một kiểu failure mode riêng' },
@@ -37,6 +44,7 @@ const CONTENT = {
   },
   roleH: { en: 'Role', vi: 'Vai trò' },
   role: { en: 'Senior Fullstack Engineer', vi: 'Senior Fullstack Engineer' },
+  ownershipH: { en: 'My Contribution / Ownership', vi: 'Phần tôi trực tiếp phụ trách' },
   useCasesH: { en: 'Highlighted Use Cases', vi: 'Use case nổi bật' },
   challengesH: { en: 'Challenges', vi: 'Thử thách' }
 }
@@ -71,6 +79,15 @@ export default function HublyProject() {
             <h2>{tr(CONTENT.roleH, lang)}</h2>
             <p>{tr(CONTENT.role, lang)}</p>
           </div>
+        </section>
+
+        <section className="trend-recs">
+          <h2>{tr(CONTENT.ownershipH, lang)}</h2>
+          <ol>
+            {CONTRIBUTIONS.map((r, i) => (
+              <li key={i}>{tr(r, lang)}</li>
+            ))}
+          </ol>
         </section>
 
         <section className="trend-recs">
