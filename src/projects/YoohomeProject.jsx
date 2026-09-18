@@ -32,17 +32,6 @@ const CHALLENGES = [
   { en: 'Safety-critical surface area - fire alarms, door locks, gas leak detectors. No room for "eventually consistent" here.', vi: 'Phạm vi an toàn quan trọng - báo cháy, khoá cửa, cảm biến rò khí. Ở đây không có chỗ cho "eventually consistent".' }
 ]
 
-const METRICS_TABLE = [
-  { metric: 'Device connections', baseline: '500K', peak: '500K', plan: '1.5M (3× headroom)' },
-  { metric: 'MQTT msg/s', baseline: '42K', peak: '112K', plan: '300K (2.7× peak)' },
-  { metric: 'Bandwidth', baseline: '8.4 MB/s', peak: '100 MB/s (with camera)', plan: '2 Gbps' },
-  { metric: 'Storage growth', baseline: '1.9 TB/day', peak: '~same', plan: '20 TB total (with tiering)' },
-  { metric: 'API req/s', baseline: '100', peak: '500', plan: '2000 (4× peak)' },
-  { metric: 'WebSocket concurrent', baseline: '18K', peak: '30K', plan: '100K' },
-  { metric: 'Kafka throughput', baseline: '42K msg/s', peak: '112K msg/s', plan: '500K msg/s (4×)' },
-  { metric: 'DB writes/s (post-filter)', baseline: '4K', peak: '12K', plan: '50K' }
-]
-
 const SYSTEM_SCALE = [
   { en: 'Live deployments include 90 Lang Street and Royal Da Nang', vi: 'Triển khai thực tế tại 90 Láng và Royal Đà Nẵng' },
   { en: '500,000+ devices operating 24/7', vi: '500,000+ thiết bị hoạt động 24/7' },
@@ -68,14 +57,9 @@ const CONTENT = {
   ownershipH: { en: 'My Contribution / Ownership', vi: 'Phần tôi trực tiếp phụ trách' },
   useCasesH: { en: 'Highlighted Use Cases', vi: 'Use case nổi bật' },
   challengesH: { en: 'Challenges', vi: 'Thử thách' },
-  metricsH: { en: 'Capacity Profile', vi: 'Hồ sơ tải' },
   systemScaleH: { en: 'System Scale', vi: 'Quy mô hệ thống' },
   myImpactH: { en: 'My Impact', vi: 'Tác động từ phần tôi phụ trách' },
-  linksH: { en: 'Product Links', vi: 'Link sản phẩm' },
-  thMetric: { en: 'Metric', vi: 'Chỉ số' },
-  thBaseline: { en: 'Baseline', vi: 'Baseline' },
-  thPeak: { en: 'Peak', vi: 'Peak' },
-  thPlan: { en: 'Capacity Plan', vi: 'Capacity Plan' }
+  linksH: { en: 'Product Links', vi: 'Link sản phẩm' }
 }
 
 export default function YoohomeProject() {
@@ -135,32 +119,6 @@ export default function YoohomeProject() {
               <li key={i}>{tr(r, lang)}</li>
             ))}
           </ol>
-        </section>
-
-        <section className="trend-recs">
-          <h2>{tr(CONTENT.metricsH, lang)}</h2>
-          <div className="metrics-table-wrap">
-            <table className="metrics-table">
-              <thead>
-                <tr>
-                  <th>{tr(CONTENT.thMetric, lang)}</th>
-                  <th>{tr(CONTENT.thBaseline, lang)}</th>
-                  <th>{tr(CONTENT.thPeak, lang)}</th>
-                  <th>{tr(CONTENT.thPlan, lang)}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {METRICS_TABLE.map((row, i) => (
-                  <tr key={i}>
-                    <td>{row.metric}</td>
-                    <td>{row.baseline}</td>
-                    <td>{row.peak}</td>
-                    <td>{row.plan}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
         </section>
 
         <section className="trend-recs">
