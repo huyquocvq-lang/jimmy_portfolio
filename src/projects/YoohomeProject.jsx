@@ -43,11 +43,17 @@ const METRICS_TABLE = [
   { metric: 'DB writes/s (post-filter)', baseline: '4K', peak: '12K', plan: '50K' }
 ]
 
-const ECOSYSTEM = [
+const SYSTEM_SCALE = [
   { en: 'Live deployments include 90 Lang Street and Royal Da Nang', vi: 'Triển khai thực tế tại 90 Láng và Royal Đà Nẵng' },
   { en: '500,000+ devices operating 24/7', vi: '500,000+ thiết bị hoạt động 24/7' },
   { en: '10,000+ end users', vi: '10,000+ người dùng cuối' },
   { en: 'Vendor integrations - Tuya, Legrand, Schneider Electric, Panasonic, Rang Dong', vi: 'Tích hợp vendor - Tuya, Legrand, Schneider Electric, Panasonic, Rạng Đông' }
+]
+
+const MY_IMPACT = [
+  { en: 'Helped keep realtime control reliable across a mixed device ecosystem by working across MQTT, queues, storage, and client behavior instead of treating them as separate layers.', vi: 'Góp phần giữ điều khiển realtime ổn định trên hệ thiết bị hỗn hợp bằng cách xử lý MQTT, queue, storage và client behavior như một luồng thống nhất thay vì các layer rời rạc.' },
+  { en: 'Reduced integration fragmentation by bringing multiple vendor device flows behind shared backend and mobile patterns.', vi: 'Giảm phân mảnh tích hợp bằng cách đưa nhiều luồng thiết bị vendor về các pattern backend và mobile dùng chung.' },
+  { en: 'Improved delivery consistency by leading a 5-10 engineer team through code review, mentoring, and implementation coordination.', vi: 'Cải thiện tính nhất quán khi delivery bằng việc dẫn dắt team 5-10 kỹ sư qua code review, mentoring và điều phối triển khai.' }
 ]
 
 const CONTENT = {
@@ -63,7 +69,8 @@ const CONTENT = {
   useCasesH: { en: 'Highlighted Use Cases', vi: 'Use case nổi bật' },
   challengesH: { en: 'Challenges', vi: 'Thử thách' },
   metricsH: { en: 'Capacity Profile', vi: 'Hồ sơ tải' },
-  ecosystemH: { en: 'Deployments & Ecosystem', vi: 'Triển khai & Hệ sinh thái' },
+  systemScaleH: { en: 'System Scale', vi: 'Quy mô hệ thống' },
+  myImpactH: { en: 'My Impact', vi: 'Tác động từ phần tôi phụ trách' },
   linksH: { en: 'Product Links', vi: 'Link sản phẩm' },
   thMetric: { en: 'Metric', vi: 'Chỉ số' },
   thBaseline: { en: 'Baseline', vi: 'Baseline' },
@@ -157,9 +164,18 @@ export default function YoohomeProject() {
         </section>
 
         <section className="trend-recs">
-          <h2>{tr(CONTENT.ecosystemH, lang)}</h2>
+          <h2>{tr(CONTENT.systemScaleH, lang)}</h2>
           <ol>
-            {ECOSYSTEM.map((r, i) => (
+            {SYSTEM_SCALE.map((r, i) => (
+              <li key={i}>{tr(r, lang)}</li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="trend-recs">
+          <h2>{tr(CONTENT.myImpactH, lang)}</h2>
+          <ol>
+            {MY_IMPACT.map((r, i) => (
               <li key={i}>{tr(r, lang)}</li>
             ))}
           </ol>
