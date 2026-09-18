@@ -1103,15 +1103,21 @@ a { color: inherit; text-decoration: none; }
   background-size: 100% 2px;
   outline: none;
 }
-.exp-para {
-  font-size: 16px;
-  line-height: 1.75;
-  color: var(--text-body);
-  margin-bottom: 14px;
-  max-width: 720px;
+.exp-bullets {
+  margin: 0 0 18px;
+  padding-left: 20px;
+  max-width: 760px;
+  display: grid;
+  gap: 9px;
 }
-.exp-para:last-of-type {
-  margin-bottom: 18px;
+.exp-bullets li {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-body);
+  padding-left: 4px;
+}
+.exp-bullets li::marker {
+  color: var(--accent);
 }
 .exp-meta {
   margin-top: 18px;
