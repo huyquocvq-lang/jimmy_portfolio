@@ -363,8 +363,8 @@ Also renders `<Seo>` (FS) from the project card: title `"{title} — {type}" + "
 |-------|-------|
 | Route | `/projects/yoohome` |
 | Component | `src/projects/YoohomeProject.jsx` |
-| Styles | `src/styles/projects/yoohome.css` (`.trend-*` class set + `.metrics-table` + `.link-list`) |
-| Layout | Intro → stack chips → context / role → **My Contribution / Ownership** → use cases → challenges → capacity profile → **System Scale** → **My Impact** → product links → impact line |
+| Styles | `src/styles/projects/yoohome.css` (`.trend-*` class set + `.link-list`) |
+| Layout | Intro → stack chips → context / role → **My Contribution / Ownership** → use cases → challenges → **System Scale** → **My Impact** → product links → impact line |
 | Source | Yoohome AIoT platform: NestJS + React Native + MQTT, 500K+ devices, multi-vendor integrations |
 
 ## F9 - Dotmar Multi-Site CMS
