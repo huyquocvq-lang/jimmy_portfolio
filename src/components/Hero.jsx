@@ -104,7 +104,7 @@ export default function Hero() {
             <span className="hero-title__lead">{hud.title.lead}</span>
             <span className="hero-title__divider" aria-hidden="true">/</span>
             <span className="hero-title__accent">{hud.title.accent}</span>
-            <span className="sr-only"> — Senior Backend and Platform Software Engineer</span>
+            <span className="sr-only"> — Senior Backend Engineer — Fintech and AIoT</span>
           </h1>
           <p className="hero-subtitle">
             {tr(hud.subtitleLead, lang)}{' '}
