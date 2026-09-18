@@ -61,8 +61,8 @@ When updating copy:
 - Email: huyquoc.vq@gmail.com
 - Phone: +84-345-475-336 (display `+84 0345 475 336`)
 - LinkedIn: https://linkedin.com/in/quoc-huy-16b896277
-- GitHub: (not provided)
-- Resume: bundled PDF at `docs/Quoc Huy _ Resume.pdf`
+- GitHub: https://github.com/huyquocvq-lang
+- Resume: currently unavailable in the repository; `profile.contact.resume` stays `null` so the CTA remains hidden until a real public PDF is added.
 
 ---
 
