@@ -83,58 +83,203 @@
   border-top: 1px solid var(--border-subtle);
 }
 
-/* Yoohome-specific: capacity metrics table */
-.metrics-table-wrap {
-  overflow-x: auto;
+/* Yoohome-specific: role block sits right under the title, emphasised */
+.yh-role {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 800px;
+  margin: 4px 0 22px;
+  padding: 16px 20px;
+  border-left: 3px solid var(--accent);
+  background: var(--bg-elevated);
+}
+.yh-role__label {
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+}
+.yh-role__title {
+  font-size: clamp(20px, 2.6vw, 26px);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text-heading);
+}
+.yh-role__meta {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+
+/* Yoohome-specific: role moved into the header, so context takes the full width */
+.trend-narrative.yh-narrative {
+  grid-template-columns: 1fr;
+}
+
+/* Yoohome-specific: product details (feature grid + architecture layers + flows) */
+.trend-recs h3 {
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 36px 0 12px;
+}
+.trend-recs h3:first-of-type {
+  margin-top: 8px;
+}
+.yh-product__intro {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-body);
+  margin-bottom: 20px;
+}
+.yh-feature-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+.yh-feature {
+  position: relative;
+  padding: 12px 14px 12px 30px;
+  font-size: 14px;
+  color: var(--text-body);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+}
+.yh-feature::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: var(--accent);
+}
+.yh-arch {
   border: 1px solid var(--border-subtle);
   background: var(--bg-primary);
 }
-.metrics-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-}
-.metrics-table th,
-.metrics-table td {
-  padding: 12px 16px;
-  text-align: left;
+.yh-arch__row {
+  display: grid;
+  grid-template-columns: 150px 1.1fr 1.4fr;
+  gap: 16px;
+  align-items: start;
+  padding: 16px;
   border-bottom: 1px solid var(--border-subtle);
-  white-space: nowrap;
 }
-.metrics-table th {
+.yh-arch__row:last-child {
+  border-bottom: none;
+}
+.yh-arch__layer {
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--accent);
-  background: var(--bg-elevated);
   font-weight: 600;
+  padding-top: 8px;
 }
-.metrics-table td {
+.yh-arch__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.trend-chip--sm {
+  font-size: 12px;
+  padding: 5px 10px;
+}
+.yh-arch__note {
+  font-size: 14px;
+  line-height: 1.7;
   color: var(--text-body);
-}
-.metrics-table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-/* Yoohome-specific: link list */
-.link-list {
-  list-style: none;
-  padding: 0;
   margin: 0;
 }
-.link-list li {
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border-subtle);
+.yh-flow__label {
+  margin-top: 28px;
+  margin-bottom: 12px;
 }
-.link-list li:last-child {
-  border-bottom: none;
+.yh-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 0;
 }
-.link-list a {
+.yh-flow__item {
+  display: inline-flex;
+  align-items: center;
+}
+.yh-flow__step {
+  font-size: 13px;
+  padding: 7px 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: var(--text-heading);
+  white-space: nowrap;
+}
+.yh-flow__arrow {
   color: var(--accent);
-  text-decoration: none;
-  font-size: 16px;
+  padding: 0 8px;
+  font-size: 15px;
 }
-.link-list a:hover {
+
+/* Yoohome-specific: store links + QR codes */
+.yh-store__hint {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-body);
+  margin-bottom: 20px;
+}
+.yh-store-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.yh-store {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 24px 16px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  text-decoration: none;
+  text-align: center;
+  transition: border-color 0.2s ease;
+}
+.yh-store:hover {
+  border-color: var(--accent);
+}
+.yh-store__qr {
+  width: 160px;
+  height: 160px;
+  display: block;
+  margin-bottom: 8px;
+  border: 6px solid #fff;
+  background: #fff;
+  border-radius: 6px;
+}
+.yh-store__platform {
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.yh-store__label {
+  font-size: 16px;
+  color: var(--text-heading);
+}
+.yh-store__name {
+  font-size: 13px;
+  color: var(--text-body);
+}
+.yh-store:hover .yh-store__name {
   color: var(--accent-hover);
   text-decoration: underline;
 }
@@ -148,10 +293,15 @@
     padding-left: 20px;
     padding-right: 20px;
   }
-  .trend-narrative { grid-template-columns: 1fr; }
-  .metrics-table th,
-  .metrics-table td {
-    padding: 10px 12px;
-    font-size: 13px;
+  .trend-narrative,
+  .trend-narrative.yh-narrative { grid-template-columns: 1fr; }
+  .yh-role { padding: 14px 16px; }
+  .yh-arch__row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 14px;
   }
+  .yh-arch__layer { padding-top: 0; }
+  .yh-feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .yh-store-grid { grid-template-columns: 1fr; }
 }
