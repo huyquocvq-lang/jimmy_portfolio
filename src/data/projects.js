@@ -39,8 +39,8 @@ export const otherProjects = [
     },
     tools: 'NestJS · React Native · Java Spring · MQTT · Microservices · Zigbee2MQTT · Kafka · OpenAI · Redis · MongoDB',
     impact: {
-      en: '500K+ devices and 10K+ users in production across multiple smart-building deployments.',
-      vi: '500K+ thiết bị và 10K+ người dùng production trên nhiều dự án smart-building.'
+      en: '500K+ devices and 10K+ users in production across 10+ buildings and 1,000+ apartments.',
+      vi: '500K+ thiết bị và 10K+ người dùng production trên hơn 10 toà nhà và hơn 1.000 căn hộ.'
     },
     image: '/images/projects/yoohome.jpg',
     banner: null,
@@ -55,10 +55,10 @@ export const otherProjects = [
       vi: 'Một hệ thống biên tập quản lý ba site public, hỗ trợ nhiều ngôn ngữ và nội dung phục vụ bán hàng.'
     },
     description: {
-      en: 'A multi-site CMS for Dotmar on Magnolia + Java + React. One author instance feeds multiple public instances across markets and languages, with editorial approval workflows, rule-driven personalization, and an AI authoring agent to speed up sales-focused content.',
-      vi: 'CMS đa site cho Dotmar trên Magnolia + Java + React. Một author instance phục vụ nhiều public instance theo thị trường và ngôn ngữ, kèm approval workflow biên tập, personalization theo rule và AI agent để soạn nội dung phục vụ sales nhanh hơn.'
+      en: 'A multi-site CMS for Dotmar on Magnolia + Java + React. One author instance feeds multiple public instances across markets and languages, with editorial approval workflows, rule-driven personalization, and an AI authoring agent to speed up sales-focused content. I was the main developer - from the Magnolia features to the Windows / Tomcat production deployment.',
+      vi: 'CMS đa site cho Dotmar trên Magnolia + Java + React. Một author instance phục vụ nhiều public instance theo thị trường và ngôn ngữ, kèm approval workflow biên tập, personalization theo rule và AI agent để soạn nội dung phục vụ sales nhanh hơn. Tôi là developer chính - từ feature trên Magnolia tới deploy production trên Windows / Tomcat.'
     },
-    tools: 'Magnolia CMS · Java · React · Apache Tomcat · REST APIs',
+    tools: 'Magnolia CMS · Java Core · React · GraphQL · REST APIs · MySQL · Apache Tomcat · Windows Server',
     impact: {
       en: 'Multi-site CMS in production for ~10K users with live personalization rules.',
       vi: 'CMS đa site chạy production cho ~10K người dùng với rule personalization hoạt động thực tế.'

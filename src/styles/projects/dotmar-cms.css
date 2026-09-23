@@ -82,6 +82,218 @@
   color: var(--text-heading);
   border-top: 1px solid var(--border-subtle);
 }
+
+/* Dotmar-specific: role block right under the title, emphasised */
+.dm-role {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+  margin: 4px 0 18px;
+  padding: 14px 18px;
+  border-left: 3px solid var(--accent);
+  background: var(--bg-elevated);
+  max-width: 800px;
+}
+.dm-role__label {
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+}
+.dm-role__value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+.dm-role__note {
+  flex-basis: 100%;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+
+/* Dotmar-specific: context is the only narrative column (role moved into the header) */
+.trend-narrative.dm-narrative {
+  grid-template-columns: 1fr;
+}
+.dm-narrative .trend-col p + p {
+  margin-top: 14px;
+}
+
+/* Dotmar-specific: nested rule list inside System Scale (personalization rules) */
+.dm-rules {
+  list-style: disc;
+  padding-left: 22px;
+  margin: 10px 0 4px;
+  color: var(--accent);
+}
+.dm-rules li {
+  font-size: 15px;
+  line-height: 1.65;
+  margin-bottom: 6px;
+}
+
+/* Dotmar-specific: product details (feature grid + architecture layers + flows) */
+.trend-recs h3 {
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 36px 0 12px;
+}
+.trend-recs h3:first-of-type {
+  margin-top: 8px;
+}
+.dm-product__intro {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-body);
+  margin-bottom: 20px;
+}
+.dm-feature-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+.dm-feature {
+  position: relative;
+  padding: 12px 14px 12px 30px;
+  font-size: 14px;
+  color: var(--text-body);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+}
+.dm-feature::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: var(--accent);
+}
+.dm-arch {
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-primary);
+}
+.dm-arch__row {
+  display: grid;
+  grid-template-columns: 150px 1.1fr 1.4fr;
+  gap: 16px;
+  align-items: start;
+  padding: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.dm-arch__row:last-child {
+  border-bottom: none;
+}
+.dm-arch__layer {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  padding-top: 8px;
+}
+.dm-arch__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.trend-chip--sm {
+  font-size: 12px;
+  padding: 5px 10px;
+}
+.dm-arch__note {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-body);
+  margin: 0;
+}
+.dm-flow__label {
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+.dm-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 0;
+}
+.dm-flow__item {
+  display: inline-flex;
+  align-items: center;
+}
+.dm-flow__step {
+  font-size: 13px;
+  padding: 7px 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: var(--text-heading);
+  white-space: nowrap;
+}
+.dm-flow__arrow {
+  color: var(--accent);
+  padding: 0 8px;
+  font-size: 15px;
+}
+
+/* Dotmar-specific: live site link cards (one per market) */
+.dm-site__hint {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-body);
+  margin-bottom: 20px;
+}
+.dm-site-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.dm-site {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 28px 16px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  text-decoration: none;
+  text-align: center;
+  transition: border-color 0.2s ease;
+}
+.dm-site:hover {
+  border-color: var(--accent);
+}
+.dm-site__region {
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.dm-site__domain {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-heading);
+  word-break: break-all;
+}
+.dm-site__label {
+  font-size: 13px;
+  color: var(--text-body);
+}
+.dm-site:hover .dm-site__label {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
   .project-intro--trend,
   .trend-metrics,
@@ -91,5 +303,15 @@
     padding-left: 20px;
     padding-right: 20px;
   }
-  .trend-narrative { grid-template-columns: 1fr; }
+  .trend-narrative,
+  .trend-narrative.dm-narrative { grid-template-columns: 1fr; }
+  .dm-role__value { font-size: 18px; }
+  .dm-arch__row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 14px;
+  }
+  .dm-arch__layer { padding-top: 0; }
+  .dm-feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dm-site-grid { grid-template-columns: 1fr; }
 }

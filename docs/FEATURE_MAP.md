@@ -363,9 +363,10 @@ Also renders `<Seo>` (FS) from the project card: title `"{title} — {type}" + "
 |-------|-------|
 | Route | `/projects/yoohome` |
 | Component | `src/projects/YoohomeProject.jsx` |
-| Styles | `src/styles/projects/yoohome.css` (`.trend-*` class set + `.link-list`) |
-| Layout | Intro → stack chips → context / role → **My Contribution / Ownership** → use cases → challenges → **System Scale** → **My Impact** → product links → impact line |
-| Source | Yoohome AIoT platform: NestJS + React Native + MQTT, 500K+ devices, multi-vendor integrations |
+| Styles | `src/styles/projects/yoohome.css` (`.trend-*` class set + Yoohome-only `.yh-*` classes: `.yh-role` emphasised role block inside the header (label + role title + meta line), `.yh-narrative` single-column full-width context, `.yh-feature-grid` product feature cards, `.yh-arch` architecture-layer rows with `.trend-chip--sm` tech chips, `.yh-flow` arrow flow strips, `.yh-store-grid` / `.yh-store` QR download cards) |
+| Layout | Intro (eyebrow → title → **role block** → lead) → stack chips → context (full width) → **My Contribution / Ownership** (architecture base + data-model design) → highlighted use cases (detailed AI assistant + habit learning + cross-vendor scenes) → challenges (incl. large-data-volume item) → **System Scale** (10+ buildings, 1,000+ apartments, cameras + Alexa / OLLI MAIKA speakers) → **Product Details** (product feature grid + "Under the hood" architecture layers + realtime command path / telemetry path flows) → product links (App Store + Google Play, each with a static QR SVG) → impact line. **No "My Impact" section on this page** - removed on the owner's request (2026-09-22); the ownership rule in `CONTENT_SOURCE.md` still applies to the other case studies. |
+| Assets | `public/images/projects/yoohome/qr-app-store.svg`, `qr-google-play.svg` - generated once with `npx -y qrcode -t svg -e M -w 512 -o <file> "<store url>"`; regenerate if a store URL changes (no runtime QR dependency) |
+| Source | Yoohome AIoT platform: NestJS + React Native + MQTT, 500K+ devices, 10+ buildings / 1,000+ apartments, multi-vendor integrations (Tuya, Legrand, Schneider Electric, Panasonic, Rang Dong, IP cameras, Amazon Alexa / OLLI MAIKA); product reference: yootek.vn Yoohome article |
 
 ## F9 - Dotmar Multi-Site CMS
 
@@ -373,9 +374,9 @@ Also renders `<Seo>` (FS) from the project card: title `"{title} — {type}" + "
 |-------|-------|
 | Route | `/projects/dotmar-cms` |
 | Component | `src/projects/DotmarCmsProject.jsx` |
-| Styles | `src/styles/projects/dotmar-cms.css` (`.trend-*` class set) |
-| Layout | Intro → stack chips → context / role → use cases → challenges → metrics → impact line |
-| Source | Dotmar Engineering Plastics multi-site CMS: Magnolia + Java + React with personalization + AI authoring |
+| Styles | `src/styles/projects/dotmar-cms.css` (`.trend-*` class set + Dotmar-only `.dm-*` classes: `.dm-role` emphasised role block under the title, `.dm-narrative` single-column context, `.dm-rules` nested rule list inside System Scale, `.dm-feature-grid` product feature cards, `.dm-arch` architecture-layer rows with `.trend-chip--sm` tech chips, `.dm-flow` arrow flow strips, `.dm-site-grid` / `.dm-site` live-site link cards) |
+| Layout | Intro (eyebrow → title → **role block** `Fullstack Developer · Tech Lead` + "main developer" note → lead) → stack chips (Magnolia CMS, Java Core, React, GraphQL, REST APIs, MySQL, Apache Tomcat, Windows Server) → context (3 paragraphs, full width - role no longer sits beside it) → **My Contribution / Ownership** (7 items: main developer end to end, Magnolia feature implementation, workflow, personalization, AI agent, REST / GraphQL delivery, Windows Server + Tomcat deployment) → highlighted use cases (6, detailed) → challenges (6, concrete: shared vs per-market content, personalization vs cache, publishing consistency, Windows / Tomcat ops, learning Magnolia, AI guardrails) → **System Scale** (sites / instances, ~10K users, content volume, personalization rules spelled out as a nested list: location, time of day, age group, audience segment, AND-combination + fallback) → **Product Details** (product feature grid + "Under the hood" architecture layers Clients → CMS → Delivery APIs → Workflow → Personalization → AI → Data → Runtime, plus publishing-path and request-path flow strips) → **Product Links** (dotmar.com.au + dotmar.co.nz cards, external, no QR) → impact line. **No "My Impact" section on this page** - removed on the owner's request (2026-09-22). |
+| Source | Dotmar Engineering Plastics multi-site CMS delivered via SmartOSC: Magnolia + Java Core + React, REST / GraphQL headless delivery, personalization + AI authoring, deployed on Windows Server + Apache Tomcat; live sites dotmar.com.au (AU) and dotmar.co.nz (NZ) - both verified to run on Magnolia (`/dam/jcr:` + `/.imaging/` paths) |
 
 ## F10 - Custom Zigbee Gateway Firmware
 
@@ -383,9 +384,9 @@ Also renders `<Seo>` (FS) from the project card: title `"{title} — {type}" + "
 |-------|-------|
 | Route | `/projects/zigbee-gateway-firmware` |
 | Component | `src/projects/ZigbeeGatewayProject.jsx` |
-| Styles | `src/styles/projects/zigbee-gateway-firmware.css` (`.trend-*` class set) |
-| Layout | Intro → stack chips → context / role → use cases → challenges → metrics → impact line |
-| Source | Custom Zigbee gateway firmware: Node.js + Zigbee2MQTT on Rockchip embedded hardware with Debian |
+| Styles | `src/styles/projects/zigbee-gateway-firmware.css` (`.trend-*` class set + Zigbee-only `.zb-*` classes: `.zb-role` emphasised role block inside the header (label + role title + meta line), `.zb-narrative` single-column full-width context with paragraph spacing, `.zb-feature-grid` product feature cards, `.zb-arch` architecture-layer rows with `.trend-chip--sm` tech chips, `.zb-flow` arrow flow strips) |
+| Layout | Intro (eyebrow → title → **role block** `Backend / Embedded Developer · DevOps` + meta line (gateway runtime on Zigbee2MQTT, cross-vendor integration, OTA + diagnostics · YooTek Holdings · Aug 2021 – Feb 2024) → lead) → stack chips → context (3 paragraphs, full width: edge layer of Yoohome / built on Zigbee2MQTT (zigbee-herdsman + converters, MQTT topics) / what was built around it) → **My Contribution / Ownership** → highlighted use cases → challenges → **System Scale** (10K+ gateways, Zigbee-side vendors Tuya · Schneider Electric · Legrand + Zigbee2MQTT converter library, continuity through outages) → **Product Details** (12-item feature grid "The product" + "Under the hood" architecture layers Cloud → Cloud agent → Local automation → Zigbee2MQTT → Messaging → Supervision & OTA → OS → Hardware, plus three flow strips: remote command path, offline path, firmware OTA path) → impact line. **No "My Impact" section on this page** - removed on the owner's request (2026-09-22). |
+| Source | Custom Zigbee gateway firmware: Node.js + Zigbee2MQTT on Rockchip embedded hardware with Debian; the edge layer of the Yoohome platform (see F8) |
 
 ## F11 - Hubly - Community Platform with AI Moderation
 
@@ -393,9 +394,9 @@ Also renders `<Seo>` (FS) from the project card: title `"{title} — {type}" + "
 |-------|-------|
 | Route | `/projects/hubly` |
 | Component | `src/projects/HublyProject.jsx` |
-| Styles | `src/styles/projects/hubly.css` (`.trend-*` class set) |
-| Layout | Intro → stack chips → context / role → **My Contribution / Ownership** → highlighted use cases → challenges → **System Scale** → **My Impact** → impact line |
-| Source | Hubly platform: NestJS/Moleculer backend + Vue/Nuxt web + Flutter mobile with Hubshield AI moderation |
+| Styles | `src/styles/projects/hubly.css` (`.trend-*` class set + Hubly-only `.hb-*` classes: `.hb-role` emphasised role block under the title, `.hb-narrative` single-column context, `.hb-feature-grid` product feature cards, `.hb-arch` architecture-layer rows with `trend-chip--sm`, `.hb-flow` flow strips) |
+| Layout | Intro (eyebrow → title → **role block** `Senior Fullstack Engineer` + meta line for backend / web / mobile delivery, search / taxonomy / invite / permissions, Sendbird migration support → lead) → stack chips → context (3 paragraphs, full width) → **My Contribution / Ownership** (5 detailed items) → highlighted use cases (6 detailed) → challenges (5 concrete) → **System Scale** → **Product Details** (product feature grid + architecture layers + moderation / discovery / chat-migration flows) → impact line. **No "My Impact" section on this page** - removed on the owner's request (2026-09-22). |
+| Source | Hubly platform: NestJS/Moleculer backend + Vue 2/Nuxt 2 web + Flutter mobile with Hubshield AI moderation; product notes from current Hubly runtime copy and owner review comments |
 
 ---
 

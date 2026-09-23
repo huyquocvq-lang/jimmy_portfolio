@@ -58,6 +58,7 @@ Cache headers (`vercel.json`): `/assets/*` 1y immutable, `/hero-banners/*` 1d im
 | `/favicon/favicon*.{ico,png}` + `/favicon/apple-touch-icon.png` + `/favicon/android-chrome-*.{png,webp}` + `/favicon/site.webmanifest` | Wired in `index.html` `<head>` (full favicon set + PWA manifest). `Nav.jsx` also uses `/favicon/favicon-96x96.png` (with 64/128/256 srcSet) as the brand mark in the header. |
 | `/images/projects/lending-orchestration-platform.jpg` | `featuredProject.image` |
 | `/images/projects/yoohome.jpg` | `otherProjects[0]` |
+| `/images/projects/yoohome/qr-app-store.svg`, `/images/projects/yoohome/qr-google-play.svg` | `YoohomeProject.jsx` `STORE_LINKS[].qr` - static QR codes (512px SVG, white background) pointing at the App Store / Google Play listings; regenerate with `npx -y qrcode -t svg -e M -w 512 -o <file> "<url>"` when a store URL changes |
 | `/images/projects/dotmar-cms.jpg` | `otherProjects[1]` |
 | `/images/projects/zigbee-gateway-firmware.jpg` | `otherProjects[2]` |
 | `/images/projects/hubly.jpg` | `otherProjects[3]` |
