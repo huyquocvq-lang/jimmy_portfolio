@@ -298,8 +298,8 @@ export const blog: BlogPost[] = [
       vi: 'Chạy Zigbee2MQTT trên production: thứ thực sự hay hỏng'
     },
     excerpt: {
-      en: 'Zigbee2MQTT is fantastic on a hobby Raspberry Pi. Pushing it to thousands of gateways surfaces a different set of problems - coordinator firmware, network depth, and OTA.',
-      vi: 'Zigbee2MQTT rất tuyệt trên một con Raspberry Pi nghịch ở nhà. Đẩy nó lên hàng nghìn gateway lại lộ ra một loạt vấn đề khác - firmware coordinator, độ sâu mạng và OTA.'
+      en: 'Z2M runs great on a Raspberry Pi in your living room. The first time we shipped it to real homes at scale, the problems were all in the radio layer underneath - not the software.',
+      vi: 'Z2M chạy ngon trên một con Raspberry Pi ở phòng khách. Lần đầu chúng tôi đưa nó vào nhà khách hàng ở quy mô thật, vấn đề nằm hết ở tầng radio bên dưới - không phải ở phần mềm.'
     },
     date: '2026-04-30',
     cover: '/images/blog/zigbee2mqtt.jpg',
@@ -309,40 +309,39 @@ export const blog: BlogPost[] = [
       {
         type: 'paragraph',
         text: {
-          en: 'Zigbee2MQTT (Z2M) bridges a Zigbee coordinator to an MQTT broker, so any home-automation stack that speaks MQTT can drive Zigbee devices without a vendor cloud. At home it is a one-line config. Across a fleet of gateways, the failure modes are entirely different - and most of them are not in the application code.',
-          vi: 'Zigbee2MQTT (Z2M) làm cầu nối giữa một coordinator Zigbee và broker MQTT, để mọi stack home-automation nói MQTT đều điều khiển được thiết bị Zigbee mà không cần cloud của hãng. Ở nhà nó chỉ là một dòng config. Trên cả một fleet gateway, các kiểu hỏng lại hoàn toàn khác - và phần lớn không nằm ở code ứng dụng.'
+          en: 'The first time a customer\'s house went dark on us, I spent two hours reading application logs that had absolutely nothing wrong in them. Zigbee2MQTT was happy. The MQTT broker was happy. The lights still took four seconds to respond, when they responded at all. The culprit was the [CC2531] coordinator stick we\'d standardised on, and it had been quietly lying to us since somewhere around the twentieth paired device.',
+          vi: 'Lần đầu tiên nhà một khách hàng tối thui, tôi ngồi đọc log ứng dụng suốt hai tiếng mà chẳng thấy gì sai. Zigbee2MQTT vẫn ổn. MQTT broker vẫn ổn. Đèn vẫn mất bốn giây mới phản hồi, nếu nó chịu phản hồi. Thủ phạm là cây coordinator [CC2531] chúng tôi chọn làm chuẩn, và nó đã âm thầm lừa chúng tôi từ đâu đó quanh thiết bị pair thứ hai mươi.'
         }
       },
       {
         type: 'heading',
         level: 2,
-        text: { en: 'The coordinator is the real bottleneck', vi: 'Coordinator mới là nút thắt thật sự' }
+        text: { en: 'The coordinator decides how far you scale', vi: 'Coordinator quyết định bạn scale được tới đâu' }
       },
       {
         type: 'paragraph',
         text: {
-          en: 'A Zigbee coordinator (the USB or SoC radio) holds the network state. Cheap CC2531 sticks top out around 20 directly-connected devices and choke long before the spec\'s theoretical limit. We standardized on coordinators with more RAM and a maintained firmware line, because re-pairing a customer\'s whole house after a coordinator swap is the worst possible support ticket.',
-          vi: 'Coordinator Zigbee (radio dạng USB hoặc SoC) giữ trạng thái mạng. Các stick CC2531 giá rẻ chỉ kham được khoảng 20 thiết bị kết nối trực tiếp và nghẽn từ lâu trước giới hạn lý thuyết của chuẩn. Chúng tôi chuẩn hoá trên coordinator nhiều RAM hơn với dòng firmware được maintain, vì bắt khách pair lại cả nhà sau khi đổi coordinator là ticket support tệ nhất có thể.'
+          en: 'The coordinator - the USB stick or SoC radio - is where the whole Zigbee network state lives. The cheap sticks run out of room long before you hit any number on the spec sheet. We moved to [a coordinator with more RAM and a firmware line someone still maintains], which sounds obvious written down. Getting there cost us a fleet-wide re-pair, and re-pairing a customer\'s entire house remotely is about the worst support ticket you can hand someone.',
+          vi: 'Coordinator - cây USB hoặc radio SoC - là nơi chứa toàn bộ trạng thái mạng Zigbee. Mấy cây giá rẻ hết chỗ từ rất lâu trước khi bạn chạm tới con số nào trên datasheet. Chúng tôi chuyển sang [một coordinator nhiều RAM hơn với dòng firmware còn người maintain], nghe thì hiển nhiên khi viết ra. Để tới đó chúng tôi phải pair lại toàn bộ fleet, và bắt khách pair lại cả nhà từ xa là một trong những ticket support tệ nhất bạn có thể đưa cho ai đó.'
         }
       },
       {
-        type: 'list',
-        items: [
-          { en: 'Pick routers (mains-powered devices) deliberately - they extend the mesh; battery devices never route.', vi: 'Chọn router (thiết bị cắm điện) một cách có chủ đích - chúng mở rộng mesh; thiết bị pin không bao giờ route.' },
-          { en: 'Keep network depth shallow; every hop adds latency and a new point of failure.', vi: 'Giữ độ sâu mạng nông; mỗi hop thêm độ trễ và một điểm hỏng mới.' },
-          { en: 'Pin the Zigbee channel away from the customer\'s Wi-Fi channel to avoid 2.4GHz contention.', vi: 'Ghim kênh Zigbee tránh xa kênh Wi-Fi của khách để tránh tranh chấp băng 2.4GHz.' }
-        ]
+        type: 'paragraph',
+        text: {
+          en: 'Two things mattered more than I expected. Mains-powered devices act as routers and quietly hold the mesh together; battery devices never route, so a house full of door sensors and no smart plugs builds a network with no backbone. And the Zigbee channel shares the 2.4GHz band with Wi-Fi - park it on top of the customer\'s router and you\'ll chase "random" dropouts for a week.',
+          vi: 'Hai thứ quan trọng hơn tôi tưởng nhiều. Thiết bị cắm điện đóng vai router và âm thầm giữ mesh đứng vững; thiết bị pin không bao giờ route, nên một căn nhà toàn cảm biến cửa mà không có ổ cắm thông minh sẽ tạo ra mạng không có xương sống. Còn kênh Zigbee thì dùng chung băng 2.4GHz với Wi-Fi - đặt nó chồng lên router của khách là bạn sẽ đi săn mấy lỗi rớt mạng "ngẫu nhiên" suốt cả tuần.'
+        }
       },
       {
         type: 'heading',
         level: 2,
-        text: { en: 'A config that survives reboots', vi: 'Config sống sót qua reboot' }
+        text: { en: 'The config defaults are for your living room', vi: 'Config mặc định dành cho phòng khách nhà bạn' }
       },
       {
         type: 'paragraph',
         text: {
-          en: 'Z2M reads a single YAML file. The defaults are tuned for a hobbyist on a trusted LAN - not a fleet. These are the keys we set on every gateway image:',
-          vi: 'Z2M đọc một file YAML duy nhất. Mặc định được tinh chỉnh cho người nghịch ở nhà trên LAN tin cậy - không phải cho fleet. Đây là các key chúng tôi set trên mọi image gateway:'
+          en: 'Z2M reads one YAML file, and the defaults assume a hobbyist on a trusted LAN. Here is the trimmed version of what we changed on every gateway image:',
+          vi: 'Z2M đọc một file YAML duy nhất, và mặc định giả định bạn là người nghịch ở nhà trên một LAN tin cậy. Đây là bản rút gọn những gì chúng tôi đổi trên mọi image gateway:'
         }
       },
       {
@@ -353,20 +352,20 @@ export const blog: BlogPost[] = [
       {
         type: 'callout',
         text: {
-          en: 'Set network_key to GENERATE once, then persist the generated key. If a gateway image ships with a hard-coded key, every device on every customer\'s network shares the same encryption key. That is a fleet-wide security incident waiting to happen.',
-          vi: 'Đặt network_key thành GENERATE một lần, rồi lưu lại key sinh ra. Nếu image gateway ship kèm key hard-code, mọi thiết bị trên mạng của mọi khách sẽ dùng chung một key mã hoá. Đó là một sự cố bảo mật cấp fleet chỉ chờ ngày xảy ra.'
+          en: 'The one that matters: set network_key to GENERATE and persist whatever it produces. We caught a build once where the key was hard-coded into the image - meaning every gateway we\'d flashed shared one encryption key across every customer\'s network. We re-flashed everything that week. Don\'t be us.',
+          vi: 'Cái quan trọng nhất: đặt network_key thành GENERATE và lưu lại bất cứ key nào nó sinh ra. Có lần chúng tôi bắt được một bản build hard-code key thẳng vào image - tức là mọi gateway đã flash dùng chung một key mã hoá trên mạng của mọi khách. Tuần đó chúng tôi flash lại tất cả. Đừng giống chúng tôi.'
         }
       },
       {
         type: 'heading',
         level: 2,
-        text: { en: 'Listen to the bridge, not just the devices', vi: 'Lắng nghe bridge, không chỉ lắng nghe thiết bị' }
+        text: { en: 'Watch the bridge, not the devices', vi: 'Theo dõi bridge, đừng theo dõi thiết bị' }
       },
       {
         type: 'paragraph',
         text: {
-          en: 'Z2M publishes its own health on zigbee2mqtt/bridge/state and zigbee2mqtt/bridge/event. Our fleet agent subscribes to those topics and ships them upstream, so we see a coordinator going offline before the customer notices their lights stopped responding.',
-          vi: 'Z2M publish chính sức khoẻ của nó lên zigbee2mqtt/bridge/state và zigbee2mqtt/bridge/event. Agent fleet của chúng tôi subscribe các topic đó và đẩy lên trên, nên chúng tôi thấy coordinator offline trước khi khách nhận ra đèn của họ ngừng phản hồi.'
+          en: 'What finally let us stop firefighting was ignoring the devices and listening to Z2M itself. It publishes its own health on zigbee2mqtt/bridge/state and /bridge/event. Our fleet agent subscribes and forwards upstream, so a coordinator dropping offline pages us before the customer has even noticed the lights.',
+          vi: 'Thứ cuối cùng giúp chúng tôi ngừng chữa cháy là thôi nhìn thiết bị và lắng nghe chính Z2M. Nó publish sức khoẻ của mình lên zigbee2mqtt/bridge/state và /bridge/event. Agent fleet subscribe rồi đẩy lên trên, nên một coordinator rớt mạng sẽ báo cho chúng tôi trước cả khi khách kịp nhận ra đèn.'
         }
       },
       {
@@ -377,8 +376,8 @@ export const blog: BlogPost[] = [
       {
         type: 'paragraph',
         text: {
-          en: 'A short walkthrough of the pairing + bridge-health flow (swap in your own recording):',
-          vi: 'Một video ngắn đi qua luồng pairing + bridge-health (thay bằng bản ghi của bạn):'
+          en: 'Here is the pairing and bridge-health flow on a real unit - swap in your own recording:',
+          vi: 'Đây là luồng pairing và bridge-health trên một thiết bị thật - thay bằng bản ghi của bạn:'
         }
       },
       {
@@ -395,10 +394,10 @@ export const blog: BlogPost[] = [
         caption: { en: 'Or host the clip yourself for full control over playback.', vi: 'Hoặc tự host clip để toàn quyền kiểm soát phát lại.' }
       },
       {
-        type: 'quote',
+        type: 'paragraph',
         text: {
-          en: 'On a fleet, Z2M is not the hard part. The Zigbee mesh underneath it is.',
-          vi: 'Trên fleet, Z2M không phải phần khó. Cái mesh Zigbee bên dưới nó mới khó.'
+          en: 'We still get a coordinator that wedges after a bad power cut now and then. The fix is an unglamorous watchdog that hard-resets the USB device if /bridge/state stays offline past [a couple of minutes]. Not clever. Hasn\'t failed yet.',
+          vi: 'Thỉnh thoảng vẫn có coordinator bị treo sau một lần mất điện xấu. Cách xử lý là một con watchdog chẳng có gì hoa mỹ: hard-reset thiết bị USB nếu /bridge/state offline quá [vài phút]. Không thông minh. Nhưng tới giờ chưa hỏng.'
         }
       }
     ]
@@ -410,8 +409,8 @@ export const blog: BlogPost[] = [
       vi: 'Kafka vs Redis: chọn backbone cho xử lý bất đồng bộ'
     },
     excerpt: {
-      en: 'They both move messages, so teams treat them as interchangeable. They are not. A practical comparison of durability, ordering, throughput, and when to reach for each.',
-      vi: 'Cả hai đều chuyển message nên nhiều team coi chúng thay thế được cho nhau. Không phải vậy. Một so sánh thực dụng về độ bền, thứ tự, throughput và khi nào nên dùng cái nào.'
+      en: 'Every few months someone proposes ripping out one and using the other. Here is the argument written down, so my team can stop having it in standup.',
+      vi: 'Cứ vài tháng lại có người đề xuất gỡ cái này dùng cái kia. Đây là cuộc tranh luận đó viết ra giấy, để team tôi thôi cãi nhau trong standup.'
     },
     date: '2026-03-15',
     cover: '/images/blog/kafka-vs-redis.jpg',
@@ -421,57 +420,48 @@ export const blog: BlogPost[] = [
       {
         type: 'paragraph',
         text: {
-          en: 'Both Kafka and Redis can carry messages between services, so they end up on the same shortlist. But they were built for different jobs: Kafka is a durable, replayable commit log; Redis is an in-memory data structure server that also happens to do pub/sub and streams. Choosing wrong shows up later as either lost messages or a cluster you cannot afford.',
-          vi: 'Cả Kafka và Redis đều có thể chuyển message giữa các service, nên chúng hay nằm chung một shortlist. Nhưng chúng được sinh ra cho hai việc khác nhau: Kafka là một commit log bền vững, replay được; Redis là server cấu trúc dữ liệu in-memory mà tiện thể làm được pub/sub và streams. Chọn sai sẽ lộ ra về sau dưới dạng mất message hoặc một cluster bạn không kham nổi.'
+          en: 'Kafka and Redis both move messages between services, so they land on the same shortlist and someone always asks why we run both. The honest answer is that they were built for different jobs, and the times we pretended otherwise are the times we got burned. Kafka is a durable, replayable log. Redis is an in-memory data structure server that happens to be very good at queues. That difference is the whole post.',
+          vi: 'Kafka và Redis đều chuyển message giữa các service, nên chúng hay nằm chung một shortlist và kiểu gì cũng có người hỏi tại sao chạy cả hai. Câu trả lời thật lòng là chúng sinh ra cho hai việc khác nhau, và những lần chúng tôi giả vờ ngược lại là những lần lãnh đủ. Kafka là một log bền vững, replay được. Redis là server cấu trúc dữ liệu in-memory mà tình cờ làm queue rất tốt. Khác biệt đó chính là toàn bộ bài viết này.'
         }
       },
       {
         type: 'heading',
         level: 2,
-        text: { en: 'The short version', vi: 'Bản tóm tắt' }
+        text: { en: 'The one-line version', vi: 'Bản một dòng' }
       },
       {
         type: 'html',
         html: '<table class="blog-table"><thead><tr><th>Dimension</th><th>Apache Kafka</th><th>Redis (Streams / Pub-Sub)</th></tr></thead><tbody><tr><td>Primary model</td><td>Durable, partitioned commit log</td><td>In-memory data structures + streams</td></tr><tr><td>Persistence</td><td>Disk, replicated, configurable retention</td><td>In-memory; optional RDB/AOF</td></tr><tr><td>Replay history</td><td>Yes - seek to any offset</td><td>Limited - capped by stream length / memory</td></tr><tr><td>Ordering</td><td>Per-partition guarantee</td><td>Per-stream insertion order</td></tr><tr><td>Latency</td><td>Low (ms), throughput-optimized</td><td>Very low (sub-ms)</td></tr><tr><td>Operational weight</td><td>Heavier (brokers, ZK/KRaft)</td><td>Light, often already deployed</td></tr></tbody></table>'
       },
       {
-        type: 'heading',
-        level: 2,
-        text: { en: 'Reach for Kafka when…', vi: 'Dùng Kafka khi…' }
-      },
-      {
-        type: 'list',
-        items: [
-          { en: 'You need to replay events - new consumers reading history from offset 0.', vi: 'Bạn cần replay event - consumer mới đọc lại lịch sử từ offset 0.' },
-          { en: 'Multiple independent consumer groups read the same stream at their own pace.', vi: 'Nhiều consumer group độc lập đọc cùng một stream theo nhịp riêng.' },
-          { en: 'Durability is non-negotiable - financial events, audit logs, the source of truth.', vi: 'Độ bền là bắt buộc - sự kiện tài chính, audit log, nguồn sự thật.' }
-        ]
-      },
-      {
-        type: 'heading',
-        level: 2,
-        text: { en: 'Reach for Redis when…', vi: 'Dùng Redis khi…' }
-      },
-      {
-        type: 'list',
-        items: [
-          { en: 'You want a job queue or rate limiter and Redis is already in your stack.', vi: 'Bạn cần job queue hoặc rate limiter và Redis đã có sẵn trong stack.' },
-          { en: 'Latency matters more than long-term retention - cache invalidation, presence, live counters.', vi: 'Độ trễ quan trọng hơn lưu trữ dài hạn - invalidate cache, presence, bộ đếm trực tiếp.' },
-          { en: 'The message can be lost without business impact, or it lives for seconds.', vi: 'Message có thể mất mà không ảnh hưởng nghiệp vụ, hoặc chỉ sống vài giây.' }
-        ]
-      },
-      {
-        type: 'callout',
+        type: 'paragraph',
         text: {
-          en: 'A common production pattern: Redis for the hot, low-latency work queue in front, Kafka as the durable event log behind it. They are complements far more often than competitors.',
-          vi: 'Một pattern production phổ biến: Redis làm work queue nóng, độ trễ thấp ở phía trước, Kafka làm event log bền vững phía sau. Chúng bổ trợ cho nhau nhiều hơn là cạnh tranh.'
+          en: 'If you only remember one thing: Kafka keeps history, Redis keeps speed. Everything below falls out of that.',
+          vi: 'Nếu chỉ nhớ một điều: Kafka giữ lịch sử, Redis giữ tốc độ. Mọi thứ bên dưới đều suy ra từ đó.'
         }
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: { en: 'Where Kafka earns its operational cost', vi: 'Khi nào Kafka đáng công vận hành' }
       },
       {
         type: 'paragraph',
         text: {
-          en: 'A minimal Redis Streams producer/consumer - note that XREADGROUP plus XACK gives you at-least-once delivery without standing up a broker fleet:',
-          vi: 'Một producer/consumer Redis Streams tối giản - lưu ý XREADGROUP cùng XACK cho bạn giao nhận at-least-once mà không cần dựng cả fleet broker:'
+          en: 'Kafka is heavier to run - brokers, partitions, a coordination layer, someone who understands consumer-group rebalancing at 3am. You pay that cost for one thing: the log is the source of truth and you can replay it. We use it for payment and disbursement events, the kind where "we lost a message" is a sentence you say to a regulator. A new consumer can read from offset zero and rebuild its entire state, and that has saved us at least [twice] when a downstream service corrupted its own database.',
+          vi: 'Kafka nặng để vận hành - broker, partition, một tầng điều phối, và một người hiểu consumer-group rebalancing lúc 3 giờ sáng. Bạn trả cái giá đó cho đúng một thứ: log là nguồn sự thật và bạn replay được. Chúng tôi dùng nó cho sự kiện thanh toán và giải ngân, loại mà "làm mất một message" là câu bạn phải giải trình với cơ quan quản lý. Một consumer mới có thể đọc từ offset 0 và dựng lại toàn bộ state, và điều đó đã cứu chúng tôi ít nhất [hai lần] khi một service phía sau làm hỏng database của chính nó.'
+        }
+      },
+      {
+        type: 'heading',
+        level: 2,
+        text: { en: 'Where Redis is just the right answer', vi: 'Khi nào Redis đơn giản là đáp án đúng' }
+      },
+      {
+        type: 'paragraph',
+        text: {
+          en: 'For most async work you need none of that. A job queue, a rate limiter, a "send this email" task, a counter, cache invalidation - Redis is already in your stack, it is sub-millisecond, and Redis Streams with consumer groups gives you at-least-once delivery without standing up a single broker. The catch is retention: streams live in memory, so size them and trim them, or you will eventually meet the OOM killer.',
+          vi: 'Với phần lớn việc bất đồng bộ bạn chẳng cần tới những thứ đó. Một job queue, một rate limiter, một task "gửi email này", một bộ đếm, invalidate cache - Redis đã có sẵn trong stack, độ trễ dưới một mili-giây, và Redis Streams với consumer group cho bạn at-least-once mà không cần dựng lấy một broker. Cái bẫy là retention: stream nằm trong RAM, nên hãy giới hạn và trim nó, không thì sớm muộn cũng gặp OOM killer.'
         }
       },
       {
@@ -480,10 +470,10 @@ export const blog: BlogPost[] = [
         code: "import { createClient } from 'redis'\nconst redis = createClient()\nawait redis.connect()\n\n// producer\nawait redis.xAdd('jobs', '*', { type: 'resize', assetId: '42' })\n\n// consumer group (create once, ignore BUSYGROUP error)\ntry { await redis.xGroupCreate('jobs', 'workers', '0', { MKSTREAM: true }) } catch {}\n\nconst res = await redis.xReadGroup('workers', 'worker-1',\n  [{ key: 'jobs', id: '>' }], { COUNT: 10, BLOCK: 5000 })\nfor (const { id } of res?.[0]?.messages ?? []) {\n  await redis.xAck('jobs', 'workers', id) // ack only after the work succeeds\n}"
       },
       {
-        type: 'quote',
+        type: 'callout',
         text: {
-          en: 'Pick Kafka for the log of what happened. Pick Redis for the work that needs doing now.',
-          vi: 'Chọn Kafka cho cuốn sổ ghi điều đã xảy ra. Chọn Redis cho công việc cần làm ngay bây giờ.'
+          en: 'In practice we do not choose. Redis Streams handles the hot, user-facing work up front; the events we cannot lose get written to Kafka behind it. They are complements far more often than competitors - the mistake is forcing one to do the other\'s job.',
+          vi: 'Thực tế thì chúng tôi không chọn. Redis Streams lo phần việc nóng, hướng người dùng ở phía trước; những sự kiện không được phép mất thì ghi vào Kafka phía sau. Chúng bổ trợ cho nhau nhiều hơn là cạnh tranh - sai lầm là ép một cái làm việc của cái kia.'
         }
       }
     ]
@@ -495,8 +485,8 @@ export const blog: BlogPost[] = [
       vi: 'Những trick JavaScript tôi dùng mỗi tuần'
     },
     excerpt: {
-      en: 'Modern JS quietly absorbed a lot of utility-library territory. A handful of language features that delete code from real codebases.',
-      vi: 'JavaScript hiện đại đã âm thầm nuốt gọn nhiều phần đất của các thư viện tiện ích. Vài tính năng ngôn ngữ giúp xoá bớt code khỏi codebase thật.'
+      en: 'I deleted lodash from a frontend last year and almost nothing broke. Most of it ships in the language now. These are the few I actually reach for - and one that bit me.',
+      vi: 'Năm ngoái tôi xoá lodash khỏi một frontend và gần như chẳng có gì hỏng. Phần lớn giờ đã có sẵn trong ngôn ngữ. Đây là vài cái tôi thật sự hay dùng - và một cái từng khiến tôi lãnh đủ.'
     },
     date: '2026-02-02',
     cover: '/images/blog/js-tricks.jpg',
@@ -506,20 +496,20 @@ export const blog: BlogPost[] = [
       {
         type: 'paragraph',
         text: {
-          en: 'Most "JS tricks" lists are clickbait. These are not tricks for their own sake - each one removed a dependency or a block of defensive boilerplate from code I actually shipped.',
-          vi: 'Phần lớn các list "trick JS" là câu view. Đây không phải mẹo cho vui - mỗi cái đã xoá đi một dependency hoặc một khối boilerplate phòng thủ khỏi code tôi thật sự ship.'
+          en: 'Most "JavaScript tricks" posts are clever for the sake of being clever. I do not want clever in a codebase five people maintain. I want the boring built-in that lets me delete a dependency. These four did exactly that.',
+          vi: 'Phần lớn các bài "trick JavaScript" tỏ ra thông minh chỉ để thông minh. Tôi không muốn sự thông minh trong một codebase năm người maintain. Tôi muốn cái built-in nhàm chán giúp tôi xoá một dependency. Bốn cái dưới đây làm đúng điều đó.'
         }
       },
       {
         type: 'heading',
         level: 2,
-        text: { en: 'Optional chaining + nullish coalescing', vi: 'Optional chaining + nullish coalescing' }
+        text: { en: '?. and ?? together', vi: '?. và ?? đi cùng nhau' }
       },
       {
         type: 'paragraph',
         text: {
-          en: 'The pair that killed lodash.get for most cases. ?. short-circuits on null/undefined; ?? only falls back on null/undefined (not on 0 or empty string, which is the bug || always hid).',
-          vi: 'Cặp đôi đã khai tử lodash.get trong hầu hết trường hợp. ?. dừng sớm khi gặp null/undefined; ?? chỉ fallback khi null/undefined (không phải khi 0 hay chuỗi rỗng - đúng cái bug mà || luôn giấu đi).'
+          en: 'This pair replaced lodash.get everywhere for me. Optional chaining short-circuits on null or undefined; nullish coalescing only falls back on null or undefined - not on 0 or an empty string. That last part matters, because || has silently turned a valid 0 into a default in roughly every codebase I have worked in.',
+          vi: 'Cặp này thay thế lodash.get ở mọi nơi với tôi. Optional chaining dừng sớm khi gặp null hoặc undefined; nullish coalescing chỉ fallback khi null hoặc undefined - không phải khi 0 hay chuỗi rỗng. Phần cuối đó quan trọng, vì || đã âm thầm biến một số 0 hợp lệ thành giá trị mặc định trong gần như mọi codebase tôi từng làm.'
         }
       },
       {
@@ -530,7 +520,7 @@ export const blog: BlogPost[] = [
       {
         type: 'heading',
         level: 2,
-        text: { en: 'Group with Object.groupBy', vi: 'Gom nhóm với Object.groupBy' }
+        text: { en: 'Object.groupBy - and how it bit me', vi: 'Object.groupBy - và cú nó khiến tôi lãnh đủ' }
       },
       {
         type: 'code',
@@ -540,14 +530,14 @@ export const blog: BlogPost[] = [
       {
         type: 'callout',
         text: {
-          en: 'Object.groupBy is recent - check your runtime/target before shipping it to browsers. On older targets, a 3-line reduce does the same job.',
-          vi: 'Object.groupBy còn mới - kiểm tra runtime/target trước khi ship ra browser. Trên target cũ, một reduce 3 dòng làm đúng việc đó.'
+          en: 'I shipped this to production and broke the app for every Safari user older than [16.4] for a day, until someone with an old iPhone noticed. It is genuinely new. Check your real browser targets - not caniuse\'s green-looking summary - before you reach for it, or keep a three-line reduce that works everywhere.',
+          vi: 'Tôi ship cái này lên production và làm hỏng app cho mọi người dùng Safari cũ hơn [16.4] suốt một ngày, tới khi có người dùng iPhone cũ phát hiện. Nó thật sự mới. Hãy kiểm tra target trình duyệt thực tế của bạn - chứ không phải cái tóm tắt xanh lè của caniuse - trước khi dùng, hoặc giữ một reduce ba dòng chạy được ở mọi nơi.'
         }
       },
       {
         type: 'heading',
         level: 2,
-        text: { en: 'Dedupe and intersect with Set', vi: 'Khử trùng lặp và giao nhau bằng Set' }
+        text: { en: 'Set for dedupe and intersection', vi: 'Set để khử trùng lặp và lấy giao' }
       },
       {
         type: 'code',
@@ -557,26 +547,22 @@ export const blog: BlogPost[] = [
       {
         type: 'heading',
         level: 2,
-        text: { en: 'Safe defaults via destructuring', vi: 'Giá trị mặc định an toàn khi bóc tách' }
-      },
-      {
-        type: 'code',
-        lang: 'javascript',
-        code: "function paginate({ page = 1, size = 20, sort = 'createdAt' } = {}) {\n  return { offset: (page - 1) * size, limit: size, sort }\n}\npaginate()              // safe with no args\npaginate({ page: 3 })   // size/sort fall back"
+        text: { en: 'The small ones', vi: 'Mấy cái nhỏ' }
       },
       {
         type: 'list',
         items: [
-          { en: 'structuredClone(obj) deep-copies without JSON.parse(JSON.stringify(...)) and keeps Dates/Maps/Sets.', vi: 'structuredClone(obj) deep-copy mà không cần JSON.parse(JSON.stringify(...)) và giữ được Date/Map/Set.' },
-          { en: 'Array.prototype.at(-1) reads the last element without arr[arr.length - 1].', vi: 'Array.prototype.at(-1) lấy phần tử cuối mà không cần arr[arr.length - 1].' },
-          { en: 'Promise.allSettled when you want every result, not a fail-fast on the first rejection.', vi: 'Promise.allSettled khi bạn muốn mọi kết quả, không fail-fast ở rejection đầu tiên.' }
+          { en: 'structuredClone(obj) for a real deep copy - it keeps Dates, Maps and Sets, which the old JSON.parse(JSON.stringify(...)) trick silently destroys.', vi: 'structuredClone(obj) để deep copy thật - nó giữ Date, Map và Set, những thứ mà chiêu JSON.parse(JSON.stringify(...)) cũ âm thầm phá huỷ.' },
+          { en: 'arr.at(-1) for the last element. Reads better than arr[arr.length - 1], and I make one fewer off-by-one mistake.', vi: 'arr.at(-1) để lấy phần tử cuối. Đọc dễ hơn arr[arr.length - 1], và tôi bớt sai off-by-one một lần.' },
+          { en: 'Promise.allSettled when you want every result back, not a fail-fast on the first rejection - I use it for fan-out calls where one flaky service should not sink the others.', vi: 'Promise.allSettled khi bạn muốn nhận lại mọi kết quả, không fail-fast ở rejection đầu tiên - tôi dùng nó cho các lời gọi fan-out, nơi một service chập chờn không nên kéo chìm những cái còn lại.' },
+          { en: 'The trailing = {} in function f({ page = 1, size = 20 } = {}) is the bit people forget - it is why calling f() with no args does not throw.', vi: 'Cái = {} ở cuối trong function f({ page = 1, size = 20 } = {}) là phần người ta hay quên - nó là lý do gọi f() không tham số không bị ném lỗi.' }
         ]
       },
       {
-        type: 'quote',
+        type: 'paragraph',
         text: {
-          en: 'The best trick is deleting the utility function the language now ships for you.',
-          vi: 'Trick tốt nhất là xoá đi hàm tiện ích mà ngôn ngữ giờ đã cung cấp sẵn cho bạn.'
+          en: 'None of this is impressive, and that is deliberate. The junior on my team can read all of it without a single comment, which is worth more than any clever one-liner I could have written instead.',
+          vi: 'Chẳng có gì trong này gây ấn tượng cả, và đó là cố ý. Bạn junior trong team tôi đọc hết được mà không cần một dòng comment nào, và điều đó đáng giá hơn mọi câu one-liner thông minh tôi có thể viết thay vào đó.'
         }
       }
     ]
