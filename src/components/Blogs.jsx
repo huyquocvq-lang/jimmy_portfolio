@@ -65,35 +65,35 @@ export default function Blogs() {
             <div className="eyebrow">{tr(ui.blog.eyebrow, lang)}</div>
             <h2>{tr(ui.blog.heading, lang)}</h2>
           </div>
-          <Link to={localePath('/blog', lang)} className="blogs-viewall">{tr(ui.blog.viewAll, lang)}</Link>
+          <div className="blogs-controls">
+            <Link to={localePath('/blog', lang)} className="blogs-viewall">{tr(ui.blog.viewAll, lang)}</Link>
+            <button
+              type="button"
+              className="blogs-arrow blogs-arrow--prev"
+              onClick={() => scroll(-1)}
+              aria-label={tr(ui.blog.prevSlide, lang)}
+              disabled={!canScrollLeft}
+            >
+              <FaChevronLeft />
+            </button>
+            <button
+              type="button"
+              className="blogs-arrow blogs-arrow--next"
+              onClick={() => scroll(1)}
+              aria-label={tr(ui.blog.nextSlide, lang)}
+              disabled={!canScrollRight}
+            >
+              <FaChevronRight />
+            </button>
+          </div>
         </div>
 
         <div className="blogs-slider">
-          <button
-            type="button"
-            className="blogs-arrow blogs-arrow--prev"
-            onClick={() => scroll(-1)}
-            aria-label={tr(ui.blog.prevSlide, lang)}
-            disabled={!canScrollLeft}
-          >
-            <FaChevronLeft />
-          </button>
-
           <div className="blogs-track" ref={trackRef}>
             {posts.map((post) => (
               <BlogCard key={post.slug} post={post} className="blog-card--slide" />
             ))}
           </div>
-
-          <button
-            type="button"
-            className="blogs-arrow blogs-arrow--next"
-            onClick={() => scroll(1)}
-            aria-label={tr(ui.blog.nextSlide, lang)}
-            disabled={!canScrollRight}
-          >
-            <FaChevronRight />
-          </button>
         </div>
 
       </div>

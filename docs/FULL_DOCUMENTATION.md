@@ -50,7 +50,7 @@ Present engineering credibility to recruiters, hiring managers, and clients thro
 ## Main libraries / frameworks
 
 - **Routing:** `react-router-dom` (`BrowserRouter`, `Routes`, `Route`, `Link`, `Navigate`)
-- **Icons:** `react-icons/fa` (`FaChevronDown`, `FaBars`, `FaTimes`, skill icons)
+- **Icons:** `react-icons/fa` (`FaChevronDown`, `FaArrowRight`, `FaBars`, `FaTimes`, `FaGithub`, `FaLinkedinIn`, `FaEnvelope`, skill icons)
 - **Styling:** Global CSS + per-page CSS (no UI framework)
 - **Analytics:** `@vercel/analytics/react` (`<Analytics />` mounted once in `App.jsx`; auto-tracks page views + react-router route changes on Vercel deploys)
 - **Speed Insights:** `@vercel/speed-insights/react` (`<SpeedInsights />` mounted once in `App.jsx` beside `<Analytics />`; reports Core Web Vitals / real-user performance on Vercel deploys)
@@ -136,7 +136,7 @@ portfolio/
 | File | Purpose |
 |------|---------|
 | `Hero.jsx` | Full-viewport responsive `<picture>` background + backend/platform positioning + production-scale proof + contact CTA |
-| `Nav.jsx` | Sticky nav, mobile hamburger |
+| `Nav.jsx` | Sticky blurred nav, GitHub/LinkedIn icons, Contact CTA, drawer ≤1100px |
 | `Impact.jsx` | Impact metrics grid |
 | `Education.jsx` | Education list (graduate programs) |
 | `Experience.jsx` | Reverse-chronological work timeline |
@@ -440,18 +440,24 @@ Side effects limited to:
 Two themes share one set of tokens. **Dark is the default** and lives on `:root`; **light is an attribute override** on `:root[data-theme="light"]`. The active theme is controlled by `ThemeContext` and an anti-FOUC inline script in `index.html`.
 
 | Token | Dark | Light | Use |
-|-------|------|-------|-----|
-| `--bg-primary` | `#1a1a1a` | `#ffffff` | Body + most sections |
-| `--bg-elevated` | `#222222` | `#f4f4f4` | Cards, panels |
-| `--bg-elevated-2` | `#2a2a2a` | `#ececec` | Tiles, dashboard surrounds |
-| `--accent` | `#c5a47e` | `#c5a47e` | Eyebrows, links, CTA, accent borders (bronze - same in both themes for brand) |
-| `--accent-hover` | `#d4b896` | `#b89468` | Accent hover state |
-| `--text-heading` | `#ffffff` | `#1a1a1a` | Headings, big stat numbers, nav links |
-| `--text-body` | `#a0a0a0` | `#555555` | Paragraph copy, footer body |
-| `--text-muted` | `#808080` | `#888888` | Labels, captions, meta, footer-bottom |
-| `--text-on-accent` | `#ffffff` | `#ffffff` | Text inside accent-filled buttons |
-| `--border-subtle` | `#2a2a2a` | `#e5e5e5` | Quiet section dividers, footer rules |
-| `--border-accent` | `rgba(197,164,126,0.35)` | `rgba(197,164,126,0.5)` | Accented separators |
+|-------|------|-------|---------|
+| `--bg-primary` | `#0e0e10` | `#fafaf9` | Page + every section background (sections no longer alternate bands) |
+| `--bg-elevated` | `#141417` | `#f2f1ee` | Segmented-control tracks, drawer, quiet panels |
+| `--bg-elevated-2` | `#1c1c20` | `#e8e6e1` | Image placeholders, tag chips |
+| `--surface` | `#131316` | `#ffffff` | Cards (impact, skills, projects, blog, footer CTA, meta panels) |
+| `--surface-raised` | `#232328` | `#ffffff` | Active segmented tab, dropdown menus |
+| `--hover-bg` | `rgba(255,255,255,0.05)` | `rgba(15,15,20,0.05)` | Ghost hover fill (nav links, icon buttons) |
+| `--nav-bg` | `rgba(14,14,16,0.78)` | `rgba(250,250,249,0.82)` | Blurred sticky nav |
+| `--accent` | `#c9a77c` | `#8a6a40` | Eyebrows, links, primary CTA, nodes (bronze; darkened on light so text keeps ≥4.5:1) |
+| `--accent-hover` | `#dcbf98` | `#6f5431` | Accent hover |
+| `--accent-soft` / `--accent-glow` | bronze @ 12% / 55% | bronze @ 10% / 40% | Tinted panels + icon tiles / primary-button hover glow |
+| `--text-heading` | `#f5f5f4` | `#141416` | Headings, big numbers |
+| `--text-body` | `#b9b9c0` | `#3d3d45` | Paragraph copy |
+| `--text-muted` | `#8b8b94` | `#5f5f68` | Labels, dates, captions |
+| `--text-on-accent` | `#141414` | `#ffffff` | Text on bronze-filled buttons (dark text on the bright dark-theme bronze) |
+| `--border-subtle` / `--border-strong` | `rgba(255,255,255,0.08/0.16)` | `rgba(15,15,20,0.09/0.18)` | Card borders / hover + outline buttons |
+| `--border-accent` | `rgba(201,167,124,0.4)` | `rgba(138,106,64,0.45)` | Accent hover borders, callouts |
+| `--shadow-card` | `none` | soft 2-layer shadow | Card elevation (light theme only) |
 | `--text-on-dark`, `--text-on-dark-soft`, `--text-on-dark-muted`, `--text-on-dark-faint`, `--border-on-dark` | white-on-dark family | unchanged | Surfaces that stay dark in both themes (hero overlay copy, lightbox chrome). |
 
 ### Dark/light toggle implementation
@@ -465,20 +471,22 @@ Two themes share one set of tokens. **Dark is the default** and lives on `:root`
 
 ### Surfaces excluded from theme switching
 
-- **Hero** (`Hero.jsx`) - copy sits on top of an image with a fixed dark overlay (`rgba(0,0,0,0.55)`). White text is intentional in both themes for readability.
+- **Hero** (`Hero.jsx`) - copy sits on top of a photo with fixed dark gradients (`.hero-shade`). White text is intentional in both themes, and `.hero` re-declares `--accent` / `--text-on-accent` locally so the bronze stays bright on the photo. The background block (photo, shade, grid, curtain) is frozen on the owner's request - see `FEATURE_MAP.md` F1.
 - **Animated banner iframes** - any future `public/banners/*.html` is rendered as a sandboxed iframe with its own palette; the surrounding card/hero wrapper follows the site theme.
 - **Animated banners** (`public/banners/*.html`) - self-contained iframed documents with their own colors; not driven by the host site's `data-theme`. Their card/hero wrappers (border, fallback bg) **do** follow the site theme.
 - **Dashboard embeds** (`src/embeds/*Dashboard.tsx`) - Claude artifact exports with hard-coded palettes. The surrounding `EmbedSlot` chrome (border, title, fullscreen overlay) follows the site theme.
 
-Display font: Cormorant Garamond (`.author-name`). Body: Source Sans Pro.
+Fonts: **Inter** (`--font-body`, all UI + headings), **JetBrains Mono** (`--font-mono`, eyebrows / labels / dates / chips), **Cormorant Garamond** (`--font-display`, hero name + monogram, nav wordmark, blog pull quotes).
 
 ## Design conventions
 
-- Uppercase eyebrows with wide letter-spacing (bronze accent)
-- Light font weights (300) for headings on dark surfaces
-- Hover accent on project titles and CTAs
+- One shared section header: mono uppercase bronze eyebrow with a leading rule + Inter 600 heading with tight tracking (grouped selectors in `global.css`)
+- Semibold (600) headings, regular (400) body - no light 300 weights
+- Content in bordered `--surface` cards (16-20px radius); hover = stronger border + small lift
+- Buttons from `.btn` + `.btn-primary` / `.btn-outline` / `.btn-sm`; text links in `--accent` 600
+- Global `:focus-visible` ring; `prefers-reduced-motion` disables animation
 - Hero overlays + embedded dashboards keep their own internal palettes - site shell theme applies around them
-- Mobile breakpoint: **768px** (primary), **960px**, **520px**
+- Breakpoints: **1100px** (nav → drawer), **960px** (single-column about/projects), **768px** (primary mobile), **560px**, **480px** (nav CTA hides)
 
 ---
 
@@ -833,7 +841,7 @@ function Component() {
 - `{ en, vi }` → returns `value[lang]` (falls back to `value.en` if the requested lang is missing)
 - otherwise → returned unchanged
 
-UI strings not tied to a section's data file live in `src/data/ui.js` (nav labels, breadcrumbs, pager, footer headings, embed slot text).
+UI strings not tied to a section's data file live in `src/data/ui.js` (nav labels + Contact CTA, hero CTAs, breadcrumbs, pager, footer headings + CTA subheading / email button, embed slot text).
 
 ---
 

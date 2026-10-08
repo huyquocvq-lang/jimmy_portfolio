@@ -127,13 +127,14 @@ src/styles/projects/*.css    → one file per project page (unique layouts)
 
 CSS variables in `:root` (`global.css`):
 
-- Typography: `--text-base`, `--font-body`, `--font-display` (Cormorant Garamond for author name)
+- Typography: `--text-base` (17px / 16px mobile), `--font-body` (Inter), `--font-mono` (JetBrains Mono - labels, eyebrows, dates), `--font-display` (Cormorant Garamond - hero name, nav wordmark, pull quotes)
 - Layout: `--content-max` (`1200px`) - shared content-column cap. Every homepage section `-inner` (nav, impact, education, experience, about-skills, projects, personal, footer) plus `.blogs-inner` / `.list-page-inner` in `blog.css` use `max-width: var(--content-max)` so all sections align to the same width. Change here to rewiden/narrow the whole site at once.
-- Theme (charcoal + bronze gold by default; light overrides on `:root[data-theme="light"]`):
-  - Surfaces: `--bg-primary`, `--bg-elevated`, `--bg-elevated-2`
-  - Accent: `--accent`, `--accent-hover` (accent stays bronze in both themes)
+- Rhythm: `--section-pad-x`, `--section-pad-y`, `--nav-h`, `--radius-sm/md/lg/xl`
+- Theme (near-black charcoal + bronze by default; light overrides on `:root[data-theme="light"]`):
+  - Surfaces: `--bg-primary`, `--bg-elevated`, `--bg-elevated-2`, `--surface`, `--surface-raised`, `--hover-bg`, `--nav-bg`, `--shadow-card`
+  - Accent: `--accent`, `--accent-hover`, `--accent-soft`, `--accent-glow` (bronze; darker on light for contrast; `.hero` pins the bright bronze locally)
   - Text: `--text-heading`, `--text-body`, `--text-muted`, `--text-on-accent`
-  - Borders: `--border-subtle`, `--border-accent`
+  - Borders: `--border-subtle`, `--border-strong`, `--border-accent`
   - Always-dark surfaces (hero overlay copy, lightbox): `--text-on-dark`, `--text-on-dark-soft`, `--text-on-dark-muted`, `--text-on-dark-faint`, `--border-on-dark`
 
 The active theme is selected by `:root[data-theme]` (set by `ThemeContext` at runtime + an anti-FOUC inline script in `index.html`). All non-hero / non-dashboard surfaces reference these tokens via `var(...)` - never hardcode the swatch.

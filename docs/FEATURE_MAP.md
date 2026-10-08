@@ -18,7 +18,7 @@
 | F5d | Blog detail page | `src/pages/BlogDetailPage.jsx`, `src/components/BlogBody.jsx`, `src/data/blog.ts` | `/blog/:slug` |
 | F6 | Footer / CTA | `src/components/Footer.jsx` | footer |
 | F7–F13 | Individual project case studies | `src/projects/*Project.jsx` | `/projects/:slug` |
-| FX | Theme tokens (charcoal + bronze) + dark/light toggle | `src/styles/global.css` `:root` / `[data-theme="light"]`, `src/context/ThemeContext.jsx`, `src/components/ThemeToggle.jsx` | global |
+| FX | Design system (tokens, type, buttons, section headers) + dark/light toggle | `src/styles/global.css` `:root` / `[data-theme="light"]`, `src/context/ThemeContext.jsx`, `src/components/ThemeToggle.jsx` | global |
 | FW | Bilingual i18n (EN/VI) + language toggle | `src/context/LanguageContext.jsx`, `src/utils/i18n.js`, `src/components/LanguageToggle.jsx`, `src/data/ui.js` | global |
 | FV | Env-driven mobile content trim | `src/utils/mobileTrim.js`, `src/components/MobileTrimStyles.jsx`, `.env.example` | mobile (≤ `VITE_MOBILE_BREAKPOINT_PX`) |
 | FY | Dashboard embed system (currently no embeds registered) | `src/components/project/EmbedSlot.jsx`, `src/embeds/*.tsx`, `src/data/projectEmbeds.js` | reserved for future detail pages |
@@ -30,7 +30,11 @@
 
 ## F1 - Hero banner (v2 - HUD / dossier layout)
 
-**Purpose:** Full-viewport intro (`100vw × 100dvh`) styled as a cinematic dossier card - responsive art-directed background photo + 4 bronze corner brackets + monospace metadata chips + serif title with italic-bronze accent + skill chip row + contact strip + monogram.
+**Purpose:** Full-viewport intro (`100vw × 100dvh`) styled as a cinematic dossier card - responsive art-directed background photo + 4 bronze corner brackets + monospace metadata chips + serif title with italic-bronze accent + skill chip row + primary CTA row + contact strip + monogram.
+
+**Background is frozen (owner request, 2026-10 redesign):** the `.hero` / `.hero-bg` / `.hero-bg-img` / `.hero-shade` / `.hero-grid` / `.hero-curtain` block at the top of the HERO section in `src/styles/global.css` was kept byte-identical through the redesign. Restyle the foreground (frame, chips, title, CTA, contact) freely, but do not change the photo, its filter, the shade gradients or the grid texture without asking the owner first.
+
+**Fonts:** name + monogram stay in Cormorant Garamond (`--font-display`); subtitle + proof values use Inter (`--font-body`); every HUD label/chip uses JetBrains Mono (`--font-mono`). `.hero` re-declares `--accent` / `--text-on-accent` locally so the bronze stays bright on the always-dark photo even in light theme.
 
 **Layout (CSS grid):**
 
@@ -47,7 +51,7 @@
 |------|---------|
 | `tag` (top-left)        | Status dot + `PORTFOLIO / 2026 // AVAILABLE FOR HIRE` |
 | `side` (right column)   | Stacked info chips zigzagging left ↔ right (`// EXPERIENCE` = `5+ years · Professional`, `// BASED IN`, `// ALSO DOES`, `// STATUS`) |
-| `main` (center-left)    | `- Backend · Platform · Distributed Systems` eyebrow → serif name with bronze italic accent (+ `.sr-only` "Senior Backend and Platform Software Engineer" suffix inside the `<h1>` for crawlers/screen readers) → `Senior Backend Engineer — Fintech & AIoT` subtitle → production-scale proof (`1-2M users`, `~$10M/mo`, `500K+ IoT devices`) → `// FOCUS` row → compact core-capability chip row |
+| `main` (center-left)    | `- Backend · Platform · Distributed Systems` eyebrow → serif name with bronze italic accent (+ `.sr-only` "Senior Backend and Platform Software Engineer" suffix inside the `<h1>` for crawlers/screen readers) → `Senior Backend Engineer — Fintech & AIoT` subtitle → production-scale proof (`1-2M users`, `~$10M/mo`, `500K+ IoT devices`) → `// FOCUS` row → compact core-capability chip row → `.hero-actions` CTA row (`.btn-primary` **View projects** → `#work`, `.hero-btn--ghost` **Get in touch** → `#contact`; labels `ui.hero.viewWork` / `ui.hero.contact`) |
 | `contact` (bottom-left) | `// EMAIL`, `// PHONE`, `// LINKEDIN`, `// GITHUB` columns; `// RESUME` appears automatically when `profile.contact.resume` is non-null |
 | `mark` (bottom-right)   | `SE/26` serif monogram + `SENIOR · EST. 2019` tag |
 
@@ -95,7 +99,7 @@ hud: {
 4. `.hero-curtain` - solid background fade-in on first mount (`.hero--preload → .hero--ready`)
 5. `.hero-frame` - content grid
 6. 4 × `.hero-corner--{tl,tr,bl,br}` - bronze bracket overlays
-7. `.hero-scroll-down` - bottom-center chevron
+7. `.hero-scroll-down` - bottom-center chevron, **mobile only (≤768px)**; on desktop the CTA row replaces it and the contact strip owns the bottom edge
 
 **Entrance animation:** each major block (`tag-top`, `main`, `side-chips`, `contact`, `mark`, `corners`) fades up with a 150ms stagger when `.hero--ready` is applied.
 
@@ -112,13 +116,13 @@ hud: {
 
 ## F2 - Navigation
 
-**Purpose:** Sticky header; section links on home; hamburger drawer on mobile; scroll-spy that highlights the link of the section currently in view.
+**Purpose:** Sticky translucent header (blurred `--nav-bg`); section links on home; GitHub / LinkedIn icon buttons; language + theme toggles; **Contact** CTA; hamburger drawer at ≤1100px; scroll-spy that highlights the link of the section currently in view.
 
 **Data:** `profile.js` - name, `contact.linkedin`, `contact.resume` (currently null), optional `contact.github` (currently null)
 
 **State:**
 - `open` boolean for mobile menu (locks `document.body.overflow`)
-- `activeSection` derived from `useActiveSection(HOMEPAGE_SECTIONS, isHome)` - an `IntersectionObserver` with `rootMargin: '-30% 0px -55% 0px'` that picks whichever section has the highest visibility ratio inside that band. Only runs on the homepage.
+- `activeSection` derived from `useActiveSection(HOMEPAGE_SECTIONS, isHome)` - a rAF-throttled scroll/resize listener that picks the last section (document order) whose top has crossed 35% of the viewport height. Only runs on the homepage.
 
 **Active state rules:**
 - In-page links (`#impact`, `#experience`, `#about`, `#work`, `#personal`) → active when `activeSection` matches the section id on `/`.
@@ -126,14 +130,20 @@ hud: {
 - `Projects` link → active when on `/projects` route, or when the `#work` section is in view on home.
 - LinkedIn / Resume / GitHub stay inert (external links).
 
-**Visual treatment:** `.nav-links a.is-active` switches the link to `var(--accent)` and adds a 2px bronze underline pseudo-element 6px below the text. Mobile drawer suppresses the underline pseudo (the row divider already separates entries) and uses colour-only highlight.
+**Visual treatment:** links are sentence-case Inter 14px/500 in `--text-muted`; hover adds `--hover-bg`; `.nav-links a.is-active` switches to `--text-heading` and grows a 2px bronze underline (`::after`, `scaleX`). In the drawer the underline is suppressed and the active row gets `--accent` text on `--accent-soft`.
 
-**Logo:** `<a class="nav-logo">` wraps the favicon icon (`/favicon/favicon-128x128.png` at 1x, `-256x256.png` at 2x) plus a `.nav-logo__text` "Jimmy" wordmark (italic Cormorant Garamond, sourced from `profile.hud.title.accent`). The icon renders at 44×44 on desktop and 38×38 on mobile; the wordmark is hidden on ≤768px so the bar stays compact on phones. `aria-label` carries `profile.name` so screen readers still announce the full brand.
+**Layout:** logo · `.nav-links` · `.nav-social` (GitHub + LinkedIn `.nav-icon` buttons with `aria-label`, separated by a hairline) · `LanguageToggle` · `ThemeToggle` · `.nav-cta` (`.btn .btn-primary .btn-sm`, `href="#contact"` - every page renders `<Footer id="contact">`, so it never leaves the current page; label `ui.nav.contact`).
+- **≤1100px:** `.nav-links` becomes the fixed right drawer, `.nav-social` hides and the external links reappear as text rows (`li.nav-links__ext`, hidden on desktop).
+- **≤480px:** `.nav-cta` hides so logo + toggles + hamburger fit.
+- The blur lives on `.nav::before` on purpose: `backdrop-filter` on `.nav` itself would become the containing block for the fixed drawer and backdrop.
+
+**Logo:** `<a class="nav-logo">` wraps the favicon icon (`/favicon/favicon-128x128.png` at 1x, `-256x256.png` at 2x) plus a `.nav-logo__text` "Jimmy" wordmark (italic Cormorant Garamond, sourced from `profile.hud.title.accent`). The icon renders at 36×36 on desktop and 34×34 on mobile; the wordmark is hidden on ≤768px so the bar stays compact on phones. `aria-label` carries `profile.name` so screen readers still announce the full brand.
 
 **Links pattern:**
 - In-page (home): `/#impact`, `/#experience`, `/#about`, `/#work`, `/#personal`
 - Routes: `/blog`
-- External: LinkedIn (Resume + GitHub render only when non-null in `profile.contact`)
+- External: GitHub + LinkedIn icon buttons on desktop, text rows in the drawer (Resume renders only when non-null in `profile.contact`)
+- CTA: `#contact` (footer on the current page)
 - Logo: `/`
 
 ---
@@ -144,9 +154,9 @@ hud: {
 
 **Data:** `src/data/stats.js` - `impactTabs[]` with `{ id, label: {en, vi}, highlights: [{ big, desc }] }`. Tab IDs: `overall`, `lms`, `iot`, `cms` - note **`lms` = Lending Management System** (fintech orchestration platform - CAKE / VEGA / TINVAY partners), not Learning Management System. `impactHighlights` is kept as a backwards-compatible flat export pointing at the first tab.
 
-**Component:** `src/components/Impact.jsx` - renders an ARIA tablist (`role="tablist"` + `role="tab"` + `aria-selected`) above the grid, with the currently selected tab's highlights as a `role="tabpanel"`. Active tab tracked by local `useState`. Tab labels resolved bilingually via `tr(tab.label, lang)`.
+**Component:** `src/components/Impact.jsx` - renders an ARIA tablist (`role="tablist"` + `role="tab"` + `aria-selected`) above the grid, with the currently selected tab's highlights as a `role="tabpanel"`. Active tab tracked by local `useState`. Tab labels resolved bilingually via `tr(tab.label, lang)`. Implements the WAI-ARIA tabs keyboard pattern: inactive tabs are `tabIndex=-1`, and `ArrowLeft` / `ArrowRight` / `Home` / `End` move selection + focus. Each card prints a mono index (`01`, `02` …, `.impact-item__index`, `aria-hidden`).
 
-**Styles:** `.impact-tabs` + `.impact-tab` rules in `src/styles/global.css` (active state uses `--accent` underline). Mobile override switches the tab strip to a horizontally scrollable bar.
+**Styles:** `.impact-tabs` is a segmented control (pill track on `--bg-elevated`, active tab raised on `--surface-raised`). `.impact-grid` keeps **every tab on a single row** whatever its count (Overall has 4 highlights, LMS / IoT / CMS have 5): `grid-auto-flow: column` + `grid-auto-columns: minmax(200px, 1fr)` gives equal columns, and when the row cannot fit 200px cards (roughly ≤1100px for 5, ≤1000px for 4) the strip scrolls sideways (`overflow-x: auto`, scroll-snap) instead of dropping a lone card onto a second row. Each `.impact-item` is a bordered `--surface` card with a short bronze top rule; it is a size container, and `.big` uses `clamp(22px, 15.5cqi, 34px)` so the number scales with the card (34px 4-up, ~27px 5-up at desktop) - 15.5cqi is sized so the widest word ("Personalized", ~5.9em) never overflows. Mobile (≤768px): tab strip becomes a horizontally scrollable bar and cards stack vertically.
 
 **Mobile trim:** controlled by `VITE_MOBILE_IMPACT_LIMIT` (default 4) via `<MobileTrimStyles />`. The CSS selector still targets `.impact-item:nth-of-type(...)` so it applies independently per tab panel.
 
@@ -160,7 +170,7 @@ hud: {
 
 **Data:** `src/data/education.js` - `{ school, degree, focus, location, date, gpa, honors[] }`. Currently one entry: **Hanoi University of Science and Technology** (Computer Engineering, Aug 2018 – Aug 2023, CPA 3.25).
 
-**Component:** `src/components/Education.jsx` - 2-column grid (`220px 1fr` desktop, stacked on mobile). Heading: "Where I studied engineering."
+**Component:** `src/components/Education.jsx` - shares the timeline layout with Work Experience (`180px 1fr`: mono date column + body on a vertical rail with a bronze node). Heading: "Where I studied engineering."
 
 **Anchor:** `id="education"`.
 
@@ -186,6 +196,8 @@ Each entry may carry an optional `website` URL. When non-null, `Experience.jsx` 
 
 **Component:** `src/components/Experience.jsx`
 
+**Layout:** timeline - `180px` mono date column, body on a 1px rail (`.exp-body` `border-left`) with a bronze node per role (the current, first role gets a filled node + soft halo). The company logo sits left of the role title on a white 52px tile (`.exp-logo`, CSS `order: -1`, so the JSX order is unchanged). Bullets use a short bronze dash marker; the `meta` rows render as a bordered `--surface` panel. ≤768px: the date moves onto the rail above its entry.
+
 **Mobile trim:** controlled by `VITE_MOBILE_HIDE_EXPERIENCE_META` (default `true`) - hides the optional Technologies / Outstanding projects rows. The role + period + paragraphs stay visible.
 
 **Anchor:** `id="experience"`
@@ -200,6 +212,8 @@ Each entry may carry an optional `website` URL. When non-null, `Experience.jsx` 
 - `src/data/about.js` - heading "Working at the intersection of CMS platforms, backend services, and IoT systems."
 - `src/data/skills.js` - 6 skill objects with engineering-focused descriptions, plus the `techMarquee` array of badge names rendered by `<TechMarquee />`
 - `src/data/skillIcons.js` - maps `backend / frontend / cms / mobile / data / iot` to `react-icons/fa` components (`FaServer`, `FaReact`, `FaNewspaper`, `FaMobileAlt`, `FaDatabase`, `FaMicrochip`)
+
+**Styles:** the About heading is one step smaller than other section titles (it is a full sentence); skills render as a 2-column grid of separate `--surface` cards with the icon in a 44px `--accent-soft` tile.
 
 **Tech marquee (`src/components/TechMarquee.jsx`):** seamless horizontal scroll mounted at the bottom of the section. The track duplicates `techMarquee` and animates `translateX(-50%)` over 50s for a clean loop. Hovering pauses the scroll; `prefers-reduced-motion: reduce` disables it. Edges are softly masked with a `mask-image` linear gradient. Tech badge text stays English in both locales.
 
@@ -232,6 +246,8 @@ Each entry may carry an optional `website` URL. When non-null, `Experience.jsx` 
 - All cards currently have `banner: null` and reference 1600×1000 JPEG previews under `public/images/projects/<slug>.jpg`. `OtherProject` / `FeaturedProject` render those images as CSS background covers; if a file is missing, the browser falls back to the dark card background.
 - Preview source: current shipped thumbnails are derived from approved real/reference screenshots or marketing/product images. `scripts/generate-project-previews.mjs` is a fallback for generating anonymized placeholder previews when no approved real visual source exists.
 
+**Layout:** the featured project is one wide bordered card (visual left, story right; `01 / FEATURED` pill floats over the image; CTA is `.btn .btn-primary` with an arrow). Other projects are a 2-column grid of cards (thumbnail on top, padded body, impact line on an `--accent-soft` panel, `View Project →` text link pinned to the card bottom). Single column ≤960px.
+
 **Mobile trim:** controlled by `VITE_MOBILE_PROJECTS_LIMIT` (default 3, applied to the other-projects grid only - the featured card is always shown). The section header keeps the **View all →** link to `/projects` for the full grid.
 
 **Anchor:** `id="work"`
@@ -258,8 +274,8 @@ Single-row horizontal slider rendered between `Projects` and `Footer` on the hom
 |-------|--------|
 | Data | `src/data/blog.ts` - `getAllPosts()` returns posts sorted by `date` desc |
 | Card | `src/components/BlogCard.jsx` - cover image, date, read time, title (clamped 2 lines), excerpt (clamped 3 lines), tag chips, CTA |
-| Slider | CSS `scroll-snap-type: x mandatory` track with grid auto-flow column; native scroll on touch / trackpad; arrow buttons (prev/next) for desktop mouse users (hidden ≤768px). Arrows enable/disable based on `scrollLeft` + `scrollWidth - clientWidth` thresholds. |
-| Header | Eyebrow + heading + **View all →** link (`ui.blog.viewAll`) → `/blog` |
+| Slider | CSS `scroll-snap-type: x mandatory` track with grid auto-flow column; native scroll on touch / trackpad; arrow buttons (prev/next) for desktop mouse users live in the section header (`.blogs-controls`, next to **View all →**) so they never overlap a card; hidden ≤768px. Arrows enable/disable based on `scrollLeft` + `scrollWidth - clientWidth` thresholds. |
+| Header | Eyebrow + heading + `.blogs-controls` (**View all →** link (`ui.blog.viewAll`) → `/blog`, prev/next arrows) |
 | Empty state | `ui.blog.empty` rendered when `getAllPosts()` returns `[]` |
 
 ---
@@ -331,11 +347,13 @@ Helpers exported alongside the `blog` array:
 
 ## F6 - Footer
 
-**Purpose:** CTA, contact columns. Currently exposes LinkedIn, email (`huyquoc.vq@gmail.com`), and phone from `profile.contact`, plus an **Explore** column with internal links to `/`, `/projects`, `/blog` (internal-linking for SEO). Heading: "Have a fullstack problem worth solving?"
+**Purpose:** CTA, contact columns. Currently exposes LinkedIn, email (`huyquoc.vq@gmail.com`), and phone from `profile.contact`, plus an **Explore** column with internal links to `/`, `/projects`, `/blog` (internal-linking for SEO). Heading: "Got a problem worth solving?"
 
-**Data:** `profile.js` + `ui.footer.explore*` strings in `src/data/ui.js`
+**CTA panel:** `.footer-cta` is a bordered `--surface` card with a soft bronze radial glow: eyebrow → heading → `.footer-cta__sub` (`ui.footer.subheading`, availability line) → `.footer-cta__actions` with **Email me** (`.btn .btn-primary`, `mailto:`; `ui.footer.emailCta`) and **Connect on LinkedIn** (`.btn-outline`, new tab; `ui.footer.connectCta`). Buttons go full-width on mobile.
 
-**File:** `src/components/Footer.jsx` (4-column grid `.footer-inner`; collapses to 1 column on mobile)
+**Data:** `profile.js` + `ui.footer.*` strings in `src/data/ui.js`
+
+**File:** `src/components/Footer.jsx` (`<footer id="contact">` - target of the nav + hero "Contact" links; 4-column grid `.footer-inner` → 2 columns ≤960px → 1 column ≤560px)
 
 ---
 
@@ -420,7 +438,7 @@ Provides Nav · banner (image or iframe) + dim overlay · breadcrumbs · `childr
 | Translation helper | `src/utils/i18n.js` | `tr(value, lang)` returns `value[lang]` when `value` looks like `{ en, vi }`, otherwise returns the value unchanged. Safe to call on plain strings, numbers, or untranslated nodes - keeps proper nouns / tech terms passthrough. Also exports `LANGUAGES = ['en','vi']` and `DEFAULT_LANGUAGE = 'en'`. |
 | Provider mount | `src/main.jsx` | `<LanguageProvider>` wraps `<ThemeProvider>` so theme + language coexist. |
 | UI control | `src/components/LanguageToggle.jsx` | Globe icon + EN/VI code + dropdown. Selecting a language **navigates to the twin URL** (`/x` ↔ `/vi/x`, preserving search + hash) via `useNavigate`; `LanguageSync` then updates the context. Closes on outside click or Escape. Mounted next to `ThemeToggle` in `Nav.jsx` `.nav-actions`. |
-| UI strings registry | `src/data/ui.js` | Every UI string not tied to a section's data file (nav labels, breadcrumbs, pager, footer headings, embed slot, impact/education/experience/projects eyebrows + headings). Each value is a `{ en, vi }` pair. |
+| UI strings registry | `src/data/ui.js` | Every UI string not tied to a section's data file (nav labels + `nav.contact` CTA, hero CTAs `hero.viewWork` / `hero.contact`, breadcrumbs, pager, footer headings + `footer.subheading` / `footer.emailCta`, embed slot, impact/education/experience/projects eyebrows + headings). Each value is a `{ en, vi }` pair. |
 
 **Internal links must be localized:** every internal `Link`/`href`/`Navigate` wraps its language-neutral path in `localePath(path, lang)` - done in `Nav`, `Footer`, `BlogCard`, `FeaturedProject`, `OtherProject`, `Blogs`, `Projects`, `ProjectShell`, `BlogDetailPage`, `BlogListPage` (incl. `Pagination` basePath), `ProjectListPage`, `NotFoundPage`. A raw `to="/blog"` would silently switch the user back to English.
 
@@ -454,7 +472,21 @@ The amount of content shown on phones is read from Vite env vars at build time a
 
 ## FX - Theme tokens + dark/light toggle
 
-Charcoal + bronze gold dark default with a runtime **dark ↔ light** toggle. Unchanged from the previous portfolio iteration.
+Near-black charcoal + bronze dark default with a runtime **dark ↔ light** toggle. Redesigned in 2026-10 for a cleaner, more professional system; the hero background was intentionally left untouched (see F1).
+
+### Design system (all in `src/styles/global.css`)
+
+| Layer | Rule |
+|-------|------|
+| Typography | `--font-body` **Inter** (400/500/600/700) for all UI + headings; `--font-mono` **JetBrains Mono** for eyebrows, labels, dates, chips; `--font-display` **Cormorant Garamond** only for the hero name/monogram, nav wordmark and blog pull quotes. Base `--text-base` 17px (16px ≤768px), weight 400. Loaded from Google Fonts in `index.html` (all three include the Vietnamese subset). |
+| Section header | One grouped rule styles every section eyebrow (mono 12px, bronze, leading 24px rule) and heading (Inter 600, `clamp(30px, 3.6vw, 44px)`, `-0.025em`). Add a new section's eyebrow/h2 selectors to those grouped lists instead of writing new header CSS. |
+| Layout | `--content-max` 1200px, `--section-pad-x` 32px (20px mobile), `--section-pad-y` `clamp(80px, 9vw, 120px)` (64px mobile), `--nav-h` 68px (64px mobile; anchored sections use it as `scroll-margin-top`). All sections share `--bg-primary`; separation comes from spacing, not alternating bands. |
+| Surfaces | Cards = `--surface` + 1px `--border-subtle` + `--radius-lg` (16px) + `--shadow-card` (shadow only in light theme). Hover = `--border-strong` and a 2-3px lift. |
+| Buttons | `.btn` base (46px tall, radius 10px, Inter 15/600) + `.btn-primary` (bronze fill, `--text-on-accent`) / `.btn-outline` (works alone or with `.btn`) / `.btn-sm` (38px). Trailing arrow icons take `.btn__arrow` for the hover nudge. |
+| Focus | Global `:focus-visible` = 2px `--accent` outline, 3px offset. |
+| Motion | `prefers-reduced-motion: reduce` collapses all animations/transitions and stops the marquee. |
+
+Key tokens (dark → light): `--bg-primary` `#0e0e10` → `#fafaf9`; `--surface` `#131316` → `#ffffff`; `--accent` `#c9a77c` → `#8a6a40` (darkened so bronze text keeps ≥4.5:1 on light); `--text-on-accent` `#141414` → `#ffffff`; `--text-heading` `#f5f5f4` → `#141416`; `--text-body` `#b9b9c0` → `#3d3d45`; `--text-muted` `#8b8b94` → `#5f5f68`; borders are translucent (`rgba(255,255,255,.08/.16)` dark, `rgba(15,15,20,.09/.18)` light).
 
 ### Theme switching
 
@@ -465,7 +497,7 @@ Charcoal + bronze gold dark default with a runtime **dark ↔ light** toggle. Un
 | UI | `src/components/ThemeToggle.jsx` | Sun/moon icon button in `Nav.jsx` `.nav-actions`. |
 | Anti-FOUC | `index.html` inline `<script>` in `<head>` | Resolves theme before bundle loads. |
 
-Token table is unchanged - see `src/styles/global.css`.
+`THEME_COLORS` in `ThemeContext.jsx`, the anti-FOUC script and `<meta name="theme-color">` in `index.html`, and `public/favicon/site.webmanifest` all use `#0e0e10` (dark) / `#fafaf9` (light) - keep them in sync with `--bg-primary`.
 
 ---
 

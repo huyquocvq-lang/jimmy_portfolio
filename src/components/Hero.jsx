@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
-import { FaChevronDown } from 'react-icons/fa'
+import { FaArrowRight, FaChevronDown } from 'react-icons/fa'
 import { profile } from '../data/profile'
 import { ui } from '../data/ui'
 import { useLanguage } from '../context/LanguageContext'
@@ -32,10 +32,11 @@ export default function Hero() {
     return () => cancelAnimationFrame(id)
   }, [])
 
-  const handleScrollDown = (e) => {
+  const scrollToSection = (id) => (e) => {
     e.preventDefault()
-    document.getElementById('impact')?.scrollIntoView({ behavior: 'smooth' })
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
+  const handleScrollDown = scrollToSection('impact')
 
   return (
     <section
@@ -139,6 +140,16 @@ export default function Hero() {
               </li>
             ))}
           </ul>
+
+          <div className="hero-actions">
+            <a href="#work" className="btn btn-primary" onClick={scrollToSection('work')}>
+              {tr(ui.hero.viewWork, lang)}
+              <FaArrowRight className="btn__arrow" aria-hidden="true" />
+            </a>
+            <a href="#contact" className="btn hero-btn--ghost" onClick={scrollToSection('contact')}>
+              {tr(ui.hero.contact, lang)}
+            </a>
+          </div>
         </div>
 
         <div className="hero-contact" aria-label="Contact">

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { FaEnvelope, FaLinkedinIn } from 'react-icons/fa'
 import { profile } from '../data/profile'
 import { ui } from '../data/ui'
 import { useLanguage } from '../context/LanguageContext'
@@ -14,11 +15,21 @@ export default function Footer() {
       <div className="footer-cta">
         <div className="eyebrow">{tr(ui.footer.eyebrow, lang)}</div>
         <h2>{tr(ui.footer.heading, lang)}</h2>
-        {contact.linkedin && (
-          <a href={contact.linkedin} className="btn-outline">
-            {tr(ui.footer.connectCta, lang)}
-          </a>
-        )}
+        <p className="footer-cta__sub">{tr(ui.footer.subheading, lang)}</p>
+        <div className="footer-cta__actions">
+          {contact.email && (
+            <a href={`mailto:${contact.email}`} className="btn btn-primary">
+              <FaEnvelope aria-hidden="true" />
+              {tr(ui.footer.emailCta, lang)}
+            </a>
+          )}
+          {contact.linkedin && (
+            <a href={contact.linkedin} target="_blank" rel="noreferrer" className="btn-outline">
+              <FaLinkedinIn aria-hidden="true" />
+              {tr(ui.footer.connectCta, lang)}
+            </a>
+          )}
+        </div>
       </div>
 
       <div className="footer-inner">

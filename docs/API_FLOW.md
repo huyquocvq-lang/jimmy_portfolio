@@ -33,7 +33,7 @@ sequenceDiagram
 | URL | Method | Used by | Purpose |
 |-----|--------|---------|---------|
 | N/A (bundled modules) | - | All components | Content from `src/data` and project JSX |
-| `https://fonts.googleapis.com/...` | GET | `index.html` | Source Sans Pro + Cormorant Garamond |
+| `https://fonts.googleapis.com/...` | GET | `index.html` | Inter + JetBrains Mono + Cormorant Garamond |
 | `profile.contact.linkedin` | GET (browser navigation) | `Nav.jsx` | User profile |
 | `profile.contact.resume` | GET (browser navigation) | `Nav.jsx` | Google Docs resume |
 | `/images/*` | GET | Hero, project heroes, personal masonry | Static assets from `public/images/` |

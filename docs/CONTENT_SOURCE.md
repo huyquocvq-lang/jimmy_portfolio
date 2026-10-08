@@ -25,7 +25,7 @@ When updating copy:
 
 ## **Hero Section** (v2 - HUD / dossier layout)
 
-**Component:** `src/components/Hero.jsx` · **Background:** `<picture>` from `public/images/hero-banners/` (B&W filter + dim gradient) · **Theme:** charcoal `#0a0a0a` shell + bronze gold `#c5a47e` accents
+**Component:** `src/components/Hero.jsx` · **Background:** `<picture>` from `public/images/hero-banners/` (B&W filter + dim gradient) · **Theme:** charcoal `#0a0a0a` shell + bronze `#c9a77c` accents (hero pins the bright bronze in both themes; background block frozen - see `FEATURE_MAP.md` F1)
 
 **Layout:** CSS grid with 5 named areas - `tag` (top-left), `side` (right column), `main` (center-left), `contact` (bottom-left), `mark` (bottom-right). 4 bronze corner brackets frame the section.
 
@@ -49,6 +49,7 @@ When updating copy:
 | Contact: Phone | `+84 0345 475 336` |
 | Contact: LinkedIn | `linkedin.com/in/quoc-huy` (handle); link target `https://linkedin.com/in/quoc-huy-16b896277` |
 | Monogram | `SE/26` + `ENGINEERING SINCE 2019` |
+| CTA row (under chips) | `View projects →` (→ `#work`) · `Get in touch` (→ `#contact`) — VI: `Xem dự án` · `Liên hệ với tôi` (`ui.hero.*`) |
 
 ### Tagline & intro (for nav/footer/meta reuse, not rendered in hero v2)
 
@@ -63,6 +64,12 @@ When updating copy:
 - LinkedIn: https://linkedin.com/in/quoc-huy-16b896277
 - GitHub: https://github.com/huyquocvq-lang
 - Resume: currently unavailable in the repository; `profile.contact.resume` stays `null` so the CTA remains hidden until a real public PDF is added.
+
+**Footer CTA (`ui.footer`, rendered on every page):**
+
+- Heading: Got a problem worth solving? / Có vấn đề cần giải quyết ?
+- Subheading: Open to senior backend and platform roles - remote, or on-site in Hanoi. / Sẵn sàng cho các vị trí senior backend / platform - làm remote hoặc tại Hà Nội.
+- Buttons: `Email me` / `Gửi email` (mailto) · `Connect on LinkedIn` / `Kết nối qua LinkedIn`
 
 ---
 

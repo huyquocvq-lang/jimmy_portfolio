@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 
 const STORAGE_KEY = 'portfolio-theme'
-const THEME_COLORS = { dark: '#1a1a1a', light: '#ffffff' }
+const THEME_COLORS = { dark: '#0e0e10', light: '#fafaf9' }
 
 function readInitialTheme() {
   if (typeof document !== 'undefined') {

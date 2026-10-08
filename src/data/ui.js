@@ -16,11 +16,14 @@ export const ui = {
     linkedin: { en: 'LinkedIn', vi: 'LinkedIn' },
     resume: { en: 'Resume', vi: 'CV' },
     github: { en: 'GitHub', vi: 'GitHub' },
+    contact: { en: 'Contact', vi: 'Liên hệ' },
     openMenu: { en: 'Open menu', vi: 'Mở menu' },
     closeMenu: { en: 'Close menu', vi: 'Đóng menu' }
   },
   hero: {
-    scrollDown: { en: 'Scroll to content', vi: 'Cuộn xuống' }
+    scrollDown: { en: 'Scroll to content', vi: 'Cuộn xuống' },
+    viewWork: { en: 'View projects', vi: 'Xem dự án' },
+    contact: { en: 'Get in touch', vi: 'Liên hệ với tôi' }
   },
   impact: {
     eyebrow: { en: 'Impact Highlights', vi: 'Điểm nhấn thành tựu' },
@@ -94,6 +97,11 @@ export const ui = {
       en: 'Got a problem worth solving?',
       vi: 'Có vấn đề cần giải quyết ?'
     },
+    subheading: {
+      en: 'Open to senior backend and platform roles - remote, or on-site in Hanoi.',
+      vi: 'Sẵn sàng cho các vị trí senior backend / platform - làm remote hoặc tại Hà Nội.'
+    },
+    emailCta: { en: 'Email me', vi: 'Gửi email' },
     connectCta: { en: 'Connect on LinkedIn', vi: 'Kết nối qua LinkedIn' },
     currently: { en: 'Currently', vi: 'Hiện tại' },
     contact: { en: 'Contact', vi: 'Liên hệ' },

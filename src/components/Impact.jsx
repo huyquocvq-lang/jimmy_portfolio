@@ -9,6 +9,24 @@ export default function Impact() {
   const [activeId, setActiveId] = useState(impactTabs[0].id)
   const active = impactTabs.find((t) => t.id === activeId) ?? impactTabs[0]
 
+  // WAI-ARIA tabs pattern: inactive tabs are tabIndex=-1, so arrow keys move
+  // selection + focus between them.
+  const onTabKeyDown = (e) => {
+    const index = impactTabs.findIndex((t) => t.id === activeId)
+    const last = impactTabs.length - 1
+    const nextIndex = {
+      ArrowRight: index === last ? 0 : index + 1,
+      ArrowLeft: index === 0 ? last : index - 1,
+      Home: 0,
+      End: last
+    }[e.key]
+    if (nextIndex === undefined) return
+    e.preventDefault()
+    const nextId = impactTabs[nextIndex].id
+    setActiveId(nextId)
+    document.getElementById(`impact-tab-${nextId}`)?.focus()
+  }
+
   return (
     <section className="impact" id="impact">
       <div className="impact-inner">
@@ -33,6 +51,7 @@ export default function Impact() {
                 tabIndex={isActive ? 0 : -1}
                 className={`impact-tab${isActive ? ' is-active' : ''}`}
                 onClick={() => setActiveId(tab.id)}
+                onKeyDown={onTabKeyDown}
               >
                 {tr(tab.label, lang)}
               </button>
@@ -48,6 +67,7 @@ export default function Impact() {
         >
           {active.highlights.map((item, i) => (
             <div className="impact-item" key={`${active.id}-${i}`}>
+              <span className="impact-item__index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
               <div className="big">{tr(item.big, lang)}</div>
               <div className="desc">{tr(item.desc, lang)}</div>
             </div>

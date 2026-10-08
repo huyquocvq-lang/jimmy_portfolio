@@ -58,7 +58,8 @@
 }
 .trend-recs h2 {
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 600;
+  letter-spacing: -0.015em;
   margin-bottom: 20px;
   color: var(--text-heading);
 }

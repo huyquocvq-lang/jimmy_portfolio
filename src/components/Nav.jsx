@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { FaBars, FaTimes } from 'react-icons/fa'
+import { FaBars, FaGithub, FaLinkedinIn, FaTimes } from 'react-icons/fa'
 import { profile } from '../data/profile'
 import { ui } from '../data/ui'
 import { useLanguage } from '../context/LanguageContext'
@@ -113,8 +113,8 @@ export default function Nav() {
             srcSet="/favicon/favicon-96x96.png 1x, /favicon/favicon-256x256.png 2x"
             alt=""
             className="nav-logo__icon"
-            width="44"
-            height="44"
+            width="36"
+            height="36"
             loading="eager"
             decoding="async"
           />
@@ -153,19 +153,40 @@ export default function Nav() {
                 {tr(ui.nav.blog, lang)}
               </Link>
             </li>
+            {/* Text versions of the profile links - shown only in the mobile drawer */}
             {contact.linkedin && (
-              <li><a href={contact.linkedin} target="_blank" rel="noreferrer" onClick={close}>{tr(ui.nav.linkedin, lang)}</a></li>
+              <li className="nav-links__ext"><a href={contact.linkedin} target="_blank" rel="noreferrer" onClick={close}>{tr(ui.nav.linkedin, lang)}</a></li>
             )}
             {contact.resume && (
-              <li><a href={contact.resume} target="_blank" rel="noreferrer" onClick={close}>{tr(ui.nav.resume, lang)}</a></li>
+              <li className="nav-links__ext"><a href={contact.resume} target="_blank" rel="noreferrer" onClick={close}>{tr(ui.nav.resume, lang)}</a></li>
             )}
             {contact.github && (
-              <li><a href={contact.github} target="_blank" rel="noreferrer" onClick={close}>{tr(ui.nav.github, lang)}</a></li>
+              <li className="nav-links__ext"><a href={contact.github} target="_blank" rel="noreferrer" onClick={close}>{tr(ui.nav.github, lang)}</a></li>
             )}
           </ul>
 
+          {(contact.github || contact.linkedin) && (
+            <div className="nav-social">
+              {contact.github && (
+                <a href={contact.github} target="_blank" rel="noreferrer" className="nav-icon" aria-label={tr(ui.nav.github, lang)} title={tr(ui.nav.github, lang)}>
+                  <FaGithub aria-hidden="true" />
+                </a>
+              )}
+              {contact.linkedin && (
+                <a href={contact.linkedin} target="_blank" rel="noreferrer" className="nav-icon" aria-label={tr(ui.nav.linkedin, lang)} title={tr(ui.nav.linkedin, lang)}>
+                  <FaLinkedinIn aria-hidden="true" />
+                </a>
+              )}
+            </div>
+          )}
+
           <LanguageToggle />
           <ThemeToggle />
+
+          {/* Every page renders <Footer id="contact">, so the hash stays on the current page. */}
+          <a href="#contact" className="btn btn-primary btn-sm nav-cta" onClick={close}>
+            {tr(ui.nav.contact, lang)}
+          </a>
 
           <button
             type="button"

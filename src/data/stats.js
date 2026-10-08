@@ -6,7 +6,7 @@ export const heroStats = [
 ]
 
 // Impact Highlights - grouped into tabs: Overall / LMS / IoT / CMS.
-// Each tab renders a 3-column grid. Source data:
+// Each tab renders its highlights on one row (4-5 cards; scrolls sideways when narrow). Source data:
 //   - Overall: career-wide totals (team scale, systems shipped, user reach, clients)
 //   - LMS:     Lending Management System - fintech orchestration platform (CAKE / VEGA / TINVAY partners)
 //   - IoT:     Yoohome AIoT platform + Zigbee gateway firmware

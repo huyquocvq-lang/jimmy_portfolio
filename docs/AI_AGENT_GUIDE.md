@@ -91,24 +91,34 @@ CSS variables on `:root` in `src/styles/global.css` define the **dark** defaults
 
 | Token | Dark | Light | Purpose |
 |-------|------|-------|---------|
-| `--bg-primary` | `#1a1a1a` | `#ffffff` | Body / most sections |
-| `--bg-elevated` | `#222222` | `#f4f4f4` | Cards, panels |
-| `--bg-elevated-2` | `#2a2a2a` | `#ececec` | Tiles, dashboard surrounds |
-| `--accent` | `#c5a47e` | `#b89468` | Eyebrows, links, CTA, accent borders (bronze; darker variant on light for AA contrast) |
-| `--accent-hover` | `#d4b896` | `#a67f54` | Accent hover |
-| `--text-heading` | `#ffffff` | `#0d0d0d` | Headings, big numbers, nav links |
-| `--text-body` | `#d0d0d0` | `#2a2a2a` | Paragraph copy |
-| `--text-muted` | `#a8a8a8` | `#555555` | Labels, captions |
-| `--text-on-accent` | `#ffffff` | `#ffffff` | Text on accent-filled buttons |
-| `--border-subtle` | `#2a2a2a` | `#d8d8d8` | Section dividers |
-| `--border-accent` | `rgba(197,164,126,0.35)` | `rgba(184,148,104,0.55)` | Featured / Impact separators |
+| `--bg-primary` | `#0e0e10` | `#fafaf9` | Page + every section background (sections no longer alternate bands) |
+| `--bg-elevated` | `#141417` | `#f2f1ee` | Segmented-control tracks, drawer, quiet panels |
+| `--bg-elevated-2` | `#1c1c20` | `#e8e6e1` | Image placeholders, tag chips |
+| `--surface` | `#131316` | `#ffffff` | Cards (impact, skills, projects, blog, footer CTA, meta panels) |
+| `--surface-raised` | `#232328` | `#ffffff` | Active segmented tab, dropdown menus |
+| `--hover-bg` | `rgba(255,255,255,0.05)` | `rgba(15,15,20,0.05)` | Ghost hover fill (nav links, icon buttons) |
+| `--nav-bg` | `rgba(14,14,16,0.78)` | `rgba(250,250,249,0.82)` | Blurred sticky nav |
+| `--accent` | `#c9a77c` | `#8a6a40` | Eyebrows, links, primary CTA, nodes (bronze; darkened on light so text keeps ≥4.5:1) |
+| `--accent-hover` | `#dcbf98` | `#6f5431` | Accent hover |
+| `--accent-soft` / `--accent-glow` | bronze @ 12% / 55% | bronze @ 10% / 40% | Tinted panels + icon tiles / primary-button hover glow |
+| `--text-heading` | `#f5f5f4` | `#141416` | Headings, big numbers |
+| `--text-body` | `#b9b9c0` | `#3d3d45` | Paragraph copy |
+| `--text-muted` | `#8b8b94` | `#5f5f68` | Labels, dates, captions |
+| `--text-on-accent` | `#141414` | `#ffffff` | Text on bronze-filled buttons (dark text on the bright dark-theme bronze) |
+| `--border-subtle` / `--border-strong` | `rgba(255,255,255,0.08/0.16)` | `rgba(15,15,20,0.09/0.18)` | Card borders / hover + outline buttons |
+| `--border-accent` | `rgba(201,167,124,0.4)` | `rgba(138,106,64,0.45)` | Accent hover borders, callouts |
+| `--shadow-card` | `none` | soft 2-layer shadow | Card elevation (light theme only) |
+
+Type + layout tokens: `--font-body` (Inter), `--font-mono` (JetBrains Mono), `--font-display` (Cormorant Garamond - hero name, nav wordmark, pull quotes only), `--content-max`, `--section-pad-x`, `--section-pad-y`, `--nav-h`, `--radius-sm/md/lg/xl`. Shared building blocks: `.btn` + `.btn-primary` / `.btn-outline` / `.btn-sm`, and the grouped section eyebrow/heading rule (add new sections to its selector lists). Full rules: `FEATURE_MAP.md` → FX.
+
+**Hero background is frozen:** do not edit the `.hero` / `.hero-bg` / `.hero-shade` / `.hero-grid` / `.hero-curtain` block in `global.css` without the owner's go-ahead (kept identical through the 2026-10 redesign on request). `.hero` re-declares `--accent` locally so it stays bright bronze in light theme.
 
 Theme switching:
 
 - `src/context/ThemeContext.jsx` - `ThemeProvider` wraps `<App />` in `main.jsx`. Hook: `useTheme()` → `{ theme, setTheme, toggleTheme }`.
 - `src/components/ThemeToggle.jsx` - sun/moon button mounted in `Nav.jsx` `.nav-actions` (visible on home + project pages, desktop + mobile).
 - Preference persisted to `localStorage` key `portfolio-theme`. First visit reads `prefers-color-scheme`.
-- `index.html` `<head>` runs an inline anti-FOUC script that sets `data-theme` and the `<meta name="theme-color">` before the React bundle loads.
+- `index.html` `<head>` runs an inline anti-FOUC script that sets `data-theme` and the `<meta name="theme-color">` (`#0e0e10` / `#fafaf9`, mirrored in `THEME_COLORS` and `site.webmanifest`) before the React bundle loads.
 
 Always-dark surfaces (kept dark in both themes) - hero overlay copy, AI rewriter lightbox, banner iframes, dashboard internal palettes - use the `--text-on-dark*` / `--border-on-dark` family or are inherently isolated (sandboxed iframe, Claude artifact dashboards).
 

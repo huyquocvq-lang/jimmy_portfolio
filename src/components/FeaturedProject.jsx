@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { FaArrowRight } from 'react-icons/fa'
 import { ui } from '../data/ui'
 import { useLanguage } from '../context/LanguageContext'
 import { tr, localePath } from '../utils/i18n'
@@ -35,7 +36,10 @@ export default function FeaturedProject({ project }) {
           <div><strong>{tr(ui.projects.toolsLabel, lang)}</strong> {tr(project.tools, lang)}</div>
           <div><strong>{tr(ui.projects.impactLabel, lang)}</strong> {tr(project.impact, lang)}</div>
         </div>
-        <Link to={link} className="btn-outline">{tr(ui.projects.viewProject, lang)}</Link>
+        <Link to={link} className="btn btn-primary">
+          {tr(ui.projects.viewProject, lang)}
+          <FaArrowRight className="btn__arrow" aria-hidden="true" />
+        </Link>
       </div>
     </article>
   )
